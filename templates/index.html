@@ -1,0 +1,2286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23b8860b'/><text x='16' y='23' font-family='Georgia,serif' font-size='22' font-weight='bold' text-anchor='middle' fill='white'>S</text></svg>">
+<title>Scally Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:    #faf7f2; --cream2: #f2ede4; --cream3: #e8e0d0;
+  --navy:     #1a2340; --navy2:  #243058;
+  --gold:     #b8942a; --gold-lt: #d4ad4a;
+  --text:     #1a2340; --text2: #4a5568; --text3: #8a9bb0;
+  --white:    #ffffff;
+  --green:    #276749; --green-bg: #edf7f0;
+  --red:      #c0392b; --red-bg:   #fdf0ee;
+  --border:   rgba(26,35,64,.10);
+  --sh-sm:    0 1px 4px rgba(26,35,64,.08);
+  --sh-md:    0 4px 20px rgba(26,35,64,.12);
+  --sh-lg:    0 12px 40px rgba(26,35,64,.18);
+  --r: 6px;
+}
+
+/* ── Dark Mode ─────────────────────────────────────────────── */
+body.dark {
+  --cream:    #0f1523; --cream2: #151d2e; --cream3: #1e2a40;
+  --white:    #1a2340;
+  --text:     #e8e4db; --text2: #b0bcc8; --text3: #6a7f96;
+  --border:   rgba(255,255,255,.09);
+  --sh-sm:    0 1px 4px rgba(0,0,0,.3);
+  --sh-md:    0 4px 20px rgba(0,0,0,.4);
+  --sh-lg:    0 12px 40px rgba(0,0,0,.5);
+  --green-bg: #0d2e1c; --red-bg: #2e0f0b;
+  background: #0f1523; color: var(--text);
+}
+body.dark .filter-bar  { background: var(--cream2); }
+body.dark .filter-bar,
+body.dark .panel-bar   { border-bottom-color: var(--border); }
+body.dark .panel-bar   { background: var(--cream3); }
+body.dark .pill        { background: var(--cream2); border-color: var(--border); color: var(--text2); }
+body.dark .pill:hover  { border-color: var(--gold-lt); color: var(--gold-lt); }
+body.dark .pill.active { background: var(--gold-lt); border-color: var(--gold-lt); color: var(--navy); }
+body.dark select       { background: var(--cream2); color: var(--text); border-color: var(--border); }
+body.dark .card        { background: var(--cream2); border-color: var(--border); }
+body.dark .card:hover  { border-color: var(--gold); }
+body.dark .card-img-wrap { background: var(--cream3); }
+body.dark .card-title  { color: #ffffff; }
+body.dark .card-price  { color: #ffd95a; }
+body.dark .card-price .from { color: #9ab0c4; }
+body.dark .panel-head  { color: var(--gold-lt); border-bottom-color: var(--cream3); }
+body.dark .owned-section-hdr { color: #ffffff; border-bottom-color: var(--gold-lt); }
+body.dark .section-hdr-count { color: var(--text3); }
+body.dark .arow        { background: var(--cream2); border-color: var(--border); }
+body.dark .arow.today  { background: var(--cream3); }
+body.dark .hprice      { color: #ffd95a; }
+body.dark .modal       { background: var(--cream2); }
+body.dark .m-img       { background: var(--cream3); border-color: var(--border); }
+body.dark .m-meta      { border-bottom-color: var(--border); }
+body.dark .m-title     { color: #ffffff; }
+body.dark .m-cat       { color: var(--gold-lt); }
+body.dark .vprice      { color: #ffd95a; }
+body.dark .vrow        { background: var(--cream3); }
+body.dark .vrow.in     { background: var(--green-bg); border-color: rgba(39,103,73,.35); }
+body.dark .desc-block  { background: var(--cream3); color: var(--text2); }
+body.dark .badge.in    { background: var(--green-bg); }
+body.dark .badge.out   { background: var(--red-bg); }
+body.dark .status-select { background:var(--cream2); color:var(--text); border-color:var(--border); }
+body.dark .notes-area      { background:var(--cream2); color:var(--text); border-color:var(--border); }
+body.dark .first-seen      { color:var(--text3); }
+body.dark .notes-save-btn { border-color:var(--gold-lt); background:var(--gold-lt); color:var(--navy); }
+
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body { background:var(--cream); color:var(--text); font-family:'Source Sans 3',sans-serif; line-height:1.5; min-height:100vh; }
+
+/* ── Sticky wrapper ── */
+.sticky-top { position:sticky; top:0; z-index:100; }
+
+/* ── Header ── */
+header { background:var(--navy); box-shadow:0 2px 14px rgba(26,35,64,.35); }
+.hdr-inner {
+  max-width:1320px; margin:0 auto; padding:0 20px;
+  display:flex; align-items:center; gap:14px; height:56px;
+}
+.logo {
+  font-family:'Playfair Display',serif; font-weight:900; font-size:20px;
+  color:#fff; letter-spacing:.02em; white-space:nowrap; flex-shrink:0; line-height:1.1;
+}
+.logo em { font-style:normal; color:var(--gold-lt); }
+.logo small {
+  display:block; font-family:'Source Sans 3',sans-serif;
+  font-size:9px; font-weight:600; letter-spacing:.18em; text-transform:uppercase;
+  color:rgba(255,255,255,.35); margin-top:1px;
+}
+
+/* Category tabs */
+.cat-tabs {
+  display:flex; gap:2px;
+  background:rgba(255,255,255,.08); border-radius:var(--r); padding:3px;
+}
+.cat-tab {
+  font-family:'Source Sans 3',sans-serif; font-size:12px; font-weight:700;
+  letter-spacing:.08em; text-transform:uppercase;
+  color:rgba(255,255,255,.5); background:transparent; border:none;
+  border-radius:4px; padding:5px 12px; cursor:pointer; transition:all .15s; white-space:nowrap;
+}
+.cat-tab:hover { color:rgba(255,255,255,.85); }
+.cat-tab.active { background:var(--gold-lt); color:var(--navy); }
+.cat-tab[data-cat="collection"].active { background:#27ae60; color:#fff; }
+.cat-tab[data-cat="releases"].active   { background:#2980b9; color:#fff; }
+
+/* ── Releases Panel ─────────────────────────────────────────── */
+#releases-panel { display:none; }
+#releases-panel.show { display:block; }
+.rel-filters { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px; align-items:center; }
+.rel-pill {
+  display:inline-flex; align-items:center; gap:5px;
+  font-family:'Source Sans 3',sans-serif; font-size:12px; font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase;
+  padding:5px 14px; border-radius:20px; border:1.5px solid var(--border);
+  background:var(--cream); color:var(--text2); cursor:pointer; transition:all .15s;
+}
+.rel-pill:hover { border-color:var(--navy); color:var(--navy); }
+.rel-pill.active { background:var(--navy); border-color:var(--navy); color:#fff; }
+.rel-pill.limited.active { background:#e67e22; border-color:#e67e22; }
+.rel-year-group { margin-bottom:24px; }
+.rel-year-hdr {
+  font-family:'Playfair Display',serif; font-size:18px; font-weight:700;
+  color:var(--navy); border-bottom:2px solid var(--gold);
+  padding-bottom:6px; margin-bottom:12px; display:flex; align-items:center; gap:8px;
+}
+.rel-year-count { font-family:'Source Sans 3',sans-serif; font-size:12px; font-weight:700; color:var(--text3); }
+/* ── Alphabetical cap row (All + All view) ── */
+.rel-cap-row {
+  background:var(--white); border:1px solid var(--border); border-left:3px solid var(--gold);
+  border-radius:var(--r); padding:9px 12px;
+  display:flex; align-items:flex-start; gap:10px; margin-bottom:5px;
+}
+body.dark .rel-cap-row { background:var(--cream2); }
+.rel-cap-left {
+  width:320px; min-width:320px; flex-shrink:0; line-height:1.6;
+}
+.rel-cap-name { font-size:14px; font-weight:600; color:var(--text); display:inline; }
+body.dark .rel-cap-name { color:#fff; }
+.rel-cap-left .rel-badge { display:inline; vertical-align:middle; margin-left:6px; }
+.rel-cap-dates {
+  flex:1; display:flex; flex-wrap:wrap; justify-content:flex-end;
+  gap:4px; align-items:flex-start; align-content:flex-start; padding-top:2px;
+}
+.rel-date-chip {
+  font-size:12px; font-weight:600; color:var(--text2);
+  background:var(--cream2); border:1px solid var(--border);
+  border-radius:4px; padding:2px 8px; white-space:nowrap;
+}
+body.dark .rel-date-chip { background:var(--cream3); color:var(--text2); }
+.rel-cap-btns { display:flex; gap:3px; align-items:flex-start; flex-shrink:0; padding-top:1px; }
+.rel-more-btn { font-size:16px; font-weight:700; letter-spacing:.05em; padding:1px 8px; }
+.rel-more-btn.active { background:var(--navy); color:#fff; border-color:var(--navy); }
+body.dark .rel-more-btn.active { background:var(--gold-lt); color:var(--navy); border-color:var(--gold-lt); }
+/* ── Submenu ── */
+.rel-submenu {
+  position:fixed; background:var(--white); border:1px solid var(--border);
+  border-radius:var(--r); box-shadow:var(--sh-md); z-index:300;
+  min-width:170px; padding:4px; display:none;
+}
+.rel-submenu.open { display:block; }
+.rel-submenu-row {
+  display:flex; align-items:center; gap:6px;
+  padding:5px 8px; border-radius:4px; cursor:default;
+}
+.rel-submenu-row:hover { background:var(--cream2); }
+.rel-submenu-date { font-size:13px; font-weight:600; color:var(--text); flex:1; }
+body.dark .rel-submenu { background:var(--cream2); border-color:var(--border); }
+body.dark .rel-submenu-date { color:var(--text); }
+.rel-list { display:flex; flex-direction:column; gap:6px; }
+.rel-row {
+  background:var(--white); border:1px solid var(--border); border-left:3px solid var(--gold);
+  border-radius:var(--r); padding:10px 16px;
+  display:flex; align-items:center; gap:12px; animation:fadeUp .2s ease both;
+}
+.rel-row.limited { border-left-color:#e67e22; }
+.rel-name { font-size:14px; font-weight:600; color:var(--text); flex:1; }
+.rel-date { font-size:13px; color:var(--text3); font-weight:600; white-space:nowrap; }
+.rel-badge {
+  font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+  padding:2px 8px; border-radius:3px; background:#fef3e8; color:#e67e22; white-space:nowrap;
+}
+body.dark .rel-row { background:var(--cream2); border-color:var(--border); }
+body.dark .rel-year-hdr { color:var(--gold-lt); border-bottom-color:var(--cream3); }
+body.dark .rel-badge { background:rgba(230,126,34,.15); }
+.rel-limited-toggle {
+  display:flex; align-items:center; gap:10px; margin-bottom:16px; cursor:pointer;
+  font-family:'Source Sans 3',sans-serif; font-size:14px; font-weight:600; color:var(--text);
+}
+.rel-limited-toggle input[type="checkbox"] { width:18px; height:18px; accent-color:#e67e22; cursor:pointer; }
+.rel-row-btn {
+  background:none; border:1px solid var(--border); border-radius:4px;
+  color:var(--text3); font-size:12px; padding:2px 6px; cursor:pointer;
+  transition:all .15s; flex-shrink:0; line-height:1.4;
+}
+.rel-row-btn:hover { border-color:var(--navy); color:var(--navy); }
+.rel-row-btn.del:hover { border-color:var(--red); color:var(--red); }
+body.dark .rel-row-btn:hover { border-color:var(--gold-lt); color:var(--gold-lt); }
+body.dark .rel-row-btn.del:hover { border-color:#eb5757; color:#eb5757; }
+.rel-month-row { display:flex; gap:4px; flex-wrap:wrap; margin-top:8px; margin-bottom:8px; align-items:center; }
+
+/* Header right */
+.hdr-right { margin-left:auto; display:flex; align-items:center; gap:8px; }
+.search-wrap { position:relative; }
+.search-wrap svg { position:absolute; left:10px; top:50%; transform:translateY(-50%); color:rgba(255,255,255,.3); pointer-events:none; }
+input[type="search"] {
+  background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.15);
+  border-radius:var(--r); color:#fff; font-family:'Source Sans 3',sans-serif;
+  font-size:13px; padding:6px 12px 6px 32px; width:180px; outline:none; transition:all .15s;
+}
+input[type="search"]:focus { background:rgba(255,255,255,.16); border-color:var(--gold-lt); width:220px; }
+input[type="search"]::placeholder { color:rgba(255,255,255,.3); }
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  height: 16px; width: 16px; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' fill='rgba(255,255,255,0.35)'/%3E%3Cline x1='5' y1='5' x2='11' y2='11' stroke='white' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='11' y1='5' x2='5' y2='11' stroke='white' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-size: 16px 16px;
+}
+.dark-toggle { background:none; border:1px solid rgba(255,255,255,.25); border-radius:20px; padding:5px 10px; font-size:14px; cursor:pointer; color:rgba(255,255,255,.8); transition:all .2s; line-height:1; }
+.dark-toggle:hover { border-color:var(--gold-lt); color:#fff; }
+.poll-btn { background:none; border:1px solid rgba(255,255,255,.25); border-radius:20px; padding:5px 10px; font-size:14px; cursor:pointer; color:rgba(255,255,255,.8); transition:all .2s; line-height:1; }
+.poll-btn:hover { border-color:var(--gold-lt); color:#fff; }
+.poll-btn.spinning { animation:spin .7s linear infinite; pointer-events:none; opacity:.6; }
+.alerts-btn {
+  background:transparent; border:1px solid rgba(255,255,255,.2); border-radius:var(--r);
+  color:rgba(255,255,255,.65); font-family:'Source Sans 3',sans-serif;
+  font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+  padding:6px 12px; cursor:pointer; transition:all .15s;
+  display:flex; align-items:center; gap:6px; white-space:nowrap;
+}
+.alerts-btn:hover, .alerts-btn.on { background:var(--gold-lt); border-color:var(--gold-lt); color:var(--navy); }
+.abadge { background:#e74c3c; color:#fff; font-size:10px; font-weight:700; padding:1px 5px; border-radius:10px; display:none; }
+.abadge.show { display:inline; }
+
+/* ── Filter bar ── */
+.filter-bar { background:var(--white); border-bottom:1px solid var(--border); padding:0 20px; }
+.filter-inner {
+  max-width:1320px; margin:0 auto;
+  display:flex; align-items:center; gap:12px; min-height:44px; flex-wrap:wrap; padding:5px 0;
+}
+.flabel { font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--text3); flex-shrink:0; white-space:nowrap; }
+.pill-row { display:flex; gap:4px; flex-wrap:wrap; }
+.pill {
+  font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
+  color:var(--text2); background:var(--cream); border:1px solid var(--border);
+  border-radius:20px; padding:3px 12px; cursor:pointer; transition:all .15s; white-space:nowrap;
+}
+.pill:hover { border-color:var(--navy); color:var(--navy); }
+.pill.active { background:var(--navy); border-color:var(--navy); color:#fff; }
+.sort-wrap { margin-left:auto; display:flex; align-items:center; gap:8px; }
+select.srt {
+  background:var(--white); border:1px solid var(--border); border-radius:var(--r);
+  color:var(--text); font-family:'Source Sans 3',sans-serif;
+  font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+  padding:5px 24px 5px 10px; outline:none; cursor:pointer; appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%234a5568'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 8px center;
+}
+
+/* ── Panel sub-filter ── */
+.panel-bar { background:var(--cream2); border-bottom:1px solid var(--border); padding:0 20px; display:none; }
+.panel-bar.show { display:block; }
+.panel-inner { max-width:1320px; margin:0 auto; display:flex; align-items:center; gap:8px; min-height:38px; }
+
+/* ── Stats bar ── */
+.stats-bar { background:var(--navy); padding:4px 20px; }
+.stats-inner { max-width:1320px; margin:0 auto; display:flex; align-items:center; flex-wrap:wrap; }
+.stat { padding:2px 16px; border-right:1px solid rgba(255,255,255,.08); display:flex; flex-direction:column; align-items:center; }
+.stat:first-child { padding-left:0; }
+.stat:last-child  { border-right:none; }
+.snum { font-family:'Playfair Display',serif; font-size:15px; font-weight:700; color:var(--gold-lt); line-height:1; }
+.snum.g { color:#6fcf97 !important; }
+.snum.r { color:#eb5757 !important; }
+.slbl { font-size:9px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-top:2px; }
+.lbl-short { display:none; }
+.last-poll { margin-left:auto; font-size:11px; color:rgba(255,255,255,.3); }
+.last-poll strong { color:rgba(255,255,255,.55); }
+/* ── Last-poll toast ── */
+#poll-toast {
+  position:fixed; top:16px; left:50%; transform:translateX(-50%);
+  background:rgba(26,35,64,.95); color:#fff; font-size:13px; font-weight:600;
+  padding:10px 18px; border-radius:20px; white-space:nowrap;
+  box-shadow:0 4px 16px rgba(0,0,0,.4); border:1px solid rgba(255,255,255,.12);
+  z-index:999; opacity:0; pointer-events:none;
+  transition:opacity .2s ease;
+}
+#poll-toast.show { opacity:1; }
+
+/* ── Main ── */
+main { max-width:1320px; margin:0 auto; padding:24px 20px; }
+
+/* ── Product grid ── */
+#grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:16px; }
+.card {
+  background:var(--white); border:1px solid var(--border); border-radius:var(--r);
+  overflow:hidden; cursor:pointer;
+  transition:transform .18s, box-shadow .18s, border-color .18s;
+  animation:fadeUp .25s ease both;
+}
+@keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+.card:hover { transform:translateY(-2px); box-shadow:var(--sh-md); border-color:var(--gold); }
+.card-img-wrap { position:relative; width:100%; aspect-ratio:1; background:var(--cream2); overflow:hidden; }
+.card-img { width:100%; height:100%; object-fit:cover; transition:transform .3s; }
+.card:hover .card-img { transform:scale(1.04); }
+.card-ph { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:52px; }
+.dot { position:absolute; top:10px; right:10px; width:10px; height:10px; border-radius:50%; border:2px solid #fff; box-shadow:var(--sh-sm); }
+.dot.in  { background:var(--green); }
+.dot.out { background:var(--red); }
+.panel-pip { position:absolute; top:10px; left:10px; font-size:9px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; background:rgba(26,35,64,.75); color:var(--gold-lt); padding:2px 7px; border-radius:3px; backdrop-filter:blur(4px); }
+.card-ribbon { position:absolute; bottom:0; left:0; right:0; display:flex; gap:4px; padding:6px 8px; background:linear-gradient(to top,rgba(0,0,0,.5),transparent); }
+.ribbon-tag { font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:2px 8px; border-radius:3px; }
+.ribbon-tag.owned    { background:#27ae60; color:#fff; }
+.ribbon-tag.wishlist { background:#8e44ad; color:#fff; }
+.ribbon-tag.sold     { background:#c0392b; color:#fff; }
+.ribbon-tag.new-item    { background:#e67e22; color:#fff; }
+.ribbon-tag.cap-retired   { background:#7f8c8d; color:#fff; }
+.ribbon-tag.cap-one-off   { background:#2980b9; color:#fff; }
+.ribbon-tag.cap-seasonal  { background:#27ae60; color:#fff; }
+.ribbon-tag.cap-other     { background:#6c757d; color:#fff; }
+.ribbon-tag.restocked { background:#1a6b3a; color:#fff; }
+.oos-days { font-size:10px; font-weight:700; color:#c0392b; letter-spacing:.03em; margin-top:2px; }
+/* First-seen label */
+.first-seen { font-size:11px; color:var(--text3); margin-top:3px; letter-spacing:.02em; }
+/* Card added-date line */
+.card-added { font-size:10px; color:var(--text3); margin-bottom:3px; }
+/* Restock badge on wishlist tab */
+.cat-tab { position:relative; }
+.tab-badge {
+  position:absolute; top:4px; right:4px; width:9px; height:9px;
+  border-radius:50%; background:#e74c3c; border:2px solid var(--navy);
+  display:none;
+}
+.tab-badge.show { display:block; }
+/* Pull-to-refresh indicator */
+#ptr-indicator {
+  display:none; position:fixed; top:0; left:0; right:0; z-index:150;
+  justify-content:center; align-items:center; gap:8px;
+  padding:10px; background:var(--navy); color:rgba(255,255,255,.6);
+  font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+#ptr-indicator.show { display:flex; }
+#ptr-indicator .ptr-arrow { display:inline-block; transition:transform .15s; font-style:normal; }
+#ptr-indicator.ready { color:var(--gold-lt); }
+#ptr-indicator.ready .ptr-arrow { transform:rotate(180deg) !important; }
+.card-body { padding:12px 14px 14px; }
+.card-cat { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-bottom:4px; }
+.card-title { font-size:14px; font-weight:600; color:var(--text); line-height:1.35; margin-bottom:8px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.card-foot { display:flex; align-items:center; justify-content:space-between; }
+.card-price { font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--navy); }
+.card-price .from { font-family:'Source Sans 3',sans-serif; font-size:10px; font-weight:400; color:var(--text3); margin-right:2px; }
+.badge { font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:3px 8px; border-radius:3px; }
+.badge.in  { background:var(--green-bg); color:var(--green); }
+.badge.out { background:var(--red-bg);   color:var(--red); }
+
+/* ── States ── */
+.state { text-align:center; padding:80px 20px; color:var(--text3); }
+.state-icon  { font-size:44px; margin-bottom:16px; }
+.state-title { font-family:'Playfair Display',serif; font-size:20px; color:var(--text2); margin-bottom:6px; }
+.state-sub   { font-size:14px; }
+.spin { width:22px; height:22px; border:2px solid var(--border); border-top-color:var(--navy); border-radius:50%; animation:spin .75s linear infinite; display:inline-block; vertical-align:middle; margin-right:8px; }
+@keyframes spin { to{transform:rotate(360deg)} }
+
+/* ── Alerts panel ── */
+#alerts-panel { display:none; }
+#alerts-panel.show { display:block; }
+#prod-panel.hide { display:none; }
+.panel-head { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:var(--navy); margin-bottom:20px; padding-bottom:14px; border-bottom:2px solid var(--cream3); }
+.alert-filters { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px; }
+.af-pill { display:inline-flex; align-items:center; gap:5px; font-family:'Source Sans 3',sans-serif; font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:5px 14px; border-radius:20px; border:1.5px solid var(--border); background:var(--cream); color:var(--text2); cursor:pointer; transition:all .15s; }
+.af-pill:hover { border-color:var(--navy); color:var(--navy); }
+.af-pill.active { background:var(--navy); border-color:var(--navy); color:#fff; }
+.af-pill.instock.active  { background:var(--green); border-color:var(--green); }
+.xl-toggle { display:inline-flex; align-items:center; gap:5px; font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--text2); cursor:pointer; margin-left:6px; }
+.xl-toggle input { accent-color:var(--navy); cursor:pointer; }
+.af-pill.outstock.active { background:var(--red);   border-color:var(--red); }
+.alerts-list { display:flex; flex-direction:column; gap:8px; }
+.arow { background:var(--white); border:1px solid var(--border); border-left:3px solid var(--gold); border-radius:var(--r); padding:12px 16px; display:flex; align-items:flex-start; gap:12px; animation:fadeUp .2s ease both; text-decoration:none; color:inherit; }
+.arow.back_in_stock  { border-left-color:var(--green); }
+.arow.out_of_stock   { border-left-color:var(--red); }
+.arow.price_drop     { border-left-color:#2980b9; }
+.arow.price_increase { border-left-color:#e67e22; }
+.arow.today { background:var(--cream2); border-left-width:5px; }
+.aicon { font-size:18px; flex-shrink:0; margin-top:1px; }
+.amsg  { font-size:14px; color:var(--text); flex:1; line-height:1.45; }
+.atime { font-size:11px; color:var(--text3); white-space:nowrap; font-weight:600; }
+.card-notes { font-size:11px; color:var(--text3); margin-top:2px; font-style:italic; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+/* ── Modal ── */
+.overlay { position:fixed; inset:0; z-index:200; background:rgba(26,35,64,.55); backdrop-filter:blur(4px); display:none; align-items:center; justify-content:center; padding:20px; }
+.overlay.open { display:flex; }
+.modal { background:var(--white); border-radius:10px; width:100%; max-width:680px; max-height:90vh; overflow-y:auto; box-shadow:var(--sh-lg); animation:mIn .2s ease; }
+@keyframes mIn { from{opacity:0;transform:scale(.97) translateY(6px)} to{opacity:1;transform:scale(1) translateY(0)} }
+.m-top { display:none; }
+.m-carousel { position:relative; width:100%; background:var(--cream2); border-radius:10px 10px 0 0; overflow:hidden; }
+.m-img { width:100%; height:260px; object-fit:contain; display:block; border-radius:0; border:none; background:var(--cream2); }
+.car-btn { position:absolute; top:50%; transform:translateY(-50%); background:rgba(26,35,64,.55); color:#fff; border:none; border-radius:50%; width:36px; height:36px; font-size:22px; line-height:1; cursor:pointer; z-index:2; display:none; align-items:center; justify-content:center; padding:0; transition:background .15s; }
+.car-btn:hover { background:rgba(26,35,64,.9); }
+.car-prev { left:10px; }
+.car-next { right:10px; }
+.m-carousel.multi .car-btn { display:flex; }
+.car-dots { position:absolute; bottom:10px; left:50%; transform:translateX(-50%); display:flex; gap:6px; }
+.car-dot { width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,.5); cursor:pointer; transition:background .15s; }
+.car-dot.active { background:#fff; }
+body.dark .car-btn { background:rgba(0,0,0,.6); }
+body.dark .car-btn:hover { background:rgba(0,0,0,.9); }
+.m-img { cursor:zoom-in; }
+
+/* ── Lightbox ── */
+.lb-overlay {
+  position:fixed; inset:0; z-index:500;
+  background:rgba(0,0,0,.92); backdrop-filter:blur(6px);
+  display:none; align-items:center; justify-content:center;
+}
+.lb-overlay.open { display:flex; }
+.lb-img {
+  max-width:calc(100vw - 96px); max-height:calc(100vh - 96px);
+  object-fit:contain; border-radius:4px; user-select:none; display:block;
+}
+.lb-close {
+  position:absolute; top:16px; right:16px;
+  background:rgba(255,255,255,.15); border:none; color:#fff;
+  border-radius:50%; width:40px; height:40px; font-size:18px;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; transition:background .15s; z-index:1;
+}
+.lb-close:hover { background:rgba(255,255,255,.35); }
+.lb-nav {
+  position:absolute; top:50%; transform:translateY(-50%);
+  background:rgba(255,255,255,.15); border:none; color:#fff;
+  border-radius:50%; width:46px; height:46px; font-size:30px; line-height:1;
+  display:none; align-items:center; justify-content:center;
+  cursor:pointer; transition:background .15s; z-index:1; padding:0;
+}
+.lb-nav:hover { background:rgba(255,255,255,.35); }
+.lb-nav.show { display:flex; }
+.lb-prev { left:16px; }
+.lb-next { right:16px; }
+.lb-counter {
+  position:absolute; bottom:20px; left:50%; transform:translateX(-50%);
+  color:rgba(255,255,255,.65); font-size:13px; font-weight:600; letter-spacing:.06em;
+  white-space:nowrap;
+}
+/* Photo count badge on product cards */
+.m-meta { padding:18px 22px 16px; border-bottom:1px solid var(--border); }
+.m-cat { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-bottom:5px; }
+.m-title { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:var(--navy); line-height:1.3; margin-bottom:12px; }
+.spec-row { display:flex; gap:6px; flex-wrap:wrap; }
+.spec-chip { display:flex; flex-direction:column; background:var(--cream2); border:1px solid var(--border); border-radius:var(--r); padding:5px 10px; min-width:68px; }
+.spec-k { font-size:9px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--text3); margin-bottom:2px; }
+.spec-v { font-size:12px; font-weight:700; color:var(--text); line-height:1.2; }
+.tag-row { display:flex; gap:8px; margin-top:10px; flex-wrap:wrap; }
+.tag-btn { display:flex; align-items:center; gap:6px; font-family:'Source Sans 3',sans-serif; font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:7px 14px; border-radius:var(--r); border:2px solid var(--border); background:var(--cream); color:var(--text2); cursor:pointer; transition:all .18s; }
+.tag-btn:hover { border-color:var(--navy); }
+.status-row   { display:flex; align-items:center; gap:10px; margin-top:10px; flex-wrap:wrap; }
+.status-label { font-size:10px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--text3); }
+.status-select { font-family:'Source Sans 3',sans-serif; font-size:13px; font-weight:600; padding:7px 12px; border-radius:var(--r); border:2px solid var(--border); background:var(--cream); color:var(--text); cursor:pointer; transition:border-color .18s; }
+.status-select:focus { outline:none; border-color:var(--navy); }
+.notes-wrap  { margin-top:8px; display:none; }
+.notes-wrap.show { display:block; }
+.size-pref-wrap { display:none; align-items:center; gap:10px; margin-top:8px; }
+.size-pref-wrap.show { display:flex; }
+.notes-area  { width:100%; font-family:'Source Sans 3',sans-serif; font-size:13px; padding:8px 10px; border-radius:var(--r); border:2px solid var(--border); background:var(--cream); color:var(--text); resize:vertical; min-height:64px; transition:border-color .18s; }
+.notes-area:focus { outline:none; border-color:var(--navy); }
+.notes-save-btn { margin-top:6px; font-family:'Source Sans 3',sans-serif; font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:6px 14px; border-radius:var(--r); border:2px solid var(--navy); background:var(--navy); color:#fff; cursor:pointer; transition:opacity .18s; }
+.notes-save-btn:hover { opacity:.85; }
+.owned-section-hdr { grid-column:1/-1; display:flex; align-items:center; gap:6px; font-family:'Playfair Display',serif; font-size:13px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--navy); border-bottom:2px solid var(--gold); padding-bottom:4px; margin-top:8px; }
+.owned-section-hdr:first-child { margin-top:0; }
+.section-hdr-count { font-family:'Source Sans 3',sans-serif; font-size:12px; font-weight:700; color:var(--text2); letter-spacing:0; }
+
+#search-result-count { font-size:12px; color:var(--text3); font-weight:600; letter-spacing:.04em; margin-bottom:10px; }
+#cat-count { font-size:12px; color:var(--text3); font-weight:600; letter-spacing:.04em; margin-bottom:10px; }
+.add-manual-btn { display:inline-flex; align-items:center; gap:10px; background:none; color:var(--navy); border:none; font-family:'Source Sans 3',sans-serif; font-size:14px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:4px 0; cursor:pointer; margin-bottom:16px; transition:opacity .15s; }
+.add-manual-btn:hover { opacity:.7; }
+.add-manual-btn .plus-circle { display:inline-flex; align-items:center; justify-content:center; width:16px; height:16px; border-radius:50%; background:var(--navy); color:#fff; font-size:10px; font-weight:300; line-height:1; flex-shrink:0; transition:background .15s; }
+.add-manual-btn:hover .plus-circle { background:var(--navy2); }
+body.dark .add-manual-btn { color:var(--text); }
+body.dark .add-manual-btn .plus-circle { background:var(--gold-lt); color:var(--navy); }
+body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
+.manual-modal { background:var(--white); border-radius:10px; width:100%; max-width:480px; padding:24px 24px 20px; box-shadow:var(--sh-lg); animation:mIn .2s ease; }
+.manual-modal h2 { font-family:'Playfair Display',serif; font-size:20px; color:var(--navy); margin:0 0 20px; }
+.mf-row { margin-bottom:16px; }
+.mf-row-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.mf-row-grid label { font-size:12px; }
+.mf-row label { display:block; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text3); margin-bottom:6px; }
+.mf-row input[type="text"] { width:100%; box-sizing:border-box; border:1.5px solid var(--border); border-radius:var(--r); background:var(--cream); color:var(--text); font-family:'Source Sans 3',sans-serif; font-size:14px; padding:9px 12px; transition:border-color .15s; }
+.mf-row input[type="text"]:focus { outline:none; border-color:var(--gold); }
+.mf-photo-tabs { display:flex; gap:4px; margin-bottom:8px; }
+.mf-ptab { background:var(--cream2); border:1.5px solid var(--border); border-radius:var(--r); font-family:'Source Sans 3',sans-serif; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--text2); padding:4px 14px; cursor:pointer; transition:all .15s; }
+.mf-ptab.active { background:var(--navy); color:#fff; border-color:var(--navy); }
+.mf-drop-zone { border:2px dashed var(--border); border-radius:var(--r); background:var(--cream); padding:22px 16px; text-align:center; cursor:pointer; transition:all .15s; color:var(--text2); font-size:13px; user-select:none; }
+.mf-drop-zone:hover, .mf-drop-zone.drag-over { border-color:var(--gold); background:var(--cream2); }
+.mf-drop-icon { font-size:22px; display:block; margin-bottom:6px; }
+.mf-url-input { width:100%; box-sizing:border-box; border:1.5px solid var(--border); border-radius:var(--r); background:var(--cream); color:var(--text); font-family:'Source Sans 3',sans-serif; font-size:14px; padding:9px 12px; transition:border-color .15s; }
+.mf-url-input:focus { outline:none; border-color:var(--gold); }
+.mf-preview-wrap { position:relative; display:inline-block; margin-top:10px; }
+.mf-preview-wrap img { max-width:100%; max-height:140px; border-radius:var(--r); display:block; }
+.mf-clear-img { position:absolute; top:-8px; right:-8px; width:22px; height:22px; border-radius:50%; background:var(--navy); color:#fff; border:none; cursor:pointer; font-size:12px; display:flex; align-items:center; justify-content:center; }
+.mf-btns { display:flex; gap:10px; justify-content:flex-end; margin-top:20px; }
+.mf-cancel { background:var(--cream2); border:1.5px solid var(--border); border-radius:var(--r); font-family:'Source Sans 3',sans-serif; font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--text2); padding:9px 20px; cursor:pointer; transition:all .15s; }
+.mf-cancel:hover { border-color:var(--navy); color:var(--navy); }
+.mf-save { background:var(--navy); border:1.5px solid var(--navy); border-radius:var(--r); font-family:'Source Sans 3',sans-serif; font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:#fff; padding:9px 20px; cursor:pointer; transition:background .15s; }
+.mf-save:hover { background:var(--navy2); }
+
+.m-close { position:absolute; top:10px; right:10px; z-index:3; background:rgba(26,35,64,.6); border:none; color:#fff; border-radius:50%; width:32px; height:32px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px; transition:background .15s; }
+.m-close:hover { background:rgba(26,35,64,.95); }
+.m-body { padding:18px 22px 24px; }
+.desc-block { background:var(--cream); border:1px solid var(--border); border-radius:var(--r); padding:12px 14px; margin-bottom:18px; font-size:13px; color:var(--text2); line-height:1.65; }
+.sec-lbl { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--text3); margin-bottom:10px; }
+.var-list { display:flex; flex-direction:column; gap:4px; margin-bottom:16px; }
+.var-cols { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:16px; }
+.var-col  { display:flex; flex-direction:column; gap:4px; }
+@media (max-width:480px){ .var-cols { grid-template-columns:1fr; } }
+.vrow { display:flex; align-items:center; gap:8px; padding:5px 10px; border-radius:var(--r); border:1px solid var(--border); background:var(--cream); min-width:0; }
+.vrow.in  { border-color:rgba(39,103,73,.2); background:var(--green-bg); }
+.vrow.out { opacity:.55; }
+.vname  { font-size:12px; font-weight:600; color:var(--text); flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.vprice { font-family:'Playfair Display',serif; font-size:13px; font-weight:700; color:var(--navy); white-space:nowrap; }
+.vstatus { font-size:9px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; white-space:nowrap; }
+.vrow.in  .vstatus { color:var(--green); }
+.vrow.out .vstatus { color:var(--red); }
+.hist-list { display:flex; flex-direction:column; gap:4px; margin-bottom:20px; }
+.hrow { display:flex; align-items:center; gap:12px; font-size:12px; padding:5px 0; border-bottom:1px solid var(--border); }
+.hdate  { color:var(--text3); width:145px; flex-shrink:0; }
+.hprice { font-weight:700; color:var(--navy); width:64px; }
+.view-btn { display:inline-flex; align-items:center; gap:6px; background:var(--navy); color:#fff; font-family:'Source Sans 3',sans-serif; font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; padding:9px 18px; border-radius:var(--r); transition:background .15s; }
+.view-btn:hover { background:var(--navy2); }
+
+/* ── Mobile ── */
+@media (max-width:600px) {
+  /* Heights for precise gap-free stacking */
+  :root { --tab-h:58px; --filter-h:40px; --panel-h:36px; }
+
+  header { position:static; }
+  .hdr-inner { flex-wrap:wrap; height:auto; padding:8px 12px; gap:6px; }
+  .logo { font-size:17px; }
+  .logo small { display:none; }
+
+  /* ── Tab bar ── */
+  .cat-tabs {
+    position:fixed; bottom:0; left:0; right:0; z-index:200;
+    display:flex; flex-direction:row; justify-content:space-around; align-items:stretch;
+    height:calc(var(--tab-h) + env(safe-area-inset-bottom,0px));
+    background:var(--navy); gap:0; border-radius:0;
+    box-shadow:0 -1px 0 rgba(255,255,255,.1), 0 -4px 16px rgba(0,0,0,.4);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  .cat-tab {
+    flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:6px 2px 4px; font-size:0; letter-spacing:.04em;
+    color:rgba(255,255,255,.4); border-radius:0; min-width:0;
+  }
+  .cat-tab::before { font-size:20px; line-height:1; display:block; margin-bottom:3px; }
+  .cat-tab[data-cat="caps"]::before    { content:'🧢'; }
+  .cat-tab[data-cat="pins"]::before    { content:'📌'; }
+  .cat-tab[data-cat="apparel"]::before { content:'👕'; }
+  .cat-tab[data-cat="other"]::before   { content:'🛍'; }
+  .cat-tab[data-cat="collection"]::before { content:'🗂'; }
+  .cat-tab[data-cat="releases"]::before   { content:'📅'; }
+  .cat-tab::after { font-size:9px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; display:block; }
+  .cat-tab[data-cat="caps"]::after    { content:'Caps'; }
+  .cat-tab[data-cat="pins"]::after    { content:'Pins'; }
+  .cat-tab[data-cat="apparel"]::after { content:'Apparel'; }
+  .cat-tab[data-cat="other"]::after   { content:'Other'; }
+  .cat-tab[data-cat="collection"]::after { content:'Collection'; }
+  .cat-tab[data-cat="releases"]::after   { content:'Releases'; }
+  .cat-tab.active { background:rgba(255,255,255,.1); color:#fff; }
+  .cat-tab[data-cat="collection"].active { background:rgba(39,174,96,.2); color:#2ecc71; }
+  .cat-tab[data-cat="releases"].active  { background:rgba(41,128,185,.2); color:#5dade2; }
+
+  /* ── Filter bar — sits directly on top of tab bar ── */
+  .filter-bar {
+    position:fixed; left:0; right:0; z-index:199;
+    bottom:calc(var(--tab-h) + env(safe-area-inset-bottom,0px));
+    height:var(--filter-h);
+    background:var(--navy); padding:0 14px;
+    border-top:1px solid rgba(255,255,255,.12);
+  }
+  .filter-inner {
+    height:100%; flex-wrap:nowrap; overflow-x:auto;
+    padding:0; gap:8px; scrollbar-width:none; min-height:unset; align-items:center;
+  }
+  .filter-inner::-webkit-scrollbar { display:none; }
+  .flabel { display:none; } /* remove labels on mobile — context is clear */
+  .pill { background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.18); color:rgba(255,255,255,.75); font-size:10px; padding:4px 12px; border-radius:14px; }
+  .pill:hover { border-color:var(--gold-lt); color:#fff; }
+  .pill.active { background:var(--gold-lt); border-color:var(--gold-lt); color:var(--navy); }
+  .pill-row { flex-wrap:nowrap; gap:5px; }
+  .sort-wrap { margin-left:auto; flex-shrink:0; position:relative; }
+  .sort-wrap::before {
+    content:'↑'; position:absolute; left:10px; top:50%; transform:translateY(-50%);
+    color:var(--gold-lt); font-size:13px; pointer-events:none; z-index:1;
+  }
+  select.srt {
+    appearance:none; -webkit-appearance:none;
+    background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.18);
+    border-radius:14px; color:#fff;
+    font-family:'Source Sans 3',sans-serif; font-size:10px; font-weight:700;
+    letter-spacing:.05em; text-transform:uppercase;
+    padding:4px 14px 4px 26px;
+    background-image:none;
+  }
+
+  /* ── Panel bar — sits directly on top of filter bar ── */
+  .panel-bar {
+    position:fixed; left:0; right:0; z-index:198;
+    bottom:calc(var(--tab-h) + var(--filter-h) + env(safe-area-inset-bottom,0px));
+    height:var(--panel-h);
+    background:var(--navy); padding:0 14px;
+    border-top:1px solid rgba(255,255,255,.12);
+  }
+  .panel-inner { height:100%; overflow-x:auto; scrollbar-width:none; gap:6px; min-height:unset; align-items:center; }
+  .panel-inner::-webkit-scrollbar { display:none; }
+
+  .hdr-right { order:2; flex:1; gap:6px; }
+  input[type="search"] { flex:1; width:auto !important; font-size:13px; padding:6px 10px 6px 28px; }
+  .alerts-btn { padding:6px 10px; font-size:11px; }
+  .stats-bar { padding:4px 6px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .stats-inner { flex-wrap:nowrap; min-width:max-content; }
+  .stat { padding:2px 7px; border-right:1px solid rgba(255,255,255,.08); }
+  .stat.last-stat { border-right:none; }
+  .snum { font-size:14px; }
+  .slbl { font-size:7.5px; letter-spacing:.08em; white-space:nowrap; }
+  /* Shorten "Out of Stock" → "No Stock" on mobile */
+  .lbl-full { display:none; }
+  .lbl-short { display:inline; }
+  .last-poll { display:none; }
+  main { padding:10px; padding-bottom:calc(var(--tab-h) + var(--filter-h) + var(--panel-h) + env(safe-area-inset-bottom,0px) + 16px); }
+  #grid { grid-template-columns:1fr 1fr; gap:8px; }
+  .card-img-wrap { aspect-ratio:4/3; }
+  .card-body { padding:8px 10px 10px; }
+  .card-cat { font-size:9px; margin-bottom:2px; }
+  .card-title { font-size:12px; margin-bottom:5px; }
+  .card-price { font-size:14px; }
+  .badge { font-size:9px; padding:2px 6px; }
+  .overlay { padding:0; align-items:flex-end; }
+  .modal { max-height:92vh; border-radius:14px 14px 0 0; }
+  .m-img { height:200px; }
+  .m-meta { padding:14px 16px 14px; }
+  .m-title { font-size:16px; }
+  .m-body { padding:14px 16px 28px; }
+  .var-grid { grid-template-columns:1fr 1fr; }
+  .arow { padding:10px 12px; gap:8px; }
+  .atime { display:none; }
+}
+</style>
+</head>
+<body>
+
+<div class="sticky-top">
+
+  <header>
+    <div class="hdr-inner">
+      <div class="logo">
+        Scally<em> Tracker</em>
+        <small>Boston Scally Co. Monitor</small>
+      </div>
+
+      <div class="cat-tabs">
+<button class="cat-tab active" data-cat="caps"    onclick="setCat(this)">🧢 Caps</button>
+        <button class="cat-tab"        data-cat="pins"    onclick="setCat(this)">📌 Pins</button>
+        <button class="cat-tab"        data-cat="apparel" onclick="setCat(this)">👕 Apparel</button>
+        <button class="cat-tab"        data-cat="other"    onclick="setCat(this)">🛍 Other</button>
+        <button class="cat-tab"        data-cat="collection" onclick="setCat(this)">🗂 Collection<span class="tab-badge" id="wl-badge"></span></button>
+        <button class="cat-tab"        data-cat="releases" onclick="setCat(this)">📅 Releases</button>
+      </div>
+
+      <div class="hdr-right">
+        <div class="search-wrap">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="search" id="search" placeholder="Search products…" oninput="debounce()">
+        </div>
+        <button class="alerts-btn" id="alerts-btn" onclick="toggleAlerts()">
+          🔔 Alerts <span class="abadge" id="abadge"></span>
+        </button>
+        <button class="poll-btn" id="poll-btn" onclick="triggerPoll()" title="Poll now">🔄</button>
+        <button class="dark-toggle" id="dark-toggle" onclick="toggleDark()">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Stats bar -->
+  <div class="stats-bar" id="stats-bar">
+    <div class="stats-inner">
+      <div class="stat"><div class="snum"   id="s-tot">—</div><div class="slbl">Products</div></div>
+      <div class="stat"><div class="snum"   id="s-cap">—</div><div class="slbl">Caps</div></div>
+      <div class="stat"><div class="snum"   id="s-pin">—</div><div class="slbl">Pins</div></div>
+      <div class="stat"><div class="snum"   id="s-app">—</div><div class="slbl">Apparel</div></div>
+      <div class="stat"><div class="snum g" id="s-in" >—</div><div class="slbl">In Stock</div></div>
+      <div class="stat"><div class="snum r" id="s-out">—</div><div class="slbl"><span class="lbl-full">Out of Stock</span><span class="lbl-short">No Stock</span></div></div>
+      <div class="stat"><div class="snum"   id="s-own">—</div><div class="slbl">Owned</div></div>
+      <div class="stat last-stat"><div class="snum"   id="s-wsh">—</div><div class="slbl">Wishlist</div></div>
+      <div class="last-poll" id="last-poll">Last poll: <strong>—</strong></div>
+    </div>
+  </div>
+
+  <!-- Availability + sort -->
+  <div class="filter-bar" id="filter-bar">
+    <div class="filter-inner">
+      <span class="flabel">Availability</span>
+      <div class="pill-row" id="avail-pills">
+        <button class="pill"        data-avail="all" onclick="setAvail(this)">All</button>
+        <button class="pill active" data-avail="in"  onclick="setAvail(this)">In Stock</button>
+        <button class="pill"        data-avail="out" onclick="setAvail(this)">Out of Stock</button>
+      </div>
+      <div class="sort-wrap">
+        <span class="flabel">Sort</span>
+        <select class="srt" id="sort" onchange="load()">
+          <option value="title">A–Z</option>
+          <option value="price_asc">Price ↑</option>
+          <option value="price_desc">Price ↓</option>
+          <option value="newest" selected>Newest</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel sub-filter (caps only) -->
+  <div class="panel-bar" id="panel-bar">
+    <div class="panel-inner">
+      <span class="flabel">Panels</span>
+      <div class="pill-row" id="panel-pills">
+        <button class="pill"        data-panels="all"    onclick="setPanel(this)">All</button>
+        <button class="pill"        data-panels="single" onclick="setPanel(this)">1</button>
+        <button class="pill"        data-panels="5"      onclick="setPanel(this)">5</button>
+        <button class="pill"        data-panels="6"      onclick="setPanel(this)">6</button>
+        <button class="pill active" data-panels="8"      onclick="setPanel(this)">8</button>
+        <button class="pill"        data-panels="baker"  onclick="setPanel(this)">BB</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Collection sub-filter (owned / wishlist / sold) -->
+  <div class="filter-bar" id="collection-bar" style="display:none">
+    <div class="filter-inner">
+      <span class="flabel">Collection</span>
+      <div class="pill-row">
+        <button class="pill active" data-cv="owned"    onclick="setCollView(this)">✅ Own</button>
+        <button class="pill"        data-cv="wishlist" onclick="setCollView(this)">⭐ Wishlist</button>
+        <button class="pill"        data-cv="sold"     onclick="setCollView(this)">🏷 Sold</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Last-poll toast (mobile tap) -->
+  <div id="poll-toast"></div>
+  <!-- Pull-to-refresh indicator -->
+  <div id="ptr-indicator"><em class="ptr-arrow">↓</em>&nbsp;Pull to refresh</div>
+
+</div><!-- /sticky-top -->
+
+<main>
+  <div id="prod-panel">
+    <div id="search-result-count" style="display:none"></div>
+    <div style="display:flex; align-items:center; justify-content:space-between; min-height:24px; margin-bottom:4px">
+      <div id="cat-count"></div>
+      <div id="manual-btn-wrap" style="display:none">
+        <button class="add-manual-btn" onclick="openManualForm()">Add Cap <span class="plus-circle">+</span></button>
+      </div>
+    </div>
+    <div id="grid">
+      <div class="state" style="grid-column:1/-1"><span class="spin"></span> Loading inventory…</div>
+    </div>
+
+  </div>
+
+  <div id="releases-panel">
+    <div style="display:flex;justify-content:flex-end;margin-bottom:4px;margin-top:-20px;">
+      <button class="add-manual-btn" onclick="openRelForm()">Add Release <span class="plus-circle">+</span></button>
+    </div>
+    <div class="rel-filters">
+      <span class="flabel">Year</span>
+      <div id="rel-year-pills" style="display:flex;gap:6px;flex-wrap:wrap;">
+        <button class="rel-pill active" data-year="all"  onclick="setRelYear(this)">All</button>
+        <button class="rel-pill" data-year="2026" onclick="setRelYear(this)">2026</button>
+        <button class="rel-pill" data-year="2025" onclick="setRelYear(this)">2025</button>
+        <button class="rel-pill" data-year="2024" onclick="setRelYear(this)">2024</button>
+        <button class="rel-pill" data-year="2023" onclick="setRelYear(this)">2023</button>
+        <button class="rel-pill" data-year="2022" onclick="setRelYear(this)">2022</button>
+        <button class="rel-pill" data-year="2021" onclick="setRelYear(this)">2021</button>
+      </div>
+      <button class="rel-pill limited" id="rel-limited-pill" onclick="toggleRelLimited()" style="margin-left:8px;">⭐ Limited Only</button>
+    </div>
+    <div class="rel-month-row">
+      <span class="flabel">Month</span>
+      <div id="rel-month-pills" style="display:flex;gap:4px;flex-wrap:wrap;">
+        <button class="rel-pill active" data-month="all" onclick="setRelMonth(this)">All</button>
+        <button class="rel-pill" data-month="1"  onclick="setRelMonth(this)">Jan</button>
+        <button class="rel-pill" data-month="2"  onclick="setRelMonth(this)">Feb</button>
+        <button class="rel-pill" data-month="3"  onclick="setRelMonth(this)">Mar</button>
+        <button class="rel-pill" data-month="4"  onclick="setRelMonth(this)">Apr</button>
+        <button class="rel-pill" data-month="5"  onclick="setRelMonth(this)">May</button>
+        <button class="rel-pill" data-month="6"  onclick="setRelMonth(this)">Jun</button>
+        <button class="rel-pill" data-month="7"  onclick="setRelMonth(this)">Jul</button>
+        <button class="rel-pill" data-month="8"  onclick="setRelMonth(this)">Aug</button>
+        <button class="rel-pill" data-month="9"  onclick="setRelMonth(this)">Sep</button>
+        <button class="rel-pill" data-month="10" onclick="setRelMonth(this)">Oct</button>
+        <button class="rel-pill" data-month="11" onclick="setRelMonth(this)">Nov</button>
+        <button class="rel-pill" data-month="12" onclick="setRelMonth(this)">Dec</button>
+      </div>
+    </div>
+    <div id="rel-list">
+      <div class="state"><span class="spin"></span> Loading…</div>
+    </div>
+  </div>
+
+  <div id="alerts-panel">
+    <div class="panel-head">Recent Alerts</div>
+    <div class="alert-filters">
+      <button class="af-pill active" data-af="back_in_stock" onclick="setAlertFilter(this)">🎉 Restocked</button>
+      <button class="af-pill"        data-af="new_product"   onclick="setAlertFilter(this)">🆕 New</button>
+      <button class="af-pill"        data-af="out_of_stock"  onclick="setAlertFilter(this)">❌ Out of Stock</button>
+      <label class="xl-toggle" id="xl-toggle-wrap" title="Only show XL for caps &amp; apparel">
+        <input type="checkbox" id="xl-only-chk" onchange="renderAlerts()"> XL Only
+      </label>
+      <label class="xl-toggle" id="xxl-toggle-wrap" title="Only show XXL for caps &amp; apparel">
+        <input type="checkbox" id="xxl-only-chk" onchange="renderAlerts()"> XXL Only
+      </label>
+    </div>
+    <div class="alert-filters" id="bis-subfilters" style="margin-top:6px;">
+      <button class="af-pill active" data-bis="all"  onclick="setBisFilter(this)">All</button>
+      <button class="af-pill"        data-bis="caps" onclick="setBisFilter(this)">🧢 Caps</button>
+      <button class="af-pill"        data-bis="pins" onclick="setBisFilter(this)">📌 Pins</button>
+    </div>
+    <div class="alerts-list" id="alert-list">
+      <div class="state"><span class="spin"></span> Loading…</div>
+    </div>
+  </div>
+</main>
+
+<!-- Release date submenu -->
+<div id="rel-submenu" class="rel-submenu"></div>
+
+<!-- Add Release form overlay -->
+<div class="overlay" id="rel-overlay" onclick="relBgClick(event)" style="background:rgba(26,35,64,.92);">
+  <div class="manual-modal">
+    <h2 id="rf-modal-title">Add Release</h2>
+    <div class="mf-row">
+      <label>Cap Name *</label>
+      <input type="text" id="rf-name" placeholder="e.g. The Throwback" list="rf-name-list" autocomplete="off">
+      <datalist id="rf-name-list"></datalist>
+    </div>
+    <div class="mf-row">
+      <label>Release Date * (MM/DD/YY)</label>
+      <input type="text" id="rf-date" placeholder="e.g. 3/15/26" maxlength="8">
+    </div>
+    <label class="rel-limited-toggle">
+      <input type="checkbox" id="rf-limited"> Limited Edition
+    </label>
+    <div class="mf-row">
+      <label>Notes (optional)</label>
+      <input type="text" id="rf-notes" placeholder="e.g. Lottery release, 500 units">
+    </div>
+    <div class="mf-btns">
+      <button class="mf-cancel" onclick="closeRelForm()">Cancel</button>
+      <button class="mf-save"   onclick="saveRelease()">Save Release</button>
+    </div>
+  </div>
+</div>
+
+<!-- Manual cap form overlay -->
+<div class="overlay" id="manual-overlay" onclick="manualBgClick(event)" style="background:rgba(26,35,64,.92);">
+  <div class="manual-modal">
+    <input type="hidden" id="mf-edit-id" value="">
+    <h2 id="mf-modal-title">Add Cap Manually</h2>
+    <div class="mf-row" id="mf-status-row">
+      <label>Add to</label>
+      <div style="display:flex; gap:8px; margin-top:4px">
+        <button type="button" class="af-pill active" id="mf-status-owned"    onclick="setMfStatus('owned')">✅ Owned</button>
+        <button type="button" class="af-pill"        id="mf-status-wishlist" onclick="setMfStatus('wishlist')">⭐ Wishlist</button>
+      </div>
+    </div>
+    <div class="mf-row">
+      <label>Type</label>
+      <select id="mf-cap-type" style="margin-top:4px; padding:6px 10px; border:1px solid var(--border); border-radius:6px; font-family:'Source Sans 3',sans-serif; font-size:13px; background:var(--white); color:var(--text); width:100%">
+        <option value="none">None</option>
+        <option value="one_off">One-Off Drop</option>
+        <option value="retired">Retired</option>
+      </select>
+    </div>
+    <div class="mf-row">
+      <label>Panels</label>
+      <select id="mf-panels" style="margin-top:4px; padding:6px 10px; border:1px solid var(--border); border-radius:6px; font-family:'Source Sans 3',sans-serif; font-size:13px; background:var(--white); color:var(--text); width:100%">
+        <option value="">Unknown</option>
+        <option value="single">Single Panel</option>
+        <option value="5">5-Panel</option>
+        <option value="6">6-Panel</option>
+        <option value="8">8-Panel</option>
+      </select>
+    </div>
+    <div class="mf-row"><label>Cap Name *</label><input type="text" id="mf-name" placeholder="e.g. The Worker Flat Cap"></div>
+    <div class="mf-row mf-row-grid">
+      <div><label>Color</label><input type="text" id="mf-color" placeholder="e.g. Charcoal Grey"></div>
+      <div><label>Style</label><input type="text" id="mf-style" placeholder="e.g. 8-Panel Flat Cap"></div>
+    </div>
+    <div class="mf-row mf-row-grid">
+      <div><label>Material</label><input type="text" id="mf-material" placeholder="e.g. Wool Blend"></div>
+      <div><label>Notes</label><input type="text" id="mf-notes" placeholder="Optional notes"></div>
+    </div>
+    <div class="mf-row">
+      <label>Photo</label>
+      <div class="mf-photo-tabs">
+        <button class="mf-ptab active" id="mf-tab-file" onclick="setMfMode('file')">Upload / Paste</button>
+        <button class="mf-ptab" id="mf-tab-url" onclick="setMfMode('url')">URL</button>
+      </div>
+      <div id="mf-panel-file">
+        <div class="mf-drop-zone" id="mf-drop-zone" onclick="document.getElementById('mf-image').click()">
+          <span class="mf-drop-icon">📷</span>
+          Click to browse or paste image (⌘V)
+          <input type="file" id="mf-image" accept="image/*" style="display:none" onchange="mfFileSelected(event)">
+        </div>
+      </div>
+      <div id="mf-panel-url" style="display:none">
+        <input type="text" class="mf-url-input" id="mf-url" placeholder="https://…" oninput="mfUrlChanged(this.value)">
+      </div>
+      <div class="mf-preview-wrap" id="mf-preview-wrap" style="display:none">
+        <img id="mf-preview" src="" alt="Preview">
+        <button class="mf-clear-img" onclick="clearMfImage()" title="Remove image">✕</button>
+      </div>
+    </div>
+    <div class="mf-btns">
+      <button class="mf-cancel" onclick="closeManualForm()">Cancel</button>
+      <button class="mf-save"   onclick="saveManualCap()">Save Cap</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="overlay" id="overlay" onclick="bgClick(event)">
+  <div class="modal" id="modal">
+    <div class="m-carousel" id="m-carousel">
+      <img class="m-img" id="m-img" src="" alt="" onclick="openLightbox(_carIdx)">
+      <button class="car-btn car-prev" id="car-prev" onclick="carMove(-1)">&#8249;</button>
+      <button class="car-btn car-next" id="car-next" onclick="carMove(1)">&#8250;</button>
+      <div class="car-dots" id="car-dots"></div>
+      <button class="m-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="m-meta" id="m-meta"></div>
+    <div class="m-body" id="m-body"></div>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lb-overlay" id="lb-overlay" onclick="lbBgClick(event)">
+  <button class="lb-close" onclick="closeLightbox()">✕</button>
+  <button class="lb-nav lb-prev" id="lb-prev" onclick="lbMove(-1)">&#8249;</button>
+  <img class="lb-img" id="lb-img" src="" alt="">
+  <button class="lb-nav lb-next" id="lb-next" onclick="lbMove(1)">&#8250;</button>
+  <div class="lb-counter" id="lb-counter"></div>
+</div>
+
+<script>
+// ── State ──────────────────────────────────────────────────────
+let cat = 'caps', avail = 'in',  panels = '8', sort = 'newest', timer = null;
+let collectionView = 'owned';
+
+let modalPid = null, modalStatus = 'none', modalNotes = '', modalPrefSize = '';
+
+const CAT_LABELS = { caps:'Caps', pins:'Pins', apparel:'Apparel', other:'Other' };
+const PANEL_LABELS = { single:'1', '5':'5', '6':'6', '8':'8', baker:'BB' };
+function displayTitle(p){
+  if(p.category==='caps') return (p.title||'').replace(/\s+Boston Scally Cap\b/i,'');
+  return (p.title||'').replace(/^Boston Scally\s+/i,'');
+}
+const ALERT_ICONS = { new_product:'🆕', back_in_stock:'🎉', out_of_stock:'❌', price_drop:'📉', price_increase:'📈' };
+
+// ── Carousel ───────────────────────────────────────────────────
+let _carImages = [], _carIdx = 0;
+
+function initCarousel(images){
+  _carImages = images.filter(Boolean);
+  _carIdx = 0;
+  const multi = _carImages.length > 1;
+  const carousel = document.getElementById('m-carousel');
+  carousel.classList.toggle('multi', multi);
+  const dotsEl = document.getElementById('car-dots');
+  dotsEl.innerHTML = multi ? _carImages.map((_,i)=>`<div class="car-dot${i===0?' active':''}" onclick="carGo(${i})"></div>`).join('') : '';
+  if(_carImages.length){
+    const imgEl = document.getElementById('m-img');
+    imgEl.src = _carImages[0];
+    imgEl.style.display = '';
+  }
+}
+
+function carMove(dir){
+  carGo((_carIdx + dir + _carImages.length) % _carImages.length);
+}
+
+function carGo(idx){
+  _carIdx = idx;
+  document.getElementById('m-img').src = _carImages[idx];
+  document.querySelectorAll('.car-dot').forEach((d,i)=>d.classList.toggle('active', i===idx));
+}
+
+// ── Lightbox ────────────────────────────────────────────────────
+function openLightbox(idx){
+  if(!_carImages.length) return;
+  _carIdx = idx;
+  const multi = _carImages.length > 1;
+  document.getElementById('lb-img').src = _carImages[idx];
+  document.getElementById('lb-prev').classList.toggle('show', multi);
+  document.getElementById('lb-next').classList.toggle('show', multi);
+  lbUpdateCounter();
+  document.getElementById('lb-overlay').classList.add('open');
+}
+
+function closeLightbox(){
+  document.getElementById('lb-overlay').classList.remove('open');
+}
+
+function lbMove(dir){
+  const idx = (_carIdx + dir + _carImages.length) % _carImages.length;
+  _carIdx = idx;
+  document.getElementById('lb-img').src = _carImages[idx];
+  carGo(idx); // keep modal carousel in sync
+  lbUpdateCounter();
+}
+
+function lbBgClick(e){
+  if(e.target === document.getElementById('lb-overlay')) closeLightbox();
+}
+
+function lbUpdateCounter(){
+  document.getElementById('lb-counter').textContent =
+    _carImages.length > 1 ? `${_carIdx + 1} / ${_carImages.length}` : '';
+}
+
+// ── Boot ───────────────────────────────────────────────────────
+async function triggerPoll(){
+  const btn = document.getElementById('poll-btn');
+  btn.classList.add('spinning');
+  try{
+    await fetch('/api/poll', {method:'POST'});
+    // Poll runs async — refresh UI after ~10s to pick up new data
+    setTimeout(()=>{ load(); loadStats(); }, 10000);
+  }catch(e){ console.warn('Poll trigger failed', e); }
+  setTimeout(()=> btn.classList.remove('spinning'), 10000);
+}
+
+function toggleDark(){
+  const dark = document.body.classList.toggle('dark');
+  localStorage.setItem('bsc-dark', dark ? '1' : '0');
+  document.getElementById('dark-toggle').textContent = dark ? '☀️' : '🌙';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  if(localStorage.getItem('bsc-dark')==='1'){
+    document.body.classList.add('dark');
+    const btn = document.getElementById('dark-toggle');
+    if(btn) btn.textContent = '☀️';
+  }
+  document.getElementById('sort').value = 'title';
+  showProducts(); loadStats(); load(); setInterval(loadStats, 60_000);
+  document.addEventListener('keydown', e => {
+    if(document.getElementById('lb-overlay').classList.contains('open')){
+      if(e.key==='Escape')     closeLightbox();
+      if(e.key==='ArrowLeft')  lbMove(-1);
+      if(e.key==='ArrowRight') lbMove(1);
+      return;
+    }
+    if(e.key==='Escape'){ closeModal(); closeRelSubmenu(); }
+  });
+  document.addEventListener('click', e => {
+    const sm = document.getElementById('rel-submenu');
+    if(sm && sm.classList.contains('open') && !sm.contains(e.target) && !e.target.closest('.rel-cap-btns') && !e.target.closest('.rel-more-btn'))
+      closeRelSubmenu();
+  });
+  // ── Pull-to-refresh (mobile only) ──
+  let ptrStartY=0, ptrLastY=0, ptrActive=false;
+  const PTR_THRESHOLD=65;
+  const ptrEl=document.getElementById('ptr-indicator');
+  document.addEventListener('touchstart', e=>{
+    ptrStartY = window.scrollY===0 ? e.touches[0].clientY : 0;
+    ptrLastY=ptrStartY;
+  },{passive:true});
+  document.addEventListener('touchmove', e=>{
+    if(!ptrStartY) return;
+    ptrLastY=e.touches[0].clientY;
+    const dy=ptrLastY-ptrStartY;
+    if(dy>8 && window.scrollY===0){
+      ptrActive=true;
+      ptrEl.classList.add('show');
+      ptrEl.classList.toggle('ready', dy>=PTR_THRESHOLD);
+      ptrEl.querySelector('.ptr-arrow').style.transform=`rotate(${Math.min(dy/PTR_THRESHOLD*180,180)}deg)`;
+    }
+  },{passive:true});
+  document.addEventListener('touchend', ()=>{
+    if(!ptrActive){ptrStartY=ptrLastY=0; return;}
+    const dy=ptrLastY-ptrStartY;
+    if(dy>=PTR_THRESHOLD){
+      ptrEl.innerHTML='<span class="spin"></span>';
+      ptrEl.classList.remove('ready');
+      load(); loadStats();
+      setTimeout(()=>{ ptrEl.classList.remove('show'); ptrEl.innerHTML='<em class="ptr-arrow">↓</em>&nbsp;Pull to refresh'; },800);
+    } else {
+      ptrEl.classList.remove('show','ready');
+    }
+    ptrActive=false; ptrStartY=ptrLastY=0;
+  });
+
+  // ── Paste image into manual cap form ──
+  document.addEventListener('paste', e => {
+    if(!document.getElementById('manual-overlay').classList.contains('open')) return;
+    const items = (e.clipboardData || e.originalEvent?.clipboardData || {items:[]}).items;
+    for(const item of items){
+      if(item.type.startsWith('image/')){
+        const reader = new FileReader();
+        reader.onload = ev => { mfImageData = ev.target.result; showMfPreview(mfImageData); setMfMode('file'); };
+        reader.readAsDataURL(item.getAsFile());
+        e.preventDefault();
+        break;
+      }
+    }
+  });
+
+  // Stats bar tap → show last poll toast on mobile
+  let toastTimer = null;
+  document.getElementById('stats-bar').addEventListener('click', () => {
+    if(window.innerWidth > 600) return;
+    const toast = document.getElementById('poll-toast');
+    if(!toast.textContent) return;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+  });
+});
+function debounce(){ clearTimeout(timer); timer=setTimeout(cat==='releases' ? loadReleases : load, 280); }
+
+// ── "New" badge helper (within last 7 days) ───────────────────
+function isNew(firstSeen){
+  if(!firstSeen) return false;
+  return (Date.now() - new Date(firstSeen)) / 86400000 <= 7;
+}
+
+// ── "Added X days ago" helper ─────────────────────────────────
+function addedLabel(firstSeen){
+  if(!firstSeen) return '';
+  const days = Math.floor((Date.now() - new Date(firstSeen)) / 86400000);
+  if(days === 0) return 'Added today';
+  if(days === 1) return 'Added yesterday';
+  if(days < 30)  return `Added ${days} days ago`;
+  const fmt = new Date(firstSeen).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  return `Added ${fmt}`;
+}
+
+
+// ── Category ───────────────────────────────────────────────────
+function setCat(btn){
+  document.querySelectorAll('.cat-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  cat = btn.dataset.cat;
+
+  // ── Releases tab ──
+  const searchEl = document.getElementById('search');
+  if(cat === 'releases'){
+    document.getElementById('prod-panel').classList.add('hide');
+    document.getElementById('alerts-panel').classList.remove('show');
+    document.getElementById('releases-panel').classList.add('show');
+    document.getElementById('filter-bar').style.display = 'none';
+    document.getElementById('panel-bar').classList.remove('show');
+    document.getElementById('alerts-btn').classList.remove('on');
+    searchEl.value = '';
+    searchEl.placeholder = 'Search releases…';
+    loadReleases();
+    return;
+  }
+  // Leaving releases tab — reset placeholder and clear search
+  if(searchEl.placeholder === 'Search releases…'){
+    searchEl.value = '';
+    searchEl.placeholder = 'Search products…';
+  }
+  document.getElementById('releases-panel').classList.remove('show');
+
+  if(cat === 'collection'){
+    if(collectionView === 'wishlist'){
+      localStorage.setItem('bsc-wl-ack', _lastRestockCount);
+      document.getElementById('wl-badge').classList.remove('show');
+    }
+  }
+  panels = (cat==='caps') ? '8' : 'all';
+  avail = (cat==='collection') ? 'all' : 'in';
+
+  document.querySelectorAll('#panel-pills .pill').forEach(b=>b.classList.remove('active'));
+  document.querySelector(`#panel-pills .pill[data-panels="${panels}"]`).classList.add('active');
+  document.querySelectorAll('#avail-pills .pill').forEach(b=>b.classList.remove('active'));
+  const availTarget = (cat==='collection') ? 'all' : 'in';
+  document.querySelector(`#avail-pills .pill[data-avail="${availTarget}"]`).classList.add('active');
+  document.getElementById('sort').value = (cat==='caps'||cat==='pins'||cat==='apparel'||cat==='other') ? 'title' : 'newest';
+  document.getElementById('panel-bar').classList.toggle('show', cat==='caps');
+  document.getElementById('collection-bar').style.display = (cat==='collection') ? '' : 'none';
+  const isTagView = cat==='collection';
+  document.getElementById('filter-bar').style.display = isTagView ? 'none' : '';
+  document.getElementById('manual-btn-wrap').style.display = (cat==='caps') ? 'block' : 'none';
+
+  showProducts();
+  load();
+
+}
+
+function setCollView(btn){
+  document.querySelectorAll('#collection-bar .pill').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  collectionView = btn.dataset.cv;
+  if(collectionView === 'wishlist'){
+    localStorage.setItem('bsc-wl-ack', _lastRestockCount);
+    document.getElementById('wl-badge').classList.remove('show');
+  }
+  showProducts();
+  load();
+}
+
+function setAvail(btn){
+  document.querySelectorAll('#avail-pills .pill').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  avail = btn.dataset.avail;
+  const sortEl = document.getElementById('sort');
+  if(cat === 'caps' || cat === 'pins' || cat === 'apparel' || cat === 'other'){
+    sortEl.value = 'title';
+  } else if(avail === 'out'){
+    sortEl.value = 'title';
+  } else {
+    sortEl.value = 'newest';
+  }
+  load();
+}
+
+function setPanel(btn){
+  document.querySelectorAll('#panel-pills .pill').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  panels = btn.dataset.panels; load();
+}
+
+function showProducts(){
+  document.getElementById('prod-panel').classList.remove('hide');
+  document.getElementById('alerts-panel').classList.remove('show');
+  document.getElementById('releases-panel').classList.remove('show');
+  const _isTagView = cat==='collection';
+  document.getElementById('filter-bar').style.display = _isTagView ? 'none' : '';
+  document.getElementById('panel-bar').classList.toggle('show', cat==='caps');
+  document.getElementById('alerts-btn').classList.remove('on');
+  const activeTab = document.querySelector(`.cat-tab[data-cat="${cat}"]`);
+  if(activeTab) activeTab.classList.add('active');
+}
+
+function toggleAlerts(){
+  const ap = document.getElementById('alerts-panel');
+  if(ap.classList.contains('show')){ showProducts(); return; }
+  ap.classList.add('show');
+  document.getElementById('prod-panel').classList.add('hide');
+  document.getElementById('releases-panel').classList.remove('show');
+  document.getElementById('filter-bar').style.display='none';
+  document.getElementById('panel-bar').classList.remove('show');
+  document.getElementById('alerts-btn').classList.add('on');
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+  _alertFilter = 'back_in_stock';
+  _bisFilter   = 'all';
+  document.querySelectorAll('.af-pill').forEach(p => p.classList.remove('active'));
+  document.querySelector('.af-pill[data-af="back_in_stock"]').classList.add('active');
+  document.querySelector('#bis-subfilters .af-pill[data-bis="all"]').classList.add('active');
+  document.getElementById('bis-subfilters').style.display = '';
+  loadAlerts();
+}
+
+// ── Stats ──────────────────────────────────────────────────────
+let _lastRestockCount = 0;
+
+async function loadStats(){
+  try{
+    const [s, manual] = await Promise.all([
+      fetch('/api/stats').then(r=>r.json()),
+      fetch('/api/manual_caps').then(r=>r.json()),
+    ]);
+    // manual caps are caps so include in caps-only owned count
+    s.owned = (s.owned||0) + (manual||[]).length;
+    set('s-tot', s.total        ?? '—');
+    set('s-cap', s.caps         ?? '—');
+    set('s-pin', s.pins         ?? '—');
+    set('s-app', s.apparel      ?? '—');
+    set('s-in',  s.in_stock     ?? '—');
+    set('s-out', s.out_of_stock ?? '—');
+    set('s-own', s.owned      ?? '0');
+    set('s-wsh', s.wishlisted ?? '0');
+    set('s-alt', s.alerts_today ?? '—');
+    const b = document.getElementById('abadge');
+    if((s.alerts_today||0)>0){ b.textContent=s.alerts_today; b.classList.add('show'); }
+    else b.classList.remove('show');
+    // Restock badge on wishlist tab
+    _lastRestockCount = s.wishlisted_restocks || 0;
+    const ackedCount = parseInt(localStorage.getItem('bsc-wl-ack') ?? '-1');
+    const wlBadge = document.getElementById('wl-badge');
+    if(_lastRestockCount > 0 && _lastRestockCount > ackedCount && !(cat==='collection' && collectionView==='wishlist'))
+      wlBadge.classList.add('show');
+    else
+      wlBadge.classList.remove('show');
+    if(s.last_poll){
+      const fmt = new Date(s.last_poll).toLocaleString('en-US',{
+        timeZone:'America/Chicago',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',hour12:true
+      });
+      document.getElementById('last-poll').innerHTML=`Last poll: <strong>${fmt} CT</strong>`;
+      document.getElementById('poll-toast').textContent=`Last poll: ${fmt} CT`;
+    }
+  }catch(e){ console.warn(e); }
+}
+
+// ── Products ───────────────────────────────────────────────────
+async function load(){
+  const grid = document.getElementById('grid');
+  grid.innerHTML=`<div class="state" style="grid-column:1/-1"><span class="spin"></span> Loading…</div>`;
+  try{
+    const searchVal = document.getElementById('search').value.trim();
+    const isSearching = searchVal.length > 0;
+    const isOwned = cat==='collection' && collectionView==='owned';
+    const isWish  = cat==='collection' && collectionView==='wishlist';
+    const isSold  = cat==='collection' && collectionView==='sold';
+
+    // While searching: ignore all filters, search entire catalog
+    const q = new URLSearchParams({
+      category:   isSearching ? 'all' : (isOwned||isWish||isSold ? 'all' : cat),
+      avail:      isSearching ? 'all' : (isOwned||isWish||isSold ? 'all' : avail),
+      panels:     isSearching ? 'all' : panels,
+      search:     searchVal,
+      sort:       isSearching ? 'title' : (document.getElementById('sort').value || sort),
+      owned:      (!isSearching && isOwned)  ? '1' : '0',
+      wishlisted: (!isSearching && isWish)   ? '1' : '0',
+      sold:       (!isSearching && isSold)   ? '1' : '0',
+    });
+
+    // Hide/show sub-filter bars and result count based on search state
+    document.getElementById('filter-bar').style.visibility = isSearching ? 'hidden' : '';
+    document.getElementById('panel-bar').style.visibility  = isSearching ? 'hidden' : '';
+    const countEl = document.getElementById('search-result-count');
+    countEl.style.display = isSearching ? 'block' : 'none';
+    if(!isSearching) countEl.textContent = '';
+
+    const fetches = [fetch('/api/products?'+q).then(r=>r.json())];
+    if(!isSearching && (isOwned||isSold||isWish||cat==='caps')) fetches.push(fetch('/api/manual_caps').then(r=>r.json()));
+    const [products, manualCaps] = await Promise.all(fetches);
+    render(products, manualCaps||[]);
+  }catch(e){
+    grid.innerHTML=`<div class="state" style="grid-column:1/-1">
+      <div class="state-icon">⚠️</div>
+      <div class="state-title">Could not load products</div>
+      <div class="state-sub">Run the poller first: python3 ~/scally-tracker/poller.py</div></div>`;
+  }
+}
+
+function render(products, manualCaps=[]){
+  const grid = document.getElementById('grid');
+  const isWish = cat === 'collection' && collectionView === 'wishlist';
+  const searchVal = document.getElementById('search').value.trim();
+  if(searchVal){
+    const countEl = document.getElementById('search-result-count');
+    if(countEl) countEl.textContent = `${products.length} result${products.length!==1?'s':''} across all categories`;
+  }
+  const catCountEl = document.getElementById('cat-count');
+  if(catCountEl){
+    if(!searchVal && (cat==='caps' || cat==='pins')){
+      const label = cat==='caps' ? 'cap' : 'pin';
+      catCountEl.textContent = `${products.length} ${label}${products.length!==1?'s':''}`;
+      catCountEl.style.display = 'block';
+    } else {
+      catCountEl.style.display = 'none';
+    }
+  }
+  if(!products.length){
+    grid.innerHTML=`<div class="state" style="grid-column:1/-1">
+      <div class="state-icon">🔍</div>
+      <div class="state-title">No products found</div>
+      <div class="state-sub">Try adjusting your filters.</div></div>`;
+    return;
+  }
+
+  function mkCard(p, i){
+    if(p._manual){
+      const img = p.image_url
+        ? `<img class="card-img" src="${p.image_url}" alt="${x(p.title)}">`
+        : `<div class="card-ph">🧢</div>`;
+      const CAP_TYPE_LABELS = { one_off:'One-Off Drop', retired:'Retired', seasonal:'Seasonal', other:'Other' };
+      const CAP_TYPE_CSS    = { one_off:'cap-one-off', retired:'cap-retired', seasonal:'cap-seasonal', other:'cap-other' };
+      const showType  = p._cap_type && p._cap_type !== 'none';
+      const typeLabel = showType ? (CAP_TYPE_LABELS[p._cap_type] || p._cap_type) : '';
+      const typeCss   = CAP_TYPE_CSS[p._cap_type] || 'cap-other';
+      const ribbons = [
+        p._sold       ? `<span class="ribbon-tag sold">🏷 Sold</span>`        : '',
+        p._wishlisted ? `<span class="ribbon-tag wishlist">⭐ Wishlist</span>` : '',
+        (!p._sold && !p._wishlisted) ? `<span class="ribbon-tag owned">✅ Own</span>` : '',
+        showType      ? `<span class="ribbon-tag ${typeCss}">${typeLabel}</span>` : '',
+      ].filter(Boolean).join('');
+      const ribbon = `<div class="card-ribbon">${ribbons}</div>`;
+      const btns = collectionView === 'sold'
+        ? `<button class="delete-btn" onclick="setManualSold(${p._mid},0)">↩ Owned</button>
+           <button class="delete-btn" onclick="deleteManualCap(${p._mid})">🗑 Delete</button>`
+        : collectionView === 'wishlist'
+          ? `<button class="delete-btn" onclick="setManualWishlisted(${p._mid},0)">✅ Mark Owned</button>
+             <button class="delete-btn" onclick="deleteManualCap(${p._mid})">🗑 Delete</button>`
+          : `<button class="delete-btn" onclick='openEditManualCap(${p._mid})'>✏️ Edit</button>`;
+      return `<div class="card manual-card" onclick="openEditManualCap(${p._mid})">
+        <div class="card-img-wrap">${img}<div class="dot" style="opacity:0"></div>${ribbon}</div>
+        <div class="card-body">
+          <div class="card-cat">CAPS</div>
+          <div class="card-title">${x(p.title)}</div>
+          ${p._notes ? `<div class="card-notes">${x(p._notes)}</div>` : ''}
+          <div class="card-foot">${btns}</div>
+        </div></div>`;
+    }
+    const inStock = p.my_size_in_stock;
+    const lo = p.min_price ? `$${(+p.min_price).toFixed(2)}` : '—';
+    const priceStr = (p.min_price!==p.max_price && p.max_price)
+      ? `<span class="from">from</span>${lo}` : lo;
+    const img = p.image_url
+      ? `<img class="card-img" src="${x(p.image_url)}" alt="${x(p.title)}">`
+      : `<div class="card-ph">${catEmoji(p.category)}</div>`;
+    const pip = (p.category==='caps' && p.panels)
+      ? `<div class="panel-pip" style="opacity:0">${PANEL_LABELS[p.panels]||p.panels}</div>` : '';
+    const ribbons = [
+      p.owned      ? `<span class="ribbon-tag owned">✅ Own</span>`       : '',
+      p.wishlisted ? `<span class="ribbon-tag wishlist">⭐ Wishlist</span>` : '',
+      p.sold       ? `<span class="ribbon-tag sold">🏷 Sold</span>`         : '',
+      (!p.owned && !p.wishlisted && !p.sold && p.is_new_product) ? `<span class="ribbon-tag new-item">New</span>` : '',
+      (!p.owned && !p.wishlisted && !p.sold && p.is_restocked && p.my_size_in_stock) ? `<span class="ribbon-tag restocked">🎉 Restocked</span>` : '',
+    ].filter(Boolean).join('');
+    const ribbon = ribbons ? `<div class="card-ribbon">${ribbons}</div>` : '';
+    const oosBadge = (isWish && p.oos_days)
+      ? `<div class="oos-days">OOS ${p.oos_days} day${p.oos_days===1?'':'s'}</div>` : '';
+    return `<div class="card" onclick="openProduct(${p.id})" style="animation-delay:${Math.min(i*.025,.4)}s">
+      <div class="card-img-wrap">${img}<div class="dot" style="opacity:0"></div>${pip}${ribbon}</div>
+      <div class="card-body">
+        <div class="card-cat">${CAT_LABELS[p.category]||p.category||''}</div>
+        <div class="card-title">${x(displayTitle(p))}</div>
+        ${oosBadge}
+        <div class="card-foot">
+          <div class="card-price">${priceStr}</div>
+          <span class="badge ${inStock?'in':'out'}">${inStock?'In Stock':'Out of Stock'}</span>
+        </div>
+      </div></div>`;
+  }
+
+  // ── Caps page: inject owned manual caps, then re-sort alphabetically ──
+  if(cat === 'caps' && manualCaps.length){
+    manualCaps
+      .filter(c => {
+        if(avail === 'in') return false;
+        if(panels !== 'all' && c.panels !== panels) return false;
+        return true;
+      })
+      .forEach(c => products.push({
+        _manual:true, _mid:c.id, _sold:c.sold, _wishlisted:c.wishlisted, _cap_type:c.cap_type||'none',
+        _notes:c.notes||'',
+        title:c.name, category:'caps',
+        owned:c.wishlisted?0:1, sold:c.sold, wishlisted:c.wishlisted, in_stock:false,
+        image_url:c.image||null, min_price:null, max_price:null, panels:c.panels||null,
+      }));
+    products.sort((a,b) => (a.title||'').localeCompare(b.title||''));
+  }
+
+  // ── Tagged views (owned / wishlist / sold): section headers by category ──
+  const isTagView = cat==='collection';
+  if(isTagView){
+    const CAT_HDR = { caps:'🧢 Caps', pins:'📌 Pins', apparel:'👕 Apparel', other:'🛍 Other' };
+    manualCaps
+      .filter(c=> {
+        if(collectionView==='sold')     return c.sold;
+        if(collectionView==='wishlist') return c.wishlisted && !c.sold;
+        return !c.sold && !c.wishlisted; // owned
+      })
+      .forEach(c=> products.push({
+        _manual:true, _mid:c.id, _sold:c.sold, _wishlisted:c.wishlisted, _cap_type:c.cap_type||'none',
+        _notes:c.notes||'',
+        title:c.name, category:'caps',
+        owned:c.wishlisted?0:1, sold:c.sold, wishlisted:c.wishlisted, in_stock:false,
+        image_url:c.image||null, min_price:null, max_price:null, panels:null,
+      }));
+    const catCounts = {};
+    products.forEach(p=>{ catCounts[p.category]=(catCounts[p.category]||0)+1; });
+    const catOrder = c => c==='caps' ? 0 : c==='pins' ? 1 : 2;
+    products.sort((a,b)=>{
+      const oa = catOrder(a.category), ob = catOrder(b.category);
+      if(oa!==ob) return oa-ob;
+      if(a.category!==b.category){
+        const cntDiff = (catCounts[b.category]||0)-(catCounts[a.category]||0);
+        if(cntDiff!==0) return cntDiff;
+        return a.category.localeCompare(b.category);
+      }
+      return displayTitle(a).localeCompare(displayTitle(b));
+    });
+    let lastCat = null, html = '';
+    products.forEach((p,i)=>{
+      if(p.category !== lastCat){
+        html += `<div class="owned-section-hdr">${CAT_HDR[p.category]||p.category} <span class="section-hdr-count">[${catCounts[p.category]}]</span></div>`;
+        lastCat = p.category;
+      }
+      html += mkCard(p, i);
+    });
+    grid.innerHTML = html;
+    return;
+  }
+
+  // ── Apparel / Other views: section headers by product_type, most items first ──
+  if(cat === 'apparel' || cat === 'other'){
+    const PT_LABELS = {
+      'sweatshirt':'Sweatshirts', 'sweatshirts':'Sweatshirts',
+      'hoodie':'Sweatshirts', 'hoodies':'Sweatshirts',
+      'shirt':'Shirts', 'shirts':'Shirts',
+      't-shirt':'Shirts', 't-shirts':'Shirts',
+      'tee':'Shirts', 'tees':'Shirts',
+      'jacket':'Jackets', 'jackets':'Jackets',
+      'sweater':'Sweaters', 'sweaters':'Sweaters',
+      'bottoms':'Bottoms',
+      'slides':'Slides',
+      'apparel & accessories':'Accessories',
+      'ball caps and beanies':'Caps & Beanies',
+      'clothing':'Clothing',
+      'stickers':'Stickers', 'sticker':'Stickers',
+      'bags':'Bags', 'bag':'Bags',
+      'cap rack':'Cap Racks',
+      'gift card':'Gift Cards',
+      'drinkware':'Drinkware',
+    };
+    // Title-keyword fallback for vague product_types like "Apparel & Accessories"
+    const VAGUE_PTYPES = new Set(['apparel & accessories','apparel','clothing']);
+    const TITLE_KW_PT = [
+      ['hoodie',      'Sweatshirts'],
+      ['sweatshirt',  'Sweatshirts'],
+      ['crewneck',    'Sweatshirts'],
+      ['t-shirt',     'Shirts'],
+      ['tee shirt',   'Shirts'],
+      ['polo shirt',  'Shirts'],
+      ['shirt',       'Shirts'],
+      ['jacket',      'Jackets'],
+      ['sweater',     'Sweaters'],
+      ['shorts',      'Bottoms'],
+      ['pants',       'Bottoms'],
+      ['socks',       'Accessories'],
+      ['slides',      'Slides'],
+    ];
+    function bucketKey(p){
+      const pt = (p.product_type||'Other').trim();
+      const ptl = pt.toLowerCase();
+      // For vague types, fall back to title keywords
+      if(VAGUE_PTYPES.has(ptl)){
+        const tl = (p.title||'').toLowerCase();
+        for(const [kw, label] of TITLE_KW_PT){ if(tl.includes(kw)) return label; }
+      }
+      // Normalize product_type to a canonical label so variants (T-Shirt, Shirt, etc.) merge
+      return PT_LABELS[ptl] || pt;
+    }
+    const groups = {};
+    products.forEach(p=>{
+      const pt = bucketKey(p);
+      if(!groups[pt]) groups[pt]=[];
+      groups[pt].push(p);
+    });
+    const sorted = Object.entries(groups).sort((a,b)=>b[1].length-a[1].length);
+    let html='', idx=0;
+    sorted.forEach(([pt, items])=>{
+      const label = pt;  // bucketKey already returns a normalized label
+      html += `<div class="owned-section-hdr">${label} <span class="section-hdr-count">[${items.length}]</span></div>`;
+      items.forEach(p=>{ html += mkCard(p, idx++); });
+    });
+    grid.innerHTML = html;
+    return;
+  }
+
+  // ── Default view ──
+  grid.innerHTML = products.map((p,i)=>mkCard(p,i)).join('');
+}
+
+// ── Alerts ─────────────────────────────────────────────────────
+let _allAlerts = [];
+let _alertFilter = 'back_in_stock';
+let _bisFilter   = 'all';
+
+function setAlertFilter(btn){
+  _alertFilter = btn.dataset.af;
+  document.querySelectorAll('#alerts-panel .alert-filters:not(#bis-subfilters) .af-pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  // Show sub-filters only for Back in Stock; reset to All
+  const sub = document.getElementById('bis-subfilters');
+  if(_alertFilter === 'back_in_stock'){
+    sub.style.display = '';
+    _bisFilter = 'all';
+    document.querySelectorAll('#bis-subfilters .af-pill').forEach(p => p.classList.remove('active'));
+    document.querySelector('#bis-subfilters .af-pill[data-bis="all"]').classList.add('active');
+    const chk = document.getElementById('xl-only-chk');
+    if(chk) chk.checked = false;
+  } else {
+    sub.style.display = 'none';
+  }
+  renderAlerts();
+}
+
+function setBisFilter(btn){
+  _bisFilter = btn.dataset.bis;
+  document.querySelectorAll('#bis-subfilters .af-pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  renderAlerts();
+}
+
+function isXL(variantTitle){
+  // Match "X-Large" or "X-Large [...]" but NOT "XX-Large"
+  return /^X-Large\b/i.test(variantTitle || '');
+}
+function isXXL(variantTitle){
+  return /^XX-Large\b/i.test(variantTitle || '');
+}
+
+function renderAlerts(){
+  const list = document.getElementById('alert-list');
+  let filtered = _allAlerts.filter(a => a.alert_type === _alertFilter);
+  if(_alertFilter === 'back_in_stock' && _bisFilter !== 'all'){
+    filtered = filtered.filter(a => a.category === _bisFilter);
+  }
+  // For caps and apparel, optionally filter to XL / XXL
+  const xlOnly  = document.getElementById('xl-only-chk')?.checked  ?? false;
+  const xxlOnly = document.getElementById('xxl-only-chk')?.checked ?? false;
+  if(xlOnly || xxlOnly){
+    filtered = filtered.filter(a => {
+      if(a.category === 'caps' || a.category === 'apparel'){
+        return (xlOnly && isXL(a.variant_title)) || (xxlOnly && isXXL(a.variant_title));
+      }
+      return true;
+    });
+  }
+  if(!filtered.length){
+    const activeBtn = document.querySelector(`.af-pill[data-af="${_alertFilter}"]`);
+    const label = activeBtn ? activeBtn.textContent.trim() : _alertFilter;
+    list.innerHTML=`<div class="state"><div class="state-icon">🔔</div><div class="state-title">No alerts of this type yet.</div></div>`;
+    return;
+  }
+  const todayStr = new Date().toLocaleDateString('en-CA', {timeZone:'America/Chicago'});
+  list.innerHTML = filtered.map(a=>{
+    const icon=ALERT_ICONS[a.alert_type]||'🔔';
+    const d = new Date(a.created_at);
+    const time=d.toLocaleString('en-US',{
+      timeZone:'America/Chicago',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',hour12:true
+    });
+    const isToday = d.toLocaleDateString('en-CA',{timeZone:'America/Chicago'}) === todayStr;
+    const isClickable = a.handle && (a.alert_type === 'back_in_stock' || a.alert_type === 'new_product');
+    const rowInner = `<div class="aicon">${icon}</div>
+      <div class="amsg">${x(a.message)}</div>
+      <div class="atime">${time} CT</div>`;
+    return isClickable
+      ? `<a class="arow ${a.alert_type}${isToday ? ' today' : ''}" href="https://bostonscally.com/products/${a.handle}" target="_blank" rel="noopener">${rowInner}</a>`
+      : `<div class="arow ${a.alert_type}${isToday ? ' today' : ''}">${rowInner}</div>`;
+  }).join('');
+}
+
+async function loadAlerts(){
+  const list = document.getElementById('alert-list');
+  list.innerHTML=`<div class="state"><span class="spin"></span> Loading…</div>`;
+  try{
+    _allAlerts = await fetch('/api/alerts?limit=100').then(r=>r.json());
+    if(!_allAlerts.length){
+      list.innerHTML=`<div class="state">
+        <div class="state-icon">🔔</div>
+        <div class="state-title">No alerts yet</div>
+        <div class="state-sub">Alerts appear after the first poll detects a change.</div></div>`;
+      return;
+    }
+    renderAlerts();
+  }catch(e){ list.innerHTML=`<div class="state"><div class="state-title">Failed to load alerts</div></div>`; }
+}
+
+// ── Modal ──────────────────────────────────────────────────────
+async function openProduct(id){
+  document.getElementById('m-meta').innerHTML='';
+  document.getElementById('m-body').innerHTML=`<div class="state"><span class="spin"></span> Loading…</div>`;
+  document.getElementById('m-img').src='';
+  document.getElementById('car-dots').innerHTML='';
+  document.getElementById('overlay').classList.add('open');
+  try{
+    const {product:p, variants, history} = await fetch(`/api/product/${id}`).then(r=>r.json());
+    const category = p.category||'';
+
+    const images = (p.images && p.images.length) ? p.images : (p.image_url ? [p.image_url] : []);
+    initCarousel(images);
+    if(!images.length) document.getElementById('m-img').style.display='none';
+
+    const addedStr = addedLabel(p.first_seen);
+    let meta = `<div class="m-cat">${x(CAT_LABELS[category]||category)}</div>
+      <div class="m-title">${x(p.title)}</div>
+      ${addedStr ? `<div class="first-seen">${addedStr}</div>` : ''}`;
+
+    if(category==='apparel' && p.material){
+      meta+=`<div class="spec-row"><div class="spec-chip"><span class="spec-k">Material</span><span class="spec-v">${x(p.material)}</span></div></div>`;
+    }
+    if(category==='caps'){
+      function cleanField(val){
+        if(!val) return '';
+        return val
+          .replace(/\s*(Color|Style|Material|Panels?)\s*:.*/i, '')
+          .replace(/Fitted/gi, '')
+          .replace(/\*\*.*$/,'')
+          .trim();
+      }
+      // Color: prefer DB color, else extract from title after last " - "
+      let color = cleanField(p.color);
+      if(!color){
+        const m = (p.title||'').match(/ - (.+)$/);
+        if(m) color = m[1].trim();
+      }
+      // Material: clean up noise
+      const material = cleanField(p.material);
+      // Panels: use DB value
+      const panels = p.panels ? (PANEL_LABELS[p.panels]||p.panels)+'-Panel' : '';
+      const specs = [
+        ['Color',    color],
+        ['Material', material],
+        ['Panels',   panels],
+      ];
+      meta+=`<div class="spec-row">`+
+        specs.map(([k,v])=>`<div class="spec-chip"><span class="spec-k">${k}</span><span class="spec-v">${v?x(v):'—'}</span></div>`).join('')+`</div>`;
+    }
+    const st = p.sold ? 'sold' : p.owned ? 'owned' : p.wishlisted ? 'wishlisted' : 'none';
+    const notesShow = (st==='owned'||st==='sold'||st==='wishlisted') ? 'show' : '';
+    const cmVal = t => { const m = t.match(/\[(\d+)cm\]/i); return m ? parseInt(m[1]) : 999; };
+    const sizeOpts = [...variants].sort((a,b)=>cmVal(a.title)-cmVal(b.title)).map(v=>
+      `<option value="${x(v.title)}" ${p.preferred_size===v.title?'selected':''}>${x(displayTitle(v.title))}</option>`
+    ).join('');
+    meta += `<div class="status-row">
+      <span class="status-label">Status</span>
+      <select class="status-select" onchange="setStatus(this.value)">
+        <option value="none"       ${st==='none'       ?'selected':''}>— None</option>
+        <option value="wishlisted" ${st==='wishlisted' ?'selected':''}>⭐ Wishlisted</option>
+        <option value="owned"      ${st==='owned'      ?'selected':''}>✅ Own</option>
+        <option value="sold"       ${st==='sold'       ?'selected':''}>🏷 Sold</option>
+      </select>
+    </div>
+    <div class="size-pref-wrap ${st==='wishlisted'?'show':''}" id="size-pref-wrap">
+      <span class="status-label">Alert size</span>
+      <select class="status-select" id="size-pref-sel" onchange="modalPrefSize=this.value;saveUserItem()">
+        <option value="" ${!p.preferred_size?'selected':''}>Any size</option>
+        ${sizeOpts}
+      </select>
+    </div>
+    <div class="notes-wrap ${notesShow}" id="notes-wrap">
+      <textarea class="notes-area" id="notes-area" placeholder="Notes…" oninput="modalNotes=this.value">${x(p.notes||'')}</textarea>
+      <button class="notes-save-btn" onclick="saveUserItem()">Save</button>
+    </div>`;
+    modalPid = p.id;
+    modalStatus = st;
+    modalNotes = p.notes || '';
+    modalPrefSize = p.preferred_size || '';
+    document.getElementById('m-meta').innerHTML=meta;
+
+    let html='';
+    if(p.description && (category==='caps'||category==='pins'))
+      html+=`<div class="desc-block">${x(p.description)}</div>`;
+
+    // ── Smart variant columns ──────────────────────────────────
+    const CAP_ORDER = ['x-small','small/medium','small','medium/large','medium','large','x-large','xx-large','xxx-large','one size'];
+    const APP_ORDER = ['small','medium','large','x-large','xx-large','xxx-large','one size'];
+    const CAP_LEFT  = ['x-small','small/medium','small','medium/large','medium'];
+    const APP_LEFT  = ['small','medium','large'];
+
+    function sizeRank(title, order){
+      const t = title.toLowerCase();
+      for(let i=0;i<order.length;i++) if(t.startsWith(order[i])) return i;
+      return 99;
+    }
+    function displayTitle(title){
+      if(!title || title.toLowerCase()==='default title') return 'One Size';
+      return title;
+    }
+    const isCap     = category==='caps';
+    const isApparel = category==='apparel';
+    const order     = isCap ? CAP_ORDER : isApparel ? APP_ORDER : null;
+    const leftSizes = isCap ? CAP_LEFT  : isApparel ? APP_LEFT  : null;
+
+    const sorted = order ? [...variants].sort((a,b)=>sizeRank(a.title,order)-sizeRank(b.title,order)) : [...variants];
+
+    function varRow(v){
+      const cls = v.available?'in':'out';
+      return `<div class="vrow ${cls}">
+        <div class="vname">${x(displayTitle(v.title))}</div>
+        <div class="vprice">$${(+v.price).toFixed(2)}</div>
+        <div class="vstatus">${v.available?'✓ In Stock':'✗ Out of Stock'}</div></div>`;
+    }
+
+    let leftVars=[], rightVars=[];
+    if(sorted.length > 1){
+      const mid = Math.ceil(sorted.length / 2);
+      leftVars  = sorted.slice(0, mid);
+      rightVars = sorted.slice(mid);
+    }
+    const useCols = leftVars.length>0 && rightVars.length>0;
+
+    html+=`<div class="sec-lbl">Variants &amp; Availability</div>`;
+    if(useCols){
+      html+=`<div class="var-cols">
+        <div class="var-col">${leftVars.map(varRow).join('')}</div>
+        <div class="var-col">${rightVars.map(varRow).join('')}</div>
+      </div>`;
+    } else {
+      html+=`<div class="var-list">${sorted.map(varRow).join('')}</div>`;
+    }
+
+    const vid=variants[0]?.id;
+    const hist=vid?(history[vid]||[]):[];
+    if(hist.length>1){
+      html+=`<div class="sec-lbl" style="margin-top:4px">Price &amp; Stock History</div>`;
+      html+=`<div class="hist-list">`;
+      [...hist].reverse().forEach(s=>{
+        const dt=new Date(s.checked_at).toLocaleString('en-US',{
+          timeZone:'America/Chicago',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',hour12:true
+        });
+        html+=`<div class="hrow">
+          <span class="hdate">${dt} CT</span>
+          <span class="hprice">$${(+s.price).toFixed(2)}</span>
+          <span class="badge ${s.available?'in':'out'}">${s.available?'In Stock':'Out of Stock'}</span></div>`;
+      });
+      html+=`</div>`;
+    }
+    html+=`<a class="view-btn" href="https://bostonscally.com/products/${x(p.handle)}" target="_blank" rel="noopener">↗ View on Boston Scally Co.</a>`;
+    document.getElementById('m-body').innerHTML=html;
+  }catch(e){
+    document.getElementById('m-body').innerHTML=`<div class="state"><div class="state-title">Failed to load product</div></div>`;
+  }
+}
+
+// ── Manual Caps ───────────────────────────────────────────────
+let mfImageData = null;
+
+function openManualForm(cap=null){
+  document.getElementById('mf-name').value = cap ? cap.name : '';
+  document.getElementById('mf-color').value = cap ? (cap.color||'') : '';
+  document.getElementById('mf-style').value = cap ? (cap.style||'') : '';
+  document.getElementById('mf-material').value = cap ? (cap.material||'') : '';
+  document.getElementById('mf-notes').value = cap ? (cap.notes||'') : '';
+  document.getElementById('mf-cap-type').value = cap ? (cap.cap_type||'none') : 'none';
+  document.getElementById('mf-panels').value = cap ? (cap.panels||'') : '';
+  document.getElementById('mf-edit-id').value = cap ? cap.id : '';
+  document.getElementById('mf-modal-title').textContent = cap ? 'Edit Cap' : 'Add Cap Manually';
+  // Status field: only shown when adding new; default to current collection sub-view (or owned)
+  const statusRow = document.getElementById('mf-status-row');
+  statusRow.style.display = cap ? 'none' : '';
+  const defaultStatus = (!cap && cat==='collection' && collectionView==='wishlist') ? 'wishlist' : 'owned';
+  setMfStatus(defaultStatus);
+  mfImageData = cap ? (cap.image||null) : null;
+  document.getElementById('mf-image').value='';
+  document.getElementById('mf-url').value = (cap && cap.image && !cap.image.startsWith('data:')) ? cap.image : '';
+  if(mfImageData){
+    showMfPreview(mfImageData);
+  } else {
+    document.getElementById('mf-preview-wrap').style.display='none';
+    document.getElementById('mf-preview').src='';
+  }
+  setMfMode(cap && cap.image && !cap.image.startsWith('data:') ? 'url' : 'file');
+  document.getElementById('manual-overlay').classList.add('open');
+}
+
+function setMfMode(mode){
+  document.getElementById('mf-panel-file').style.display = mode==='file' ? '' : 'none';
+  document.getElementById('mf-panel-url').style.display  = mode==='url'  ? '' : 'none';
+  document.getElementById('mf-tab-file').classList.toggle('active', mode==='file');
+  document.getElementById('mf-tab-url').classList.toggle('active',  mode==='url');
+}
+
+function mfFileSelected(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => { mfImageData = ev.target.result; showMfPreview(mfImageData); };
+  reader.readAsDataURL(file);
+}
+
+function mfUrlChanged(url){
+  mfImageData = url.trim() || null;
+  if(mfImageData) showMfPreview(mfImageData);
+  else document.getElementById('mf-preview-wrap').style.display='none';
+}
+
+function showMfPreview(src){
+  const img  = document.getElementById('mf-preview');
+  const wrap = document.getElementById('mf-preview-wrap');
+  img.src = src;
+  wrap.style.display = 'inline-block';
+}
+
+function clearMfImage(){
+  mfImageData = null;
+  document.getElementById('mf-image').value='';
+  document.getElementById('mf-url').value='';
+  document.getElementById('mf-preview-wrap').style.display='none';
+  document.getElementById('mf-preview').src='';
+}
+
+function setMfStatus(status){
+  document.getElementById('mf-status-owned').classList.toggle('active', status==='owned');
+  document.getElementById('mf-status-wishlist').classList.toggle('active', status==='wishlist');
+}
+
+function getMfStatus(){
+  return document.getElementById('mf-status-wishlist').classList.contains('active') ? 'wishlist' : 'owned';
+}
+
+function closeManualForm(){
+  document.getElementById('manual-overlay').classList.remove('open');
+}
+
+function manualBgClick(e){
+  if(e.target===document.getElementById('manual-overlay')) closeManualForm();
+}
+
+async function saveManualCap(){
+  const name = document.getElementById('mf-name').value.trim();
+  if(!name){ alert('Cap name is required.'); return; }
+  const editId = document.getElementById('mf-edit-id').value;
+  const payload = {
+    name,
+    color:      document.getElementById('mf-color').value.trim(),
+    style:      document.getElementById('mf-style').value.trim(),
+    material:   document.getElementById('mf-material').value.trim(),
+    notes:      document.getElementById('mf-notes').value.trim(),
+    image:      mfImageData,
+    wishlisted: (!editId && getMfStatus()==='wishlist') ? 1 : 0,
+    cap_type:   document.getElementById('mf-cap-type').value,
+    panels:     document.getElementById('mf-panels').value || null,
+  };
+  try{
+    const url = editId ? `/api/manual_cap/${editId}/edit` : '/api/manual_cap';
+    const resp = await fetch(url, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(payload),
+    });
+    const data = await resp.json();
+    if(data.ok){ closeManualForm(); load(); loadStats(); }
+  }catch(e){ console.error('Save failed', e); }
+}
+
+async function deleteManualCap(id){
+  if(!confirm('Delete this cap?')) return;
+  await fetch(`/api/manual_cap/${id}`, { method:'DELETE' });
+  load();
+  loadStats();
+}
+
+async function setManualSold(id, sold){
+  await fetch(`/api/manual_cap/${id}`, {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({sold}),
+  });
+  load();
+  loadStats();
+}
+
+async function setManualWishlisted(id, wishlisted){
+  await fetch(`/api/manual_cap/${id}`, {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({wishlisted}),
+  });
+  load();
+  loadStats();
+}
+
+async function openEditManualCap(id){
+  try{
+    const caps = await fetch('/api/manual_caps').then(r=>r.json());
+    const cap = caps.find(c=>c.id===id);
+    if(cap) openManualForm(cap);
+  }catch(e){ console.error('openEditManualCap failed', e); }
+}
+
+async function loadManualCaps(){
+  if(cat !== 'owned') return;
+  try{
+    const caps = await fetch('/api/manual_caps').then(r=>r.json());
+    if(!caps.length) return;
+    const grid = document.getElementById('grid');
+    grid.querySelectorAll('.manual-card').forEach(el => el.remove());
+    const manualHTML = caps.map(c=>{
+      const img = c.image
+        ? `<img class="card-img" src="${c.image}" alt="${x(c.name)}">`
+        : `<div class="card-ph">🧢</div>`;
+      return `<div class="card manual-card" style="cursor:default">
+        <div class="card-img-wrap">${img}
+          <div class="card-ribbon"><span class="ribbon-tag owned">✅ Owned</span></div>
+        </div>
+        <div class="card-body">
+          <div class="card-cat"></div>
+          <div class="card-title">${x(c.name)}</div>
+          <button class="delete-btn" onclick="deleteManualCap(${c.id})">🗑 Delete</button>
+        </div></div>`;
+    }).join('');
+    // Insert after caps section, before pins header if it exists
+    const hdrs = [...grid.querySelectorAll('.owned-section-hdr')];
+    const pinsHdr = hdrs.find(el => el.textContent.includes('Pins'));
+    if(pinsHdr) pinsHdr.insertAdjacentHTML('beforebegin', manualHTML);
+    else grid.innerHTML += manualHTML;
+    // Update caps header count to include manual caps
+    const capsHdr = hdrs.find(el => el.textContent.includes('Caps'));
+    if(capsHdr){
+      const countEl = capsHdr.querySelector('.section-hdr-count');
+      if(countEl){
+        const current = parseInt(countEl.textContent.replace(/\D/g,''))||0;
+        countEl.textContent = `[${current + caps.length}]`;
+      }
+    }
+  }catch(e){ console.error('loadManualCaps failed', e); }
+}
+
+async function setStatus(val){
+  if(!modalPid) return;
+  modalStatus = val;
+  const wrap = document.getElementById('notes-wrap');
+  if(wrap) wrap.classList.toggle('show', val==='owned'||val==='sold'||val==='wishlisted');
+  const sizePref = document.getElementById('size-pref-wrap');
+  if(sizePref) sizePref.classList.toggle('show', val==='wishlisted');
+  if(val !== 'wishlisted') modalPrefSize = '';
+  await saveUserItem();
+  loadStats(); load();
+}
+
+async function saveUserItem(){
+  const notesEl = document.getElementById('notes-area');
+  if(notesEl) modalNotes = notesEl.value;
+  try{
+    await fetch(`/api/user_item/${modalPid}`, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ status: modalStatus, notes: modalNotes, preferred_size: modalPrefSize }),
+    });
+  }catch(e){ console.error('Save failed', e); }
+}
+
+function bgClick(e){ if(e.target===document.getElementById('overlay')) closeModal(); }
+function closeModal(){ document.getElementById('overlay').classList.remove('open'); }
+function set(id,v){ const el=document.getElementById(id); if(el) el.textContent=v; }
+function x(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function catEmoji(c){ return {caps:'🧢',apparel:'👕',pins:'📌'}[c]||'🛍'; }
+
+// ── Releases ────────────────────────────────────────────────────
+let _relYear = 'all', _relMonth = 'all', _relLimited = false;
+let _relCache  = {};   // id → release object
+let _relGroups = [];   // [{name, entries}] for submenu lookup
+let _relEditId = null;
+let _relSubmenuOpen = null;
+
+function setRelYear(btn){
+  document.querySelectorAll('#rel-year-pills .rel-pill').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  _relYear = btn.dataset.year;
+  loadReleases();
+}
+
+function setRelMonth(btn){
+  document.querySelectorAll('#rel-month-pills .rel-pill').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  _relMonth = btn.dataset.month;
+  loadReleases();
+}
+
+function toggleRelLimited(){
+  _relLimited = !_relLimited;
+  document.getElementById('rel-limited-pill').classList.toggle('active', _relLimited);
+  loadReleases();
+}
+
+async function loadReleases(){
+  const list = document.getElementById('rel-list');
+  list.innerHTML = `<div class="state"><span class="spin"></span> Loading…</div>`;
+  try{
+    const search = document.getElementById('search').value.trim();
+    const q = new URLSearchParams({
+      year:    _relYear,
+      month:   _relMonth,
+      limited: _relLimited ? 'yes' : 'all',
+      search,
+    });
+    const rows = await fetch('/api/releases?' + q).then(r=>r.json());
+    // Populate cache and datalist
+    _relCache = {};
+    rows.forEach(r => { _relCache[r.id] = r; });
+    // Populate all unique names into datalist (fetch all for autocomplete)
+    populateRelNamelist(rows);
+    renderReleases(rows);
+  }catch(e){
+    list.innerHTML = `<div class="state"><div class="state-title">Failed to load releases</div></div>`;
+  }
+}
+
+function populateRelNamelist(rows){
+  const dl = document.getElementById('rf-name-list');
+  if(!dl) return;
+  const seen = new Set();
+  Object.values(_relCache).forEach(r => seen.add(r.name));
+  rows.forEach(r => seen.add(r.name));
+  dl.innerHTML = [...seen].sort().map(n=>`<option value="${x(n)}">`).join('');
+}
+
+function renderReleases(rows){
+  const list = document.getElementById('rel-list');
+  if(!rows.length){
+    list.innerHTML = `<div class="state"><div class="state-icon">📅</div><div class="state-title">No releases found</div></div>`;
+    return;
+  }
+
+  // All years → one line per cap, alphabetical, dates right-justified (filtered by month if set)
+  if(_relYear === 'all'){
+    const nameMap = new Map();
+    rows.forEach(r => {
+      if(!nameMap.has(r.name)) nameMap.set(r.name, []);
+      nameMap.get(r.name).push(r);
+    });
+    const sorted = [...nameMap.entries()].sort((a,b)=>a[0].localeCompare(b[0]));
+    // Store groups for submenu lookup by index
+    _relGroups = sorted.map(([name, entries]) => ({name, entries}));
+    list.innerHTML = _relGroups.map((g, idx) => {
+      const anyLimited = g.entries.some(r => r.is_limited);
+      const badge = anyLimited ? `<span class="rel-badge">★ Limited</span>` : '';
+      const chips = g.entries.map(r => `<span class="rel-date-chip">${x(r.release_date)}</span>`).join('');
+      return `<div class="rel-cap-row">
+        <div class="rel-cap-left"><span class="rel-cap-name">${x(g.name)}</span>${badge}</div>
+        <div class="rel-cap-dates">${chips}</div>
+        <div class="rel-cap-btns">
+          <button class="rel-row-btn rel-more-btn" onclick="openRelSubmenu(${idx},this)" title="Actions">⋯</button>
+        </div>
+      </div>`;
+    }).join('');
+    return;
+  }
+
+  // Year selected → group by year
+  const groups = {};
+  rows.forEach(r => {
+    const yr = 2000 + parseInt(r.release_date.split('/')[2]);
+    if(!groups[yr]) groups[yr] = [];
+    groups[yr].push(r);
+  });
+  const years = Object.keys(groups).sort((a,b)=>b-a);
+  list.innerHTML = years.map(yr => {
+    const items = groups[yr];
+    return `<div class="rel-year-group">
+      <div class="rel-year-hdr">${yr} <span class="rel-year-count">[${items.length}]</span></div>
+      <div class="rel-list">${items.map(r=>relRowHtml(r)).join('')}</div>
+    </div>`;
+  }).join('');
+}
+
+function relRowHtml(r){
+  const limited = r.is_limited ? ' limited' : '';
+  const badge   = r.is_limited ? `<span class="rel-badge">Limited</span>` : '';
+  return `<div class="rel-row${limited}">
+    <div class="rel-name">${x(r.name)}</div>
+    ${badge}
+    <div class="rel-date">${x(r.release_date)}</div>
+    <div class="rel-cap-btns">
+      <button class="rel-row-btn rel-more-btn" title="Actions" onclick="openRelRowSubmenu(${r.id},this)">⋯</button>
+    </div>
+  </div>`;
+}
+
+function openRelRowSubmenu(rid, anchorEl){
+  const submenu = document.getElementById('rel-submenu');
+  if(_relSubmenuOpen === ('row-'+rid) && submenu.classList.contains('open')){
+    closeRelSubmenu(); return;
+  }
+  if(_relMoreBtn) _relMoreBtn.classList.remove('active');
+  _relMoreBtn = anchorEl;
+  anchorEl.classList.add('active');
+  _relSubmenuOpen = 'row-' + rid;
+  const r = _relCache[rid];
+  submenu.innerHTML = `
+    <div class="rel-submenu-row">
+      <span class="rel-submenu-date">${r ? x(r.release_date) : ''}</span>
+      <button class="rel-row-btn" title="Re-release" onclick="reReleaseEntry(${rid});closeRelSubmenu()">↺</button>
+      <button class="rel-row-btn" title="Edit" onclick="editRelEntry(${rid});closeRelSubmenu()">✏️</button>
+      <button class="rel-row-btn del" title="Delete" onclick="deleteRelEntry(${rid});closeRelSubmenu()">🗑</button>
+    </div>`;
+  const rect = anchorEl.getBoundingClientRect();
+  submenu.style.top   = (rect.bottom + 4) + 'px';
+  submenu.style.left  = 'auto';
+  submenu.style.right = (window.innerWidth - rect.right) + 'px';
+  submenu.classList.add('open');
+}
+
+// ── Release Submenu ─────────────────────────────────────────────
+let _relMoreBtn = null;
+
+function openRelSubmenu(idx, anchorEl){
+  const submenu = document.getElementById('rel-submenu');
+  if(_relSubmenuOpen === idx && submenu.classList.contains('open')){
+    closeRelSubmenu(); return;
+  }
+  if(_relMoreBtn) _relMoreBtn.classList.remove('active');
+  _relMoreBtn = anchorEl;
+  anchorEl.classList.add('active');
+  _relSubmenuOpen = idx;
+  const group = _relGroups[idx];
+  submenu.innerHTML = group.entries.map(r => `
+    <div class="rel-submenu-row">
+      <span class="rel-submenu-date">${x(r.release_date)}</span>
+      <button class="rel-row-btn" title="Re-release" onclick="reReleaseEntry(${r.id});closeRelSubmenu()">↺</button>
+      <button class="rel-row-btn" title="Edit" onclick="editRelEntry(${r.id});closeRelSubmenu()">✏️</button>
+      <button class="rel-row-btn del" title="Delete" onclick="deleteRelEntry(${r.id});closeRelSubmenu()">🗑</button>
+    </div>`).join('');
+  const rect = anchorEl.closest('.rel-cap-btns').getBoundingClientRect();
+  submenu.style.top  = (rect.bottom + 4) + 'px';
+  submenu.style.left = 'auto';
+  submenu.style.right = (window.innerWidth - rect.right) + 'px';
+  submenu.classList.add('open');
+}
+
+function closeRelSubmenu(){
+  document.getElementById('rel-submenu').classList.remove('open');
+  if(_relMoreBtn) { _relMoreBtn.classList.remove('active'); _relMoreBtn = null; }
+  _relSubmenuOpen = null;
+}
+
+// ── Release Form ────────────────────────────────────────────────
+function openRelForm(opts={}){
+  _relEditId = opts.id || null;
+  document.getElementById('rf-modal-title').textContent = _relEditId ? 'Edit Release' : 'Add Release';
+  document.getElementById('rf-name').value    = opts.name    || '';
+  document.getElementById('rf-date').value    = opts.date    || '';
+  document.getElementById('rf-limited').checked = opts.limited || false;
+  document.getElementById('rf-notes').value   = opts.notes   || '';
+  document.getElementById('rel-overlay').classList.add('open');
+  const focusEl = opts.name ? document.getElementById('rf-date') : document.getElementById('rf-name');
+  setTimeout(()=>focusEl.focus(), 50);
+}
+
+function closeRelForm(){
+  document.getElementById('rel-overlay').classList.remove('open');
+  _relEditId = null;
+}
+
+function relBgClick(e){
+  if(e.target === document.getElementById('rel-overlay')) closeRelForm();
+}
+
+function reReleaseEntry(id){
+  const r = _relCache[id];
+  if(!r) return;
+  openRelForm({ name: r.name, limited: !!r.is_limited });
+}
+
+function editRelEntry(id){
+  const r = _relCache[id];
+  if(!r) return;
+  openRelForm({ id, name: r.name, date: r.release_date, limited: !!r.is_limited, notes: r.notes || '' });
+}
+
+async function deleteRelEntry(id){
+  if(!confirm('Delete this release entry?')) return;
+  await fetch(`/api/release/${id}`, {method:'DELETE'});
+  delete _relCache[id];
+  loadReleases();
+}
+
+async function saveRelease(){
+  const name = document.getElementById('rf-name').value.trim();
+  const date = document.getElementById('rf-date').value.trim();
+  if(!name || !date){ alert('Cap name and release date are required.'); return; }
+  if(!/^\d{1,2}\/\d{1,2}\/\d{2}$/.test(date)){ alert('Date must be in MM/DD/YY format (e.g. 3/15/26).'); return; }
+  const payload = {
+    name,
+    release_date: date,
+    is_limited: document.getElementById('rf-limited').checked,
+    notes: document.getElementById('rf-notes').value.trim() || null,
+  };
+  try{
+    const url    = _relEditId ? `/api/release/${_relEditId}` : '/api/release';
+    const method = _relEditId ? 'PUT' : 'POST';
+    const resp = await fetch(url, { method, headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+    const data = await resp.json();
+    if(data.error){ alert('Error: ' + data.error); return; }
+    closeRelForm();
+    loadReleases();
+  }catch(e){ alert('Failed to save release.'); }
+}
+</script>
+</body>
+</html>

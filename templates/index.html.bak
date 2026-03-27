@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Scally Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:    #faf7f2; --cream2: #f2ede4; --cream3: #e8e0d0;
+  --navy:     #1a2340; --navy2:  #243058;
+  --gold:     #b8942a; --gold-lt: #d4ad4a;
+  --text:     #1a2340; --text2: #4a5568; --text3: #8a9bb0;
+  --white:    #ffffff;
+  --green:    #276749; --green-bg: #edf7f0;
+  --red:      #c0392b; --red-bg:   #fdf0ee;
+  --border:   rgba(26,35,64,.10);
+  --sh-sm:    0 1px 4px rgba(26,35,64,.08);
+  --sh-md:    0 4px 20px rgba(26,35,64,.12);
+  --sh-lg:    0 12px 40px rgba(26,35,64,.18);
+  --r: 6px;
+}
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body { background:var(--cream); color:var(--text); font-family:'Source Sans 3',sans-serif; line-height:1.5; min-height:100vh; }
+
+/* ── Sticky wrapper ── */
+.sticky-top { position:sticky; top:0; z-index:100; }
+
+/* ── Header ── */
+header { background:var(--navy); box-shadow:0 2px 14px rgba(26,35,64,.35); }
+.hdr-inner {
+  max-width:1320px; margin:0 auto; padding:0 20px;
+  display:flex; align-items:center; gap:14px; height:56px;
+}
+.logo {
+  font-family:'Playfair Display',serif; font-weight:900; font-size:20px;
+  color:#fff; letter-spacing:.02em; white-space:nowrap; flex-shrink:0; line-height:1.1;
+}
+.logo em { font-style:normal; color:var(--gold-lt); }
+.logo small {
+  display:block; font-family:'Source Sans 3',sans-serif;
+  font-size:9px; font-weight:600; letter-spacing:.18em; text-transform:uppercase;
+  color:rgba(255,255,255,.35); margin-top:1px;
+}
+
+/* Category tabs */
+.cat-tabs {
+  display:flex; gap:2px;
+  background:rgba(255,255,255,.08); border-radius:var(--r); padding:3px;
+}
+.cat-tab {
+  font-family:'Source Sans 3',sans-serif; font-size:12px; font-weight:700;
+  letter-spacing:.08em; text-transform:uppercase;
+  color:rgba(255,255,255,.5); background:transparent; border:none;
+  border-radius:4px; padding:5px 12px; cursor:pointer; transition:all .15s; white-space:nowrap;
+}
+.cat-tab:hover { color:rgba(255,255,255,.85); }
+.cat-tab.active { background:var(--gold-lt); color:var(--navy); }
+.cat-tab[data-cat="owned"].active    { background:#27ae60; color:#fff; }
+.cat-tab[data-cat="wishlist"].active { background:#8e44ad; color:#fff; }
+
+/* Header right */
+.hdr-right { margin-left:auto; display:flex; align-items:center; gap:8px; }
+.search-wrap { position:relative; }
+.search-wrap svg { position:absolute; left:10px; top:50%; transform:translateY(-50%); color:rgba(255,255,255,.3); pointer-events:none; }
+input[type="search"] {
+  background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.15);
+  border-radius:var(--r); color:#fff; font-family:'Source Sans 3',sans-serif;
+  font-size:13px; padding:6px 12px 6px 32px; width:180px; outline:none; transition:all .15s;
+}
+input[type="search"]:focus { background:rgba(255,255,255,.16); border-color:var(--gold-lt); width:220px; }
+input[type="search"]::placeholder { color:rgba(255,255,255,.3); }
+.dark-toggle { background:none; border:1px solid rgba(255,255,255,.25); border-radius:20px; padding:5px 10px; font-size:14px; cursor:pointer; color:rgba(255,255,255,.8); transition:all .2s; line-height:1; }
+.dark-toggle:hover { border-color:var(--gold-lt); color:#fff; }
+.alerts-btn {
+  background:transparent; border:1px solid rgba(255,255,255,.2); border-radius:var(--r);
+  color:rgba(255,255,255,.65); font-family:'Source Sans 3',sans-serif;
+  font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+  padding:6px 12px; cursor:pointer; transition:all .15s;
+  display:flex; align-items:center; gap:6px; white-space:nowrap;
+}
+.alerts-btn:hover, .alerts-btn.on { background:var(--gold-lt); border-color:var(--gold-lt); color:var(--navy); }
+.abadge { background:#e74c3c; color:#fff; font-size:10px; font-weight:700; padding:1px 5px; border-radius:10px; display:none; }
+.abadge.show { display:inline; }
+
+/* ── Filter bar ── */
+.filter-bar { background:var(--white); border-bottom:1px solid var(--border); padding:0 20px; }
+.filter-inner {
+  max-width:1320px; margin:0 auto;
+  display:flex; align-items:center; gap:12px; min-height:44px; flex-wrap:wrap; padding:5px 0;
+}
+.flabel { font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--text3); flex-shrink:0; white-space:nowrap; }
+.pill-row { display:flex; gap:4px; flex-wrap:wrap; }
+.pill {
+  font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
+  color:var(--text2); background:var(--cream); border:1px solid var(--border);
+  border-radius:20px; padding:3px 12px; cursor:pointer; transition:all .15s; white-space:nowrap;
+}
+.pill:hover { border-color:var(--navy); color:var(--navy); }
+.pill.active { background:var(--navy); border-color:var(--navy); color:#fff; }
+.sort-wrap { margin-left:auto; display:flex; align-items:center; gap:8px; }
+select.srt {
+  background:var(--white); border:1px solid var(--border); border-radius:var(--r);
+  color:var(--text); font-family:'Source Sans 3',sans-serif;
+  font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+  padding:5px 24px 5px 10px; outline:none; cursor:pointer; appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%234a5568'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 8px center;
+}
+
+/* ── Panel sub-filter ── */
+.panel-bar { background:var(--cream2); border-bottom:1px solid var(--border); padding:0 20px; display:none; }
+.panel-bar.show { display:block; }
+.panel-inner { max-width:1320px; margin:0 auto; display:flex; align-items:center; gap:8px; min-height:38px; }
+
+/* ── Stats bar ── */
+.stats-bar { background:var(--navy); padding:8px 20px; }
+.stats-inner { max-width:1320px; margin:0 auto; display:flex; align-items:center; flex-wrap:wrap; }
+.stat { padding:3px 16px; border-right:1px solid rgba(255,255,255,.08); display:flex; flex-direction:column; align-items:center; }
+.stat:first-child { padding-left:0; }
+.stat:last-child  { border-right:none; }
+.snum { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:var(--gold-lt); line-height:1; }
+.snum.g { color:#6fcf97 !important; }
+.snum.r { color:#eb5757 !important; }
+.slbl { font-size:9px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-top:2px; }
+.last-poll { margin-left:auto; font-size:11px; color:rgba(255,255,255,.3); }
+.last-poll strong { color:rgba(255,255,255,.55); }
+
+/* ── Main ── */
+main { max-width:1320px; margin:0 auto; padding:24px 20px; }
+
+/* ── Product grid ── */
+#grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:16px; }
+.card {
+  background:var(--white); border:1px solid var(--border); border-radius:var(--r);
+  overflow:hidden; cursor:pointer;
+  transition:transform .18s, box-shadow .18s, border-color .18s;
+  animation:fadeUp .25s ease both;
+}
+@keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+.card:hover { transform:translateY(-2px); box-shadow:var(--sh-md); border-color:var(--gold); }
+.card-img-wrap { position:relative; width:100%; aspect-ratio:1; background:var(--cream2); overflow:hidden; }
+.card-img { width:100%; height:100%; object-fit:cover; transition:transform .3s; }
+.card:hover .card-img { transform:scale(1.04); }
+.card-ph { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:52px; }
+.dot { position:absolute; top:10px; right:10px; width:10px; height:10px; border-radius:50%; border:2px solid #fff; box-shadow:var(--sh-sm); }
+.dot.in  { background:var(--green); }
+.dot.out { background:var(--red); }
+.panel-pip { position:absolute; top:10px; left:10px; font-size:9px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; background:rgba(26,35,64,.75); color:var(--gold-lt); padding:2px 7px; border-radius:3px; backdrop-filter:blur(4px); }
+.card-ribbon { position:absolute; bottom:0; left:0; right:0; display:flex; gap:4px; padding:6px 8px; background:linear-gradient(to top,rgba(0,0,0,.5),transparent); }
+.ribbon-tag { font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:2px 8px; border-radius:3px; }
+.ribbon-tag.owned    { background:#27ae60; color:#fff; }
+.ribbon-tag.wishlist { background:#8e44ad; color:#fff; }
+.card-body { padding:12px 14px 14px; }
+.card-cat { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-bottom:4px; }
+.card-title { font-size:14px; font-weight:600; color:var(--text); line-height:1.35; margin-bottom:8px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.card-foot { display:flex; align-items:center; justify-content:space-between; }
+.card-price { font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--navy); }
+.card-price .from { font-family:'Source Sans 3',sans-serif; font-size:10px; font-weight:400; color:var(--text3); margin-right:2px; }
+.badge { font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:3px 8px; border-radius:3px; }
+.badge.in  { background:var(--green-bg); color:var(--green); }
+.badge.out { background:var(--red-bg);   color:var(--red); }
+
+/* ── States ── */
+.state { text-align:center; padding:80px 20px; color:var(--text3); }
+.state-icon  { font-size:44px; margin-bottom:16px; }
+.state-title { font-family:'Playfair Display',serif; font-size:20px; color:var(--text2); margin-bottom:6px; }
+.state-sub   { font-size:14px; }
+.spin { width:22px; height:22px; border:2px solid var(--border); border-top-color:var(--navy); border-radius:50%; animation:spin .75s linear infinite; display:inline-block; vertical-align:middle; margin-right:8px; }
+@keyframes spin { to{transform:rotate(360deg)} }
+
+/* ── Alerts panel ── */
+#alerts-panel { display:none; }
+#alerts-panel.show { display:block; }
+#prod-panel.hide { display:none; }
+.panel-head { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:var(--navy); margin-bottom:20px; padding-bottom:14px; border-bottom:2px solid var(--cream3); }
+.alerts-list { display:flex; flex-direction:column; gap:8px; }
+.arow { background:var(--white); border:1px solid var(--border); border-left:3px solid var(--gold); border-radius:var(--r); padding:12px 16px; display:flex; align-items:flex-start; gap:12px; animation:fadeUp .2s ease both; }
+.arow.back_in_stock  { border-left-color:var(--green); }
+.arow.out_of_stock   { border-left-color:var(--red); }
+.arow.price_drop     { border-left-color:#2980b9; }
+.arow.price_increase { border-left-color:#e67e22; }
+.aicon { font-size:18px; flex-shrink:0; margin-top:1px; }
+.amsg  { font-size:14px; color:var(--text); flex:1; line-height:1.45; }
+.atime { font-size:11px; color:var(--text3); white-space:nowrap; font-weight:600; }
+
+/* ── Modal ── */
+.overlay { position:fixed; inset:0; z-index:200; background:rgba(26,35,64,.55); backdrop-filter:blur(4px); display:none; align-items:center; justify-content:center; padding:20px; }
+.overlay.open { display:flex; }
+.modal { background:var(--white); border-radius:10px; width:100%; max-width:680px; max-height:90vh; overflow-y:auto; box-shadow:var(--sh-lg); animation:mIn .2s ease; }
+@keyframes mIn { from{opacity:0;transform:scale(.97) translateY(6px)} to{opacity:1;transform:scale(1) translateY(0)} }
+.m-top { display:flex; gap:16px; align-items:flex-start; padding:20px 22px 0; }
+.m-img { width:100px; height:100px; object-fit:cover; border-radius:var(--r); flex-shrink:0; background:var(--cream2); border:1px solid var(--border); }
+.m-meta { flex:1; min-width:0; padding-bottom:16px; border-bottom:1px solid var(--border); }
+.m-cat { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-bottom:5px; }
+.m-title { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:var(--navy); line-height:1.3; margin-bottom:12px; }
+.spec-row { display:flex; gap:6px; flex-wrap:wrap; }
+.spec-chip { display:flex; flex-direction:column; background:var(--cream2); border:1px solid var(--border); border-radius:var(--r); padding:5px 10px; min-width:68px; }
+.spec-k { font-size:9px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--text3); margin-bottom:2px; }
+.spec-v { font-size:12px; font-weight:700; color:var(--text); line-height:1.2; }
+.tag-row { display:flex; gap:8px; margin-top:10px; flex-wrap:wrap; }
+.tag-btn { display:flex; align-items:center; gap:6px; font-family:'Source Sans 3',sans-serif; font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:7px 14px; border-radius:var(--r); border:2px solid var(--border); background:var(--cream); color:var(--text2); cursor:pointer; transition:all .18s; }
+.tag-btn:hover { border-color:var(--navy); }
+.tag-btn.owned-btn.on { background:#27ae60; border-color:#27ae60; color:#fff; }
+.tag-btn.wish-btn.on  { background:#8e44ad; border-color:#8e44ad; color:#fff; }
+.owned-section-hdr { grid-column:1/-1; display:flex; align-items:center; gap:6px; font-family:'Playfair Display',serif; font-size:13px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--navy); border-bottom:2px solid var(--gold); padding-bottom:4px; margin-top:8px; }
+.owned-section-hdr:first-child { margin-top:0; }
+.section-hdr-count { font-family:'Source Sans 3',sans-serif; font-size:12px; font-weight:700; color:var(--text2); letter-spacing:0; }
+
+.add-manual-btn { display:inline-flex; align-items:center; gap:8px; background:var(--navy); color:#fff; border:none; border-radius:var(--r); font-family:'Source Sans 3',sans-serif; font-size:14px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:12px 24px; cursor:pointer; margin-bottom:16px; transition:background .15s; }
+.add-manual-btn:hover { background:var(--navy2); }
+
+.m-close { margin-left:auto; flex-shrink:0; align-self:flex-start; background:var(--cream); border:1px solid var(--border); color:var(--text2); border-radius:var(--r); width:30px; height:30px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px; transition:all .15s; }
+.m-close:hover { background:var(--navy); color:#fff; border-color:var(--navy); }
+.m-body { padding:18px 22px 24px; }
+.desc-block { background:var(--cream); border:1px solid var(--border); border-radius:var(--r); padding:12px 14px; margin-bottom:18px; font-size:13px; color:var(--text2); line-height:1.65; }
+.sec-lbl { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--text3); margin-bottom:10px; }
+.var-list { display:flex; flex-direction:column; gap:4px; margin-bottom:16px; }
+.var-cols { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:16px; }
+.var-col  { display:flex; flex-direction:column; gap:4px; }
+@media (max-width:480px){ .var-cols { grid-template-columns:1fr; } }
+.vrow { display:flex; align-items:center; gap:8px; padding:5px 10px; border-radius:var(--r); border:1px solid var(--border); background:var(--cream); min-width:0; }
+.vrow.in  { border-color:rgba(39,103,73,.2); background:var(--green-bg); }
+.vrow.out { opacity:.55; }
+.vname  { font-size:12px; font-weight:600; color:var(--text); flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.vprice { font-family:'Playfair Display',serif; font-size:13px; font-weight:700; color:var(--navy); white-space:nowrap; }
+.vstatus { font-size:9px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; white-space:nowrap; }
+.vrow.in  .vstatus { color:var(--green); }
+.vrow.out .vstatus { color:var(--red); }
+.hist-list { display:flex; flex-direction:column; gap:4px; margin-bottom:20px; }
+.hrow { display:flex; align-items:center; gap:12px; font-size:12px; padding:5px 0; border-bottom:1px solid var(--border); }
+.hdate  { color:var(--text3); width:145px; flex-shrink:0; }
+.hprice { font-weight:700; color:var(--navy); width:64px; }
+.view-btn { display:inline-flex; align-items:center; gap:6px; background:var(--navy); color:#fff; font-family:'Source Sans 3',sans-serif; font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; padding:9px 18px; border-radius:var(--r); transition:background .15s; }
+.view-btn:hover { background:var(--navy2); }
+
+/* ── Mobile ── */
+@media (max-width:600px) {
+  header { position:static; }
+  .hdr-inner { flex-wrap:wrap; height:auto; padding:8px 12px; gap:6px; }
+  .logo { font-size:17px; }
+  .logo small { display:none; }
+  .cat-tabs { order:3; width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; flex-wrap:nowrap; padding:0; background:transparent; gap:4px; scrollbar-width:none; }
+  .cat-tabs::-webkit-scrollbar { display:none; }
+  .cat-tab { padding:5px 10px; font-size:11px; }
+  .hdr-right { order:2; flex:1; gap:6px; }
+  input[type="search"] { flex:1; width:auto !important; font-size:13px; padding:6px 10px 6px 28px; }
+  .alerts-btn { padding:6px 10px; font-size:11px; }
+  .filter-inner { flex-wrap:nowrap; overflow-x:auto; padding:4px 0; scrollbar-width:none; }
+  .filter-inner::-webkit-scrollbar { display:none; }
+  .pill-row { flex-wrap:nowrap; }
+  .pill { font-size:11px; padding:3px 10px; }
+  .panel-inner { overflow-x:auto; scrollbar-width:none; }
+  .panel-inner::-webkit-scrollbar { display:none; }
+  .stats-bar { padding:6px 10px; }
+  .stat { padding:2px 8px; }
+  .snum { font-size:15px; }
+  .slbl { font-size:8px; }
+  .last-poll { display:none; }
+  main { padding:10px; }
+  #grid { grid-template-columns:1fr 1fr; gap:8px; }
+  .card-img-wrap { aspect-ratio:4/3; }
+  .card-body { padding:8px 10px 10px; }
+  .card-cat { font-size:9px; margin-bottom:2px; }
+  .card-title { font-size:12px; margin-bottom:5px; }
+  .card-price { font-size:14px; }
+  .badge { font-size:9px; padding:2px 6px; }
+  .overlay { padding:0; align-items:flex-end; }
+  .modal { max-height:92vh; border-radius:14px 14px 0 0; }
+  .m-top { padding:16px 16px 0; gap:12px; }
+  .m-img { width:72px; height:72px; }
+  .m-title { font-size:16px; }
+  .m-body { padding:14px 16px 28px; }
+  .var-grid { grid-template-columns:1fr 1fr; }
+  .arow { padding:10px 12px; gap:8px; }
+  .atime { display:none; }
+}
+</style>
+</head>
+<body>
+
+<div class="sticky-top">
+
+  <header>
+    <div class="hdr-inner">
+      <div class="logo">
+        Scally<em> Tracker</em>
+        <small>Boston Scally Co. Monitor</small>
+      </div>
+
+      <div class="cat-tabs">
+        <button class="cat-tab"        data-cat="all"     onclick="setCat(this)">All</button>
+        <button class="cat-tab active" data-cat="caps"    onclick="setCat(this)">🧢 Caps</button>
+        <button class="cat-tab"        data-cat="pins"    onclick="setCat(this)">📌 Pins</button>
+        <button class="cat-tab"        data-cat="apparel" onclick="setCat(this)">👕 Apparel</button>
+        <button class="cat-tab"        data-cat="other"    onclick="setCat(this)">🛍 Other</button>
+        <button class="cat-tab"        data-cat="owned"    onclick="setCat(this)">✅ Owned</button>
+        <button class="cat-tab"        data-cat="wishlist" onclick="setCat(this)">⭐ Wishlist</button>
+      </div>
+
+      <div class="hdr-right">
+        <div class="search-wrap">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="search" id="search" placeholder="Search products…" oninput="debounce()">
+        </div>
+        <button class="alerts-btn" id="alerts-btn" onclick="toggleAlerts()">
+          🔔 Alerts <span class="abadge" id="abadge"></span>
+        </button>
+        <button class="dark-toggle" id="dark-toggle" onclick="toggleDark()">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Availability + sort -->
+  <div class="filter-bar" id="filter-bar">
+    <div class="filter-inner">
+      <span class="flabel">Availability</span>
+      <div class="pill-row" id="avail-pills">
+        <button class="pill"        data-avail="all" onclick="setAvail(this)">All</button>
+        <button class="pill active" data-avail="in"  onclick="setAvail(this)">In Stock</button>
+        <button class="pill"        data-avail="out" onclick="setAvail(this)">Out of Stock</button>
+      </div>
+      <div class="sort-wrap">
+        <span class="flabel">Sort</span>
+        <select class="srt" id="sort" onchange="load()">
+          <option value="title">A–Z</option>
+          <option value="price_asc">Price ↑</option>
+          <option value="price_desc">Price ↓</option>
+          <option value="newest" selected>Newest</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel sub-filter (caps only) -->
+  <div class="panel-bar" id="panel-bar">
+    <div class="panel-inner">
+      <span class="flabel">Panels</span>
+      <div class="pill-row" id="panel-pills">
+        <button class="pill active" data-panels="all"    onclick="setPanel(this)">All</button>
+        <button class="pill"        data-panels="single" onclick="setPanel(this)">1</button>
+        <button class="pill"        data-panels="6"      onclick="setPanel(this)">6</button>
+        <button class="pill"        data-panels="8"      onclick="setPanel(this)">8</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats bar -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat"><div class="snum"   id="s-tot">—</div><div class="slbl">Products</div></div>
+      <div class="stat"><div class="snum"   id="s-cap">—</div><div class="slbl">Caps</div></div>
+      <div class="stat"><div class="snum"   id="s-pin">—</div><div class="slbl">Pins</div></div>
+      <div class="stat"><div class="snum"   id="s-app">—</div><div class="slbl">Apparel</div></div>
+      <div class="stat"><div class="snum g" id="s-in" >—</div><div class="slbl">In Stock</div></div>
+      <div class="stat"><div class="snum r" id="s-out">—</div><div class="slbl">Out of Stock</div></div>
+      <div class="stat"><div class="snum"   id="s-own">—</div><div class="slbl">Owned</div></div>
+      <div class="stat"><div class="snum"   id="s-wsh">—</div><div class="slbl">Wishlist</div></div>
+      <div class="stat"><div class="snum"   id="s-alt">—</div><div class="slbl">Alerts Today</div></div>
+      <div class="last-poll" id="last-poll">Last poll: <strong>—</strong></div>
+    </div>
+  </div>
+
+</div><!-- /sticky-top -->
+
+<main>
+  <div id="prod-panel">
+    <div id="manual-btn-wrap" style="display:none; text-align:right">
+      <button class="add-manual-btn" onclick="openManualForm()">＋ Add Cap Manually</button>
+    </div>
+    <div id="grid">
+      <div class="state" style="grid-column:1/-1"><span class="spin"></span> Loading inventory…</div>
+    </div>
+
+  </div>
+
+  <div id="alerts-panel">
+    <div class="panel-head">Recent Alerts</div>
+    <div class="alerts-list" id="alert-list">
+      <div class="state"><span class="spin"></span> Loading…</div>
+    </div>
+  </div>
+</main>
+
+<!-- Manual cap form overlay -->
+<div class="overlay" id="manual-overlay" onclick="manualBgClick(event)" style="background:rgba(26,35,64,.92);">
+  <div class="manual-modal">
+    <h2>Add Cap Manually</h2>
+    <div class="mf-row"><label>Cap Name *</label><input type="text" id="mf-name" placeholder="e.g. The Worker Flat Cap"></div>
+    <div class="mf-row">
+      <label>Photo</label>
+      <input type="file" id="mf-image" accept="image/*" onchange="previewImage(event)">
+      <img class="mf-img-preview" id="mf-preview" src="" alt="Preview">
+    </div>
+    <div class="mf-btns">
+      <button class="mf-cancel" onclick="closeManualForm()">Cancel</button>
+      <button class="mf-save"   onclick="saveManualCap()">Save Cap</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="overlay" id="overlay" onclick="bgClick(event)">
+  <div class="modal" id="modal">
+    <div class="m-top" id="m-top">
+      <img class="m-img" id="m-img" src="" alt="">
+      <div class="m-meta" id="m-meta"></div>
+      <button class="m-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="m-body" id="m-body"></div>
+  </div>
+</div>
+
+<script>
+// ── State ──────────────────────────────────────────────────────
+let cat = 'caps', avail = 'in',  panels = 'all', sort = 'newest', timer = null;
+
+let modalPid = null, modalOwned = false, modalWishlisted = false;
+
+const CAT_LABELS = { caps:'Caps', pins:'Pins', apparel:'Apparel', other:'Other' };
+const PANEL_LABELS = { single:'1', '5':'5', '6':'6', '8':'8' };
+const ALERT_ICONS = { new_product:'🆕', back_in_stock:'🎉', out_of_stock:'❌', price_drop:'📉', price_increase:'📈' };
+
+// ── Boot ───────────────────────────────────────────────────────
+function toggleDark(){
+  const dark = document.body.classList.toggle('dark');
+  localStorage.setItem('bsc-dark', dark ? '1' : '0');
+  document.getElementById('dark-toggle').textContent = dark ? '☀️' : '🌙';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  if(localStorage.getItem('bsc-dark')==='1'){
+    document.body.classList.add('dark');
+    const btn = document.getElementById('dark-toggle');
+    if(btn) btn.textContent = '☀️';
+  }
+  loadStats(); load(); setInterval(loadStats, 60_000);
+  document.addEventListener('keydown', e => { if (e.key==='Escape') closeModal(); });
+});
+function debounce(){ clearTimeout(timer); timer=setTimeout(load,280); }
+
+// ── Category ───────────────────────────────────────────────────
+function setCat(btn){
+  document.querySelectorAll('.cat-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  cat = btn.dataset.cat;
+  panels = 'all';
+  avail = (cat==='owned'||cat==='wishlist') ? 'all' : 'in';
+  document.querySelectorAll('#panel-pills .pill').forEach(b=>b.classList.remove('active'));
+  document.querySelector('#panel-pills .pill[data-panels="all"]').classList.add('active');
+  document.querySelectorAll('#avail-pills .pill').forEach(b=>b.classList.remove('active'));
+  const availTarget = (cat==='owned'||cat==='wishlist') ? 'all' : 'in';
+  document.querySelector(`#avail-pills .pill[data-avail="${availTarget}"]`).classList.add('active');
+  document.getElementById('sort').value = 'newest';
+  document.getElementById('panel-bar').classList.toggle('show', cat==='caps');
+  document.getElementById('manual-btn-wrap').style.display = cat==='owned' ? 'block' : 'none';
+
+  showProducts();
+  load().then(()=>{ if(cat==='owned') loadManualCaps(); });
+}
+
+function setAvail(btn){
+  document.querySelectorAll('#avail-pills .pill').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  avail = btn.dataset.avail;
+  const sortEl = document.getElementById('sort');
+  if(avail === 'out'){
+    sortEl.value = 'title';
+  } else {
+    sortEl.value = 'newest';
+  }
+  load();
+}
+
+function setPanel(btn){
+  document.querySelectorAll('#panel-pills .pill').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  panels = btn.dataset.panels; load();
+}
+
+function showProducts(){
+  document.getElementById('prod-panel').classList.remove('hide');
+  document.getElementById('alerts-panel').classList.remove('show');
+  document.getElementById('filter-bar').style.display = '';
+  document.getElementById('panel-bar').classList.toggle('show', cat==='caps');
+  document.getElementById('alerts-btn').classList.remove('on');
+}
+
+function toggleAlerts(){
+  const ap = document.getElementById('alerts-panel');
+  if(ap.classList.contains('show')){ showProducts(); return; }
+  ap.classList.add('show');
+  document.getElementById('prod-panel').classList.add('hide');
+  document.getElementById('filter-bar').style.display='none';
+  document.getElementById('panel-bar').classList.remove('show');
+  document.getElementById('alerts-btn').classList.add('on');
+  loadAlerts();
+}
+
+// ── Stats ──────────────────────────────────────────────────────
+async function loadStats(){
+  try{
+    const [s, manual] = await Promise.all([
+      fetch('/api/stats').then(r=>r.json()),
+      fetch('/api/manual_caps').then(r=>r.json()),
+    ]);
+    // manual caps are caps so include in caps-only owned count
+    s.owned = (s.owned||0) + (manual||[]).length;
+    set('s-tot', s.total        ?? '—');
+    set('s-cap', s.caps         ?? '—');
+    set('s-pin', s.pins         ?? '—');
+    set('s-app', s.apparel      ?? '—');
+    set('s-in',  s.in_stock     ?? '—');
+    set('s-out', s.out_of_stock ?? '—');
+    set('s-own', s.owned      ?? '0');
+    set('s-wsh', s.wishlisted ?? '0');
+    set('s-alt', s.alerts_today ?? '—');
+    const b = document.getElementById('abadge');
+    if((s.alerts_today||0)>0){ b.textContent=s.alerts_today; b.classList.add('show'); }
+    else b.classList.remove('show');
+    if(s.last_poll){
+      const fmt = new Date(s.last_poll).toLocaleString('en-US',{
+        timeZone:'America/Chicago',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',hour12:true
+      });
+      document.getElementById('last-poll').innerHTML=`Last poll: <strong>${fmt} CT</strong>`;
+    }
+  }catch(e){ console.warn(e); }
+}
+
+// ── Products ───────────────────────────────────────────────────
+async function load(){
+  const grid = document.getElementById('grid');
+  grid.innerHTML=`<div class="state" style="grid-column:1/-1"><span class="spin"></span> Loading…</div>`;
+  try{
+    const isOwned = cat==='owned', isWish = cat==='wishlist';
+    const q = new URLSearchParams({
+      category:  isOwned||isWish ? 'all' : cat,
+      avail:     isOwned||isWish ? 'all' : avail,
+      panels,
+      search:    document.getElementById('search').value,
+      sort:      document.getElementById('sort').value || sort,
+      owned:     isOwned ? '1' : '0',
+      wishlisted:isWish  ? '1' : '0',
+    });
+    const products = await fetch('/api/products?'+q).then(r=>r.json());
+    render(products);
+  }catch(e){
+    grid.innerHTML=`<div class="state" style="grid-column:1/-1">
+      <div class="state-icon">⚠️</div>
+      <div class="state-title">Could not load products</div>
+      <div class="state-sub">Run the poller first: python3 ~/scally-tracker/poller.py</div></div>`;
+  }
+}
+
+function render(products){
+  const grid = document.getElementById('grid');
+  if(!products.length){
+    grid.innerHTML=`<div class="state" style="grid-column:1/-1">
+      <div class="state-icon">🔍</div>
+      <div class="state-title">No products found</div>
+      <div class="state-sub">Try adjusting your filters.</div></div>`;
+    return;
+  }
+  // Insert section headers for owned/wishlist views
+  const isTagView = cat==='owned' || cat==='wishlist';
+  if(isTagView){
+    const CAT_HDR = { caps:'🧢 Caps', pins:'📌 Pins', apparel:'👕 Apparel', other:'🛍 Other' };
+    let lastCat = null;
+    let html = '';
+    // Pre-count per category
+    const catCounts = {};
+    products.forEach(p=>{ catCounts[p.category]=(catCounts[p.category]||0)+1; });
+    products.forEach((p,i)=>{
+      if(p.category !== lastCat){
+        const cnt = catCounts[p.category]||0;
+        html += `<div class="owned-section-hdr">${CAT_HDR[p.category]||p.category} <span class="section-hdr-count">[${cnt}]</span></div>`;
+        lastCat = p.category;
+      }
+      html += (function(p,i){
+        const inStock = p.in_stock;
+        const lo = p.min_price ? `$${(+p.min_price).toFixed(2)}` : '—';
+        const priceStr = (p.min_price!==p.max_price && p.max_price)
+          ? `<span class="from">from</span>${lo}` : lo;
+        const img = p.image_url
+          ? `<img class="card-img" src="${x(p.image_url)}" alt="${x(p.title)}" loading="lazy">`
+          : `<div class="card-ph">${catEmoji(p.category)}</div>`;
+        const pip = (p.category==='caps' && p.panels)
+          ? `<div class="panel-pip">${PANEL_LABELS[p.panels]||p.panels}</div>` : '';
+        const ribbons = [
+          p.owned      ? `<span class="ribbon-tag owned">✅ Owned</span>`       : '',
+          p.wishlisted ? `<span class="ribbon-tag wishlist">⭐ Wishlist</span>` : '',
+        ].filter(Boolean).join('');
+        const ribbon = ribbons ? `<div class="card-ribbon">${ribbons}</div>` : '';
+        return `<div class="card" onclick="openProduct(${p.id})" style="animation-delay:${Math.min(i*.025,.4)}s">
+          <div class="card-img-wrap">${img}<div class="dot ${inStock?'in':'out'}"></div>${pip}${ribbon}</div>
+          <div class="card-body">
+            <div class="card-cat">${CAT_LABELS[p.category]||p.category||''}</div>
+            <div class="card-title">${x(p.title)}</div>
+            <div class="card-foot">
+              <div class="card-price">${priceStr}</div>
+              <span class="badge ${inStock?'in':'out'}">${inStock?'In Stock':'Out of Stock'}</span>
+            </div>
+          </div></div>`;
+      })(p,i);
+    });
+    grid.innerHTML = html;
+    return;
+  }
+  grid.innerHTML = products.map((p,i)=>{
+    const inStock = p.in_stock;
+    const lo = p.min_price ? `$${(+p.min_price).toFixed(2)}` : '—';
+    const priceStr = (p.min_price!==p.max_price && p.max_price)
+      ? `<span class="from">from</span>${lo}` : lo;
+    const img = p.image_url
+      ? `<img class="card-img" src="${x(p.image_url)}" alt="${x(p.title)}" loading="lazy">`
+      : `<div class="card-ph">${catEmoji(p.category)}</div>`;
+    const pip = (p.category==='caps' && p.panels)
+      ? `<div class="panel-pip">${PANEL_LABELS[p.panels]||p.panels}</div>` : '';
+    const ribbons = [
+      p.owned      ? `<span class="ribbon-tag owned">✅ Owned</span>`       : '',
+      p.wishlisted ? `<span class="ribbon-tag wishlist">⭐ Wishlist</span>` : '',
+    ].filter(Boolean).join('');
+    const ribbon = ribbons ? `<div class="card-ribbon">${ribbons}</div>` : '';
+    return `<div class="card" onclick="openProduct(${p.id})" style="animation-delay:${Math.min(i*.025,.4)}s">
+      <div class="card-img-wrap">${img}<div class="dot ${inStock?'in':'out'}"></div>${pip}${ribbon}</div>
+      <div class="card-body">
+        <div class="card-cat">${CAT_LABELS[p.category]||p.category||''}</div>
+        <div class="card-title">${x(p.title)}</div>
+        <div class="card-foot">
+          <div class="card-price">${priceStr}</div>
+          <span class="badge ${inStock?'in':'out'}">${inStock?'In Stock':'Out of Stock'}</span>
+        </div>
+      </div></div>`;
+  }).join('');
+}
+
+// ── Alerts ─────────────────────────────────────────────────────
+async function loadAlerts(){
+  const list = document.getElementById('alert-list');
+  list.innerHTML=`<div class="state"><span class="spin"></span> Loading…</div>`;
+  try{
+    const alerts = await fetch('/api/alerts?limit=100').then(r=>r.json());
+    if(!alerts.length){
+      list.innerHTML=`<div class="state">
+        <div class="state-icon">🔔</div>
+        <div class="state-title">No alerts yet</div>
+        <div class="state-sub">Alerts appear after the first poll detects a change.</div></div>`;
+      return;
+    }
+    list.innerHTML = alerts.map(a=>{
+      const icon=ALERT_ICONS[a.alert_type]||'🔔';
+      const time=new Date(a.created_at).toLocaleString('en-US',{
+        timeZone:'America/Chicago',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',hour12:true
+      });
+      return `<div class="arow ${a.alert_type}">
+        <div class="aicon">${icon}</div>
+        <div class="amsg">${x(a.message)}</div>
+        <div class="atime">${time} CT</div></div>`;
+    }).join('');
+  }catch(e){ list.innerHTML=`<div class="state"><div class="state-title">Failed to load alerts</div></div>`; }
+}
+
+// ── Modal ──────────────────────────────────────────────────────
+async function openProduct(id){
+  document.getElementById('overlay').classList.add('open');
+  document.getElementById('m-meta').innerHTML='';
+  document.getElementById('m-body').innerHTML=`<div class="state"><span class="spin"></span> Loading…</div>`;
+  try{
+    const {product:p, variants, history} = await fetch(`/api/product/${id}`).then(r=>r.json());
+    const category = p.category||'';
+
+    const imgEl = document.getElementById('m-img');
+    if(p.image_url){ imgEl.src=p.image_url; imgEl.style.display=''; } else imgEl.style.display='none';
+
+    let meta = `<div class="m-cat">${x(CAT_LABELS[category]||category)}</div>
+      <div class="m-title">${x(p.title)}</div>`;
+
+    if(category==='apparel' && p.material){
+      meta+=`<div class="spec-row"><div class="spec-chip"><span class="spec-k">Material</span><span class="spec-v">${x(p.material)}</span></div></div>`;
+    }
+    if(category==='caps'){
+      function cleanField(val){
+        if(!val) return '';
+        return val
+          .replace(/\s*(Color|Style|Material|Panels?)\s*:.*/i, '')
+          .replace(/Fitted/gi, '')
+          .replace(/\*\*.*$/,'')
+          .trim();
+      }
+      // Color: prefer DB color, else extract from title after last " - "
+      let color = cleanField(p.color);
+      if(!color){
+        const m = (p.title||'').match(/ - (.+)$/);
+        if(m) color = m[1].trim();
+      }
+      // Material: clean up noise
+      const material = cleanField(p.material);
+      // Panels: use DB value
+      const panels = p.panels ? (PANEL_LABELS[p.panels]||p.panels)+'-Panel' : '';
+      const specs = [
+        ['Color',    color],
+        ['Material', material],
+        ['Panels',   panels],
+      ];
+      meta+=`<div class="spec-row">`+
+        specs.map(([k,v])=>`<div class="spec-chip"><span class="spec-k">${k}</span><span class="spec-v">${v?x(v):'—'}</span></div>`).join('')+`</div>`;
+    }
+    meta += `<div class="tag-row">
+      <button class="tag-btn owned-btn ${p.owned?'on':''}" onclick="toggleOwned()">
+        ✅ ${p.owned?'Owned':'I Own This'}
+      </button>
+      <button class="tag-btn wish-btn ${p.wishlisted?'on':''}" onclick="toggleWishlist()">
+        ⭐ ${p.wishlisted?'Wishlisted':'Wishlist'}
+      </button>
+    </div>`;
+    modalPid = p.id;
+    modalOwned = !!p.owned;
+    modalWishlisted = !!p.wishlisted;
+    document.getElementById('m-meta').innerHTML=meta;
+
+    let html='';
+    if(p.description && (category==='caps'||category==='pins'))
+      html+=`<div class="desc-block">${x(p.description)}</div>`;
+
+    // ── Smart variant columns ──────────────────────────────────
+    const CAP_ORDER = ['x-small','small/medium','small','medium/large','medium','large','x-large','xx-large','xxx-large','one size'];
+    const APP_ORDER = ['small','medium','large','x-large','xx-large','xxx-large','one size'];
+    const CAP_LEFT  = ['x-small','small/medium','small','medium/large','medium'];
+    const APP_LEFT  = ['small','medium','large'];
+
+    function sizeRank(title, order){
+      const t = title.toLowerCase();
+      for(let i=0;i<order.length;i++) if(t.startsWith(order[i])) return i;
+      return 99;
+    }
+    function displayTitle(title){
+      if(!title || title.toLowerCase()==='default title') return 'One Size';
+      return title;
+    }
+    const isCap     = category==='caps';
+    const isApparel = category==='apparel';
+    const order     = isCap ? CAP_ORDER : isApparel ? APP_ORDER : null;
+    const leftSizes = isCap ? CAP_LEFT  : isApparel ? APP_LEFT  : null;
+
+    const sorted = order ? [...variants].sort((a,b)=>sizeRank(a.title,order)-sizeRank(b.title,order)) : [...variants];
+
+    function varRow(v){
+      const cls = v.available?'in':'out';
+      return `<div class="vrow ${cls}">
+        <div class="vname">${x(displayTitle(v.title))}</div>
+        <div class="vprice">$${(+v.price).toFixed(2)}</div>
+        <div class="vstatus">${v.available?'✓ In Stock':'✗ Out of Stock'}</div></div>`;
+    }
+
+    let leftVars=[], rightVars=[];
+    if(sorted.length > 1){
+      const mid = Math.ceil(sorted.length / 2);
+      leftVars  = sorted.slice(0, mid);
+      rightVars = sorted.slice(mid);
+    }
+    const useCols = leftVars.length>0 && rightVars.length>0;
+
+    html+=`<div class="sec-lbl">Variants &amp; Availability</div>`;
+    if(useCols){
+      html+=`<div class="var-cols">
+        <div class="var-col">${leftVars.map(varRow).join('')}</div>
+        <div class="var-col">${rightVars.map(varRow).join('')}</div>
+      </div>`;
+    } else {
+      html+=`<div class="var-list">${sorted.map(varRow).join('')}</div>`;
+    }
+
+    const vid=variants[0]?.id;
+    const hist=vid?(history[vid]||[]):[];
+    if(hist.length>1){
+      html+=`<div class="sec-lbl" style="margin-top:4px">Price &amp; Stock History</div><div class="hist-list">`;
+      [...hist].reverse().forEach(s=>{
+        const dt=new Date(s.checked_at).toLocaleString('en-US',{
+          timeZone:'America/Chicago',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',hour12:true
+        });
+        html+=`<div class="hrow">
+          <span class="hdate">${dt} CT</span>
+          <span class="hprice">$${(+s.price).toFixed(2)}</span>
+          <span class="badge ${s.available?'in':'out'}">${s.available?'In Stock':'Out of Stock'}</span></div>`;
+      });
+      html+=`</div>`;
+    }
+    html+=`<a class="view-btn" href="https://bostonscally.com/products/${x(p.handle)}" target="_blank" rel="noopener">↗ View on Boston Scally Co.</a>`;
+    document.getElementById('m-body').innerHTML=html;
+  }catch(e){
+    document.getElementById('m-body').innerHTML=`<div class="state"><div class="state-title">Failed to load product</div></div>`;
+  }
+}
+
+// ── Manual Caps ───────────────────────────────────────────────
+function openManualForm(){
+  document.getElementById('mf-name').value='';
+  document.getElementById('mf-image').value='';
+  document.getElementById('mf-preview').style.display='none';
+  document.getElementById('mf-preview').src='';
+  document.getElementById('manual-overlay').classList.add('open');
+}
+
+function closeManualForm(){
+  document.getElementById('manual-overlay').classList.remove('open');
+}
+
+function manualBgClick(e){
+  if(e.target===document.getElementById('manual-overlay')) closeManualForm();
+}
+
+function previewImage(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const img = document.getElementById('mf-preview');
+    img.src = ev.target.result;
+    img.style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+}
+
+async function saveManualCap(){
+  const name = document.getElementById('mf-name').value.trim();
+  if(!name){ alert('Cap name is required.'); return; }
+  const imgFile = document.getElementById('mf-image').files[0];
+  let imageData = null;
+  if(imgFile){
+    imageData = await new Promise(res=>{
+      const r = new FileReader();
+      r.onload = e => res(e.target.result);
+      r.readAsDataURL(imgFile);
+    });
+  }
+  try{
+    const resp = await fetch('/api/manual_cap', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ name, image: imageData }),
+    });
+    const data = await resp.json();
+    if(data.ok){ closeManualForm(); loadManualCaps(); loadStats(); }
+  }catch(e){ console.error('Save failed', e); }
+}
+
+async function deleteManualCap(id){
+  if(!confirm('Delete this cap?')) return;
+  await fetch(`/api/manual_cap/${id}`, { method:'DELETE' });
+  loadManualCaps();
+  loadStats();
+}
+
+async function loadManualCaps(){
+  if(cat !== 'owned') return;
+  try{
+    const caps = await fetch('/api/manual_caps').then(r=>r.json());
+    if(!caps.length) return;
+    const grid = document.getElementById('grid');
+    grid.querySelectorAll('.manual-card').forEach(el => el.remove());
+    const manualHTML = caps.map(c=>{
+      const img = c.image
+        ? `<img class="card-img" src="${c.image}" alt="${x(c.name)}">`
+        : `<div class="card-ph">🧢</div>`;
+      return `<div class="card manual-card" style="cursor:default">
+        <div class="card-img-wrap">${img}
+          <div class="card-ribbon"><span class="ribbon-tag owned">✅ Owned</span></div>
+        </div>
+        <div class="card-body">
+          <div class="card-cat">Manual Entry</div>
+          <div class="card-title">${x(c.name)}</div>
+          <button class="delete-btn" onclick="deleteManualCap(${c.id})">🗑 Delete</button>
+        </div></div>`;
+    }).join('');
+    // Insert after caps section, before pins header if it exists
+    const hdrs = [...grid.querySelectorAll('.owned-section-hdr')];
+    const pinsHdr = hdrs.find(el => el.textContent.includes('Pins'));
+    if(pinsHdr) pinsHdr.insertAdjacentHTML('beforebegin', manualHTML);
+    else grid.innerHTML += manualHTML;
+    // Update caps header count to include manual caps
+    const capsHdr = hdrs.find(el => el.textContent.includes('Caps'));
+    if(capsHdr){
+      const countEl = capsHdr.querySelector('.section-hdr-count');
+      if(countEl){
+        const current = parseInt(countEl.textContent.replace(/\D/g,''))||0;
+        countEl.textContent = `[${current + caps.length}]`;
+      }
+    }
+  }catch(e){ console.error('loadManualCaps failed', e); }
+}
+
+async function toggleOwned(){
+  if(!modalPid) return;
+  modalOwned = !modalOwned;
+  const ob = document.querySelector('.owned-btn');
+  if(ob){ ob.classList.toggle('on', modalOwned); ob.innerHTML=`✅ ${modalOwned?'Owned':'I Own This'}`; }
+  await saveUserItem();
+  loadStats(); load();
+}
+
+async function toggleWishlist(){
+  if(!modalPid) return;
+  modalWishlisted = !modalWishlisted;
+  const wb = document.querySelector('.wish-btn');
+  if(wb){ wb.classList.toggle('on', modalWishlisted); wb.innerHTML=`⭐ ${modalWishlisted?'Wishlisted':'Wishlist'}`; }
+  await saveUserItem();
+  loadStats(); load();
+}
+
+async function saveUserItem(){
+  try{
+    await fetch(`/api/user_item/${modalPid}`, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ owned: modalOwned, wishlisted: modalWishlisted }),
+    });
+  }catch(e){ console.error('Save failed', e); }
+}
+
+function bgClick(e){ if(e.target===document.getElementById('overlay')) closeModal(); }
+function closeModal(){ document.getElementById('overlay').classList.remove('open'); }
+function set(id,v){ const el=document.getElementById(id); if(el) el.textContent=v; }
+function x(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function catEmoji(c){ return {caps:'🧢',apparel:'👕',pins:'📌'}[c]||'🛍'; }
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 poller.py 2>&1)",
+      "Bash(cp /Users/sterling/app/scally-tracker/com.scallytracker.poller.plist ~/Library/LaunchAgents/com.scallytracker.poller.plist && launchctl unload ~/Library/LaunchAgents/com.scallytracker.poller.plist 2>&1 && launchctl load ~/Library/LaunchAgents/com.scallytracker.poller.plist 2>&1 && echo \"done\")",
+      "Bash(python3 poller.py)",
+      "Bash(launchctl unload:*)",
+      "Bash(sqlite3 /Users/sterling/app/scally-tracker/data/inventory.db \"SELECT id, title, panels FROM products WHERE category='caps' AND \\(panels='baker' OR title LIKE '%baker%' OR title LIKE '%baker boy%'\\) ORDER BY title;\")",
+      "Bash(sqlite3 /Users/sterling/app/scally-tracker/data/inventory.db \"SELECT id, title, panels FROM products WHERE category='caps' AND panels IS NOT 'baker' AND \\(title LIKE '%baker%' OR title LIKE '%newsboy%'\\) ORDER BY title;\")",
+      "Bash(sqlite3 /Users/sterling/app/scally-tracker/data/inventory.db \"SELECT id, title, panels FROM products WHERE category='caps' AND \\(title LIKE '%baker boy%' OR title LIKE '%baker-boy%'\\) ORDER BY title;\")",
+      "Bash(python3 -c \"\ndata = open\\('/Users/sterling/app/scally-tracker/templates/index.html'\\).read\\(\\)\nimport re\nfor m in re.finditer\\(r'mf-|manual-modal', data\\):\n    start = data.rfind\\('\\\\n', 0, m.start\\(\\)\\) + 1\n    end = data.find\\('\\\\n', m.end\\(\\)\\)\n    lineno = data[:m.start\\(\\)].count\\('\\\\n'\\) + 1\n    print\\(f'{lineno}: {data[start:end]}'\\)\n\" 2>&1 | head -40)",
+      "Bash(cd /Users/sterling/app/scally-tracker/_backup && mkdir -p \"Archived\" \"Mar 15\" && echo \"dirs created\")",
+      "Bash(cd /Users/sterling/app/scally-tracker/_backup && mv \"Mar 10\" \"Mar 12\" \"Mar 12b\" *.patch \"Archived/\" && echo \"archived\")",
+      "Bash(mkdir -p \"/Users/sterling/app/scally-tracker/_backup/Full Backup\" && rsync -a --exclude '_backup' /Users/sterling/app/scally-tracker/ \"/Users/sterling/app/scally-tracker/_backup/Full Backup/\" && echo \"done\")",
+      "Bash(rsync -a --exclude '_backup' /Users/sterling/app/scally-tracker/ \"/Users/sterling/app/scally-tracker/_backup/Full Backup/\" && echo \"done\")",
+      "Bash(curl:*)",
+      "Bash(sleep:*)",
+      "Bash(sqlite3:*)",
+      "Bash(python3:*)",
+      "Bash(launchctl load:*)",
+      "Read(//Users/sterling/app/**)",
+      "Read(//Users/sterling/**)",
+      "Bash(while read:*)",
+      "Bash(do echo:*)",
+      "Bash(done)",
+      "Bash(BACKUP_FILE=\"/Users/sterling/app/scally-tracker/_backup/Full/scally-tracker-Mar-24-2026b.tar.gz\")",
+      "Bash(tar -czf \"$BACKUP_FILE\" -C /Users/sterling/app --exclude='scally-tracker/_backup' scally-tracker)",
+      "Bash(echo \"Done: $BACKUP_FILE\")",
+      "Read(//Users/sterling/app/scally-tracker/**)",
+      "Bash(BACKUP_FILE=\"/Users/sterling/app/scally-tracker/_backup/Full/scally-tracker-Mar-24-2026c.tar.gz\")",
+      "Bash(tar:*)",
+      "Bash(launchctl list:*)"
+    ]
+  }
+}

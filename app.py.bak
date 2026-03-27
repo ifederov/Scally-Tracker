@@ -1,0 +1,252 @@
+#!/usr/bin/env python3
+"""Scally Tracker — Flask web server, port 5001"""
+
+import sqlite3, os
+from flask import Flask, render_template, jsonify, request
+
+app = Flask(__name__)
+DB  = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "inventory.db")
+
+def db():
+    c = sqlite3.connect(DB)
+    c.row_factory = sqlite3.Row
+    return c
+
+def init_user_items():
+    with db() as conn:
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS user_items (
+                product_id INTEGER PRIMARY KEY,
+                owned      INTEGER NOT NULL DEFAULT 0,
+                wishlisted INTEGER NOT NULL DEFAULT 0,
+                updated_at TEXT
+            )
+        """)
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS manual_caps (
+                id         INTEGER PRIMARY KEY AUTOINCREMENT,
+                name       TEXT NOT NULL,
+                color      TEXT,
+                style      TEXT,
+                material   TEXT,
+                notes      TEXT,
+                image      TEXT,
+                created_at TEXT
+            )
+        """)
+
+init_user_items()
+
+
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+
+CAT_SORT = {"caps": 0, "pins": 1, "apparel": 2, "other": 3}
+
+@app.route("/api/products")
+def api_products():
+    category = request.args.get("category", "all")   # all|caps|pins|apparel|other
+    avail    = request.args.get("avail",    "all")    # all|in|out
+    panels   = request.args.get("panels",   "all")    # all|single|6|8
+    search   = request.args.get("search",   "").strip().lower()
+    sort     = request.args.get("sort",     "title")  # title|price_asc|price_desc|newest
+
+    owned      = request.args.get("owned",      "0") == "1"
+    wishlisted = request.args.get("wishlisted", "0") == "1"
+
+    with db() as conn:
+        rows = conn.execute("""
+            SELECT p.*,
+                COUNT(v.id)      AS variant_count,
+                SUM(v.available) AS variants_available,
+                MIN(v.price)     AS min_price,
+                MAX(v.price)     AS max_price,
+                COALESCE(u.owned,      0) AS owned,
+                COALESCE(u.wishlisted, 0) AS wishlisted
+            FROM products p
+            LEFT JOIN variants   v ON v.product_id = p.id
+            LEFT JOIN user_items u ON u.product_id = p.id
+            GROUP BY p.id
+        """).fetchall()
+
+    out = []
+    for r in rows:
+        p = dict(r)
+
+        if owned      and not p["owned"]:      continue
+        if wishlisted and not p["wishlisted"]: continue
+
+        # Category filter
+        if category != "all" and p["category"] != category:
+            continue
+
+        # Panel sub-filter (caps only)
+        if panels != "all":
+            if p["category"] != "caps":
+                continue
+            if (p["panels"] or "") != panels:
+                continue
+
+        p["in_stock"] = bool(p["variants_available"])
+        if avail == "in"  and not p["in_stock"]: continue
+        if avail == "out" and     p["in_stock"]: continue
+
+        if search and search not in (p["title"] or "").lower():
+            continue
+
+        out.append(p)
+
+    key = {
+        "title":      lambda x: (x["title"] or "").lower(),
+        "price_asc":  lambda x: x["min_price"] or 0,
+        "price_desc": lambda x: x["max_price"] or 0,
+        "newest":     lambda x: x["first_seen"] or "",
+    }.get(sort, lambda x: (x["title"] or "").lower())
+    out.sort(key=key, reverse=(sort in ("price_desc", "newest")))
+
+    # For owned/wishlisted views sort by category: caps, pins, apparel, other
+    if owned or wishlisted:
+        out.sort(key=lambda x: CAT_SORT.get(x.get("category","other"), 3))
+
+    return jsonify(out)
+
+
+@app.route("/api/product/<int:pid>")
+def api_product(pid):
+    with db() as conn:
+        product = conn.execute("""
+            SELECT p.*,
+                COALESCE(u.owned,      0) AS owned,
+                COALESCE(u.wishlisted, 0) AS wishlisted
+            FROM products p
+            LEFT JOIN user_items u ON u.product_id = p.id
+            WHERE p.id = ?
+        """, (pid,)).fetchone()
+        if not product:
+            return jsonify({"error": "not found"}), 404
+        variants = conn.execute(
+            "SELECT * FROM variants WHERE product_id=? ORDER BY price, title", (pid,)
+        ).fetchall()
+        history = {}
+        for v in variants:
+            rows = conn.execute(
+                "SELECT price,available,checked_at FROM snapshots "
+                "WHERE variant_id=? ORDER BY checked_at DESC LIMIT 100",
+                (v["id"],),
+            ).fetchall()
+            # Keep only entries where price or availability changed
+            rows = list(rows)
+            changes = []
+            prev = None
+            for row in reversed(rows):
+                if prev is None or row["price"] != prev["price"] or row["available"] != prev["available"]:
+                    changes.append(dict(row))
+                prev = row
+            # Always include most recent entry
+            if rows and (not changes or changes[-1]["checked_at"] != rows[0]["checked_at"]):
+                changes.append(dict(rows[0]))
+            history[v["id"]] = changes[-5:]  # last 5 changes
+    return jsonify({
+        "product":  dict(product),
+        "variants": [dict(v) for v in variants],
+        "history":  history,
+    })
+
+
+@app.route("/api/user_item/<int:pid>", methods=["POST"])
+def api_user_item(pid):
+    data       = request.get_json()
+    owned      = int(bool(data.get("owned",      False)))
+    wishlisted = int(bool(data.get("wishlisted",  False)))
+    from datetime import datetime
+    now = datetime.now().isoformat()
+    with db() as conn:
+        conn.execute("""
+            INSERT INTO user_items (product_id, owned, wishlisted, updated_at)
+            VALUES (?, ?, ?, ?)
+            ON CONFLICT(product_id) DO UPDATE SET
+                owned=excluded.owned,
+                wishlisted=excluded.wishlisted,
+                updated_at=excluded.updated_at
+        """, (pid, owned, wishlisted, now))
+    return jsonify({"ok": True, "owned": owned, "wishlisted": wishlisted})
+
+
+@app.route("/api/manual_caps")
+def api_manual_caps():
+    with db() as conn:
+        rows = conn.execute(
+            "SELECT * FROM manual_caps ORDER BY created_at DESC"
+        ).fetchall()
+    return jsonify([dict(r) for r in rows])
+
+
+@app.route("/api/manual_cap", methods=["POST"])
+def api_manual_cap_create():
+    data = request.get_json()
+    if not data.get("name"):
+        return jsonify({"error": "name is required"}), 400
+    from datetime import datetime
+    now = datetime.now().isoformat()
+    with db() as conn:
+        cur = conn.execute("""
+            INSERT INTO manual_caps (name, color, style, material, notes, image, created_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        """, (
+            data.get("name", "").strip(),
+            data.get("color",    "").strip(),
+            data.get("style",    "").strip(),
+            data.get("material", "").strip(),
+            data.get("notes",    "").strip(),
+            data.get("image",    None),
+            now,
+        ))
+        new_id = cur.lastrowid
+    return jsonify({"ok": True, "id": new_id})
+
+
+@app.route("/api/manual_cap/<int:mid>", methods=["DELETE"])
+def api_manual_cap_delete(mid):
+    with db() as conn:
+        conn.execute("DELETE FROM manual_caps WHERE id=?", (mid,))
+    return jsonify({"ok": True})
+
+
+@app.route("/api/stats")
+def api_stats():
+    with db() as conn:
+        def n(q, *a): return conn.execute(q, a).fetchone()[0]
+        return jsonify({
+            "total":       n("SELECT COUNT(*) FROM products"),
+            "caps":        n("SELECT COUNT(*) FROM products WHERE category='caps'"),
+            "pins":        n("SELECT COUNT(*) FROM products WHERE category='pins'"),
+            "apparel":     n("SELECT COUNT(*) FROM products WHERE category='apparel'"),
+            "in_stock":    n("""SELECT COUNT(DISTINCT p.id) FROM products p
+                WHERE EXISTS(SELECT 1 FROM variants v WHERE v.product_id=p.id AND v.available=1)"""),
+            "out_of_stock":n("""SELECT COUNT(DISTINCT p.id) FROM products p
+                WHERE NOT EXISTS(SELECT 1 FROM variants v WHERE v.product_id=p.id AND v.available=1)"""),
+            "alerts_today":n("SELECT COUNT(*) FROM alerts WHERE date(created_at)=date('now')"),
+            "last_poll":   conn.execute("SELECT MAX(checked_at) FROM snapshots").fetchone()[0],
+            "owned":       n("SELECT COUNT(*) FROM user_items u JOIN products p ON p.id=u.product_id WHERE u.owned=1 AND p.category='caps'"),
+            "wishlisted":  n("SELECT COUNT(*) FROM user_items u JOIN products p ON p.id=u.product_id WHERE u.wishlisted=1 AND p.category='caps'"),
+        })
+
+
+@app.route("/api/alerts")
+def api_alerts():
+    limit = min(int(request.args.get("limit", 100)), 500)
+    with db() as conn:
+        rows = conn.execute("""
+            SELECT a.*, p.title AS product_title, p.handle, v.title AS variant_title
+            FROM alerts a
+            LEFT JOIN products p ON p.id = a.product_id
+            LEFT JOIN variants v ON v.id = a.variant_id
+            ORDER BY a.created_at DESC LIMIT ?
+        """, (limit,)).fetchall()
+    return jsonify([dict(r) for r in rows])
+
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5001, debug=False)

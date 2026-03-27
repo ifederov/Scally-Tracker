@@ -1,0 +1,1459 @@
+2026-03-09 16:30:08,108 [INFO] ══ Scally Tracker — 2026-03-09 04:30 PM CT ══
+2026-03-09 16:30:08,112 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-09 16:30:09,991 [INFO] Fetched 634 products from BSC
+2026-03-09 16:30:09,993 [INFO] First run — building baseline, no alerts will fire
+2026-03-09 16:30:10,111 [INFO] Categories: {'apparel': 124, 'caps': 501, 'other': 2}
+2026-03-09 16:30:10,115 [INFO] ══ Poll complete ══
+
+2026-03-09 17:00:05,393 [INFO] ══ Scally Tracker — 2026-03-09 05:00 PM CT ══
+2026-03-09 17:00:05,397 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-09 17:00:07,278 [INFO] Fetched 634 products from BSC
+2026-03-09 17:00:07,422 [INFO] Categories: {'apparel': 124, 'caps': 501, 'other': 2}
+2026-03-09 17:00:07,425 [INFO] ══ Poll complete ══
+
+2026-03-09 17:17:07,449 [INFO] ══ Scally Tracker — 2026-03-09 05:17 PM CT ══
+2026-03-09 17:17:07,454 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-09 17:17:09,316 [INFO] Fetched 634 products from BSC
+2026-03-09 17:17:09,318 [INFO] First run — building baseline, no alerts will fire
+2026-03-09 17:17:09,436 [INFO] Categories: {'apparel': 124, 'caps': 501, 'other': 2}
+2026-03-09 17:17:09,439 [INFO] ══ Poll complete ══
+
+2026-03-09 17:17:44,324 [INFO] ══ Scally Tracker — 2026-03-09 05:17 PM CT ══
+2026-03-09 17:17:44,325 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-09 17:17:46,154 [INFO] Fetched 634 products from BSC
+2026-03-09 17:17:46,282 [INFO] Categories: {'apparel': 124, 'caps': 501, 'other': 2}
+2026-03-09 17:17:46,285 [INFO] ══ Poll complete ══
+
+2026-03-09 17:26:44,099 [INFO] ══ Scally Tracker — 2026-03-09 05:26 PM CT ══
+2026-03-09 17:26:44,102 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-09 17:26:46,167 [INFO] Fetched 634 products from BSC
+2026-03-09 17:26:46,169 [INFO] First run — building baseline, no alerts will fire
+2026-03-09 17:26:46,288 [INFO] Categories: {'apparel': 124, 'caps': 356, 'other': 2, 'pins': 145}
+2026-03-09 17:26:46,291 [INFO] ══ Poll complete ══
+
+2026-03-09 18:25:27,066 [INFO] ══ Scally Tracker — 2026-03-09 06:25 PM CT ══
+2026-03-09 18:25:27,068 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-09 18:25:28,895 [INFO] Fetched 634 products from BSC
+2026-03-09 18:25:29,026 [INFO] Categories: {'apparel': 135, 'caps': 330, 'other': 17, 'pins': 145}
+2026-03-09 18:25:29,029 [INFO] ══ Poll complete ══
+
+2026-03-09 21:00:03,510 [INFO] ══ Scally Tracker — 2026-03-09 09:00 PM CT ══
+2026-03-09 21:00:03,513 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-09 21:00:05,422 [INFO] Fetched 634 products from BSC
+2026-03-09 21:00:05,582 [INFO] Categories: {'apparel': 135, 'caps': 330, 'other': 17, 'pins': 145}
+2026-03-09 21:00:05,585 [INFO] ══ Poll complete ══
+
+2026-03-10 11:05:20,595 [INFO] ══ Scally Tracker — 2026-03-10 11:05 AM CT ══
+2026-03-10 11:05:20,598 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-10 11:05:22,376 [INFO] Fetched 634 products from BSC
+2026-03-10 11:05:22,638 [ERROR] ntfy error: 'latin-1' codec can't encode character '\U0001f389' in position 0: ordinal not in range(256)
+2026-03-10 11:05:22,840 [ERROR] ntfy error: 'latin-1' codec can't encode character '\U0001f389' in position 0: ordinal not in range(256)
+2026-03-10 11:05:23,035 [ERROR] ntfy error: 'latin-1' codec can't encode character '\U0001f389' in position 0: ordinal not in range(256)
+2026-03-10 11:05:23,218 [ERROR] ntfy error: 'latin-1' codec can't encode character '\U0001f389' in position 0: ordinal not in range(256)
+2026-03-10 11:05:23,414 [ERROR] ntfy error: 'latin-1' codec can't encode character '\U0001f389' in position 0: ordinal not in range(256)
+2026-03-10 11:05:23,630 [ERROR] ntfy error: 'latin-1' codec can't encode character '\U0001f389' in position 0: ordinal not in range(256)
+2026-03-10 11:05:23,824 [ERROR] ntfy error: 'latin-1' codec can't encode character '\U0001f389' in position 0: ordinal not in range(256)
+2026-03-10 11:05:24,073 [ERROR] ntfy error: 'latin-1' codec can't encode character '\U0001f389' in position 0: ordinal not in range(256)
+2026-03-10 11:05:24,281 [ERROR] ntfy error: 'latin-1' codec can't encode character '\U0001f389' in position 0: ordinal not in range(256)
+2026-03-10 11:05:24,512 [ERROR] ntfy error: 'latin-1' codec can't encode character '\U0001f389' in position 0: ordinal not in range(256)
+2026-03-10 11:05:24,593 [INFO] Categories: {'apparel': 135, 'caps': 330, 'other': 17, 'pins': 145}
+2026-03-10 11:05:24,596 [INFO] ══ Poll complete ══
+
+2026-03-10 12:26:54,425 [INFO] ══ Scally Tracker — 2026-03-10 12:26 PM CT ══
+2026-03-10 12:26:54,429 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-10 12:26:56,325 [INFO] Fetched 634 products from BSC
+2026-03-10 12:26:56,606 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-10 12:26:56,856 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-10 12:26:57,110 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-10 12:26:57,365 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-10 12:26:57,674 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-10 12:26:57,982 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-10 12:26:58,306 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-10 12:26:58,582 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-10 12:26:58,841 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-10 12:26:58,911 [INFO] Categories: {'apparel': 135, 'caps': 330, 'other': 17, 'pins': 145}
+2026-03-10 12:26:58,914 [INFO] ══ Poll complete ══
+
+2026-03-10 13:00:02,957 [INFO] ══ Scally Tracker — 2026-03-10 01:00 PM CT ══
+2026-03-10 13:00:02,960 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-10 13:00:04,773 [INFO] Fetched 634 products from BSC
+2026-03-10 13:00:05,078 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-10 13:00:05,381 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-10 13:00:05,772 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-10 13:00:06,136 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-10 13:00:06,217 [INFO] Categories: {'apparel': 135, 'caps': 330, 'other': 17, 'pins': 145}
+2026-03-10 13:00:06,221 [INFO] ══ Poll complete ══
+
+2026-03-10 17:00:02,126 [INFO] ══ Scally Tracker — 2026-03-10 05:00 PM CT ══
+2026-03-10 17:00:02,130 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-10 17:00:04,028 [INFO] Fetched 634 products from BSC
+2026-03-10 17:00:04,388 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-10 17:00:04,685 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-10 17:00:04,942 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-10 17:00:05,217 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-10 17:00:05,518 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-10 17:00:05,951 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-10 17:00:06,230 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-10 17:00:06,501 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-10 17:00:06,641 [INFO] Categories: {'apparel': 135, 'caps': 330, 'other': 17, 'pins': 145}
+2026-03-10 17:00:06,653 [INFO] ══ Poll complete ══
+
+2026-03-10 21:00:03,117 [INFO] ══ Scally Tracker — 2026-03-10 09:00 PM CT ══
+2026-03-10 21:00:03,120 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-10 21:00:04,952 [INFO] Fetched 634 products from BSC
+2026-03-10 21:00:05,170 [INFO] Categories: {'apparel': 135, 'caps': 330, 'other': 17, 'pins': 145}
+2026-03-10 21:00:05,176 [INFO] ══ Poll complete ══
+
+2026-03-11 13:00:05,631 [INFO] ══ Scally Tracker — 2026-03-11 01:00 PM CT ══
+2026-03-11 13:00:05,634 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-11 13:00:07,508 [INFO] Fetched 634 products from BSC
+2026-03-11 13:00:07,884 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-11 13:00:08,286 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-11 13:00:08,411 [INFO] Categories: {'apparel': 135, 'caps': 330, 'other': 17, 'pins': 145}
+2026-03-11 13:00:08,420 [INFO] ══ Poll complete ══
+
+2026-03-11 17:00:01,733 [INFO] ══ Scally Tracker — 2026-03-11 05:00 PM CT ══
+2026-03-11 17:00:01,737 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-11 17:00:03,632 [INFO] Fetched 634 products from BSC
+2026-03-11 21:00:01,921 [INFO] ══ Scally Tracker — 2026-03-11 09:00 PM CT ══
+2026-03-11 21:00:01,923 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-11 21:00:03,861 [INFO] Fetched 634 products from BSC
+2026-03-12 09:07:48,987 [INFO] ══ Scally Tracker — 2026-03-12 09:07 AM CT ══
+2026-03-12 09:07:48,992 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-12 09:07:50,834 [INFO] Fetched 634 products from BSC
+2026-03-12 09:12:05,621 [INFO] ══ Scally Tracker — 2026-03-12 09:12 AM CT ══
+2026-03-12 09:12:05,624 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-12 09:12:07,600 [INFO] Fetched 634 products from BSC
+2026-03-12 09:13:19,656 [INFO] ══ Scally Tracker — 2026-03-12 09:13 AM CT ══
+2026-03-12 09:13:19,658 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-12 09:13:21,421 [INFO] Fetched 634 products from BSC
+2026-03-12 09:13:21,734 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 09:13:21,990 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 09:13:22,247 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 09:13:22,501 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock!
+2026-03-12 09:13:22,763 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 09:13:23,016 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 09:13:23,264 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 09:13:23,522 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 09:13:23,774 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 09:13:24,025 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock!
+2026-03-12 09:13:24,302 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 09:13:24,607 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 09:13:24,859 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 09:13:25,136 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 09:13:25,430 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 09:13:25,727 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 09:13:26,034 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 09:13:26,057 [INFO] Categories: {'apparel': 135, 'caps': 330, 'other': 17, 'pins': 145}
+2026-03-12 09:13:26,066 [INFO] ══ Poll complete ══
+
+2026-03-12 09:28:08,745 [INFO] ══ Scally Tracker — 2026-03-12 09:28 AM CT ══
+2026-03-12 09:28:08,749 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-12 09:28:10,663 [INFO] Fetched 634 products from BSC
+2026-03-12 09:28:10,993 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 09:28:11,137 [INFO] Categories: {'apparel': 135, 'caps': 330, 'other': 17, 'pins': 145}
+2026-03-12 09:28:11,143 [INFO] ══ Poll complete ══
+
+2026-03-12 11:27:34,009 [INFO] ══ Scally Tracker — 2026-03-12 11:27 AM CT ══
+2026-03-12 11:27:34,012 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-12 11:27:36,068 [INFO] Fetched 634 products from BSC
+2026-03-12 11:27:36,363 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 11:27:36,610 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 11:27:36,879 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 11:27:37,169 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 11:27:37,449 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 11:27:37,616 [INFO] Categories: {'apparel': 135, 'caps': 330, 'other': 17, 'pins': 145}
+2026-03-12 11:27:37,624 [INFO] ══ Poll complete ══
+
+2026-03-12 12:00:02,307 [INFO] ══ Scally Tracker — 2026-03-12 12:00 PM CT ══
+2026-03-12 12:00:02,310 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-12 12:00:04,236 [INFO] Fetched 634 products from BSC
+2026-03-12 12:00:04,481 [INFO] Categories: {'apparel': 135, 'caps': 330, 'other': 17, 'pins': 145}
+2026-03-12 12:00:04,493 [INFO] ══ Poll complete ══
+
+2026-03-12 14:00:48,435 [INFO] ══ Scally Tracker — 2026-03-12 02:00 PM CT ══
+2026-03-12 14:00:48,438 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-12 14:00:52,263 [INFO] Fetched 634 products from BSC
+2026-03-12 14:00:52,585 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:00:52,842 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:00:53,187 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:00:53,478 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:00:53,753 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:00:54,205 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:00:54,457 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:00:54,709 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:00:54,981 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:00:55,247 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:00:55,500 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:00:55,778 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:00:56,026 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:00:56,277 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:00:56,545 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:00:56,805 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:00:57,062 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:00:57,314 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:00:57,580 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:00:57,831 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:00:58,103 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:00:58,367 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:00:58,620 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:00:58,895 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:00:59,151 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:00:59,416 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:00:59,672 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:00:59,940 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:01:00,202 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:01:00,464 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:01:00,774 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:01:01,014 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:01:01,272 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:01:01,311 [INFO] Categories: {'apparel': 135, 'caps': 330, 'other': 17, 'pins': 145}
+2026-03-12 14:01:01,324 [INFO] ══ Poll complete ══
+
+2026-03-12 14:58:19,644 [INFO] ══ Scally Tracker — 2026-03-12 02:58 PM CT ══
+2026-03-12 14:58:19,646 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-12 14:58:21,444 [INFO] Fetched 634 products from BSC
+2026-03-12 14:58:21,769 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock!
+2026-03-12 14:58:22,096 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:58:22,393 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:58:22,648 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:58:22,901 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:58:23,158 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:58:23,411 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:58:23,656 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:58:23,900 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:58:24,157 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:58:24,437 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:58:24,695 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:58:24,945 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-12 14:58:24,999 [INFO] Categories: {'apparel': 135, 'caps': 330, 'other': 17, 'pins': 145}
+2026-03-12 14:58:25,007 [INFO] ══ Poll complete ══
+
+2026-03-12 16:00:01,396 [INFO] ══ Scally Tracker — 2026-03-12 04:00 PM CT ══
+2026-03-12 16:00:01,398 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-12 16:00:03,230 [INFO] Fetched 634 products from BSC
+2026-03-12 16:00:03,481 [INFO] Categories: {'apparel': 135, 'caps': 330, 'other': 17, 'pins': 145}
+2026-03-12 16:00:03,491 [INFO] ══ Poll complete ══
+
+2026-03-12 20:00:05,148 [INFO] ══ Scally Tracker — 2026-03-12 08:00 PM CT ══
+2026-03-12 20:00:05,152 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-12 20:00:06,957 [INFO] Fetched 634 products from BSC
+2026-03-12 20:00:07,306 [INFO] Categories: {'apparel': 135, 'caps': 330, 'other': 17, 'pins': 145}
+2026-03-12 20:00:07,317 [INFO] ══ Poll complete ══
+
+2026-03-13 00:00:01,392 [INFO] ══ Scally Tracker — 2026-03-13 12:00 AM CT ══
+2026-03-13 00:00:01,396 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-13 00:00:03,263 [INFO] Fetched 634 products from BSC
+2026-03-13 00:00:03,524 [INFO] Categories: {'apparel': 135, 'caps': 330, 'other': 17, 'pins': 145}
+2026-03-13 00:00:03,535 [INFO] ══ Poll complete ══
+
+2026-03-13 10:00:19,838 [INFO] ══ Scally Tracker — 2026-03-13 10:00 AM CT ══
+2026-03-13 10:00:19,842 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-13 10:00:21,603 [INFO] Fetched 634 products from BSC
+2026-03-13 10:00:21,916 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-13 10:00:22,191 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-13 10:00:22,501 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-13 10:00:22,776 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-13 10:00:23,143 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-13 10:00:23,213 [INFO] Categories: {'apparel': 135, 'caps': 330, 'other': 17, 'pins': 145}
+2026-03-13 10:00:23,224 [INFO] ══ Poll complete ══
+
+2026-03-13 11:00:06,131 [INFO] ══ Scally Tracker — 2026-03-13 11:00 AM CT ══
+2026-03-13 11:00:06,134 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-13 11:00:08,023 [INFO] Fetched 641 products from BSC
+2026-03-13 11:00:08,031 [INFO] NEW [apparel]: Boston Scally Hat Stretcher
+2026-03-13 11:00:08,318 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-13 11:00:08,325 [INFO] NEW [pins]: Boston Scally The Penalty Box Cap Pin
+2026-03-13 11:00:08,595 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-13 11:00:08,599 [INFO] NEW [apparel]: Boston Scally The Goon Hoodie - Black
+2026-03-13 11:00:08,896 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-13 11:00:08,900 [INFO] NEW [caps]: The 8-Panel Penalty Box Boston Scally Cap - Power Play Plaid
+2026-03-13 11:00:09,184 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-13 11:00:09,190 [INFO] NEW [caps]: The Single Panel Penalty Box Boston Scally Cap - Power Play Plaid
+2026-03-13 11:00:09,454 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-13 11:00:09,460 [INFO] NEW [pins]: Boston Scally The Hockey Sticks Cap Pin
+2026-03-13 11:00:09,768 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-13 11:00:09,774 [INFO] NEW [caps]: The Goon Boston Scally Cap - Black & Gold
+2026-03-13 11:00:10,071 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-13 11:00:10,102 [INFO] NEW [caps]: The Kilkenny Baker Boy Boston Scally Cap - Medieval Plaid
+2026-03-13 11:00:10,376 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-13 11:00:10,384 [INFO] NEW [caps]: The Irish Baker Boy Boston Scally Cap - Clover & Stone
+2026-03-13 11:00:10,686 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-13 11:00:10,732 [INFO] NEW [caps]: The Baker Boy Boston Scally Cap - Apple Pie
+2026-03-13 11:00:11,028 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-13 11:00:11,033 [INFO] NEW [caps]: The Baker Boy Boston Scally Cap - Pumpkin Pie
+2026-03-13 11:00:11,290 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-13 11:00:11,349 [INFO] NEW [caps]: The Baker Boy Boston Scally Cap - Patriot Blue Herringbone
+2026-03-13 11:00:11,611 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-13 11:00:11,617 [INFO] NEW [caps]: The Baker Boy Boston Scally Cap - Brown Herringbone
+2026-03-13 11:00:11,901 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-13 11:00:11,905 [INFO] NEW [caps]: The Baker Boy Boston Scally Cap - Dark Olive Herringbone
+2026-03-13 11:00:12,174 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-13 11:00:12,220 [INFO] NEW [caps]: The Baker Boy Boston Scally Cap - Grey Herringbone
+2026-03-13 11:00:12,495 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-13 11:00:12,501 [INFO] NEW [caps]: The Baker Boy Boston Scally Cap - Black
+2026-03-13 11:00:12,784 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-13 11:00:12,790 [INFO] NEW [caps]: The Baker Boy Boston Scally Cap - Grey
+2026-03-13 11:00:13,040 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-13 11:00:13,183 [INFO] Categories: {'apparel': 137, 'caps': 333, 'other': 17, 'pins': 147}
+2026-03-13 11:00:13,195 [INFO] ══ Poll complete ══
+
+2026-03-13 15:00:00,811 [INFO] ══ Scally Tracker — 2026-03-13 03:00 PM CT ══
+2026-03-13 15:00:00,814 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-13 15:00:02,628 [INFO] Fetched 641 products from BSC
+2026-03-13 15:00:03,012 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock!
+2026-03-13 15:00:03,328 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock!
+2026-03-13 15:00:03,514 [INFO] Categories: {'apparel': 137, 'caps': 333, 'other': 17, 'pins': 147}
+2026-03-13 15:00:03,525 [INFO] ══ Poll complete ══
+
+2026-03-13 17:44:06,991 [INFO] ══ Scally Tracker — 2026-03-13 05:44 PM CT ══
+2026-03-13 17:44:06,993 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-13 17:44:08,881 [INFO] Fetched 641 products from BSC
+2026-03-13 17:44:09,213 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock!
+2026-03-13 17:44:09,485 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-13 17:44:09,907 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-13 17:44:10,022 [INFO] Categories: {'apparel': 137, 'caps': 333, 'other': 17, 'pins': 147}
+2026-03-13 17:44:10,037 [INFO] ══ Poll complete ══
+
+2026-03-13 19:00:04,272 [INFO] ══ Scally Tracker — 2026-03-13 07:00 PM CT ══
+2026-03-13 19:00:04,275 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-13 19:00:06,199 [INFO] Fetched 641 products from BSC
+2026-03-13 19:00:06,426 [INFO] Categories: {'apparel': 137, 'caps': 333, 'other': 17, 'pins': 147}
+2026-03-13 19:00:06,440 [INFO] ══ Poll complete ══
+
+2026-03-14 07:00:06,108 [INFO] ══ Scally Tracker — 2026-03-14 07:00 AM CT ══
+2026-03-14 07:00:06,111 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-14 07:00:08,018 [INFO] Fetched 641 products from BSC
+2026-03-14 07:00:08,277 [INFO] Categories: {'apparel': 137, 'caps': 333, 'other': 17, 'pins': 147}
+2026-03-14 07:00:08,288 [INFO] ══ Poll complete ══
+
+2026-03-14 11:00:01,589 [INFO] ══ Scally Tracker — 2026-03-14 11:00 AM CT ══
+2026-03-14 11:00:01,592 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-14 11:00:03,501 [INFO] Fetched 641 products from BSC
+2026-03-14 11:00:03,732 [INFO] Categories: {'apparel': 137, 'caps': 333, 'other': 17, 'pins': 147}
+2026-03-14 11:00:03,745 [INFO] ══ Poll complete ══
+
+2026-03-14 15:00:04,664 [INFO] ══ Scally Tracker — 2026-03-14 03:00 PM CT ══
+2026-03-14 15:00:04,667 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-14 15:00:06,490 [INFO] Fetched 641 products from BSC
+2026-03-14 15:00:06,724 [INFO] Categories: {'apparel': 137, 'caps': 333, 'other': 17, 'pins': 147}
+2026-03-14 15:00:06,738 [INFO] ══ Poll complete ══
+
+2026-03-14 19:00:05,681 [INFO] ══ Scally Tracker — 2026-03-14 07:00 PM CT ══
+2026-03-14 19:00:05,683 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-14 19:00:07,584 [INFO] Fetched 641 products from BSC
+2026-03-14 19:00:07,824 [INFO] Categories: {'apparel': 137, 'caps': 333, 'other': 17, 'pins': 147}
+2026-03-14 19:00:07,838 [INFO] ══ Poll complete ══
+
+2026-03-15 07:00:05,740 [INFO] ══ Scally Tracker — 2026-03-15 07:00 AM CT ══
+2026-03-15 07:00:05,744 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-15 07:00:07,581 [INFO] Fetched 641 products from BSC
+2026-03-15 07:00:07,848 [INFO] Categories: {'apparel': 137, 'caps': 333, 'other': 17, 'pins': 147}
+2026-03-15 07:00:07,862 [INFO] ══ Poll complete ══
+
+2026-03-15 11:00:05,592 [INFO] ══ Scally Tracker — 2026-03-15 11:00 AM CT ══
+2026-03-15 11:00:05,596 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-15 11:00:07,530 [INFO] Fetched 641 products from BSC
+2026-03-15 11:00:07,777 [INFO] Categories: {'apparel': 137, 'caps': 333, 'other': 17, 'pins': 147}
+2026-03-15 11:00:07,791 [INFO] ══ Poll complete ══
+
+2026-03-15 17:00:25,517 [INFO] ══ Scally Tracker — 2026-03-15 05:00 PM CT ══
+2026-03-15 17:00:25,521 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-15 17:00:27,943 [INFO] Fetched 641 products from BSC
+2026-03-15 17:00:28,223 [INFO] Categories: {'apparel': 137, 'caps': 333, 'other': 17, 'pins': 147}
+2026-03-15 17:00:28,241 [INFO] ══ Poll complete ══
+
+2026-03-15 17:20:23,774 [INFO] ══ Scally Tracker — 2026-03-15 05:20 PM CT ══
+2026-03-15 17:20:23,777 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-15 17:20:25,616 [INFO] Fetched 641 products from BSC
+2026-03-15 17:20:25,813 [INFO] Categories: {'apparel': 137, 'caps': 333, 'other': 17, 'pins': 147}
+2026-03-15 17:20:25,824 [INFO] ══ Poll complete ══
+
+2026-03-15 17:47:33,949 [INFO] ══ Scally Tracker — 2026-03-15 05:47 PM CT ══
+2026-03-15 17:47:33,951 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-15 17:47:35,769 [INFO] Fetched 641 products from BSC
+2026-03-15 17:47:35,811 [INFO] NEW [pins]: Boston Scally The Irish Baker Boy Cap Pin
+2026-03-15 17:47:36,401 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-15 17:47:36,469 [INFO] NEW [apparel]: Boston Scally The Buffalo Hoodie - Red and Black Plaid
+2026-03-15 17:47:36,719 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-15 17:47:36,724 [INFO] NEW [caps]: The Buffalo Insulated Baker Boy Boston Scally Cap - Black and Grey Plaid
+2026-03-15 17:47:36,993 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-15 17:47:36,999 [INFO] NEW [caps]: The Buffalo Insulated Baker Boy Boston Scally Cap - Red and Black Plaid
+2026-03-15 17:47:37,268 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-15 17:47:37,371 [INFO] NEW [apparel]: Boston Scally The Baker Boy Crewneck Sweatshirt - Black
+2026-03-15 17:47:37,621 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-15 17:47:37,625 [INFO] NEW [pins]: Boston Scally The Baker Boy Cap Pin - Antique Silver
+2026-03-15 17:47:37,891 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-15 17:47:37,895 [INFO] NEW [pins]: Boston Scally The Baker Boy Cap Pin - Antique Gold
+2026-03-15 17:47:38,180 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-15 17:47:38,323 [INFO] Categories: {'apparel': 139, 'caps': 335, 'other': 17, 'pins': 150}
+2026-03-15 17:47:38,340 [INFO] ══ Poll complete ══
+
+2026-03-15 17:54:20,652 [INFO] ══ Scally Tracker — 2026-03-15 05:54 PM CT ══
+2026-03-15 17:54:20,654 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-15 17:54:22,522 [INFO] Fetched 641 products from BSC
+2026-03-15 17:54:22,730 [INFO] Categories: {'apparel': 139, 'caps': 335, 'other': 17, 'pins': 150}
+2026-03-15 17:54:22,744 [INFO] ══ Poll complete ══
+
+2026-03-15 18:00:00,603 [INFO] ══ Scally Tracker — 2026-03-15 06:00 PM CT ══
+2026-03-15 18:00:00,605 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-15 18:00:02,262 [INFO] Fetched 641 products from BSC
+2026-03-15 18:00:02,473 [INFO] Categories: {'apparel': 139, 'caps': 335, 'other': 17, 'pins': 150}
+2026-03-15 18:00:02,486 [INFO] ══ Poll complete ══
+
+2026-03-15 19:00:03,604 [INFO] ══ Scally Tracker — 2026-03-15 07:00 PM CT ══
+2026-03-15 19:00:03,607 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-15 19:00:05,547 [INFO] Fetched 641 products from BSC
+2026-03-15 19:00:05,805 [INFO] Categories: {'apparel': 139, 'caps': 335, 'other': 17, 'pins': 150}
+2026-03-15 19:00:05,820 [INFO] ══ Poll complete ══
+
+2026-03-15 19:56:50,597 [INFO] ══ Scally Tracker — 2026-03-15 07:56 PM CT ══
+2026-03-15 19:56:50,600 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-15 19:56:52,338 [INFO] Fetched 641 products from BSC
+2026-03-15 19:56:52,541 [INFO] Categories: {'apparel': 139, 'caps': 335, 'other': 17, 'pins': 150}
+2026-03-15 19:56:52,555 [INFO] ══ Poll complete ══
+
+2026-03-16 07:00:01,831 [INFO] ══ Scally Tracker — 2026-03-16 07:00 AM CT ══
+2026-03-16 07:00:01,835 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-16 07:00:03,868 [INFO] Fetched 641 products from BSC
+2026-03-16 07:00:04,521 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 07:00:04,925 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 07:00:05,059 [INFO] Categories: {'apparel': 139, 'caps': 335, 'other': 17, 'pins': 150}
+2026-03-16 07:00:05,079 [INFO] ══ Poll complete ══
+
+2026-03-16 11:00:03,725 [INFO] ══ Scally Tracker — 2026-03-16 11:00 AM CT ══
+2026-03-16 11:00:03,727 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-16 11:00:05,644 [INFO] Fetched 641 products from BSC
+2026-03-16 11:00:06,084 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 11:00:06,399 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 11:00:06,769 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 11:00:07,089 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock!
+2026-03-16 11:00:07,365 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock!
+2026-03-16 11:00:07,765 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock!
+2026-03-16 11:00:08,205 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock!
+2026-03-16 11:00:08,517 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock!
+2026-03-16 11:00:08,792 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 11:00:09,076 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 11:00:09,347 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 11:00:09,621 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 11:00:09,942 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock!
+2026-03-16 11:00:10,239 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock!
+2026-03-16 11:00:10,571 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock!
+2026-03-16 11:00:10,934 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 11:00:11,240 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 11:00:11,606 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 11:00:11,886 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 11:00:12,013 [INFO] Categories: {'apparel': 139, 'caps': 335, 'other': 17, 'pins': 150}
+2026-03-16 11:00:12,044 [INFO] ══ Poll complete ══
+
+2026-03-16 15:00:02,779 [INFO] ══ Scally Tracker — 2026-03-16 03:00 PM CT ══
+2026-03-16 15:00:02,782 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-16 15:00:04,490 [INFO] Fetched 641 products from BSC
+2026-03-16 15:00:05,020 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:05,538 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:05,981 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:06,373 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:06,780 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:07,099 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:07,364 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:07,628 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:07,902 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:08,183 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:08,466 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:08,920 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:09,216 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:09,564 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:09,854 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:10,117 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:10,406 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:10,662 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:10,927 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:11,198 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:11,459 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:11,729 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:11,996 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:12,257 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:12,558 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:12,830 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:13,101 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:13,377 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:13,642 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:13,912 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:14,181 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:14,458 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:14,796 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:15,055 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:15,323 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:15,678 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:15,975 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:16,285 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:16,563 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:16,830 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:17,156 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-16 15:00:17,163 [INFO] Categories: {'apparel': 139, 'caps': 335, 'other': 17, 'pins': 150}
+2026-03-16 15:00:17,227 [INFO] ══ Poll complete ══
+
+2026-03-16 19:00:02,815 [INFO] ══ Scally Tracker — 2026-03-16 07:00 PM CT ══
+2026-03-16 19:00:02,819 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-16 19:00:04,643 [INFO] Fetched 641 products from BSC
+2026-03-16 19:00:04,930 [INFO] Categories: {'apparel': 139, 'caps': 335, 'other': 17, 'pins': 150}
+2026-03-16 19:00:04,948 [INFO] ══ Poll complete ══
+
+2026-03-17 07:00:02,110 [INFO] ══ Scally Tracker — 2026-03-17 07:00 AM CT ══
+2026-03-17 07:00:02,114 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-17 07:00:08,003 [INFO] Fetched 641 products from BSC
+2026-03-17 07:00:08,825 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 07:00:08,847 [INFO] Categories: {'apparel': 139, 'caps': 335, 'other': 17, 'pins': 150}
+2026-03-17 07:00:08,878 [INFO] ══ Poll complete ══
+
+2026-03-17 11:00:02,130 [INFO] ══ Scally Tracker — 2026-03-17 11:00 AM CT ══
+2026-03-17 11:00:02,132 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-17 11:00:04,048 [INFO] Fetched 641 products from BSC
+2026-03-17 11:00:04,572 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 11:00:04,969 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 11:00:05,434 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 11:00:05,976 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock!
+2026-03-17 11:00:06,738 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock!
+2026-03-17 11:00:07,088 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock!
+2026-03-17 11:00:07,569 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 11:00:08,061 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 11:00:08,370 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 11:00:09,042 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 11:00:09,451 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 11:00:09,783 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 11:00:10,104 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 11:00:10,812 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 11:00:11,187 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 11:00:11,805 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 11:00:12,149 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 11:00:12,553 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 11:00:12,999 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 11:00:13,455 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 11:00:13,813 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 11:00:14,121 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 11:00:14,486 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 11:00:14,776 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 11:00:14,796 [INFO] Categories: {'apparel': 139, 'caps': 335, 'other': 17, 'pins': 150}
+2026-03-17 11:00:14,826 [INFO] ══ Poll complete ══
+
+2026-03-17 15:00:02,258 [INFO] ══ Scally Tracker — 2026-03-17 03:00 PM CT ══
+2026-03-17 15:00:02,261 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-17 15:00:04,151 [INFO] Fetched 641 products from BSC
+2026-03-17 15:00:04,824 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 15:00:05,259 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 15:00:05,927 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 15:00:06,370 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 15:00:07,049 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock!
+2026-03-17 15:00:07,371 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 15:00:07,893 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 15:00:08,181 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 15:00:08,588 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 15:00:09,039 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 15:00:09,089 [INFO] Categories: {'apparel': 139, 'caps': 335, 'other': 17, 'pins': 150}
+2026-03-17 15:00:09,120 [INFO] ══ Poll complete ══
+
+2026-03-17 19:00:02,319 [INFO] ══ Scally Tracker — 2026-03-17 07:00 PM CT ══
+2026-03-17 19:00:02,323 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-17 19:00:04,050 [INFO] Fetched 641 products from BSC
+2026-03-17 19:00:05,071 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 19:00:05,265 [INFO] Categories: {'apparel': 139, 'caps': 335, 'other': 17, 'pins': 150}
+2026-03-17 19:00:05,287 [INFO] ══ Poll complete ══
+
+2026-03-17 22:12:44,652 [INFO] ══ Scally Tracker — 2026-03-17 10:12 PM CT ══
+2026-03-17 22:12:44,655 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-17 22:12:46,410 [INFO] Fetched 641 products from BSC
+2026-03-17 22:12:46,757 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 22:12:47,020 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 22:12:47,289 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 22:12:47,550 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 22:12:47,821 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 22:12:48,097 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 22:12:48,368 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 22:12:48,642 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 22:12:48,907 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock!
+2026-03-17 22:12:49,171 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock!
+2026-03-17 22:12:49,483 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock!
+2026-03-17 22:12:49,878 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 22:12:50,203 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 22:12:50,505 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 22:12:50,828 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-17 22:12:50,938 [INFO] Categories: {'apparel': 139, 'caps': 335, 'other': 17, 'pins': 150}
+2026-03-17 22:12:50,959 [INFO] ══ Poll complete ══
+
+2026-03-18 07:00:03,613 [INFO] ══ Scally Tracker — 2026-03-18 07:00 AM CT ══
+2026-03-18 07:00:03,617 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-18 07:00:05,610 [INFO] Fetched 641 products from BSC
+2026-03-18 07:00:06,041 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock!
+2026-03-18 07:00:06,383 [INFO] Categories: {'apparel': 139, 'caps': 335, 'other': 17, 'pins': 150}
+2026-03-18 07:00:06,405 [INFO] ══ Poll complete ══
+
+2026-03-18 10:54:53,485 [INFO] ══ Scally Tracker — 2026-03-18 10:54 AM CT ══
+2026-03-18 10:54:53,489 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-18 10:54:55,337 [INFO] Fetched 649 products from BSC
+2026-03-18 10:54:55,345 [INFO] NEW [apparel]: Boston Scally The Cottontail Hoodie - Vintage Heather Blue
+2026-03-18 10:54:55,648 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-18 10:54:55,652 [INFO] NEW [caps]: The Cottontail Boston Scally Cap - Light Blue & Lilac Plaid
+2026-03-18 10:54:55,903 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-18 10:54:55,909 [INFO] NEW [apparel]: Boston Scally The Spring Rose Long Sleeve Tee T-Shirt - Light Blue
+2026-03-18 10:54:56,175 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-18 10:54:56,181 [INFO] NEW [caps]: The Good Egg Boston Scally Cap - Spring Blossom
+2026-03-18 10:54:56,437 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-18 10:54:56,443 [INFO] NEW [caps]: The Spring Rose Boston Scally Cap - Grey & Blue Plaid
+2026-03-18 10:54:56,712 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-18 10:54:56,714 [INFO] NEW [apparel]: Boston Scally The Easter Rose Long Sleeve Pocket Tee T-Shirt - Seafoam Green
+2026-03-18 10:54:56,974 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-18 10:54:56,978 [INFO] NEW [caps]: The Easter Rose Peaky Boston Scally Cap - Blue Plaid
+2026-03-18 10:54:57,234 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-18 10:54:57,240 [INFO] NEW [caps]: The Hare Boston Scally Cap - Blue & Grey Plaid
+2026-03-18 10:54:57,524 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-18 10:54:57,854 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-18 10:54:58,148 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-18 10:54:58,421 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-18 10:54:58,696 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-18 10:54:58,969 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock!
+2026-03-18 10:54:59,238 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-18 10:54:59,520 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock!
+2026-03-18 10:54:59,799 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock!
+2026-03-18 10:55:00,072 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-18 10:55:00,372 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-18 10:55:00,686 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-18 10:55:01,030 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-18 10:55:01,341 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-18 10:55:01,664 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-18 10:55:02,345 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-18 10:55:02,393 [INFO] Categories: {'apparel': 142, 'caps': 340, 'other': 17, 'pins': 150}
+2026-03-18 10:55:02,435 [INFO] ══ Poll complete ══
+
+2026-03-18 11:00:01,594 [INFO] ══ Scally Tracker — 2026-03-18 11:00 AM CT ══
+2026-03-18 11:00:01,596 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-18 11:00:03,449 [INFO] Fetched 649 products from BSC
+2026-03-18 11:00:03,768 [INFO] Categories: {'apparel': 142, 'caps': 340, 'other': 17, 'pins': 150}
+2026-03-18 11:00:03,788 [INFO] ══ Poll complete ══
+
+2026-03-18 13:54:26,049 [INFO] ══ Scally Tracker — 2026-03-18 01:54 PM CT ══
+2026-03-18 13:54:26,051 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-18 13:54:28,772 [INFO] Fetched 649 products from BSC
+2026-03-18 13:54:29,230 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-18 13:54:29,503 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-18 13:54:29,773 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-18 13:54:30,068 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-18 13:54:30,453 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-18 13:54:30,797 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-18 13:54:31,181 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-18 13:54:31,300 [INFO] Categories: {'apparel': 142, 'caps': 340, 'other': 17, 'pins': 150}
+2026-03-18 13:54:31,317 [INFO] ══ Poll complete ══
+
+2026-03-18 14:37:13,269 [INFO] ══ Scally Tracker — 2026-03-18 02:37 PM CT ══
+2026-03-18 14:37:13,271 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-18 14:37:15,390 [INFO] Fetched 649 products from BSC
+2026-03-18 14:37:15,705 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-18 14:37:15,962 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-18 14:37:16,219 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-18 14:37:16,438 [INFO] Categories: {'apparel': 142, 'caps': 340, 'other': 17, 'pins': 150}
+2026-03-18 14:37:16,493 [INFO] ══ Poll complete ══
+
+2026-03-18 15:00:05,244 [INFO] ══ Scally Tracker — 2026-03-18 03:00 PM CT ══
+2026-03-18 15:00:05,246 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-18 15:00:07,185 [INFO] Fetched 649 products from BSC
+2026-03-18 15:00:07,689 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-18 15:00:08,013 [INFO] Categories: {'apparel': 142, 'caps': 340, 'other': 17, 'pins': 150}
+2026-03-18 15:00:08,033 [INFO] ══ Poll complete ══
+
+2026-03-18 19:00:06,310 [INFO] ══ Scally Tracker — 2026-03-18 07:00 PM CT ══
+2026-03-18 19:00:06,313 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-18 19:00:08,172 [INFO] Fetched 649 products from BSC
+2026-03-18 19:00:08,552 [INFO] Categories: {'apparel': 142, 'caps': 340, 'other': 17, 'pins': 150}
+2026-03-18 19:00:08,571 [INFO] ══ Poll complete ══
+
+2026-03-19 07:00:02,274 [INFO] ══ Scally Tracker — 2026-03-19 07:00 AM CT ══
+2026-03-19 07:00:02,277 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-19 07:00:04,268 [INFO] Fetched 649 products from BSC
+2026-03-19 07:00:04,776 [INFO] Categories: {'apparel': 142, 'caps': 340, 'other': 17, 'pins': 150}
+2026-03-19 07:00:04,798 [INFO] ══ Poll complete ══
+
+2026-03-19 11:00:06,306 [INFO] ══ Scally Tracker — 2026-03-19 11:00 AM CT ══
+2026-03-19 11:00:06,308 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-19 11:00:08,289 [INFO] Fetched 649 products from BSC
+2026-03-19 11:00:08,781 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:09,211 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:09,626 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:10,123 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:10,466 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:11,080 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:11,436 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:11,789 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:12,155 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:12,911 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:13,582 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:13,924 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:14,271 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:14,845 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:15,170 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:15,648 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:16,317 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:16,649 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:17,213 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:17,545 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:18,125 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:18,650 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:19,015 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:19,429 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:20,036 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:20,353 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:20,684 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:21,391 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:21,704 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:22,074 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:23,058 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:23,399 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:23,905 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:24,312 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:24,726 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:25,121 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:25,432 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:25,764 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:26,284 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:26,616 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:27,206 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:27,937 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:28,624 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 11:00:28,737 [INFO] Categories: {'apparel': 142, 'caps': 340, 'other': 17, 'pins': 150}
+2026-03-19 11:00:28,809 [INFO] ══ Poll complete ══
+
+2026-03-19 15:00:05,806 [INFO] ══ Scally Tracker — 2026-03-19 03:00 PM CT ══
+2026-03-19 15:00:05,809 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-19 15:00:07,785 [INFO] Fetched 649 products from BSC
+2026-03-19 15:00:08,575 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 15:00:08,905 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 15:00:09,239 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 15:00:09,815 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 15:00:10,544 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 15:00:10,878 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 15:00:11,212 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 15:00:11,553 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 15:00:11,914 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 15:00:12,271 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 15:00:12,649 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 15:00:12,996 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 15:00:13,346 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 15:00:13,679 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 15:00:14,009 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 15:00:14,775 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 15:00:15,168 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 15:00:15,519 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 15:00:15,888 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 15:00:16,333 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 15:00:16,379 [INFO] Categories: {'apparel': 142, 'caps': 340, 'other': 17, 'pins': 150}
+2026-03-19 15:00:16,409 [INFO] ══ Poll complete ══
+
+2026-03-19 19:00:05,817 [INFO] ══ Scally Tracker — 2026-03-19 07:00 PM CT ══
+2026-03-19 19:00:05,819 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-19 19:00:07,797 [INFO] Fetched 649 products from BSC
+2026-03-19 19:00:08,518 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-19 19:00:08,809 [INFO] Categories: {'apparel': 142, 'caps': 340, 'other': 17, 'pins': 150}
+2026-03-19 19:00:08,833 [INFO] ══ Poll complete ══
+
+2026-03-20 07:00:05,730 [INFO] ══ Scally Tracker — 2026-03-20 07:00 AM CT ══
+2026-03-20 07:00:05,734 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-20 07:00:07,477 [INFO] Fetched 649 products from BSC
+2026-03-20 07:00:07,884 [INFO] Categories: {'apparel': 142, 'caps': 340, 'other': 17, 'pins': 150}
+2026-03-20 07:00:07,907 [INFO] ══ Poll complete ══
+
+2026-03-20 11:00:05,305 [INFO] ══ Scally Tracker — 2026-03-20 11:00 AM CT ══
+2026-03-20 11:00:05,307 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-20 11:00:07,029 [INFO] Fetched 652 products from BSC
+2026-03-20 11:00:07,041 [INFO] NEW [apparel]: Boston Scally The Egghead Hoodie - Dusty Pink
+2026-03-20 11:00:07,380 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-20 11:00:07,386 [INFO] NEW [caps]: The Egghead Boston Scally Cap - Blue & Pastel Plaid
+2026-03-20 11:00:07,822 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-20 11:00:07,827 [INFO] RELEASE auto-added: The Egghead Boston Scally Cap - Blue & Pastel Plaid on 3/20/26
+2026-03-20 11:00:07,829 [INFO] NEW [pins]: Boston Scally The Egghead Cap Pin
+2026-03-20 11:00:08,161 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-20 11:00:08,812 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:09,464 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:10,100 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:10,440 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:10,988 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:11,336 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:11,997 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:12,279 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:12,615 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:12,911 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:13,216 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:13,544 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:13,834 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:14,292 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:14,696 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:15,180 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:15,486 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:15,880 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:16,393 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:16,670 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:17,176 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock!
+2026-03-20 11:00:17,591 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:18,230 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:18,621 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:18,898 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:19,334 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:19,722 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:20,074 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:20,699 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:20,981 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:21,246 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:21,865 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:22,208 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:22,485 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:22,763 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:23,045 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:23,340 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:23,696 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:24,000 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 11:00:24,006 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-20 11:00:24,110 [INFO] ══ Poll complete ══
+
+2026-03-20 11:20:01,229 [INFO] ══ Scally Tracker — 2026-03-20 11:20 AM CT ══
+2026-03-20 11:20:01,231 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-20 11:20:03,034 [INFO] Fetched 652 products from BSC
+2026-03-20 11:20:03,545 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-20 11:20:03,567 [INFO] ══ Poll complete ══
+
+2026-03-20 15:00:02,129 [INFO] ══ Scally Tracker — 2026-03-20 03:00 PM CT ══
+2026-03-20 15:00:02,131 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-20 15:00:04,026 [INFO] Fetched 652 products from BSC
+2026-03-20 15:00:04,789 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 15:00:05,113 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 15:00:05,506 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 15:00:05,873 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 15:00:06,291 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 15:00:06,688 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 15:00:07,114 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock!
+2026-03-20 15:00:07,506 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 15:00:08,135 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 15:00:08,459 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 15:00:08,776 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 15:00:09,152 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 15:00:09,853 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 15:00:10,174 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 15:00:10,497 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 15:00:10,794 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 15:00:11,091 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 15:00:11,469 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 15:00:11,865 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 15:00:12,284 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 15:00:12,701 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 15:00:13,082 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 15:00:13,357 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 15:00:13,655 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 15:00:13,945 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 15:00:14,248 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 15:00:14,526 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 15:00:14,796 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 15:00:14,800 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-20 15:00:14,869 [INFO] ══ Poll complete ══
+
+2026-03-20 19:00:02,232 [INFO] ══ Scally Tracker — 2026-03-20 07:00 PM CT ══
+2026-03-20 19:00:02,236 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-20 19:00:03,970 [INFO] Fetched 652 products from BSC
+2026-03-20 19:00:04,769 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-20 19:00:05,127 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-20 19:00:05,151 [INFO] ══ Poll complete ══
+
+2026-03-21 07:00:05,760 [INFO] ══ Scally Tracker — 2026-03-21 07:00 AM CT ══
+2026-03-21 07:00:05,763 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-21 07:00:07,488 [INFO] Fetched 652 products from BSC
+2026-03-21 07:00:07,922 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-21 07:00:07,947 [INFO] ══ Poll complete ══
+
+2026-03-21 11:00:04,922 [INFO] ══ Scally Tracker — 2026-03-21 11:00 AM CT ══
+2026-03-21 11:00:04,924 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-21 11:00:06,752 [INFO] Fetched 652 products from BSC
+2026-03-21 11:00:07,155 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-21 11:00:07,180 [INFO] ══ Poll complete ══
+
+2026-03-21 15:00:02,305 [INFO] ══ Scally Tracker — 2026-03-21 03:00 PM CT ══
+2026-03-21 15:00:02,309 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-21 15:00:03,988 [INFO] Fetched 652 products from BSC
+2026-03-21 15:00:04,372 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-21 15:00:04,396 [INFO] ══ Poll complete ══
+
+2026-03-21 19:00:05,537 [INFO] ══ Scally Tracker — 2026-03-21 07:00 PM CT ══
+2026-03-21 19:00:05,540 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-21 19:00:07,598 [INFO] Fetched 652 products from BSC
+2026-03-21 19:00:07,987 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-21 19:00:08,012 [INFO] ══ Poll complete ══
+
+2026-03-22 07:00:06,196 [INFO] ══ Scally Tracker — 2026-03-22 07:00 AM CT ══
+2026-03-22 07:00:06,203 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-22 07:00:08,416 [INFO] Fetched 652 products from BSC
+2026-03-22 07:00:08,817 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-22 07:00:08,841 [INFO] ══ Poll complete ══
+
+2026-03-22 11:00:05,564 [INFO] ══ Scally Tracker — 2026-03-22 11:00 AM CT ══
+2026-03-22 11:00:05,566 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-22 11:00:07,270 [INFO] Fetched 652 products from BSC
+2026-03-22 11:00:07,665 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-22 11:00:07,692 [INFO] ══ Poll complete ══
+
+2026-03-22 15:00:05,289 [INFO] ══ Scally Tracker — 2026-03-22 03:00 PM CT ══
+2026-03-22 15:00:05,291 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-22 15:00:06,970 [INFO] Fetched 652 products from BSC
+2026-03-22 15:00:07,362 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-22 15:00:07,384 [INFO] ══ Poll complete ══
+
+2026-03-22 19:00:07,306 [INFO] ══ Scally Tracker — 2026-03-22 07:00 PM CT ══
+2026-03-22 19:00:07,324 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-22 19:00:09,903 [INFO] Fetched 652 products from BSC
+2026-03-22 19:00:11,680 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-22 19:00:11,721 [INFO] ══ Poll complete ══
+
+2026-03-23 07:00:05,425 [INFO] ══ Scally Tracker — 2026-03-23 07:00 AM CT ══
+2026-03-23 07:00:05,428 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-23 07:00:07,387 [INFO] Fetched 652 products from BSC
+2026-03-23 07:00:07,797 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-23 07:00:07,826 [INFO] ══ Poll complete ══
+
+2026-03-23 11:00:01,764 [INFO] ══ Scally Tracker — 2026-03-23 11:00 AM CT ══
+2026-03-23 11:00:01,767 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-23 11:00:03,626 [INFO] Fetched 652 products from BSC
+2026-03-23 11:00:04,198 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-23 11:00:04,585 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-23 11:00:04,933 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-23 11:00:05,282 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-23 11:00:05,898 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-23 11:00:06,340 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-23 11:00:06,774 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-23 11:00:07,247 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock!
+2026-03-23 11:00:07,921 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-23 11:00:08,217 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-23 11:00:08,563 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-23 11:00:08,704 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-23 11:00:08,734 [INFO] ══ Poll complete ══
+
+2026-03-23 14:28:55,343 [INFO] ══ Scally Tracker — 2026-03-23 02:28 PM CT ══
+2026-03-23 14:28:55,345 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-23 14:28:57,954 [INFO] Fetched 652 products from BSC
+2026-03-23 14:28:58,499 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-23 14:28:58,794 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-23 14:28:59,177 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-23 14:28:59,341 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-23 14:28:59,370 [INFO] ══ Poll complete ══
+
+2026-03-23 15:00:01,761 [INFO] ══ Scally Tracker — 2026-03-23 03:00 PM CT ══
+2026-03-23 15:00:01,763 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-23 15:00:04,704 [INFO] Fetched 652 products from BSC
+2026-03-23 15:00:05,217 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-23 15:00:05,579 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-23 15:00:05,928 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-23 15:00:05,959 [INFO] ══ Poll complete ══
+
+2026-03-23 19:00:01,947 [INFO] ══ Scally Tracker — 2026-03-23 07:00 PM CT ══
+2026-03-23 19:00:01,952 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-23 19:00:04,357 [INFO] Fetched 652 products from BSC
+2026-03-23 19:00:05,650 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-23 19:00:06,344 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock
+2026-03-23 19:00:06,505 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-23 19:00:06,537 [INFO] ══ Poll complete ══
+
+2026-03-24 07:00:04,299 [INFO] ══ Scally Tracker — 2026-03-24 07:00 AM CT ══
+2026-03-24 07:00:04,304 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-24 07:00:06,132 [INFO] Fetched 652 products from BSC
+2026-03-24 07:00:06,583 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-24 07:00:06,612 [INFO] ══ Poll complete ══
+
+2026-03-24 11:00:02,317 [INFO] ══ Scally Tracker — 2026-03-24 11:00 AM CT ══
+2026-03-24 11:00:02,319 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-24 11:00:04,075 [INFO] Fetched 652 products from BSC
+2026-03-24 11:00:04,574 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-24 11:00:04,606 [INFO] ══ Poll complete ══
+
+2026-03-24 15:00:11,420 [INFO] ══ Scally Tracker — 2026-03-24 03:00 PM CT ══
+2026-03-24 15:00:11,562 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-24 15:00:15,993 [INFO] Fetched 652 products from BSC
+2026-03-24 15:00:16,684 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-24 15:00:17,556 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock
+2026-03-24 15:00:18,053 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-24 15:00:18,393 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-24 15:00:18,943 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-24 15:00:19,273 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-24 15:00:19,597 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-24 15:00:19,937 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-24 15:00:20,582 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-24 15:00:20,895 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-24 15:00:21,249 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-24 15:00:21,679 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-24 15:00:22,053 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-24 15:00:22,812 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-24 15:00:24,898 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-24 15:00:27,335 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-24 15:00:28,744 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-24 15:00:29,301 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-24 15:00:29,738 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-24 15:00:30,187 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-24 15:00:30,512 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-24 15:00:30,927 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-24 15:00:36,051 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-24 15:00:40,389 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-24 15:00:41,137 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-24 15:00:49,500 [INFO] ══ Poll complete ══
+
+2026-03-24 19:00:12,271 [INFO] ══ Scally Tracker — 2026-03-24 07:00 PM CT ══
+2026-03-24 19:00:12,347 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-24 19:00:15,020 [INFO] Fetched 652 products from BSC
+2026-03-24 19:00:18,725 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock
+2026-03-24 19:00:27,434 [INFO] ntfy 200: ⭐ Wishlisted Back in Stock
+2026-03-24 19:00:30,603 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-24 19:00:32,593 [INFO] ══ Poll complete ══
+
+2026-03-25 05:15:23,396 [INFO] ══ Scally Tracker — 2026-03-25 05:15 AM CT ══
+2026-03-25 05:15:23,400 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-25 05:15:25,388 [INFO] Fetched 652 products from BSC
+2026-03-25 05:15:25,774 [INFO] ntfy 200: 🎉 Back in Stock!
+2026-03-25 05:15:26,228 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-25 05:15:26,262 [INFO] ══ Poll complete ══
+
+2026-03-25 07:00:03,894 [INFO] ══ Scally Tracker — 2026-03-25 07:00 AM CT ══
+2026-03-25 07:00:03,896 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-25 07:00:05,809 [INFO] Fetched 652 products from BSC
+2026-03-25 07:00:06,277 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-25 07:00:06,309 [INFO] ══ Poll complete ══
+
+2026-03-25 09:30:02,038 [INFO] ══ Scally Tracker — 2026-03-25 09:30 AM CT ══
+2026-03-25 09:30:02,042 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-25 09:30:03,926 [INFO] Fetched 652 products from BSC
+2026-03-25 09:30:04,311 [INFO] ntfy 200: 🎉 Restock!
+2026-03-25 09:30:04,637 [INFO] ntfy 200: 🎉 Restock!
+2026-03-25 09:30:05,115 [INFO] ntfy 200: 🎉 Restock!
+2026-03-25 09:30:05,538 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-25 09:30:05,571 [INFO] ══ Poll complete ══
+
+2026-03-25 10:00:14,066 [INFO] ══ Scally Tracker — 2026-03-25 10:00 AM CT ══
+2026-03-25 10:00:14,135 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-25 10:00:19,737 [INFO] Fetched 652 products from BSC
+2026-03-25 10:00:34,192 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-25 10:00:37,091 [INFO] ══ Poll complete ══
+
+2026-03-25 10:30:10,080 [INFO] ══ Scally Tracker — 2026-03-25 10:30 AM CT ══
+2026-03-25 10:30:10,290 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-25 10:30:14,423 [INFO] Fetched 652 products from BSC
+2026-03-25 10:30:40,776 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-25 10:30:51,533 [INFO] ══ Poll complete ══
+
+2026-03-25 11:00:16,521 [INFO] ══ Scally Tracker — 2026-03-25 11:00 AM CT ══
+2026-03-25 11:00:17,051 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-25 11:00:23,006 [INFO] Fetched 652 products from BSC
+2026-03-25 11:00:29,046 [INFO] ntfy 200: 🎉 Restock!
+2026-03-25 11:01:18,837 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-25 11:02:14,332 [INFO] ══ Poll complete ══
+
+2026-03-25 11:30:09,511 [INFO] ══ Scally Tracker — 2026-03-25 11:30 AM CT ══
+2026-03-25 11:30:09,638 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-25 11:30:13,216 [INFO] Fetched 652 products from BSC
+2026-03-25 11:30:15,333 [INFO] ntfy 200: 🎉 Restock!
+2026-03-25 11:30:15,633 [INFO] ntfy 200: 🎉 Restock!
+2026-03-25 11:30:29,927 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-25 11:30:31,469 [INFO] ══ Poll complete ══
+
+2026-03-25 12:00:02,428 [INFO] ══ Scally Tracker — 2026-03-25 12:00 PM CT ══
+2026-03-25 12:00:02,431 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-25 12:00:04,648 [INFO] Fetched 652 products from BSC
+2026-03-25 12:00:05,179 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-25 12:00:05,221 [INFO] ══ Poll complete ══
+
+2026-03-25 12:30:00,437 [INFO] ══ Scally Tracker — 2026-03-25 12:30 PM CT ══
+2026-03-25 12:30:00,440 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-25 12:30:02,207 [INFO] Fetched 652 products from BSC
+2026-03-25 12:30:03,070 [INFO] ntfy 200: 🎉 Restock!
+2026-03-25 12:30:04,228 [INFO] ntfy 200: 🎉 Restock!
+2026-03-25 12:30:04,470 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-25 12:30:04,528 [INFO] ══ Poll complete ══
+
+2026-03-25 13:00:04,465 [INFO] ══ Scally Tracker — 2026-03-25 01:00 PM CT ══
+2026-03-25 13:00:04,467 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-25 13:00:06,116 [INFO] Fetched 652 products from BSC
+2026-03-25 13:00:06,525 [INFO] ntfy 200: 🎉 Restock!
+2026-03-25 13:00:07,151 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-25 13:00:07,200 [INFO] ══ Poll complete ══
+
+2026-03-25 13:30:02,428 [INFO] ══ Scally Tracker — 2026-03-25 01:30 PM CT ══
+2026-03-25 13:30:02,431 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-25 13:30:04,316 [INFO] Fetched 652 products from BSC
+2026-03-25 13:30:04,755 [INFO] ntfy 200: 🎉 Restock!
+2026-03-25 13:30:05,169 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-25 13:30:05,216 [INFO] ══ Poll complete ══
+
+2026-03-25 14:00:01,710 [INFO] ══ Scally Tracker — 2026-03-25 02:00 PM CT ══
+2026-03-25 14:00:01,713 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-25 14:00:03,479 [INFO] Fetched 652 products from BSC
+2026-03-25 14:00:03,889 [INFO] ntfy 200: 🎉 Restock!
+2026-03-25 14:00:04,237 [INFO] ntfy 200: 🎉 Restock!
+2026-03-25 14:00:04,603 [INFO] ntfy 200: 🎉 Restock!
+2026-03-25 14:00:05,152 [INFO] ntfy 200: 🎉 Restock!
+2026-03-25 14:00:05,597 [INFO] ntfy 200: 🎉 Restock!
+2026-03-25 14:00:05,940 [INFO] ntfy 200: 🎉 Restock!
+2026-03-25 14:00:06,160 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-25 14:00:06,202 [INFO] ══ Poll complete ══
+
+2026-03-25 14:30:00,717 [INFO] ══ Scally Tracker — 2026-03-25 02:30 PM CT ══
+2026-03-25 14:30:00,720 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-25 14:30:02,558 [INFO] Fetched 652 products from BSC
+2026-03-25 14:30:03,303 [INFO] ntfy 200: 🎉 Restock!
+2026-03-25 14:30:03,510 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-25 14:30:03,546 [INFO] ══ Poll complete ══
+
+2026-03-25 15:00:04,800 [INFO] ══ Scally Tracker — 2026-03-25 03:00 PM CT ══
+2026-03-25 15:00:04,802 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-25 15:00:06,477 [INFO] Fetched 652 products from BSC
+2026-03-25 15:00:07,006 [INFO] ntfy 200: 🎉 Restock!
+2026-03-25 15:00:07,251 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-25 15:00:07,295 [INFO] ══ Poll complete ══
+
+2026-03-25 15:30:00,852 [INFO] ══ Scally Tracker — 2026-03-25 03:30 PM CT ══
+2026-03-25 15:30:00,854 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-25 15:30:02,814 [INFO] Fetched 652 products from BSC
+2026-03-25 15:30:03,233 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-25 15:30:03,277 [INFO] ══ Poll complete ══
+
+2026-03-25 16:00:05,324 [INFO] ══ Scally Tracker — 2026-03-25 04:00 PM CT ══
+2026-03-25 16:00:05,327 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-25 16:00:07,255 [INFO] Fetched 652 products from BSC
+2026-03-25 16:00:07,667 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-25 16:00:07,712 [INFO] ══ Poll complete ══
+
+2026-03-25 16:30:06,438 [INFO] ══ Scally Tracker — 2026-03-25 04:30 PM CT ══
+2026-03-25 16:30:06,445 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-25 16:30:08,265 [INFO] Fetched 652 products from BSC
+2026-03-25 16:30:09,306 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-25 16:30:09,352 [INFO] ══ Poll complete ══
+
+2026-03-25 17:00:03,331 [INFO] ══ Scally Tracker — 2026-03-25 05:00 PM CT ══
+2026-03-25 17:00:03,333 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-25 17:00:05,224 [INFO] Fetched 652 products from BSC
+2026-03-25 17:00:05,665 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-25 17:00:05,711 [INFO] ══ Poll complete ══
+
+2026-03-25 17:30:04,765 [INFO] ══ Scally Tracker — 2026-03-25 05:30 PM CT ══
+2026-03-25 17:30:04,767 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-25 17:30:06,705 [INFO] Fetched 652 products from BSC
+2026-03-25 17:30:07,109 [INFO] ntfy 200: 🎉 Restock!
+2026-03-25 17:30:07,406 [INFO] ntfy 200: 🎉 Restock!
+2026-03-25 17:30:07,803 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-25 17:30:07,850 [INFO] ══ Poll complete ══
+
+2026-03-25 18:00:02,923 [INFO] ══ Scally Tracker — 2026-03-25 06:00 PM CT ══
+2026-03-25 18:00:02,926 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-25 18:00:04,731 [INFO] Fetched 652 products from BSC
+2026-03-25 18:00:05,169 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-25 18:00:05,217 [INFO] ══ Poll complete ══
+
+2026-03-25 18:30:05,690 [INFO] ══ Scally Tracker — 2026-03-25 06:30 PM CT ══
+2026-03-25 18:30:05,693 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-25 18:30:09,490 [INFO] Fetched 652 products from BSC
+2026-03-25 18:30:09,919 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-25 18:30:09,965 [INFO] ══ Poll complete ══
+
+2026-03-25 19:00:02,051 [INFO] ══ Scally Tracker — 2026-03-25 07:00 PM CT ══
+2026-03-25 19:00:02,059 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-25 19:00:03,952 [INFO] Fetched 652 products from BSC
+2026-03-25 19:00:05,555 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-25 19:00:05,613 [INFO] ══ Poll complete ══
+
+2026-03-26 07:00:03,540 [INFO] ══ Scally Tracker — 2026-03-26 07:00 AM CT ══
+2026-03-26 07:00:03,544 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-26 07:00:06,379 [INFO] Fetched 652 products from BSC
+2026-03-26 07:00:06,852 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-26 07:00:06,901 [INFO] ══ Poll complete ══
+
+2026-03-26 07:30:01,352 [INFO] ══ Scally Tracker — 2026-03-26 07:30 AM CT ══
+2026-03-26 07:30:01,354 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-26 07:30:03,360 [INFO] Fetched 652 products from BSC
+2026-03-26 07:30:03,796 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-26 07:30:03,848 [INFO] ══ Poll complete ══
+
+2026-03-26 08:00:01,507 [INFO] ══ Scally Tracker — 2026-03-26 08:00 AM CT ══
+2026-03-26 08:00:01,510 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-26 08:00:03,143 [INFO] Fetched 652 products from BSC
+2026-03-26 08:00:03,336 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-26 08:00:03,388 [INFO] ══ Poll complete ══
+
+2026-03-26 08:30:00,472 [INFO] ══ Scally Tracker — 2026-03-26 08:30 AM CT ══
+2026-03-26 08:30:00,474 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-26 08:30:02,505 [INFO] Fetched 652 products from BSC
+2026-03-26 08:30:03,028 [INFO] ntfy 200: 🎉 Restock!
+2026-03-26 08:30:03,444 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-26 08:30:03,499 [INFO] ══ Poll complete ══
+
+2026-03-26 09:00:01,466 [INFO] ══ Scally Tracker — 2026-03-26 09:00 AM CT ══
+2026-03-26 09:00:01,469 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-26 09:00:04,089 [INFO] Fetched 652 products from BSC
+2026-03-26 09:00:04,597 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-26 09:00:04,649 [INFO] ══ Poll complete ══
+
+2026-03-26 09:30:05,151 [INFO] ══ Scally Tracker — 2026-03-26 09:30 AM CT ══
+2026-03-26 09:30:05,153 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-26 09:30:06,967 [INFO] Fetched 652 products from BSC
+2026-03-26 09:30:07,321 [INFO] ntfy 200: 🎉 Restock!
+2026-03-26 09:30:07,764 [INFO] ntfy 200: 🎉 Restock!
+2026-03-26 09:30:07,981 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-26 09:30:08,036 [INFO] ══ Poll complete ══
+
+2026-03-26 10:00:01,529 [INFO] ══ Scally Tracker — 2026-03-26 10:00 AM CT ══
+2026-03-26 10:00:01,532 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-26 10:00:03,800 [INFO] Fetched 652 products from BSC
+2026-03-26 10:00:04,286 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-26 10:00:04,341 [INFO] ══ Poll complete ══
+
+2026-03-26 10:30:00,485 [INFO] ══ Scally Tracker — 2026-03-26 10:30 AM CT ══
+2026-03-26 10:30:00,502 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-26 10:30:02,420 [INFO] Fetched 652 products from BSC
+2026-03-26 10:30:03,027 [INFO] ntfy 200: 🎉 Restock!
+2026-03-26 10:30:03,451 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-26 10:30:03,502 [INFO] ══ Poll complete ══
+
+2026-03-26 11:00:01,506 [INFO] ══ Scally Tracker — 2026-03-26 11:00 AM CT ══
+2026-03-26 11:00:01,509 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-26 11:00:03,232 [INFO] Fetched 652 products from BSC
+2026-03-26 11:00:03,844 [INFO] ntfy 200: 🎉 Restock!
+2026-03-26 11:00:04,444 [INFO] ntfy 200: 🎉 Restock!
+2026-03-26 11:00:04,800 [INFO] ntfy 200: 🎉 Restock!
+2026-03-26 11:00:05,190 [INFO] ntfy 200: 🎉 Restock!
+2026-03-26 11:00:05,589 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-26 11:00:05,644 [INFO] ══ Poll complete ══
+
+2026-03-26 11:30:00,694 [INFO] ══ Scally Tracker — 2026-03-26 11:30 AM CT ══
+2026-03-26 11:30:00,696 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-26 11:30:01,587 [ERROR] Fetch error page 2: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=2
+2026-03-26 11:30:01,587 [INFO] Fetched 250 products from BSC
+2026-03-26 11:30:01,847 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-26 11:30:01,938 [INFO] ══ Poll complete ══
+
+2026-03-26 12:00:01,665 [INFO] ══ Scally Tracker — 2026-03-26 12:00 PM CT ══
+2026-03-26 12:00:01,668 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-26 12:00:04,214 [INFO] Fetched 652 products from BSC
+2026-03-26 12:00:04,723 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-26 12:00:04,777 [INFO] ══ Poll complete ══
+
+2026-03-26 12:30:01,693 [INFO] ══ Scally Tracker — 2026-03-26 12:30 PM CT ══
+2026-03-26 12:30:01,695 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-26 12:30:03,982 [INFO] Fetched 652 products from BSC
+2026-03-26 12:30:04,419 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-26 12:30:04,472 [INFO] ══ Poll complete ══
+
+2026-03-26 13:00:01,709 [INFO] ══ Scally Tracker — 2026-03-26 01:00 PM CT ══
+2026-03-26 13:00:01,711 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-26 13:00:03,481 [INFO] Fetched 652 products from BSC
+2026-03-26 13:00:03,939 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-26 13:00:03,993 [INFO] ══ Poll complete ══
+
+2026-03-26 13:30:03,686 [INFO] ══ Scally Tracker — 2026-03-26 01:30 PM CT ══
+2026-03-26 13:30:03,688 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-26 13:30:05,301 [INFO] Fetched 652 products from BSC
+2026-03-26 13:30:05,656 [INFO] ntfy 200: 🎉 Restock!
+2026-03-26 13:30:06,084 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-26 13:30:06,140 [INFO] ══ Poll complete ══
+
+2026-03-26 14:00:01,757 [INFO] ══ Scally Tracker — 2026-03-26 02:00 PM CT ══
+2026-03-26 14:00:01,759 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-26 14:00:03,168 [ERROR] Fetch error page 2: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=2
+2026-03-26 14:00:03,168 [INFO] Fetched 250 products from BSC
+2026-03-26 14:00:03,927 [INFO] ntfy 200: 🎉 Restock!
+2026-03-26 14:00:04,403 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-26 14:00:04,462 [INFO] ══ Poll complete ══
+
+2026-03-26 14:30:01,764 [INFO] ══ Scally Tracker — 2026-03-26 02:30 PM CT ══
+2026-03-26 14:30:01,767 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-26 14:30:03,966 [INFO] Fetched 652 products from BSC
+2026-03-26 14:30:04,504 [INFO] ntfy 200: 🎉 Restock!
+2026-03-26 14:30:04,942 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-26 14:30:04,998 [INFO] ══ Poll complete ══
+
+2026-03-26 15:00:01,730 [INFO] ══ Scally Tracker — 2026-03-26 03:00 PM CT ══
+2026-03-26 15:00:01,735 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-26 15:00:03,538 [INFO] Fetched 652 products from BSC
+2026-03-26 15:00:04,006 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-26 15:00:04,063 [INFO] ══ Poll complete ══
+
+2026-03-26 15:30:00,843 [INFO] ══ Scally Tracker — 2026-03-26 03:30 PM CT ══
+2026-03-26 15:30:00,845 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-26 15:30:01,015 [ERROR] Fetch error page 1: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=1
+2026-03-26 15:30:01,015 [INFO] Fetched 0 products from BSC
+2026-03-26 15:30:01,016 [WARNING] No products returned — aborting
+2026-03-26 16:00:01,836 [INFO] ══ Scally Tracker — 2026-03-26 04:00 PM CT ══
+2026-03-26 16:00:01,840 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-26 16:00:05,060 [INFO] Fetched 652 products from BSC
+2026-03-26 16:00:05,528 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-26 16:00:05,584 [INFO] ══ Poll complete ══
+
+2026-03-26 16:30:00,449 [INFO] ══ Scally Tracker — 2026-03-26 04:30 PM CT ══
+2026-03-26 16:30:00,451 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-26 16:30:00,628 [ERROR] Fetch error page 1: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=1
+2026-03-26 16:30:00,629 [INFO] Fetched 0 products from BSC
+2026-03-26 16:30:00,630 [WARNING] No products returned — aborting
+2026-03-26 17:00:01,759 [INFO] ══ Scally Tracker — 2026-03-26 05:00 PM CT ══
+2026-03-26 17:00:01,761 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-26 17:00:04,147 [INFO] Fetched 652 products from BSC
+2026-03-26 17:00:04,614 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-26 17:00:04,671 [INFO] ══ Poll complete ══
+
+2026-03-26 17:30:05,628 [INFO] ══ Scally Tracker — 2026-03-26 05:30 PM CT ══
+2026-03-26 17:30:05,631 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-26 17:30:07,661 [INFO] Fetched 652 products from BSC
+2026-03-26 17:30:08,127 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-26 17:30:08,185 [INFO] ══ Poll complete ══
+
+2026-03-26 18:00:02,915 [INFO] ══ Scally Tracker — 2026-03-26 06:00 PM CT ══
+2026-03-26 18:00:02,918 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-26 18:00:04,771 [INFO] Fetched 652 products from BSC
+2026-03-26 18:00:05,244 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-26 18:00:05,305 [INFO] ══ Poll complete ══
+
+2026-03-26 18:30:01,970 [INFO] ══ Scally Tracker — 2026-03-26 06:30 PM CT ══
+2026-03-26 18:30:01,973 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-26 18:30:03,770 [INFO] Fetched 652 products from BSC
+2026-03-26 18:30:04,236 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-26 18:30:04,323 [INFO] ══ Poll complete ══
+
+2026-03-26 19:00:03,931 [INFO] ══ Scally Tracker — 2026-03-26 07:00 PM CT ══
+2026-03-26 19:00:03,934 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-26 19:00:05,637 [INFO] Fetched 652 products from BSC
+2026-03-26 19:00:06,045 [INFO] ntfy 200: 🎉 Restock!
+2026-03-26 19:00:06,468 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-26 19:00:06,539 [INFO] ══ Poll complete ══
+
+2026-03-27 07:00:04,543 [INFO] ══ Scally Tracker — 2026-03-27 07:00 AM CT ══
+2026-03-27 07:00:04,547 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-27 07:00:08,454 [INFO] Fetched 652 products from BSC
+2026-03-27 07:00:08,823 [INFO] ntfy 200: 🎉 Restock!
+2026-03-27 07:00:09,302 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-27 07:00:09,364 [INFO] ══ Poll complete ══
+
+2026-03-27 07:30:01,557 [INFO] ══ Scally Tracker — 2026-03-27 07:30 AM CT ══
+2026-03-27 07:30:01,560 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-27 07:30:03,403 [INFO] Fetched 652 products from BSC
+2026-03-27 07:30:03,884 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-27 07:30:03,947 [INFO] ══ Poll complete ══
+
+2026-03-27 08:00:01,556 [INFO] ══ Scally Tracker — 2026-03-27 08:00 AM CT ══
+2026-03-27 08:00:01,559 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-27 08:00:03,263 [INFO] Fetched 652 products from BSC
+2026-03-27 08:00:03,751 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-27 08:00:03,813 [INFO] ══ Poll complete ══
+
+2026-03-27 08:30:00,460 [INFO] ══ Scally Tracker — 2026-03-27 08:30 AM CT ══
+2026-03-27 08:30:00,462 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-27 08:30:02,380 [INFO] Fetched 652 products from BSC
+2026-03-27 08:30:02,862 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-27 08:30:02,927 [INFO] ══ Poll complete ══
+
+2026-03-27 09:00:01,490 [INFO] ══ Scally Tracker — 2026-03-27 09:00 AM CT ══
+2026-03-27 09:00:01,493 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-27 09:00:03,229 [INFO] Fetched 652 products from BSC
+2026-03-27 09:00:03,767 [INFO] ntfy 200: 🎉 Restock!
+2026-03-27 09:00:04,179 [INFO] ntfy 200: 🎉 Restock!
+2026-03-27 09:00:04,607 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-27 09:00:04,671 [INFO] ══ Poll complete ══
+
+2026-03-27 09:30:01,595 [INFO] ══ Scally Tracker — 2026-03-27 09:30 AM CT ══
+2026-03-27 09:30:01,598 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-27 09:30:03,444 [INFO] Fetched 652 products from BSC
+2026-03-27 09:30:04,041 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-27 09:30:04,105 [INFO] ══ Poll complete ══
+
+2026-03-27 10:00:05,450 [INFO] ══ Scally Tracker — 2026-03-27 10:00 AM CT ══
+2026-03-27 10:00:05,452 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-27 10:00:07,092 [INFO] Fetched 652 products from BSC
+2026-03-27 10:00:07,505 [INFO] ntfy 200: 🎉 Restock!
+2026-03-27 10:00:07,949 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-27 10:00:08,013 [INFO] ══ Poll complete ══
+
+2026-03-27 10:30:00,616 [INFO] ══ Scally Tracker — 2026-03-27 10:30 AM CT ══
+2026-03-27 10:30:00,618 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-27 10:30:02,607 [INFO] Fetched 652 products from BSC
+2026-03-27 10:30:03,164 [INFO] ntfy 200: 🎉 Restock!
+2026-03-27 10:30:03,626 [INFO] Categories: {'apparel': 143, 'caps': 341, 'other': 17, 'pins': 151}
+2026-03-27 10:30:03,693 [INFO] ══ Poll complete ══
+
+2026-03-27 11:00:01,798 [INFO] ══ Scally Tracker — 2026-03-27 11:00 AM CT ══
+2026-03-27 11:00:01,801 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-27 11:00:03,546 [INFO] Fetched 654 products from BSC
+2026-03-27 11:00:03,551 [INFO] NEW [pins]: Boston Scally The Runaway Pin Set
+2026-03-27 11:00:03,933 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-27 11:00:03,938 [INFO] NEW [caps]: The Runaway Boston Scally Cap - Patchwork
+2026-03-27 11:00:04,278 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-27 11:00:04,282 [INFO] RELEASE auto-added: The Runaway - Patchwork on 3/27/26
+2026-03-27 11:00:04,758 [INFO] Categories: {'apparel': 143, 'caps': 342, 'other': 17, 'pins': 152}
+2026-03-27 11:00:04,827 [INFO] ══ Poll complete ══
+
+2026-03-27 11:30:00,724 [INFO] ══ Scally Tracker — 2026-03-27 11:30 AM CT ══
+2026-03-27 11:30:00,727 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-27 11:30:02,549 [INFO] Fetched 654 products from BSC
+2026-03-27 11:30:02,953 [INFO] ntfy 200: 🎉 Restock!
+2026-03-27 11:30:03,281 [INFO] ntfy 200: 🎉 Restock!
+2026-03-27 11:30:03,785 [INFO] ntfy 200: 🎉 Restock!
+2026-03-27 11:30:04,066 [INFO] Categories: {'apparel': 143, 'caps': 342, 'other': 17, 'pins': 152}
+2026-03-27 11:30:04,131 [INFO] ══ Poll complete ══
+
+2026-03-27 12:00:03,585 [INFO] ══ Scally Tracker — 2026-03-27 12:00 PM CT ══
+2026-03-27 12:00:03,587 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-27 12:00:05,252 [INFO] Fetched 654 products from BSC
+2026-03-27 12:00:05,857 [INFO] ntfy 200: ⭐ Wishlisted Restock!
+2026-03-27 12:00:06,092 [INFO] Categories: {'apparel': 143, 'caps': 342, 'other': 17, 'pins': 152}
+2026-03-27 12:00:06,161 [INFO] ══ Poll complete ══
+
+2026-03-27 12:30:01,708 [INFO] ══ Scally Tracker — 2026-03-27 12:30 PM CT ══
+2026-03-27 12:30:01,711 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-27 12:30:03,432 [INFO] Fetched 654 products from BSC
+2026-03-27 12:30:03,969 [INFO] Categories: {'apparel': 143, 'caps': 342, 'other': 17, 'pins': 152}
+2026-03-27 12:30:04,040 [INFO] ══ Poll complete ══
+
+2026-03-27 13:00:01,639 [INFO] ══ Scally Tracker — 2026-03-27 01:00 PM CT ══
+2026-03-27 13:00:01,641 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-27 13:00:04,713 [INFO] Fetched 654 products from BSC
+2026-03-27 13:00:05,110 [INFO] ntfy 200: 🎉 Restock!
+2026-03-27 13:00:05,629 [INFO] Categories: {'apparel': 143, 'caps': 342, 'other': 17, 'pins': 152}
+2026-03-27 13:00:05,693 [INFO] ══ Poll complete ══
+
+2026-03-27 13:30:00,707 [INFO] ══ Scally Tracker — 2026-03-27 01:30 PM CT ══
+2026-03-27 13:30:00,710 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-27 13:30:02,492 [INFO] Fetched 654 products from BSC
+2026-03-27 13:30:02,881 [INFO] Categories: {'apparel': 143, 'caps': 342, 'other': 17, 'pins': 152}
+2026-03-27 13:30:02,950 [INFO] ══ Poll complete ══
+
+2026-03-27 14:00:02,618 [INFO] ══ Scally Tracker — 2026-03-27 02:00 PM CT ══
+2026-03-27 14:00:02,621 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-27 14:00:04,344 [INFO] Fetched 655 products from BSC
+2026-03-27 14:00:04,352 [INFO] NEW [caps]: The Blue House Peaky Boston Scally Cap - Plaid
+2026-03-27 14:00:04,702 [INFO] ntfy 200: 🆕 New on BSC!
+2026-03-27 14:00:04,705 [INFO] RELEASE auto-added: The Blue House Peaky - Plaid on 3/27/26
+2026-03-27 14:00:05,200 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-27 14:00:05,266 [INFO] ══ Poll complete ══
+
+2026-03-27 14:30:03,718 [INFO] ══ Scally Tracker — 2026-03-27 02:30 PM CT ══
+2026-03-27 14:30:03,720 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-27 14:30:05,590 [INFO] Fetched 655 products from BSC
+2026-03-27 14:30:06,086 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-27 14:30:06,156 [INFO] ══ Poll complete ══
+
+2026-03-27 15:00:05,275 [INFO] ══ Scally Tracker — 2026-03-27 03:00 PM CT ══
+2026-03-27 15:00:05,278 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-27 15:00:06,946 [INFO] Fetched 655 products from BSC
+2026-03-27 15:00:07,445 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-27 15:00:07,516 [INFO] ══ Poll complete ══
+
+2026-03-27 15:30:06,203 [INFO] ══ Scally Tracker — 2026-03-27 03:30 PM CT ══
+2026-03-27 15:30:06,206 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-27 15:30:08,240 [INFO] Fetched 655 products from BSC
+2026-03-27 15:30:08,783 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-27 15:30:08,854 [INFO] ══ Poll complete ══
+
+2026-03-27 16:00:06,225 [INFO] ══ Scally Tracker — 2026-03-27 04:00 PM CT ══
+2026-03-27 16:00:06,227 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-27 16:00:08,239 [INFO] Fetched 655 products from BSC
+2026-03-27 16:00:08,781 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-27 16:00:08,852 [INFO] ══ Poll complete ══
+
+2026-03-27 16:30:06,272 [INFO] ══ Scally Tracker — 2026-03-27 04:30 PM CT ══
+2026-03-27 16:30:06,274 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-27 16:30:08,343 [INFO] Fetched 655 products from BSC
+2026-03-27 16:30:08,884 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-27 16:30:08,954 [INFO] ══ Poll complete ══
+
