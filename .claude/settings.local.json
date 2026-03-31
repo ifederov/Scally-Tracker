@@ -32,7 +32,8 @@
       "Bash(launchctl list:*)",
       "Bash(git -C /Users/sterling/app/scally-tracker status)",
       "Bash(git -C /Users/sterling/app/scally-tracker diff)",
-      "Bash(git:*)"
+      "Bash(git:*)",
+      "Bash(chmod:*)"
     ]
   }
 }

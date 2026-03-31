@@ -1457,3 +1457,606 @@
 2026-03-27 16:30:08,884 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
 2026-03-27 16:30:08,954 [INFO] ══ Poll complete ══
 
+2026-03-27 17:00:06,145 [INFO] ══ Scally Tracker — 2026-03-27 05:00 PM CT ══
+2026-03-27 17:00:06,147 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-27 17:00:08,165 [INFO] Fetched 655 products from BSC
+2026-03-27 17:00:08,678 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-27 17:00:08,750 [INFO] ══ Poll complete ══
+
+2026-03-27 17:30:06,230 [INFO] ══ Scally Tracker — 2026-03-27 05:30 PM CT ══
+2026-03-27 17:30:06,232 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-27 17:30:09,027 [INFO] Fetched 655 products from BSC
+2026-03-27 17:30:09,536 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-27 17:30:09,608 [INFO] ══ Poll complete ══
+
+2026-03-27 18:00:06,233 [INFO] ══ Scally Tracker — 2026-03-27 06:00 PM CT ══
+2026-03-27 18:00:06,237 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-27 18:00:08,033 [INFO] Fetched 655 products from BSC
+2026-03-27 18:00:08,457 [INFO] ntfy 200: 🎉 Restock!
+2026-03-27 18:00:08,938 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-27 18:00:09,010 [INFO] ══ Poll complete ══
+
+2026-03-27 18:30:06,227 [INFO] ══ Scally Tracker — 2026-03-27 06:30 PM CT ══
+2026-03-27 18:30:06,229 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-27 18:30:07,932 [INFO] Fetched 655 products from BSC
+2026-03-27 18:30:08,456 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-27 18:30:08,527 [INFO] ══ Poll complete ══
+
+2026-03-27 19:00:05,253 [INFO] ══ Scally Tracker — 2026-03-27 07:00 PM CT ══
+2026-03-27 19:00:05,256 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-27 19:00:06,995 [INFO] Fetched 655 products from BSC
+2026-03-27 19:00:07,504 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-27 19:00:07,578 [INFO] ══ Poll complete ══
+
+2026-03-28 07:00:02,303 [INFO] ══ Scally Tracker — 2026-03-28 07:00 AM CT ══
+2026-03-28 07:00:02,306 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-28 07:00:05,946 [INFO] Fetched 655 products from BSC
+2026-03-28 07:00:06,505 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-28 07:00:06,578 [INFO] ══ Poll complete ══
+
+2026-03-28 07:30:01,224 [INFO] ══ Scally Tracker — 2026-03-28 07:30 AM CT ══
+2026-03-28 07:30:01,227 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-28 07:30:03,364 [INFO] Fetched 655 products from BSC
+2026-03-28 07:30:03,893 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-28 07:30:03,967 [INFO] ══ Poll complete ══
+
+2026-03-28 08:00:02,250 [INFO] ══ Scally Tracker — 2026-03-28 08:00 AM CT ══
+2026-03-28 08:00:02,253 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-28 08:00:05,312 [INFO] Fetched 655 products from BSC
+2026-03-28 08:00:05,840 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-28 08:00:05,915 [INFO] ══ Poll complete ══
+
+2026-03-28 08:30:03,227 [INFO] ══ Scally Tracker — 2026-03-28 08:30 AM CT ══
+2026-03-28 08:30:03,229 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-28 08:30:06,003 [INFO] Fetched 655 products from BSC
+2026-03-28 08:30:06,616 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-28 08:30:06,711 [INFO] ══ Poll complete ══
+
+2026-03-28 09:00:02,229 [INFO] ══ Scally Tracker — 2026-03-28 09:00 AM CT ══
+2026-03-28 09:00:02,232 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-28 09:00:13,782 [INFO] Fetched 655 products from BSC
+2026-03-28 09:00:14,361 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-28 09:00:14,439 [INFO] ══ Poll complete ══
+
+2026-03-28 09:30:03,295 [INFO] ══ Scally Tracker — 2026-03-28 09:30 AM CT ══
+2026-03-28 09:30:03,298 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-28 09:30:06,676 [INFO] Fetched 655 products from BSC
+2026-03-28 09:30:07,217 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-28 09:30:07,296 [INFO] ══ Poll complete ══
+
+2026-03-28 10:00:06,238 [INFO] ══ Scally Tracker — 2026-03-28 10:00 AM CT ══
+2026-03-28 10:00:06,240 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-28 10:00:07,155 [ERROR] Fetch error page 2: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=2
+2026-03-28 10:00:07,155 [INFO] Fetched 250 products from BSC
+2026-03-28 10:00:07,400 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-28 10:00:07,452 [INFO] ══ Poll complete ══
+
+2026-03-28 10:30:06,257 [INFO] ══ Scally Tracker — 2026-03-28 10:30 AM CT ══
+2026-03-28 10:30:06,260 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-28 10:30:06,458 [ERROR] Fetch error page 1: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=1
+2026-03-28 10:30:06,458 [INFO] Fetched 0 products from BSC
+2026-03-28 10:30:06,460 [WARNING] No products returned — aborting
+2026-03-28 11:00:06,146 [INFO] ══ Scally Tracker — 2026-03-28 11:00 AM CT ══
+2026-03-28 11:00:06,148 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-28 11:00:09,182 [ERROR] Fetch error page 4: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=4
+2026-03-28 11:00:09,183 [INFO] Fetched 655 products from BSC
+2026-03-28 11:00:09,724 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-28 11:00:09,803 [INFO] ══ Poll complete ══
+
+2026-03-28 11:30:03,279 [INFO] ══ Scally Tracker — 2026-03-28 11:30 AM CT ══
+2026-03-28 11:30:03,282 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-28 11:30:06,126 [ERROR] Fetch error page 4: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=4
+2026-03-28 11:30:06,126 [INFO] Fetched 655 products from BSC
+2026-03-28 11:30:06,664 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-28 11:30:06,740 [INFO] ══ Poll complete ══
+
+2026-03-28 12:00:06,262 [INFO] ══ Scally Tracker — 2026-03-28 12:00 PM CT ══
+2026-03-28 12:00:06,264 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-28 12:00:09,464 [ERROR] Fetch error page 4: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=4
+2026-03-28 12:00:09,465 [INFO] Fetched 655 products from BSC
+2026-03-28 12:00:09,995 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-28 12:00:10,070 [INFO] ══ Poll complete ══
+
+2026-03-28 12:30:06,307 [INFO] ══ Scally Tracker — 2026-03-28 12:30 PM CT ══
+2026-03-28 12:30:06,310 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-28 12:30:09,471 [ERROR] Fetch error page 4: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=4
+2026-03-28 12:30:09,471 [INFO] Fetched 655 products from BSC
+2026-03-28 12:30:10,001 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-28 12:30:10,075 [INFO] ══ Poll complete ══
+
+2026-03-28 13:00:06,251 [INFO] ══ Scally Tracker — 2026-03-28 01:00 PM CT ══
+2026-03-28 13:00:06,253 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-28 13:00:06,539 [ERROR] Fetch error page 1: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=1
+2026-03-28 13:00:06,539 [INFO] Fetched 0 products from BSC
+2026-03-28 13:00:06,541 [WARNING] No products returned — aborting
+2026-03-28 13:30:06,254 [INFO] ══ Scally Tracker — 2026-03-28 01:30 PM CT ══
+2026-03-28 13:30:06,256 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-28 13:30:10,795 [INFO] Fetched 655 products from BSC
+2026-03-28 13:30:11,342 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-28 13:30:11,421 [INFO] ══ Poll complete ══
+
+2026-03-28 14:00:06,296 [INFO] ══ Scally Tracker — 2026-03-28 02:00 PM CT ══
+2026-03-28 14:00:06,298 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-28 14:00:08,035 [INFO] Fetched 655 products from BSC
+2026-03-28 14:00:08,571 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-28 14:00:08,645 [INFO] ══ Poll complete ══
+
+2026-03-28 14:30:06,303 [INFO] ══ Scally Tracker — 2026-03-28 02:30 PM CT ══
+2026-03-28 14:30:06,305 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-28 14:30:08,176 [INFO] Fetched 655 products from BSC
+2026-03-28 14:30:08,709 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-28 14:30:08,784 [INFO] ══ Poll complete ══
+
+2026-03-28 15:00:06,284 [INFO] ══ Scally Tracker — 2026-03-28 03:00 PM CT ══
+2026-03-28 15:00:06,287 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-28 15:00:08,182 [ERROR] Fetch error page 3: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=3
+2026-03-28 15:00:08,183 [INFO] Fetched 500 products from BSC
+2026-03-28 15:00:08,592 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-28 15:00:08,657 [INFO] ══ Poll complete ══
+
+2026-03-28 15:30:06,213 [INFO] ══ Scally Tracker — 2026-03-28 03:30 PM CT ══
+2026-03-28 15:30:06,216 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-28 15:30:06,379 [ERROR] Fetch error page 1: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=1
+2026-03-28 15:30:06,379 [INFO] Fetched 0 products from BSC
+2026-03-28 15:30:06,380 [WARNING] No products returned — aborting
+2026-03-28 16:00:06,240 [INFO] ══ Scally Tracker — 2026-03-28 04:00 PM CT ══
+2026-03-28 16:00:06,242 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-28 16:00:08,824 [ERROR] Fetch error page 3: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=3
+2026-03-28 16:00:08,825 [INFO] Fetched 500 products from BSC
+2026-03-28 16:00:09,291 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-28 16:00:09,358 [INFO] ══ Poll complete ══
+
+2026-03-28 16:30:06,334 [INFO] ══ Scally Tracker — 2026-03-28 04:30 PM CT ══
+2026-03-28 16:30:06,336 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-28 16:30:08,342 [ERROR] Fetch error page 4: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=4
+2026-03-28 16:30:08,342 [INFO] Fetched 655 products from BSC
+2026-03-28 16:30:08,879 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-28 16:30:08,953 [INFO] ══ Poll complete ══
+
+2026-03-28 17:00:05,357 [INFO] ══ Scally Tracker — 2026-03-28 05:00 PM CT ══
+2026-03-28 17:00:05,360 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-28 17:00:07,083 [INFO] Fetched 655 products from BSC
+2026-03-28 17:00:07,663 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-28 17:00:07,744 [INFO] ══ Poll complete ══
+
+2026-03-28 17:30:05,641 [INFO] ══ Scally Tracker — 2026-03-28 05:30 PM CT ══
+2026-03-28 17:30:05,643 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-28 17:30:07,134 [INFO] Fetched 655 products from BSC
+2026-03-28 17:30:07,709 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-28 17:30:07,785 [INFO] ══ Poll complete ══
+
+2026-03-28 18:00:05,268 [INFO] ══ Scally Tracker — 2026-03-28 06:00 PM CT ══
+2026-03-28 18:00:05,272 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-28 18:00:07,466 [INFO] Fetched 655 products from BSC
+2026-03-28 18:00:08,006 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-28 18:00:08,079 [INFO] ══ Poll complete ══
+
+2026-03-28 18:30:06,221 [INFO] ══ Scally Tracker — 2026-03-28 06:30 PM CT ══
+2026-03-28 18:30:06,224 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-28 18:30:11,987 [INFO] Fetched 655 products from BSC
+2026-03-28 18:30:12,594 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-28 18:30:12,672 [INFO] ══ Poll complete ══
+
+2026-03-28 19:00:06,194 [INFO] ══ Scally Tracker — 2026-03-28 07:00 PM CT ══
+2026-03-28 19:00:06,197 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-28 19:00:09,318 [INFO] Fetched 655 products from BSC
+2026-03-28 19:00:09,946 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-28 19:00:10,025 [INFO] ══ Poll complete ══
+
+2026-03-29 07:00:06,256 [INFO] ══ Scally Tracker — 2026-03-29 07:00 AM CT ══
+2026-03-29 07:00:06,260 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-29 07:00:06,448 [ERROR] Fetch error page 1: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=1
+2026-03-29 07:00:06,448 [INFO] Fetched 0 products from BSC
+2026-03-29 07:00:06,450 [WARNING] No products returned — aborting
+2026-03-29 07:30:06,186 [INFO] ══ Scally Tracker — 2026-03-29 07:30 AM CT ══
+2026-03-29 07:30:06,189 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-29 07:30:14,352 [INFO] Fetched 655 products from BSC
+2026-03-29 07:30:14,943 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-29 07:30:15,027 [INFO] ══ Poll complete ══
+
+2026-03-29 08:00:06,226 [INFO] ══ Scally Tracker — 2026-03-29 08:00 AM CT ══
+2026-03-29 08:00:06,229 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-29 08:00:10,354 [INFO] Fetched 655 products from BSC
+2026-03-29 08:00:10,937 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-29 08:00:11,019 [INFO] ══ Poll complete ══
+
+2026-03-29 08:30:06,180 [INFO] ══ Scally Tracker — 2026-03-29 08:30 AM CT ══
+2026-03-29 08:30:06,182 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-29 08:30:07,100 [ERROR] Fetch error page 2: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=2
+2026-03-29 08:30:07,100 [INFO] Fetched 250 products from BSC
+2026-03-29 08:30:07,357 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-29 08:30:07,420 [INFO] ══ Poll complete ══
+
+2026-03-29 09:00:06,188 [INFO] ══ Scally Tracker — 2026-03-29 09:00 AM CT ══
+2026-03-29 09:00:06,191 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-29 09:00:09,898 [INFO] Fetched 655 products from BSC
+2026-03-29 09:00:10,456 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-29 09:00:10,538 [INFO] ══ Poll complete ══
+
+2026-03-29 09:30:06,170 [INFO] ══ Scally Tracker — 2026-03-29 09:30 AM CT ══
+2026-03-29 09:30:06,173 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-29 09:30:09,339 [INFO] Fetched 655 products from BSC
+2026-03-29 09:30:09,887 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-29 09:30:09,970 [INFO] ══ Poll complete ══
+
+2026-03-29 10:00:03,367 [INFO] ══ Scally Tracker — 2026-03-29 10:00 AM CT ══
+2026-03-29 10:00:03,458 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-29 10:00:06,620 [INFO] Fetched 655 products from BSC
+2026-03-29 10:00:07,165 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-29 10:00:07,247 [INFO] ══ Poll complete ══
+
+2026-03-29 10:30:06,227 [INFO] ══ Scally Tracker — 2026-03-29 10:30 AM CT ══
+2026-03-29 10:30:06,230 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-29 10:30:09,307 [INFO] Fetched 655 products from BSC
+2026-03-29 10:30:09,891 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-29 10:30:09,979 [INFO] ══ Poll complete ══
+
+2026-03-29 11:00:06,116 [INFO] ══ Scally Tracker — 2026-03-29 11:00 AM CT ══
+2026-03-29 11:00:06,118 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-29 11:00:06,790 [ERROR] Fetch error page 2: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=2
+2026-03-29 11:00:06,790 [INFO] Fetched 250 products from BSC
+2026-03-29 11:00:07,052 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-29 11:00:07,116 [INFO] ══ Poll complete ══
+
+2026-03-29 11:30:03,141 [INFO] ══ Scally Tracker — 2026-03-29 11:30 AM CT ══
+2026-03-29 11:30:03,143 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-29 11:30:06,626 [INFO] Fetched 655 products from BSC
+2026-03-29 11:30:07,183 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-29 11:30:07,279 [INFO] ══ Poll complete ══
+
+2026-03-29 12:00:02,194 [INFO] ══ Scally Tracker — 2026-03-29 12:00 PM CT ══
+2026-03-29 12:00:02,196 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-29 12:00:04,537 [INFO] Fetched 655 products from BSC
+2026-03-29 12:00:05,103 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-29 12:00:05,183 [INFO] ══ Poll complete ══
+
+2026-03-29 12:30:01,222 [INFO] ══ Scally Tracker — 2026-03-29 12:30 PM CT ══
+2026-03-29 12:30:01,224 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-29 12:30:02,026 [ERROR] Fetch error page 2: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=2
+2026-03-29 12:30:02,026 [INFO] Fetched 250 products from BSC
+2026-03-29 12:30:02,292 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-29 12:30:02,353 [INFO] ══ Poll complete ══
+
+2026-03-29 13:00:02,964 [INFO] ══ Scally Tracker — 2026-03-29 01:00 PM CT ══
+2026-03-29 13:00:02,968 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-29 13:00:04,790 [ERROR] Fetch error page 2: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=2
+2026-03-29 13:00:04,791 [INFO] Fetched 250 products from BSC
+2026-03-29 13:00:05,093 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-29 13:00:05,158 [INFO] ══ Poll complete ══
+
+2026-03-29 13:30:00,788 [INFO] ══ Scally Tracker — 2026-03-29 01:30 PM CT ══
+2026-03-29 13:30:00,792 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-29 13:30:02,411 [ERROR] Fetch error page 3: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=3
+2026-03-29 13:30:02,411 [INFO] Fetched 500 products from BSC
+2026-03-29 13:30:02,852 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-29 13:30:02,927 [INFO] ══ Poll complete ══
+
+2026-03-29 14:00:01,800 [INFO] ══ Scally Tracker — 2026-03-29 02:00 PM CT ══
+2026-03-29 14:00:01,803 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-29 14:00:03,881 [INFO] Fetched 655 products from BSC
+2026-03-29 14:00:04,501 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-29 14:00:04,598 [INFO] ══ Poll complete ══
+
+2026-03-29 14:30:00,846 [INFO] ══ Scally Tracker — 2026-03-29 02:30 PM CT ══
+2026-03-29 14:30:00,849 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-29 14:30:01,043 [ERROR] Fetch error page 1: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=1
+2026-03-29 14:30:01,043 [INFO] Fetched 0 products from BSC
+2026-03-29 14:30:01,045 [WARNING] No products returned — aborting
+2026-03-29 15:00:05,805 [INFO] ══ Scally Tracker — 2026-03-29 03:00 PM CT ══
+2026-03-29 15:00:05,807 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-29 15:00:07,913 [ERROR] Fetch error page 4: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=4
+2026-03-29 15:00:07,914 [INFO] Fetched 655 products from BSC
+2026-03-29 15:00:08,531 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-29 15:00:08,630 [INFO] ══ Poll complete ══
+
+2026-03-29 15:30:04,801 [INFO] ══ Scally Tracker — 2026-03-29 03:30 PM CT ══
+2026-03-29 15:30:04,803 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-29 15:30:08,098 [INFO] Fetched 655 products from BSC
+2026-03-29 15:30:08,754 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-29 15:30:08,839 [INFO] ══ Poll complete ══
+
+2026-03-29 16:00:01,794 [INFO] ══ Scally Tracker — 2026-03-29 04:00 PM CT ══
+2026-03-29 16:00:01,796 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-29 16:00:04,690 [INFO] Fetched 655 products from BSC
+2026-03-29 16:00:05,319 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-29 16:00:05,417 [INFO] ══ Poll complete ══
+
+2026-03-29 16:30:00,775 [INFO] ══ Scally Tracker — 2026-03-29 04:30 PM CT ══
+2026-03-29 16:30:00,777 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-29 16:30:03,918 [ERROR] Fetch error page 4: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=4
+2026-03-29 16:30:03,920 [INFO] Fetched 655 products from BSC
+2026-03-29 16:30:04,545 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-29 16:30:04,642 [INFO] ══ Poll complete ══
+
+2026-03-29 17:00:04,852 [INFO] ══ Scally Tracker — 2026-03-29 05:00 PM CT ══
+2026-03-29 17:00:04,854 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-29 17:00:07,300 [ERROR] Fetch error page 4: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=4
+2026-03-29 17:00:07,301 [INFO] Fetched 655 products from BSC
+2026-03-29 17:00:07,939 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-29 17:00:08,043 [INFO] ══ Poll complete ══
+
+2026-03-29 17:30:05,809 [INFO] ══ Scally Tracker — 2026-03-29 05:30 PM CT ══
+2026-03-29 17:30:05,812 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-29 17:30:10,207 [INFO] Fetched 655 products from BSC
+2026-03-29 17:30:10,771 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-29 17:30:10,855 [INFO] ══ Poll complete ══
+
+2026-03-29 18:00:04,882 [INFO] ══ Scally Tracker — 2026-03-29 06:00 PM CT ══
+2026-03-29 18:00:04,885 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-29 18:00:06,327 [ERROR] Fetch error page 3: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=3
+2026-03-29 18:00:06,327 [INFO] Fetched 500 products from BSC
+2026-03-29 18:00:06,785 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-29 18:00:06,860 [INFO] ══ Poll complete ══
+
+2026-03-29 18:30:05,769 [INFO] ══ Scally Tracker — 2026-03-29 06:30 PM CT ══
+2026-03-29 18:30:05,772 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-29 18:30:09,883 [INFO] Fetched 655 products from BSC
+2026-03-29 18:30:10,502 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-29 18:30:10,597 [INFO] ══ Poll complete ══
+
+2026-03-29 19:00:04,874 [INFO] ══ Scally Tracker — 2026-03-29 07:00 PM CT ══
+2026-03-29 19:00:04,876 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-29 19:00:07,472 [INFO] Fetched 655 products from BSC
+2026-03-29 19:00:08,070 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-29 19:00:08,159 [INFO] ══ Poll complete ══
+
+2026-03-30 07:00:01,373 [INFO] ══ Scally Tracker — 2026-03-30 07:00 AM CT ══
+2026-03-30 07:00:01,377 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-30 07:00:05,139 [INFO] Fetched 655 products from BSC
+2026-03-30 07:00:05,842 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-30 07:00:05,943 [INFO] ══ Poll complete ══
+
+2026-03-30 07:30:03,464 [INFO] ══ Scally Tracker — 2026-03-30 07:30 AM CT ══
+2026-03-30 07:30:03,467 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-30 07:30:06,508 [INFO] Fetched 655 products from BSC
+2026-03-30 07:30:07,155 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-30 07:30:07,259 [INFO] ══ Poll complete ══
+
+2026-03-30 08:00:01,493 [INFO] ══ Scally Tracker — 2026-03-30 08:00 AM CT ══
+2026-03-30 08:00:01,496 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-30 08:00:01,680 [ERROR] Fetch error page 1: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=1
+2026-03-30 08:00:01,680 [INFO] Fetched 0 products from BSC
+2026-03-30 08:00:01,682 [WARNING] No products returned — aborting
+2026-03-30 08:30:00,341 [INFO] ══ Scally Tracker — 2026-03-30 08:30 AM CT ══
+2026-03-30 08:30:00,344 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-30 08:30:00,541 [ERROR] Fetch error page 1: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=1
+2026-03-30 08:30:00,541 [INFO] Fetched 0 products from BSC
+2026-03-30 08:30:00,543 [WARNING] No products returned — aborting
+2026-03-30 09:00:03,519 [INFO] ══ Scally Tracker — 2026-03-30 09:00 AM CT ══
+2026-03-30 09:00:03,522 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-30 09:00:05,473 [INFO] Fetched 655 products from BSC
+2026-03-30 09:00:06,502 [INFO] ntfy 200: 🎉 Restock!
+2026-03-30 09:00:07,065 [INFO] ntfy 200: 🎉 Restock!
+2026-03-30 09:00:07,442 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-30 09:00:07,547 [INFO] ══ Poll complete ══
+
+2026-03-30 09:30:00,251 [INFO] ══ Scally Tracker — 2026-03-30 09:30 AM CT ══
+2026-03-30 09:30:00,253 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-30 09:30:01,877 [INFO] Fetched 655 products from BSC
+2026-03-30 09:30:02,531 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-30 09:30:02,634 [INFO] ══ Poll complete ══
+
+2026-03-30 10:00:01,394 [INFO] ══ Scally Tracker — 2026-03-30 10:00 AM CT ══
+2026-03-30 10:00:01,396 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-30 10:00:03,051 [INFO] Fetched 655 products from BSC
+2026-03-30 10:00:03,502 [INFO] ntfy 200: 🎉 Restock!
+2026-03-30 10:00:04,155 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-30 10:00:04,251 [INFO] ══ Poll complete ══
+
+2026-03-30 10:30:00,241 [INFO] ══ Scally Tracker — 2026-03-30 10:30 AM CT ══
+2026-03-30 10:30:00,244 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-30 10:30:01,864 [INFO] Fetched 655 products from BSC
+2026-03-30 10:30:02,512 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-30 10:30:02,613 [INFO] ══ Poll complete ══
+
+2026-03-30 11:00:01,416 [INFO] ══ Scally Tracker — 2026-03-30 11:00 AM CT ══
+2026-03-30 11:00:01,419 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-30 11:00:03,069 [INFO] Fetched 655 products from BSC
+2026-03-30 11:00:03,737 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-30 11:00:03,831 [INFO] ══ Poll complete ══
+
+2026-03-30 11:30:00,365 [INFO] ══ Scally Tracker — 2026-03-30 11:30 AM CT ══
+2026-03-30 11:30:00,367 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-30 11:30:02,012 [INFO] Fetched 655 products from BSC
+2026-03-30 11:30:02,635 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-30 11:30:02,735 [INFO] ══ Poll complete ══
+
+2026-03-30 12:00:01,358 [INFO] ══ Scally Tracker — 2026-03-30 12:00 PM CT ══
+2026-03-30 12:00:01,360 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-30 12:00:02,957 [INFO] Fetched 655 products from BSC
+2026-03-30 12:00:03,603 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-30 12:00:03,706 [INFO] ══ Poll complete ══
+
+2026-03-30 12:30:00,310 [INFO] ══ Scally Tracker — 2026-03-30 12:30 PM CT ══
+2026-03-30 12:30:00,314 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-30 12:30:01,890 [INFO] Fetched 655 products from BSC
+2026-03-30 12:30:02,904 [INFO] ntfy 200: 🎉 Restock!
+2026-03-30 12:30:03,439 [INFO] ntfy 200: 🎉 Restock!
+2026-03-30 12:30:03,819 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-30 12:30:03,925 [INFO] ══ Poll complete ══
+
+2026-03-30 13:00:01,540 [INFO] ══ Scally Tracker — 2026-03-30 01:00 PM CT ══
+2026-03-30 13:00:01,543 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-30 13:00:03,174 [INFO] Fetched 655 products from BSC
+2026-03-30 13:00:03,849 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-30 13:00:03,959 [INFO] ══ Poll complete ══
+
+2026-03-30 13:30:00,638 [INFO] ══ Scally Tracker — 2026-03-30 01:30 PM CT ══
+2026-03-30 13:30:00,640 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-30 13:30:01,397 [ERROR] Fetch error page 2: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=2
+2026-03-30 13:30:01,398 [INFO] Fetched 250 products from BSC
+2026-03-30 13:30:01,639 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-30 13:30:01,717 [INFO] ══ Poll complete ══
+
+2026-03-30 14:00:01,554 [INFO] ══ Scally Tracker — 2026-03-30 02:00 PM CT ══
+2026-03-30 14:00:01,556 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-30 14:00:04,811 [INFO] Fetched 655 products from BSC
+2026-03-30 14:00:05,603 [INFO] ntfy 200: 🎉 Restock!
+2026-03-30 14:00:05,844 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-30 14:00:05,953 [INFO] ══ Poll complete ══
+
+2026-03-30 14:30:02,617 [INFO] ══ Scally Tracker — 2026-03-30 02:30 PM CT ══
+2026-03-30 14:30:02,620 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-30 14:30:02,814 [ERROR] Fetch error page 1: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=1
+2026-03-30 14:30:02,815 [INFO] Fetched 0 products from BSC
+2026-03-30 14:30:02,817 [WARNING] No products returned — aborting
+2026-03-30 15:00:02,533 [INFO] ══ Scally Tracker — 2026-03-30 03:00 PM CT ══
+2026-03-30 15:00:02,536 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-30 15:00:04,182 [INFO] Fetched 655 products from BSC
+2026-03-30 15:00:04,848 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-30 15:00:04,954 [INFO] ══ Poll complete ══
+
+2026-03-30 15:30:02,542 [INFO] ══ Scally Tracker — 2026-03-30 03:30 PM CT ══
+2026-03-30 15:30:02,545 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-30 15:30:04,190 [INFO] Fetched 655 products from BSC
+2026-03-30 15:30:04,599 [INFO] ntfy 200: ⭐ Wishlisted Restock!
+2026-03-30 15:30:05,205 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-30 15:30:05,317 [INFO] ══ Poll complete ══
+
+2026-03-30 16:00:02,682 [INFO] ══ Scally Tracker — 2026-03-30 04:00 PM CT ══
+2026-03-30 16:00:02,684 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-30 16:00:04,506 [INFO] Fetched 655 products from BSC
+2026-03-30 16:00:05,164 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-30 16:00:05,271 [INFO] ══ Poll complete ══
+
+2026-03-30 16:30:02,683 [INFO] ══ Scally Tracker — 2026-03-30 04:30 PM CT ══
+2026-03-30 16:30:02,685 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-30 16:30:04,481 [INFO] Fetched 655 products from BSC
+2026-03-30 16:30:05,136 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-30 16:30:05,241 [INFO] ══ Poll complete ══
+
+2026-03-30 17:00:01,541 [INFO] ══ Scally Tracker — 2026-03-30 05:00 PM CT ══
+2026-03-30 17:00:01,543 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-30 17:00:03,565 [INFO] Fetched 655 products from BSC
+2026-03-30 17:00:04,231 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-30 17:00:04,341 [INFO] ══ Poll complete ══
+
+2026-03-30 17:30:01,474 [INFO] ══ Scally Tracker — 2026-03-30 05:30 PM CT ══
+2026-03-30 17:30:01,476 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-30 17:30:03,561 [INFO] Fetched 655 products from BSC
+2026-03-30 17:30:04,183 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-30 17:30:04,293 [INFO] ══ Poll complete ══
+
+2026-03-30 18:00:01,579 [INFO] ══ Scally Tracker — 2026-03-30 06:00 PM CT ══
+2026-03-30 18:00:01,581 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-30 18:00:03,905 [INFO] Fetched 655 products from BSC
+2026-03-30 18:00:04,334 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-30 18:00:04,445 [INFO] ══ Poll complete ══
+
+2026-03-30 18:30:04,733 [INFO] ══ Scally Tracker — 2026-03-30 06:30 PM CT ══
+2026-03-30 18:30:04,737 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-30 18:30:07,672 [INFO] Fetched 655 products from BSC
+2026-03-30 18:30:08,341 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-30 18:30:08,453 [INFO] ══ Poll complete ══
+
+2026-03-30 19:00:03,785 [INFO] ══ Scally Tracker — 2026-03-30 07:00 PM CT ══
+2026-03-30 19:00:03,788 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-30 19:00:05,806 [INFO] Fetched 655 products from BSC
+2026-03-30 19:00:06,467 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-30 19:00:06,570 [INFO] ══ Poll complete ══
+
+2026-03-31 07:00:02,311 [INFO] ══ Scally Tracker — 2026-03-31 07:00 AM CT ══
+2026-03-31 07:00:02,314 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-31 07:00:03,983 [INFO] Fetched 655 products from BSC
+2026-03-31 07:00:04,717 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-31 07:00:04,832 [INFO] ══ Poll complete ══
+
+2026-03-31 07:30:03,128 [INFO] ══ Scally Tracker — 2026-03-31 07:30 AM CT ══
+2026-03-31 07:30:03,131 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-31 07:30:05,786 [INFO] Fetched 655 products from BSC
+2026-03-31 07:30:06,460 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-31 07:30:06,576 [INFO] ══ Poll complete ══
+
+2026-03-31 08:00:05,267 [INFO] ══ Scally Tracker — 2026-03-31 08:00 AM CT ══
+2026-03-31 08:00:05,270 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-31 08:00:06,801 [INFO] Fetched 655 products from BSC
+2026-03-31 08:00:07,474 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-31 08:00:07,589 [INFO] ══ Poll complete ══
+
+2026-03-31 08:30:02,102 [INFO] ══ Scally Tracker — 2026-03-31 08:30 AM CT ══
+2026-03-31 08:30:02,104 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-31 08:30:04,944 [INFO] Fetched 655 products from BSC
+2026-03-31 08:30:05,617 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-31 08:30:05,735 [INFO] ══ Poll complete ══
+
+2026-03-31 09:00:05,123 [INFO] ══ Scally Tracker — 2026-03-31 09:00 AM CT ══
+2026-03-31 09:00:05,126 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-31 09:00:06,903 [INFO] Fetched 655 products from BSC
+2026-03-31 09:00:07,654 [INFO] ntfy 200: 🎉 Restock!
+2026-03-31 09:00:08,177 [INFO] ntfy 200: 🎉 Restock!
+2026-03-31 09:00:08,755 [INFO] ntfy 200: 🎉 Restock!
+2026-03-31 09:00:09,113 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-31 09:00:09,232 [INFO] ══ Poll complete ══
+
+2026-03-31 09:30:01,229 [INFO] ══ Scally Tracker — 2026-03-31 09:30 AM CT ══
+2026-03-31 09:30:01,231 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-31 09:30:03,151 [INFO] Fetched 655 products from BSC
+2026-03-31 09:30:03,798 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-31 09:30:03,903 [INFO] ══ Poll complete ══
+
+2026-03-31 10:00:02,313 [INFO] ══ Scally Tracker — 2026-03-31 10:00 AM CT ══
+2026-03-31 10:00:02,316 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-31 10:00:04,093 [INFO] Fetched 655 products from BSC
+2026-03-31 10:00:04,584 [INFO] ntfy 200: ⭐ Wishlisted Restock!
+2026-03-31 10:00:05,171 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-31 10:00:05,285 [INFO] ══ Poll complete ══
+
+2026-03-31 10:30:02,260 [INFO] ══ Scally Tracker — 2026-03-31 10:30 AM CT ══
+2026-03-31 10:30:02,263 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-31 10:30:04,084 [INFO] Fetched 655 products from BSC
+2026-03-31 10:30:04,813 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-31 10:30:05,553 [INFO] ══ Poll complete ══
+
+2026-03-31 11:00:01,419 [INFO] ══ Scally Tracker — 2026-03-31 11:00 AM CT ══
+2026-03-31 11:00:01,422 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-31 11:00:03,255 [INFO] Fetched 655 products from BSC
+2026-03-31 11:00:03,694 [INFO] ntfy 200: ⭐ Wishlisted Restock!
+2026-03-31 11:00:04,291 [INFO] ntfy 200: ⭐ Wishlisted Restock!
+2026-03-31 11:00:05,155 [INFO] ntfy 200: 🎉 Restock!
+2026-03-31 11:00:05,553 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-31 11:00:05,671 [INFO] ══ Poll complete ══
+
+2026-03-31 11:30:04,352 [INFO] ══ Scally Tracker — 2026-03-31 11:30 AM CT ══
+2026-03-31 11:30:04,355 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-31 11:30:06,109 [INFO] Fetched 655 products from BSC
+2026-03-31 11:30:06,774 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-31 11:30:06,893 [INFO] ══ Poll complete ══
+
+2026-03-31 12:00:02,320 [INFO] ══ Scally Tracker — 2026-03-31 12:00 PM CT ══
+2026-03-31 12:00:02,323 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-31 12:00:04,678 [INFO] Fetched 655 products from BSC
+2026-03-31 12:00:05,349 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-31 12:00:05,468 [INFO] ══ Poll complete ══
+
+2026-03-31 12:30:06,222 [INFO] ══ Scally Tracker — 2026-03-31 12:30 PM CT ══
+2026-03-31 12:30:06,225 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-31 12:30:08,537 [INFO] Fetched 655 products from BSC
+2026-03-31 12:30:09,218 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-31 12:30:09,336 [INFO] ══ Poll complete ══
+
+2026-03-31 13:00:06,108 [INFO] ══ Scally Tracker — 2026-03-31 01:00 PM CT ══
+2026-03-31 13:00:06,112 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-31 13:00:07,810 [INFO] Fetched 655 products from BSC
+2026-03-31 13:00:08,361 [INFO] ntfy 200: 🎉 Restock!
+2026-03-31 13:00:09,397 [INFO] ntfy 200: 🎉 Restock!
+2026-03-31 13:00:09,461 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-31 13:00:09,590 [INFO] ══ Poll complete ══
+
+2026-03-31 13:30:06,100 [INFO] ══ Scally Tracker — 2026-03-31 01:30 PM CT ══
+2026-03-31 13:30:06,103 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-31 13:30:08,309 [INFO] Fetched 655 products from BSC
+2026-03-31 13:30:08,997 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-31 13:30:09,119 [INFO] ══ Poll complete ══
+
+2026-03-31 14:00:06,219 [INFO] ══ Scally Tracker — 2026-03-31 02:00 PM CT ══
+2026-03-31 14:00:06,222 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-31 14:00:07,889 [INFO] Fetched 655 products from BSC
+2026-03-31 14:00:08,557 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-31 14:00:08,679 [INFO] ══ Poll complete ══
+
+2026-03-31 14:30:06,102 [INFO] ══ Scally Tracker — 2026-03-31 02:30 PM CT ══
+2026-03-31 14:30:06,104 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-03-31 14:30:08,285 [INFO] Fetched 655 products from BSC
+2026-03-31 14:30:08,968 [INFO] Categories: {'apparel': 143, 'caps': 343, 'other': 17, 'pins': 152}
+2026-03-31 14:30:09,089 [INFO] ══ Poll complete ══
+
