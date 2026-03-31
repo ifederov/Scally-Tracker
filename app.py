@@ -62,6 +62,10 @@ def init_user_items():
             conn.execute("ALTER TABLE manual_caps ADD COLUMN panels TEXT")
         except Exception:
             pass
+        try:
+            conn.execute("ALTER TABLE manual_caps ADD COLUMN images_json TEXT")
+        except Exception:
+            pass
 
 init_user_items()
 
@@ -279,31 +283,68 @@ def api_user_item(pid):
 
 @app.route("/api/manual_caps")
 def api_manual_caps():
+    import json
     with db() as conn:
         rows = conn.execute(
             "SELECT * FROM manual_caps ORDER BY created_at DESC"
         ).fetchall()
-    return jsonify([dict(r) for r in rows])
+    result = []
+    for r in rows:
+        cap = dict(r)
+        images_json_val = cap.get('images_json')
+        if images_json_val:
+            try:
+                cap['images'] = json.loads(images_json_val)
+            except Exception:
+                cap['images'] = [cap['image']] if cap.get('image') else []
+        else:
+            cap['images'] = [cap['image']] if cap.get('image') else []
+        result.append(cap)
+    return jsonify(result)
+
+
+@app.route("/api/manual_cap/<int:mid>", methods=["GET"])
+def api_manual_cap_get(mid):
+    import json
+    with db() as conn:
+        row = conn.execute("SELECT * FROM manual_caps WHERE id=?", (mid,)).fetchone()
+    if not row:
+        return jsonify({"error": "not found"}), 404
+    cap = dict(row)
+    images_json_val = cap.get('images_json')
+    if images_json_val:
+        try:
+            cap['images'] = json.loads(images_json_val)
+        except Exception:
+            cap['images'] = [cap['image']] if cap.get('image') else []
+    else:
+        cap['images'] = [cap['image']] if cap.get('image') else []
+    return jsonify(cap)
 
 
 @app.route("/api/manual_cap", methods=["POST"])
 def api_manual_cap_create():
+    import json
     data = request.get_json()
     if not data.get("name"):
         return jsonify({"error": "name is required"}), 400
     from datetime import datetime
     now = datetime.now().isoformat()
+    images = [i for i in (data.get("images") or []) if i]
+    images_json_str = json.dumps(images)
+    first_image = images[0] if images else None
     with db() as conn:
         cur = conn.execute("""
-            INSERT INTO manual_caps (name, color, style, material, notes, image, wishlisted, cap_type, panels, created_at)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO manual_caps (name, color, style, material, notes, image, images_json, wishlisted, cap_type, panels, created_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (
             data.get("name", "").strip(),
             data.get("color",    "").strip(),
             data.get("style",    "").strip(),
             data.get("material", "").strip(),
             data.get("notes",    "").strip(),
-            data.get("image",    None),
+            first_image,
+            images_json_str,
             int(bool(data.get("wishlisted", False))),
             data.get("cap_type", "other").strip() or "other",
             data.get("panels",   None),
@@ -328,13 +369,16 @@ def api_manual_cap_update(mid):
 
 @app.route("/api/manual_cap/<int:mid>/edit", methods=["POST"])
 def api_manual_cap_edit(mid):
+    import json
     data = request.get_json()
     if not data.get("name"):
         return jsonify({"error": "name is required"}), 400
-    from datetime import datetime
+    images = [i for i in (data.get("images") or []) if i]
+    images_json_str = json.dumps(images)
+    first_image = images[0] if images else None
     with db() as conn:
         conn.execute("""
-            UPDATE manual_caps SET name=?, color=?, style=?, material=?, notes=?, image=?, cap_type=?, panels=?
+            UPDATE manual_caps SET name=?, color=?, style=?, material=?, notes=?, image=?, images_json=?, cap_type=?, panels=?
             WHERE id=?
         """, (
             data.get("name","").strip(),
@@ -342,7 +386,8 @@ def api_manual_cap_edit(mid):
             data.get("style","").strip(),
             data.get("material","").strip(),
             data.get("notes","").strip(),
-            data.get("image", None),
+            first_image,
+            images_json_str,
             data.get("cap_type", "other").strip() or "other",
             data.get("panels", None),
             mid,

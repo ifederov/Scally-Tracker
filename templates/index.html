@@ -500,9 +500,12 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
 .mf-drop-icon { font-size:22px; display:block; margin-bottom:6px; }
 .mf-url-input { width:100%; box-sizing:border-box; border:1.5px solid var(--border); border-radius:var(--r); background:var(--cream); color:var(--text); font-family:'Source Sans 3',sans-serif; font-size:14px; padding:9px 12px; transition:border-color .15s; }
 .mf-url-input:focus { outline:none; border-color:var(--gold); }
-.mf-preview-wrap { position:relative; display:inline-block; margin-top:10px; }
-.mf-preview-wrap img { max-width:100%; max-height:140px; border-radius:var(--r); display:block; }
-.mf-clear-img { position:absolute; top:-8px; right:-8px; width:22px; height:22px; border-radius:50%; background:var(--navy); color:#fff; border:none; cursor:pointer; font-size:12px; display:flex; align-items:center; justify-content:center; }
+.mf-img-tray { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+.mf-img-thumb { position:relative; width:80px; height:80px; border-radius:var(--r); overflow:hidden; border:1.5px solid var(--border); flex-shrink:0; }
+.mf-img-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+.mf-thumb-remove { position:absolute; top:3px; right:3px; width:20px; height:20px; border-radius:50%; background:rgba(0,0,0,.65); color:#fff; border:none; cursor:pointer; font-size:11px; display:flex; align-items:center; justify-content:center; line-height:1; padding:0; }
+.mf-add-url-btn { background:var(--navy); border:1.5px solid var(--navy); border-radius:var(--r); color:#fff; font-family:'Source Sans 3',sans-serif; font-size:13px; font-weight:700; padding:9px 16px; cursor:pointer; white-space:nowrap; transition:background .15s; }
+.mf-add-url-btn:hover { background:var(--navy2); }
 .mf-btns { display:flex; gap:10px; justify-content:flex-end; margin-top:20px; }
 .mf-cancel { background:var(--cream2); border:1.5px solid var(--border); border-radius:var(--r); font-family:'Source Sans 3',sans-serif; font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--text2); padding:9px 20px; cursor:pointer; transition:all .15s; }
 .mf-cancel:hover { border-color:var(--navy); color:var(--navy); }
@@ -907,7 +910,7 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
       <div><label>Notes</label><input type="text" id="mf-notes" placeholder="Optional notes"></div>
     </div>
     <div class="mf-row">
-      <label>Photo</label>
+      <label>Photos</label>
       <div class="mf-photo-tabs">
         <button class="mf-ptab active" id="mf-tab-file" onclick="setMfMode('file')">Upload / Paste</button>
         <button class="mf-ptab" id="mf-tab-url" onclick="setMfMode('url')">URL</button>
@@ -920,12 +923,12 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
         </div>
       </div>
       <div id="mf-panel-url" style="display:none">
-        <input type="text" class="mf-url-input" id="mf-url" placeholder="https://…" oninput="mfUrlChanged(this.value)">
+        <div style="display:flex;gap:6px">
+          <input type="text" class="mf-url-input" id="mf-url" placeholder="https://…" style="flex:1">
+          <button type="button" class="mf-add-url-btn" onclick="mfAddUrl()">Add</button>
+        </div>
       </div>
-      <div class="mf-preview-wrap" id="mf-preview-wrap" style="display:none">
-        <img id="mf-preview" src="" alt="Preview">
-        <button class="mf-clear-img" onclick="clearMfImage()" title="Remove image">✕</button>
-      </div>
+      <div class="mf-img-tray" id="mf-img-tray" style="display:none"></div>
     </div>
     <div class="mf-btns">
       <button class="mf-cancel" onclick="closeManualForm()">Cancel</button>
@@ -1114,7 +1117,7 @@ document.addEventListener('DOMContentLoaded', () => {
     for(const item of items){
       if(item.type.startsWith('image/')){
         const reader = new FileReader();
-        reader.onload = ev => { mfImageData = ev.target.result; showMfPreview(mfImageData); setMfMode('file'); };
+        reader.onload = ev => { mfImages.push(ev.target.result); mfRenderTray(); setMfMode('file'); };
         reader.readAsDataURL(item.getAsFile());
         e.preventDefault();
         break;
@@ -1397,13 +1400,13 @@ function render(products, manualCaps=[]){
       ].filter(Boolean).join('');
       const ribbon = `<div class="card-ribbon">${ribbons}</div>`;
       const btns = collectionView === 'sold'
-        ? `<button class="delete-btn" onclick="setManualSold(${p._mid},0)">↩ Owned</button>
-           <button class="delete-btn" onclick="deleteManualCap(${p._mid})">🗑 Delete</button>`
+        ? `<button class="delete-btn" onclick="event.stopPropagation();setManualSold(${p._mid},0)">↩ Owned</button>
+           <button class="delete-btn" onclick="event.stopPropagation();deleteManualCap(${p._mid})">🗑 Delete</button>`
         : collectionView === 'wishlist'
-          ? `<button class="delete-btn" onclick="setManualWishlisted(${p._mid},0)">✅ Mark Owned</button>
-             <button class="delete-btn" onclick="deleteManualCap(${p._mid})">🗑 Delete</button>`
-          : `<button class="delete-btn" onclick='openEditManualCap(${p._mid})'>✏️ Edit</button>`;
-      return `<div class="card manual-card" onclick="openEditManualCap(${p._mid})">
+          ? `<button class="delete-btn" onclick="event.stopPropagation();setManualWishlisted(${p._mid},0)">✅ Mark Owned</button>
+             <button class="delete-btn" onclick="event.stopPropagation();deleteManualCap(${p._mid})">🗑 Delete</button>`
+          : '';
+      return `<div class="card manual-card" onclick="openManualCap(${p._mid})">
         <div class="card-img-wrap">${img}<div class="dot" style="opacity:0"></div>${ribbon}</div>
         <div class="card-body">
           <div class="card-cat">CAPS</div>
@@ -1828,7 +1831,7 @@ async function openProduct(id){
 }
 
 // ── Manual Caps ───────────────────────────────────────────────
-let mfImageData = null;
+let mfImages = [];
 
 function openManualForm(cap=null){
   document.getElementById('mf-name').value = cap ? cap.name : '';
@@ -1845,16 +1848,11 @@ function openManualForm(cap=null){
   statusRow.style.display = cap ? 'none' : '';
   const defaultStatus = (!cap && cat==='collection' && collectionView==='wishlist') ? 'wishlist' : 'owned';
   setMfStatus(defaultStatus);
-  mfImageData = cap ? (cap.image||null) : null;
+  mfImages = cap ? (cap.images && cap.images.length ? [...cap.images] : (cap.image ? [cap.image] : [])) : [];
   document.getElementById('mf-image').value='';
-  document.getElementById('mf-url').value = (cap && cap.image && !cap.image.startsWith('data:')) ? cap.image : '';
-  if(mfImageData){
-    showMfPreview(mfImageData);
-  } else {
-    document.getElementById('mf-preview-wrap').style.display='none';
-    document.getElementById('mf-preview').src='';
-  }
-  setMfMode(cap && cap.image && !cap.image.startsWith('data:') ? 'url' : 'file');
+  document.getElementById('mf-url').value='';
+  mfRenderTray();
+  setMfMode('file');
   document.getElementById('manual-overlay').classList.add('open');
 }
 
@@ -1869,29 +1867,30 @@ function mfFileSelected(e){
   const file = e.target.files[0];
   if(!file) return;
   const reader = new FileReader();
-  reader.onload = ev => { mfImageData = ev.target.result; showMfPreview(mfImageData); };
+  reader.onload = ev => { mfImages.push(ev.target.result); mfRenderTray(); document.getElementById('mf-image').value=''; };
   reader.readAsDataURL(file);
 }
 
-function mfUrlChanged(url){
-  mfImageData = url.trim() || null;
-  if(mfImageData) showMfPreview(mfImageData);
-  else document.getElementById('mf-preview-wrap').style.display='none';
-}
-
-function showMfPreview(src){
-  const img  = document.getElementById('mf-preview');
-  const wrap = document.getElementById('mf-preview-wrap');
-  img.src = src;
-  wrap.style.display = 'inline-block';
-}
-
-function clearMfImage(){
-  mfImageData = null;
-  document.getElementById('mf-image').value='';
+function mfAddUrl(){
+  const url = document.getElementById('mf-url').value.trim();
+  if(!url) return;
+  mfImages.push(url);
+  mfRenderTray();
   document.getElementById('mf-url').value='';
-  document.getElementById('mf-preview-wrap').style.display='none';
-  document.getElementById('mf-preview').src='';
+}
+
+function mfRenderTray(){
+  const tray = document.getElementById('mf-img-tray');
+  if(!mfImages.length){ tray.style.display='none'; tray.innerHTML=''; return; }
+  tray.style.display='flex';
+  tray.innerHTML = mfImages.map((src,i)=>
+    `<div class="mf-img-thumb"><img src="${src}" alt="Photo ${i+1}"><button class="mf-thumb-remove" onclick="mfRemoveImage(${i})">✕</button></div>`
+  ).join('');
+}
+
+function mfRemoveImage(idx){
+  mfImages.splice(idx,1);
+  mfRenderTray();
 }
 
 function setMfStatus(status){
@@ -1921,7 +1920,7 @@ async function saveManualCap(){
     style:      document.getElementById('mf-style').value.trim(),
     material:   document.getElementById('mf-material').value.trim(),
     notes:      document.getElementById('mf-notes').value.trim(),
-    image:      mfImageData,
+    images:     mfImages,
     wishlisted: (!editId && getMfStatus()==='wishlist') ? 1 : 0,
     cap_type:   document.getElementById('mf-cap-type').value,
     panels:     document.getElementById('mf-panels').value || null,
@@ -1963,6 +1962,52 @@ async function setManualWishlisted(id, wishlisted){
   });
   load();
   loadStats();
+}
+
+async function openManualCap(id){
+  modalPid = null;
+  document.getElementById('m-meta').innerHTML='';
+  document.getElementById('m-body').innerHTML=`<div class="state"><span class="spin"></span> Loading…</div>`;
+  document.getElementById('m-img').src='';
+  document.getElementById('m-img').style.display='';
+  document.getElementById('car-dots').innerHTML='';
+  document.getElementById('overlay').classList.add('open');
+  try{
+    const cap = await fetch(`/api/manual_cap/${id}`).then(r=>r.json());
+    const images = cap.images && cap.images.length ? cap.images : (cap.image ? [cap.image] : []);
+    initCarousel(images);
+    if(!images.length) document.getElementById('m-img').style.display='none';
+
+    const CAP_TYPE_LABELS = { one_off:'One-Off Drop', retired:'Retired', seasonal:'Seasonal', other:'Other' };
+    const showType = cap.cap_type && cap.cap_type !== 'none';
+    const panelLabel = cap.panels ? (PANEL_LABELS[cap.panels]||cap.panels)+'-Panel' : '';
+    const specs = [
+      ['Color',    cap.color],
+      ['Material', cap.material],
+      ['Style',    cap.style],
+      ['Panels',   panelLabel],
+    ].filter(([,v])=>v);
+    const statusLabel = cap.sold ? '🏷 Sold' : cap.wishlisted ? '⭐ Wishlisted' : '✅ Owned';
+
+    let meta = `<div class="m-cat">Manual Cap${showType ? ` · ${CAP_TYPE_LABELS[cap.cap_type]||cap.cap_type}` : ''}</div>
+      <div class="m-title">${x(cap.name)}</div>`;
+    if(specs.length){
+      meta += `<div class="spec-row">`+
+        specs.map(([k,v])=>`<div class="spec-chip"><span class="spec-k">${k}</span><span class="spec-v">${x(v)}</span></div>`).join('')+`</div>`;
+    }
+    meta += `<div class="status-row"><span class="status-label">Status</span><span style="font-weight:600">${statusLabel}</span></div>`;
+    document.getElementById('m-meta').innerHTML = meta;
+
+    let body = '';
+    if(cap.notes) body += `<div class="desc-block">${x(cap.notes)}</div>`;
+    body += `<div style="display:flex;gap:8px;padding:12px 16px 16px;">
+      <button class="view-btn" style="text-decoration:none;cursor:pointer;" onclick="closeModal();openEditManualCap(${cap.id})">✏️ Edit</button>
+      <button class="view-btn" style="background:#c0392b;border-color:#c0392b;text-decoration:none;cursor:pointer;" onclick="closeModal();deleteManualCap(${cap.id})">🗑 Delete</button>
+    </div>`;
+    document.getElementById('m-body').innerHTML = body;
+  }catch(e){
+    document.getElementById('m-body').innerHTML=`<div class="state"><div class="state-title">Failed to load cap</div></div>`;
+  }
 }
 
 async function openEditManualCap(id){
