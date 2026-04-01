@@ -2087,9 +2087,12 @@ function x(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace
 function catEmoji(c){ return {caps:'🧢',apparel:'👕',pins:'📌'}[c]||'🛍'; }
 
 // ── Releases ────────────────────────────────────────────────────
+function stripThe(name){ return name.replace(/^The\s+/i, ''); }
+
 let _relYear = 'all', _relMonth = 'all', _relLimited = false;
 let _relCache  = {};   // id → release object
-let _relGroups = [];   // [{name, entries}] for submenu lookup
+let _relGroups = [];   // [{name, entries}] for all-years submenu lookup
+let _relYearCondensed = []; // [{baseName, date, colors, entries, isLimited}] for year-view submenu
 let _relEditId = null;
 let _relSubmenuOpen = null;
 
@@ -2152,22 +2155,28 @@ function renderReleases(rows){
     return;
   }
 
-  // All years → one line per cap, alphabetical, dates right-justified (filtered by month if set)
+  // All years → one line per base name, alphabetical, dates right-justified (filtered by month if set)
   if(_relYear === 'all'){
     const nameMap = new Map();
     rows.forEach(r => {
-      if(!nameMap.has(r.name)) nameMap.set(r.name, []);
-      nameMap.get(r.name).push(r);
+      const dashIdx = r.name.indexOf(' - ');
+      const baseName = dashIdx >= 0 ? r.name.slice(0, dashIdx) : r.name;
+      if(!nameMap.has(baseName)) nameMap.set(baseName, []);
+      nameMap.get(baseName).push(r);
     });
-    const sorted = [...nameMap.entries()].sort((a,b)=>a[0].localeCompare(b[0]));
+    const sorted = [...nameMap.entries()].sort((a,b)=>stripThe(a[0]).localeCompare(stripThe(b[0])));
     // Store groups for submenu lookup by index
     _relGroups = sorted.map(([name, entries]) => ({name, entries}));
     list.innerHTML = _relGroups.map((g, idx) => {
       const anyLimited = g.entries.some(r => r.is_limited);
       const badge = anyLimited ? `<span class="rel-badge">★ Limited</span>` : '';
-      const chips = g.entries.map(r => `<span class="rel-date-chip">${x(r.release_date)}</span>`).join('');
+      // De-duplicate date chips (multiple colors on same date = one chip)
+      const seenDates = new Set();
+      const chips = g.entries
+        .filter(r => { if(seenDates.has(r.release_date)) return false; seenDates.add(r.release_date); return true; })
+        .map(r => `<span class="rel-date-chip">${x(r.release_date)}</span>`).join('');
       return `<div class="rel-cap-row">
-        <div class="rel-cap-left"><span class="rel-cap-name">${x(g.name)}</span>${badge}</div>
+        <div class="rel-cap-left"><span class="rel-cap-name">${x(stripThe(g.name))}</span>${badge}</div>
         <div class="rel-cap-dates">${chips}</div>
         <div class="rel-cap-btns">
           <button class="rel-row-btn rel-more-btn" onclick="openRelSubmenu(${idx},this)" title="Actions">⋯</button>
@@ -2177,19 +2186,36 @@ function renderReleases(rows){
     return;
   }
 
-  // Year selected → group by year
+  // Year selected → group by year, then condense same-name same-date entries by color
   const groups = {};
   rows.forEach(r => {
     const yr = 2000 + parseInt(r.release_date.split('/')[2]);
     if(!groups[yr]) groups[yr] = [];
     groups[yr].push(r);
   });
+  _relYearCondensed = [];
   const years = Object.keys(groups).sort((a,b)=>b-a);
   list.innerHTML = years.map(yr => {
     const items = groups[yr];
+    // Condense by (baseName, release_date)
+    const condensedMap = new Map();
+    items.forEach(r => {
+      const dashIdx = r.name.indexOf(' - ');
+      const baseName = dashIdx >= 0 ? r.name.slice(0, dashIdx) : r.name;
+      const color = dashIdx >= 0 ? r.name.slice(dashIdx + 3) : null;
+      const key = baseName + '\x00' + r.release_date;
+      if(!condensedMap.has(key)) condensedMap.set(key, {baseName, date: r.release_date, colors: [], entries: [], isLimited: false});
+      const g = condensedMap.get(key);
+      if(color) g.colors.push(color);
+      g.entries.push(r);
+      if(r.is_limited) g.isLimited = true;
+    });
+    const condensed = [...condensedMap.values()].sort((a,b)=>stripThe(a.baseName).localeCompare(stripThe(b.baseName)));
+    const startIdx = _relYearCondensed.length;
+    _relYearCondensed.push(...condensed);
     return `<div class="rel-year-group">
-      <div class="rel-year-hdr">${yr} <span class="rel-year-count">[${items.length}]</span></div>
-      <div class="rel-list">${items.map(r=>relRowHtml(r)).join('')}</div>
+      <div class="rel-year-hdr">${yr} <span class="rel-year-count">[${condensed.length}]</span></div>
+      <div class="rel-list">${condensed.map((g, i) => relCondensedRowHtml(g, startIdx + i)).join('')}</div>
     </div>`;
   }).join('');
 }
@@ -2205,6 +2231,58 @@ function relRowHtml(r){
       <button class="rel-row-btn rel-more-btn" title="Actions" onclick="openRelRowSubmenu(${r.id},this)">⋯</button>
     </div>
   </div>`;
+}
+
+function relCondensedRowHtml(g, idx){
+  const limited = g.isLimited ? ' limited' : '';
+  const badge   = g.isLimited ? `<span class="rel-badge">Limited</span>` : '';
+  const sortedColors = [...g.colors].sort((a,b) => a.localeCompare(b));
+  const displayName = stripThe(g.baseName);
+  if(g.entries.length === 1){
+    const r = g.entries[0];
+    return `<div class="rel-row${limited}">
+      <div class="rel-name">${x(displayName)}</div>
+      ${badge}
+      <div class="rel-date">${x(g.date)}</div>
+      <div class="rel-cap-btns">
+        <button class="rel-row-btn rel-more-btn" title="Actions" onclick="openRelRowSubmenu(${r.id},this)">⋯</button>
+      </div>
+    </div>`;
+  }
+  return `<div class="rel-row${limited}">
+    <div class="rel-name">${x(displayName)}</div>
+    ${badge}
+    <div class="rel-date">${x(g.date)}</div>
+    <div class="rel-cap-btns">
+      <button class="rel-row-btn rel-more-btn" title="Actions" onclick="openYearCondensedSubmenu(${idx},this)">⋯</button>
+    </div>
+  </div>`;
+}
+
+function openYearCondensedSubmenu(idx, anchorEl){
+  const submenu = document.getElementById('rel-submenu');
+  if(_relSubmenuOpen === ('yc-'+idx) && submenu.classList.contains('open')){
+    closeRelSubmenu(); return;
+  }
+  if(_relMoreBtn) _relMoreBtn.classList.remove('active');
+  _relMoreBtn = anchorEl;
+  anchorEl.classList.add('active');
+  _relSubmenuOpen = 'yc-' + idx;
+  const group = _relYearCondensed[idx];
+  submenu.innerHTML = group.entries.map(r => {
+    const dashIdx = r.name.indexOf(' - ');
+    const color = dashIdx >= 0 ? r.name.slice(dashIdx + 3) : r.name;
+    return `<div class="rel-submenu-row">
+      <span class="rel-submenu-date">${x(color)}</span>
+      <button class="rel-row-btn" title="Edit" onclick="editRelEntry(${r.id});closeRelSubmenu()">✏️</button>
+      <button class="rel-row-btn del" title="Delete" onclick="deleteRelEntry(${r.id});closeRelSubmenu()">🗑</button>
+    </div>`;
+  }).join('');
+  const rect = anchorEl.closest('.rel-cap-btns').getBoundingClientRect();
+  submenu.style.top  = (rect.bottom + 4) + 'px';
+  submenu.style.left = 'auto';
+  submenu.style.right = (window.innerWidth - rect.right) + 'px';
+  submenu.classList.add('open');
 }
 
 function openRelRowSubmenu(rid, anchorEl){
