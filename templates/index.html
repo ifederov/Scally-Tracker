@@ -114,7 +114,15 @@ header { background:var(--navy); box-shadow:0 2px 14px rgba(26,35,64,.35); }
 /* ── Releases Panel ─────────────────────────────────────────── */
 #releases-panel { display:none; }
 #releases-panel.show { display:block; }
-.rel-filters { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px; align-items:center; }
+.rel-filters { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:8px; align-items:center; }
+.rel-right-controls { margin-left:auto; display:flex; align-items:center; gap:10px; flex-shrink:0; }
+.rel-radios { display:flex; align-items:center; gap:8px; }
+.rel-radio-lbl, .rel-check-lbl {
+  display:flex; align-items:center; gap:4px;
+  font-family:'Source Sans 3',sans-serif; font-size:12px; font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase; color:var(--text2); cursor:pointer;
+}
+body.dark .rel-radio-lbl, body.dark .rel-check-lbl { color:var(--text2); }
 .rel-pill {
   display:inline-flex; align-items:center; gap:5px;
   font-family:'Source Sans 3',sans-serif; font-size:12px; font-weight:700;
@@ -204,7 +212,6 @@ body.dark .rel-badge { background:rgba(230,126,34,.15); }
 .rel-row-btn.del:hover { border-color:var(--red); color:var(--red); }
 body.dark .rel-row-btn:hover { border-color:var(--gold-lt); color:var(--gold-lt); }
 body.dark .rel-row-btn.del:hover { border-color:#eb5757; color:#eb5757; }
-.rel-month-row { display:flex; gap:4px; flex-wrap:wrap; margin-top:8px; margin-bottom:8px; align-items:center; }
 
 /* Header right */
 .hdr-right { margin-left:auto; display:flex; align-items:center; gap:8px; }
@@ -777,12 +784,9 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
   </div>
 
   <div id="releases-panel">
-    <div style="display:flex;justify-content:flex-end;margin-bottom:4px;margin-top:-20px;">
-      <button class="add-manual-btn" onclick="openRelForm()">Add Release <span class="plus-circle">+</span></button>
-    </div>
     <div class="rel-filters">
       <span class="flabel">Year</span>
-      <div id="rel-year-pills" style="display:flex;gap:6px;flex-wrap:wrap;">
+      <div id="rel-year-pills" style="display:flex;gap:4px;flex-wrap:wrap;">
         <button class="rel-pill active" data-year="all"  onclick="setRelYear(this)">All</button>
         <button class="rel-pill" data-year="2026" onclick="setRelYear(this)">2026</button>
         <button class="rel-pill" data-year="2025" onclick="setRelYear(this)">2025</button>
@@ -791,9 +795,17 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
         <button class="rel-pill" data-year="2022" onclick="setRelYear(this)">2022</button>
         <button class="rel-pill" data-year="2021" onclick="setRelYear(this)">2021</button>
       </div>
-      <button class="rel-pill limited" id="rel-limited-pill" onclick="toggleRelLimited()" style="margin-left:8px;">⭐ Limited Only</button>
+      <div class="rel-right-controls">
+        <span class="flabel">Sort</span>
+        <div class="rel-radios">
+          <label class="rel-radio-lbl"><input type="radio" name="rel-sort" value="alpha" checked onchange="setRelSort(this)"> A–Z</label>
+          <label class="rel-radio-lbl"><input type="radio" name="rel-sort" value="date"  onchange="setRelSort(this)"> Date</label>
+        </div>
+        <label class="rel-check-lbl"><input type="checkbox" id="rel-limited-chk" onchange="toggleRelLimited()"> ⭐ Limited</label>
+        <button class="add-manual-btn" onclick="openRelForm()">Add Release <span class="plus-circle">+</span></button>
+      </div>
     </div>
-    <div class="rel-month-row">
+    <div class="rel-filters" style="margin-bottom:12px;">
       <span class="flabel">Month</span>
       <div id="rel-month-pills" style="display:flex;gap:4px;flex-wrap:wrap;">
         <button class="rel-pill active" data-month="all" onclick="setRelMonth(this)">All</button>
@@ -809,13 +821,6 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
         <button class="rel-pill" data-month="10" onclick="setRelMonth(this)">Oct</button>
         <button class="rel-pill" data-month="11" onclick="setRelMonth(this)">Nov</button>
         <button class="rel-pill" data-month="12" onclick="setRelMonth(this)">Dec</button>
-      </div>
-    </div>
-    <div class="rel-month-row">
-      <span class="flabel">Sort</span>
-      <div id="rel-sort-pills" style="display:flex;gap:6px;">
-        <button class="rel-pill active" data-sort="alpha" onclick="setRelSort(this)">A–Z</button>
-        <button class="rel-pill"        data-sort="date"  onclick="setRelSort(this)">Date</button>
       </div>
     </div>
     <div id="rel-list">
@@ -2137,15 +2142,12 @@ function setRelMonth(btn){
 }
 
 function toggleRelLimited(){
-  _relLimited = !_relLimited;
-  document.getElementById('rel-limited-pill').classList.toggle('active', _relLimited);
+  _relLimited = document.getElementById('rel-limited-chk').checked;
   loadReleases();
 }
 
-function setRelSort(btn){
-  document.querySelectorAll('#rel-sort-pills .rel-pill').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  _relSort = btn.dataset.sort;
+function setRelSort(input){
+  _relSort = input.value;
   loadReleases();
 }
 
