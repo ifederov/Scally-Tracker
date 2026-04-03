@@ -180,7 +180,7 @@ body.dark .rel-submenu-date { color:var(--text); }
   border-radius:var(--r); padding:10px 16px;
   display:flex; align-items:center; gap:12px; animation:fadeUp .2s ease both;
 }
-.rel-row.limited { border-left-color:#e67e22; }
+.rel-row.limited, .rel-cap-row.limited { border-left-color:#e67e22; }
 .rel-name { font-size:14px; font-weight:600; color:var(--text); flex:1; }
 .rel-date { font-size:13px; color:var(--text3); font-weight:600; white-space:nowrap; }
 .rel-badge {
@@ -809,6 +809,13 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
         <button class="rel-pill" data-month="10" onclick="setRelMonth(this)">Oct</button>
         <button class="rel-pill" data-month="11" onclick="setRelMonth(this)">Nov</button>
         <button class="rel-pill" data-month="12" onclick="setRelMonth(this)">Dec</button>
+      </div>
+    </div>
+    <div class="rel-month-row">
+      <span class="flabel">Sort</span>
+      <div id="rel-sort-pills" style="display:flex;gap:6px;">
+        <button class="rel-pill active" data-sort="alpha" onclick="setRelSort(this)">A–Z</button>
+        <button class="rel-pill"        data-sort="date"  onclick="setRelSort(this)">Date</button>
       </div>
     </div>
     <div id="rel-list">
@@ -2089,24 +2096,43 @@ function catEmoji(c){ return {caps:'🧢',apparel:'👕',pins:'📌'}[c]||'🛍'
 // ── Releases ────────────────────────────────────────────────────
 function stripThe(name){ return name.replace(/^The\s+/i, ''); }
 
-let _relYear = 'all', _relMonth = 'all', _relLimited = false;
+let _relYears = new Set(), _relMonths = new Set(), _relLimited = false, _relSort = 'alpha';
 let _relCache  = {};   // id → release object
 let _relGroups = [];   // [{name, entries}] for all-years submenu lookup
 let _relYearCondensed = []; // [{baseName, date, colors, entries, isLimited}] for year-view submenu
+let _relFlatMDGroups  = []; // [{baseName, mo, dy, entries, dates, isLimited}] for flat M/D submenu
 let _relEditId = null;
 let _relSubmenuOpen = null;
 
 function setRelYear(btn){
-  document.querySelectorAll('#rel-year-pills .rel-pill').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  _relYear = btn.dataset.year;
+  const y = btn.dataset.year;
+  if(y === 'all'){
+    _relYears.clear();
+    document.querySelectorAll('#rel-year-pills .rel-pill').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  } else {
+    const n = Number(y);
+    if(_relYears.has(n)){ _relYears.delete(n); } else { _relYears.add(n); }
+    const allPill = document.querySelector('#rel-year-pills .rel-pill[data-year="all"]');
+    allPill.classList.toggle('active', _relYears.size === 0);
+    btn.classList.toggle('active', _relYears.has(n));
+  }
   loadReleases();
 }
 
 function setRelMonth(btn){
-  document.querySelectorAll('#rel-month-pills .rel-pill').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  _relMonth = btn.dataset.month;
+  const m = btn.dataset.month;
+  if(m === 'all'){
+    _relMonths.clear();
+    document.querySelectorAll('#rel-month-pills .rel-pill').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  } else {
+    const n = Number(m);
+    if(_relMonths.has(n)){ _relMonths.delete(n); } else { _relMonths.add(n); }
+    const allPill = document.querySelector('#rel-month-pills .rel-pill[data-month="all"]');
+    allPill.classList.toggle('active', _relMonths.size === 0);
+    btn.classList.toggle('active', _relMonths.has(n));
+  }
   loadReleases();
 }
 
@@ -2116,17 +2142,24 @@ function toggleRelLimited(){
   loadReleases();
 }
 
+function setRelSort(btn){
+  document.querySelectorAll('#rel-sort-pills .rel-pill').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  _relSort = btn.dataset.sort;
+  loadReleases();
+}
+
 async function loadReleases(){
   const list = document.getElementById('rel-list');
   list.innerHTML = `<div class="state"><span class="spin"></span> Loading…</div>`;
   try{
     const search = document.getElementById('search').value.trim();
-    const q = new URLSearchParams({
-      year:    _relYear,
-      month:   _relMonth,
-      limited: _relLimited ? 'yes' : 'all',
-      search,
-    });
+    const useFlatMD = _relSort === 'date' && (_relYears.size >= 2 || _relMonths.size > 0);
+    const params = { limited: _relLimited ? 'yes' : 'all', search };
+    if(_relYears.size > 0)  params.years  = [..._relYears].sort((a,b)=>a-b).join(',');
+    if(_relMonths.size > 0) params.months = [..._relMonths].sort((a,b)=>a-b).join(',');
+    if(useFlatMD) params.sort = 'mday';
+    const q = new URLSearchParams(params);
     const rows = await fetch('/api/releases?' + q).then(r=>r.json());
     // Populate cache and datalist
     _relCache = {};
@@ -2155,38 +2188,55 @@ function renderReleases(rows){
     return;
   }
 
-  // All years → one line per base name, alphabetical, dates right-justified (filtered by month if set)
-  if(_relYear === 'all'){
-    const nameMap = new Map();
-    rows.forEach(r => {
-      const dashIdx = r.name.indexOf(' - ');
-      const baseName = dashIdx >= 0 ? r.name.slice(0, dashIdx) : r.name;
-      if(!nameMap.has(baseName)) nameMap.set(baseName, []);
-      nameMap.get(baseName).push(r);
-    });
-    const sorted = [...nameMap.entries()].sort((a,b)=>stripThe(a[0]).localeCompare(stripThe(b[0])));
-    // Store groups for submenu lookup by index
-    _relGroups = sorted.map(([name, entries]) => ({name, entries}));
-    list.innerHTML = _relGroups.map((g, idx) => {
-      const anyLimited = g.entries.some(r => r.is_limited);
-      const badge = anyLimited ? `<span class="rel-badge">★ Limited</span>` : '';
-      // De-duplicate date chips (multiple colors on same date = one chip)
-      const seenDates = new Set();
-      const chips = g.entries
-        .filter(r => { if(seenDates.has(r.release_date)) return false; seenDates.add(r.release_date); return true; })
-        .map(r => `<span class="rel-date-chip">${x(r.release_date)}</span>`).join('');
-      return `<div class="rel-cap-row">
-        <div class="rel-cap-left"><span class="rel-cap-name">${x(stripThe(g.name))}</span>${badge}</div>
-        <div class="rel-cap-dates">${chips}</div>
-        <div class="rel-cap-btns">
-          <button class="rel-row-btn rel-more-btn" onclick="openRelSubmenu(${idx},this)" title="Actions">⋯</button>
-        </div>
-      </div>`;
-    }).join('');
+  const useFlatMD = _relSort === 'date' && (_relYears.size >= 2 || _relMonths.size > 0);
+
+  // Date sort: multi-year or month filter → flat M/D/Y list
+  if(useFlatMD){
+    renderFlatMDView(rows, list);
     return;
   }
 
-  // Year selected → group by year, then condense same-name same-date entries by color
+  // Date sort: 0 or 1 year, no months → year groups sorted by date desc within
+  if(_relSort === 'date'){
+    renderDateYearView(rows, list);
+    return;
+  }
+
+  // Alpha sort: any year or month filter → year groups, caps alphabetical within
+  if(_relYears.size > 0 || _relMonths.size > 0){
+    renderFilteredYearView(rows, list);
+    return;
+  }
+
+  // Alpha sort, no filters → flat list, all caps alphabetical
+  const nameMap = new Map();
+  rows.forEach(r => {
+    const dashIdx = r.name.indexOf(' - ');
+    const baseName = dashIdx >= 0 ? r.name.slice(0, dashIdx) : r.name;
+    if(!nameMap.has(baseName)) nameMap.set(baseName, []);
+    nameMap.get(baseName).push(r);
+  });
+  const sorted = [...nameMap.entries()].sort((a,b)=>stripThe(a[0]).localeCompare(stripThe(b[0])));
+  _relGroups = sorted.map(([name, entries]) => ({name, entries}));
+  list.innerHTML = _relGroups.map((g, idx) => {
+    const anyLimited = g.entries.some(r => r.is_limited);
+    const badge = anyLimited ? `<span class="rel-badge">★ Limited</span>` : '';
+    const seenDates = new Set();
+    const chips = g.entries
+      .filter(r => { if(seenDates.has(r.release_date)) return false; seenDates.add(r.release_date); return true; })
+      .map(r => `<span class="rel-date-chip">${x(r.release_date)}</span>`).join('');
+    return `<div class="rel-cap-row">
+      <div class="rel-cap-left"><span class="rel-cap-name">${x(stripThe(g.name))}</span>${badge}</div>
+      <div class="rel-cap-dates">${chips}</div>
+      <div class="rel-cap-btns">
+        <button class="rel-row-btn rel-more-btn" onclick="openRelSubmenu(${idx},this)" title="Actions">⋯</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderDateYearView(rows, list){
+  // Year groups descending; within each year sort by date descending
   const groups = {};
   rows.forEach(r => {
     const yr = 2000 + parseInt(r.release_date.split('/')[2]);
@@ -2194,12 +2244,139 @@ function renderReleases(rows){
     groups[yr].push(r);
   });
   _relYearCondensed = [];
-  const years = Object.keys(groups).sort((a,b)=>b-a);
-  list.innerHTML = years.map(yr => {
-    const items = groups[yr];
-    // Condense by (baseName, release_date)
+  const yearKeys = Object.keys(groups).sort((a,b)=>b-a);
+  list.innerHTML = yearKeys.map(yr => {
     const condensedMap = new Map();
-    items.forEach(r => {
+    groups[yr].forEach(r => {
+      const dashIdx = r.name.indexOf(' - ');
+      const baseName = dashIdx >= 0 ? r.name.slice(0, dashIdx) : r.name;
+      const color = dashIdx >= 0 ? r.name.slice(dashIdx + 3) : null;
+      const key = baseName + '\x00' + r.release_date;
+      if(!condensedMap.has(key)) condensedMap.set(key, {baseName, date: r.release_date, colors:[], entries:[], isLimited:false});
+      const g = condensedMap.get(key);
+      if(color) g.colors.push(color);
+      g.entries.push(r);
+      if(r.is_limited) g.isLimited = true;
+    });
+    // Sort by date descending within year
+    const condensed = [...condensedMap.values()].sort((a,b) => {
+      const [am, ad] = a.date.split('/');
+      const [bm, bd] = b.date.split('/');
+      if(+bm !== +am) return +bm - +am;
+      return +bd - +ad;
+    });
+    const startIdx = _relYearCondensed.length;
+    _relYearCondensed.push(...condensed);
+    return `<div class="rel-year-group">
+      <div class="rel-year-hdr">${yr} <span class="rel-year-count">[${condensed.length}]</span></div>
+      <div class="rel-list">${condensed.map((g,i) => relCondensedRowHtml(g, startIdx+i)).join('')}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderFlatMDView(rows, list){
+  // rows pre-sorted by (month, day, year) asc from backend
+  // Group by (baseName, month, day) — same cap on same calendar day across years → one row
+  const groupMap = new Map();
+  rows.forEach(r => {
+    const parts = r.release_date.split('/');
+    const mo = parseInt(parts[0]), dy = parseInt(parts[1]), yr = 2000 + parseInt(parts[2]);
+    const dashIdx = r.name.indexOf(' - ');
+    const baseName = dashIdx >= 0 ? r.name.slice(0, dashIdx) : r.name;
+    const key = baseName + '\x00' + mo + '\x00' + dy;
+    if(!groupMap.has(key))
+      groupMap.set(key, {baseName, mo, dy, entries:[], isLimited:false, minYear:Infinity, dates: new Map()});
+    const g = groupMap.get(key);
+    g.entries.push(r);
+    if(r.is_limited) g.isLimited = true;
+    if(yr < g.minYear) g.minYear = yr;
+    if(!g.dates.has(r.release_date)) g.dates.set(r.release_date, []);
+    g.dates.get(r.release_date).push(r);
+  });
+  // Sort groups by (month, day, minYear)
+  _relFlatMDGroups = [...groupMap.values()].sort((a,b) => {
+    if(a.mo !== b.mo) return a.mo - b.mo;
+    if(a.dy !== b.dy) return a.dy - b.dy;
+    return a.minYear - b.minYear;
+  });
+  list.innerHTML = _relFlatMDGroups.map((g,i) => relFlatMDRowHtml(g,i)).join('');
+}
+
+function relFlatMDRowHtml(g, idx){
+  const limited = g.isLimited ? ' limited' : '';
+  const badge   = g.isLimited ? `<span class="rel-badge">★ Limited</span>` : '';
+  const displayName = stripThe(g.baseName);
+  // Date chips sorted year ascending (earliest left)
+  const sortedDates = [...g.dates.keys()].sort((a,b) => {
+    return (2000 + parseInt(a.split('/')[2])) - (2000 + parseInt(b.split('/')[2]));
+  });
+  const chips = sortedDates.map(d => `<span class="rel-date-chip">${x(d)}</span>`).join('');
+  if(g.entries.length === 1){
+    const r = g.entries[0];
+    return `<div class="rel-cap-row${limited}">
+      <div class="rel-cap-left"><span class="rel-cap-name">${x(displayName)}</span>${badge}</div>
+      <div class="rel-cap-dates">${chips}</div>
+      <div class="rel-cap-btns">
+        <button class="rel-row-btn rel-more-btn" title="Actions" onclick="openRelRowSubmenu(${r.id},this)">⋯</button>
+      </div>
+    </div>`;
+  }
+  return `<div class="rel-cap-row${limited}">
+    <div class="rel-cap-left"><span class="rel-cap-name">${x(displayName)}</span>${badge}</div>
+    <div class="rel-cap-dates">${chips}</div>
+    <div class="rel-cap-btns">
+      <button class="rel-row-btn rel-more-btn" title="Actions" onclick="openFlatMDSubmenu(${idx},this)">⋯</button>
+    </div>
+  </div>`;
+}
+
+function openFlatMDSubmenu(idx, anchorEl){
+  const submenu = document.getElementById('rel-submenu');
+  if(_relSubmenuOpen === ('fmd-'+idx) && submenu.classList.contains('open')){
+    closeRelSubmenu(); return;
+  }
+  if(_relMoreBtn) _relMoreBtn.classList.remove('active');
+  _relMoreBtn = anchorEl;
+  anchorEl.classList.add('active');
+  _relSubmenuOpen = 'fmd-' + idx;
+  const group = _relFlatMDGroups[idx];
+  // Sort entries by year asc for submenu ordering
+  const sortedEntries = [...group.entries].sort((a,b) => {
+    return (2000 + parseInt(a.release_date.split('/')[2])) - (2000 + parseInt(b.release_date.split('/')[2]));
+  });
+  const allSameDate = new Set(sortedEntries.map(r=>r.release_date)).size === 1;
+  submenu.innerHTML = sortedEntries.map(r => {
+    const dashIdx = r.name.indexOf(' - ');
+    const color = dashIdx >= 0 ? r.name.slice(dashIdx + 3) : null;
+    const label = allSameDate
+      ? x(color || r.release_date)
+      : (color ? `${x(color)} (${x(r.release_date)})` : x(r.release_date));
+    return `<div class="rel-submenu-row">
+      <span class="rel-submenu-date">${label}</span>
+      <button class="rel-row-btn" title="Edit" onclick="editRelEntry(${r.id});closeRelSubmenu()">✏️</button>
+      <button class="rel-row-btn del" title="Delete" onclick="deleteRelEntry(${r.id});closeRelSubmenu()">🗑</button>
+    </div>`;
+  }).join('');
+  const rect = anchorEl.closest('.rel-cap-btns').getBoundingClientRect();
+  submenu.style.top  = (rect.bottom + 4) + 'px';
+  submenu.style.left = 'auto';
+  submenu.style.right = (window.innerWidth - rect.right) + 'px';
+  submenu.classList.add('open');
+}
+
+function renderFilteredYearView(rows, list){
+  // Group by year descending; within each year, condense same-name+date by color, sort alphabetically
+  const groups = {};
+  rows.forEach(r => {
+    const yr = 2000 + parseInt(r.release_date.split('/')[2]);
+    if(!groups[yr]) groups[yr] = [];
+    groups[yr].push(r);
+  });
+  _relYearCondensed = [];
+  const yearKeys = Object.keys(groups).sort((a,b)=>b-a);
+  list.innerHTML = yearKeys.map(yr => {
+    const condensedMap = new Map();
+    groups[yr].forEach(r => {
       const dashIdx = r.name.indexOf(' - ');
       const baseName = dashIdx >= 0 ? r.name.slice(0, dashIdx) : r.name;
       const color = dashIdx >= 0 ? r.name.slice(dashIdx + 3) : null;

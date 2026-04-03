@@ -500,10 +500,12 @@ def api_release_delete(rid):
 @app.route("/api/releases")
 def api_releases():
     from datetime import datetime
-    search  = request.args.get("search",  "").strip().lower()
-    limited = request.args.get("limited", "all")   # all|yes|no
-    year    = request.args.get("year",    "all")
-    month   = request.args.get("month",   "all")   # all|1-12
+    search     = request.args.get("search",  "").strip().lower()
+    limited    = request.args.get("limited", "all")   # all|yes|no
+    year       = request.args.get("year",    "all")
+    month      = request.args.get("month",   "all")   # all|1-12
+    months_str = request.args.get("months",  "")      # comma-separated, e.g. "4,5,6"
+    years_str  = request.args.get("years",   "")      # comma-separated, e.g. "2024,2025"
 
     def parse_date(s):
         try:
@@ -512,17 +514,36 @@ def api_releases():
         except Exception:
             return datetime.min
 
+    month_set = set()
+    for tok in months_str.split(","):
+        tok = tok.strip()
+        if tok.isdigit():
+            month_set.add(int(tok))
+
+    year_set = set()
+    for tok in years_str.split(","):
+        tok = tok.strip()
+        if tok.isdigit():
+            year_set.add(int(tok))
+
     with db() as conn:
         rows = conn.execute("SELECT * FROM releases").fetchall()
 
     out = []
     for r in rows:
         rec = dict(r)
-        if search  and search not in rec["name"].lower():          continue
-        if limited == "yes" and not rec["is_limited"]:             continue
-        if limited == "no"  and     rec["is_limited"]:             continue
-        if year    != "all" and str(parse_date(rec["release_date"]).year)  != year:  continue
-        if month   != "all" and str(parse_date(rec["release_date"]).month) != month: continue
+        pd = parse_date(rec["release_date"])
+        if search  and search not in rec["name"].lower():  continue
+        if limited == "yes" and not rec["is_limited"]:     continue
+        if limited == "no"  and     rec["is_limited"]:     continue
+        if year_set:
+            if pd.year not in year_set: continue
+        elif year != "all" and str(pd.year) != year:
+            continue
+        if month_set:
+            if pd.month not in month_set: continue
+        elif month != "all" and str(pd.month) != month:
+            continue
         out.append(rec)
 
     out.sort(key=lambda r: parse_date(r["release_date"]), reverse=True)
