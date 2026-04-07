@@ -51,6 +51,9 @@ body.dark .card-price  { color: #ffd95a; }
 body.dark .card-price .from { color: #9ab0c4; }
 body.dark .panel-head  { color: var(--gold-lt); border-bottom-color: var(--cream3); }
 body.dark .owned-section-hdr { color: #ffffff; border-bottom-color: var(--gold-lt); }
+body.dark .own-filter-bar { background: var(--cream2); border-bottom-color: var(--border); }
+body.dark .own-chk-lbl, body.dark .own-radio-lbl { color: var(--text2); }
+body.dark .own-radio-lbl input[type="radio"] { accent-color: var(--gold-lt); }
 body.dark .section-hdr-count { color: var(--text3); }
 body.dark .arow        { background: var(--cream2); border-color: var(--border); }
 body.dark .arow.today  { background: var(--cream3); }
@@ -275,6 +278,24 @@ select.srt {
 .panel-bar { background:var(--cream2); border-bottom:1px solid var(--border); padding:0 20px; display:none; }
 .panel-bar.show { display:block; }
 .panel-inner { max-width:1320px; margin:0 auto; display:flex; align-items:center; gap:8px; min-height:38px; }
+
+/* ── Owned page caps/pins filter ── */
+.own-filter-bar { background:var(--cream2); border-bottom:1px solid var(--border); padding:0 20px; }
+.own-filter-inner { max-width:1320px; margin:0 auto; display:flex; align-items:center; gap:10px; min-height:38px; flex-wrap:wrap; padding:4px 0; }
+.own-chk-lbl {
+  display:flex; align-items:center; gap:5px;
+  font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--text2); cursor:pointer; white-space:nowrap; user-select:none;
+}
+.own-chk-lbl input[type="checkbox"] { accent-color:var(--navy); cursor:pointer; }
+.own-panel-radios { display:flex; align-items:center; gap:6px; }
+.own-radio-lbl {
+  display:flex; align-items:center; gap:3px;
+  font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--text2); cursor:pointer; white-space:nowrap; user-select:none;
+}
+.own-radio-lbl input[type="radio"] { accent-color:var(--navy); cursor:pointer; }
+.own-sep { width:1px; height:20px; background:var(--border); flex-shrink:0; }
 
 /* ── Stats bar ── */
 .stats-bar { background:var(--navy); padding:4px 20px; }
@@ -761,6 +782,27 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
     </div>
   </div>
 
+  <!-- Owned page: caps/pins filter -->
+  <div class="own-filter-bar" id="own-filter-bar" style="display:none">
+    <div class="own-filter-inner">
+      <label class="own-chk-lbl">
+        Caps <input type="checkbox" id="own-caps-chk" checked onchange="setOwnFilter()">
+      </label>
+      <div class="own-panel-radios" id="own-panel-radios">
+        <label class="own-radio-lbl">All <input type="radio" name="own-panel" value="all"    checked onchange="setOwnFilter()"></label>
+        <label class="own-radio-lbl">1   <input type="radio" name="own-panel" value="single"        onchange="setOwnFilter()"></label>
+        <label class="own-radio-lbl">5   <input type="radio" name="own-panel" value="5"             onchange="setOwnFilter()"></label>
+        <label class="own-radio-lbl">6   <input type="radio" name="own-panel" value="6"             onchange="setOwnFilter()"></label>
+        <label class="own-radio-lbl">8   <input type="radio" name="own-panel" value="8"             onchange="setOwnFilter()"></label>
+        <label class="own-radio-lbl">BB  <input type="radio" name="own-panel" value="baker"         onchange="setOwnFilter()"></label>
+      </div>
+      <div class="own-sep"></div>
+      <label class="own-chk-lbl">
+        Pins <input type="checkbox" id="own-pins-chk" checked onchange="setOwnFilter()">
+      </label>
+    </div>
+  </div>
+
   <!-- Last-poll toast (mobile tap) -->
   <div id="poll-toast"></div>
   <!-- Pull-to-refresh indicator -->
@@ -977,6 +1019,7 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
 // ── State ──────────────────────────────────────────────────────
 let cat = 'caps', avail = 'in',  panels = '8', sort = 'newest', timer = null;
 let collectionView = 'owned';
+let ownShowCaps = true, ownShowPins = true, ownCapsPanel = 'all';
 
 let modalPid = null, modalStatus = 'none', modalNotes = '', modalPrefSize = '';
 
@@ -1182,6 +1225,7 @@ function setCat(btn){
     document.getElementById('releases-panel').classList.add('show');
     document.getElementById('filter-bar').style.display = 'none';
     document.getElementById('panel-bar').classList.remove('show');
+    document.getElementById('own-filter-bar').style.display = 'none';
     document.getElementById('alerts-btn').classList.remove('on');
     searchEl.value = '';
     searchEl.placeholder = 'Search releases…';
@@ -1212,6 +1256,7 @@ function setCat(btn){
   document.getElementById('sort').value = (cat==='caps'||cat==='pins'||cat==='apparel'||cat==='other') ? 'title' : 'newest';
   document.getElementById('panel-bar').classList.toggle('show', cat==='caps');
   document.getElementById('collection-bar').style.display = (cat==='collection') ? '' : 'none';
+  document.getElementById('own-filter-bar').style.display = (cat==='collection' && collectionView==='owned') ? '' : 'none';
   const isTagView = cat==='collection';
   document.getElementById('filter-bar').style.display = isTagView ? 'none' : '';
   document.getElementById('manual-btn-wrap').style.display = (cat==='caps') ? 'block' : 'none';
@@ -1229,7 +1274,18 @@ function setCollView(btn){
     localStorage.setItem('bsc-wl-ack', _lastRestockCount);
     document.getElementById('wl-badge').classList.remove('show');
   }
+  document.getElementById('own-filter-bar').style.display = (collectionView === 'owned') ? '' : 'none';
   showProducts();
+  load();
+}
+
+function setOwnFilter(){
+  ownShowCaps  = document.getElementById('own-caps-chk').checked;
+  ownShowPins  = document.getElementById('own-pins-chk').checked;
+  ownCapsPanel = document.querySelector('input[name="own-panel"]:checked')?.value || 'all';
+  // Dim panel radios when caps is hidden
+  document.getElementById('own-panel-radios').style.opacity = ownShowCaps ? '1' : '0.35';
+  document.getElementById('own-panel-radios').style.pointerEvents = ownShowCaps ? '' : 'none';
   load();
 }
 
@@ -1274,6 +1330,7 @@ function toggleAlerts(){
   document.getElementById('releases-panel').classList.remove('show');
   document.getElementById('filter-bar').style.display='none';
   document.getElementById('panel-bar').classList.remove('show');
+  document.getElementById('own-filter-bar').style.display='none';
   document.getElementById('alerts-btn').classList.add('on');
   document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
   _alertFilter = 'back_in_stock';
@@ -1485,15 +1542,34 @@ function render(products, manualCaps=[]){
       .filter(c=> {
         if(collectionView==='sold')     return c.sold;
         if(collectionView==='wishlist') return c.wishlisted && !c.sold;
-        return !c.sold && !c.wishlisted; // owned
+        if(!c.sold && !c.wishlisted){
+          // owned: apply caps panel filter here at the source
+          if(!ownShowCaps) return false;
+          if(ownCapsPanel !== 'all' && String(c.panels||'') !== ownCapsPanel) return false;
+          return true;
+        }
+        return false;
       })
       .forEach(c=> products.push({
         _manual:true, _mid:c.id, _sold:c.sold, _wishlisted:c.wishlisted, _cap_type:c.cap_type||'none',
         _notes:c.notes||'',
         title:c.name, category:'caps',
         owned:c.wishlisted?0:1, sold:c.sold, wishlisted:c.wishlisted, in_stock:false,
-        image_url:c.image||null, min_price:null, max_price:null, panels:null,
+        image_url:c.image||null, min_price:null, max_price:null, panels:c.panels||null,
       }));
+    // Apply owned caps/pins filter to catalog products
+    if(collectionView === 'owned'){
+      products = products.filter(p => {
+        if(p._manual) return true; // manual caps already filtered above
+        if(p.category === 'caps'){
+          if(!ownShowCaps) return false;
+          if(ownCapsPanel !== 'all' && String(p.panels||'') !== ownCapsPanel) return false;
+          return true;
+        }
+        if(p.category === 'pins') return ownShowPins;
+        return true;
+      });
+    }
     const catCounts = {};
     products.forEach(p=>{ catCounts[p.category]=(catCounts[p.category]||0)+1; });
     const catOrder = c => c==='caps' ? 0 : c==='pins' ? 1 : 2;
