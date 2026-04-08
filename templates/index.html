@@ -423,6 +423,7 @@ main { max-width:1320px; margin:0 auto; padding:24px 20px; }
 
 /* ── Modal ── */
 .overlay { position:fixed; inset:0; z-index:200; background:rgba(26,35,64,.55); backdrop-filter:blur(4px); display:none; align-items:center; justify-content:center; padding:20px; }
+#manual-overlay { z-index:201; }
 .overlay.open { display:flex; }
 .modal { background:var(--white); border-radius:10px; width:100%; max-width:680px; max-height:90vh; overflow-y:auto; box-shadow:var(--sh-lg); animation:mIn .2s ease; }
 @keyframes mIn { from{opacity:0;transform:scale(.97) translateY(6px)} to{opacity:1;transform:scale(1) translateY(0)} }
@@ -930,10 +931,11 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
     <input type="hidden" id="mf-edit-id" value="">
     <h2 id="mf-modal-title">Add Cap Manually</h2>
     <div class="mf-row" id="mf-status-row">
-      <label>Add to</label>
+      <label id="mf-status-label">Status</label>
       <div style="display:flex; gap:8px; margin-top:4px">
         <button type="button" class="af-pill active" id="mf-status-owned"    onclick="setMfStatus('owned')">✅ Owned</button>
         <button type="button" class="af-pill"        id="mf-status-wishlist" onclick="setMfStatus('wishlist')">⭐ Wishlist</button>
+        <button type="button" class="af-pill"        id="mf-status-sold"     onclick="setMfStatus('sold')">🏷 Sold</button>
       </div>
     </div>
     <div class="mf-row">
@@ -986,6 +988,7 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
     </div>
     <div class="mf-btns">
       <button class="mf-cancel" onclick="closeManualForm()">Cancel</button>
+      <button class="mf-cancel" id="mf-delete-btn" onclick="deleteFromEditForm()" style="display:none;background:#c0392b;border-color:#c0392b;color:#fff">🗑 Delete</button>
       <button class="mf-save"   onclick="saveManualCap()">Save Cap</button>
     </div>
   </div>
@@ -1468,13 +1471,7 @@ function render(products, manualCaps=[]){
         showType      ? `<span class="ribbon-tag ${typeCss}">${typeLabel}</span>` : '',
       ].filter(Boolean).join('');
       const ribbon = `<div class="card-ribbon">${ribbons}</div>`;
-      const btns = collectionView === 'sold'
-        ? `<button class="delete-btn" onclick="event.stopPropagation();setManualSold(${p._mid},0)">↩ Owned</button>
-           <button class="delete-btn" onclick="event.stopPropagation();deleteManualCap(${p._mid})">🗑 Delete</button>`
-        : collectionView === 'wishlist'
-          ? `<button class="delete-btn" onclick="event.stopPropagation();setManualWishlisted(${p._mid},0)">✅ Mark Owned</button>
-             <button class="delete-btn" onclick="event.stopPropagation();deleteManualCap(${p._mid})">🗑 Delete</button>`
-          : '';
+      const btns = '';
       return `<div class="card manual-card" onclick="openManualCap(${p._mid})">
         <div class="card-img-wrap">${img}<div class="dot" style="opacity:0"></div>${ribbon}</div>
         <div class="card-body">
@@ -1821,7 +1818,7 @@ async function openProduct(id){
       <span class="status-label">Status</span>
       <select class="status-select" onchange="setStatus(this.value)">
         <option value="none"       ${st==='none'       ?'selected':''}>— None</option>
-        <option value="wishlisted" ${st==='wishlisted' ?'selected':''}>⭐ Wishlisted</option>
+        <option value="wishlisted" ${st==='wishlisted' ?'selected':''}>⭐ Wishlist</option>
         <option value="owned"      ${st==='owned'      ?'selected':''}>✅ Own</option>
         <option value="sold"       ${st==='sold'       ?'selected':''}>🏷 Sold</option>
       </select>
@@ -1931,11 +1928,12 @@ function openManualForm(cap=null){
   document.getElementById('mf-panels').value = cap ? (cap.panels||'') : '';
   document.getElementById('mf-edit-id').value = cap ? cap.id : '';
   document.getElementById('mf-modal-title').textContent = cap ? 'Edit Cap' : 'Add Cap Manually';
-  // Status field: only shown when adding new; default to current collection sub-view (or owned)
-  const statusRow = document.getElementById('mf-status-row');
-  statusRow.style.display = cap ? 'none' : '';
-  const defaultStatus = (!cap && cat==='collection' && collectionView==='wishlist') ? 'wishlist' : 'owned';
-  setMfStatus(defaultStatus);
+  const curStatus = cap
+    ? (cap.sold ? 'sold' : cap.wishlisted ? 'wishlisted' : 'owned')
+    : ((cat==='collection' && collectionView==='wishlist') ? 'wishlist' : 'owned');
+  setMfStatus(curStatus);
+  const delBtn = document.getElementById('mf-delete-btn');
+  if(delBtn) delBtn.style.display = cap ? '' : 'none';
   mfImages = cap ? (cap.images && cap.images.length ? [...cap.images] : (cap.image ? [cap.image] : [])) : [];
   document.getElementById('mf-image').value='';
   document.getElementById('mf-url').value='';
@@ -1984,10 +1982,13 @@ function mfRemoveImage(idx){
 function setMfStatus(status){
   document.getElementById('mf-status-owned').classList.toggle('active', status==='owned');
   document.getElementById('mf-status-wishlist').classList.toggle('active', status==='wishlist');
+  document.getElementById('mf-status-sold').classList.toggle('active', status==='sold');
 }
 
 function getMfStatus(){
-  return document.getElementById('mf-status-wishlist').classList.contains('active') ? 'wishlist' : 'owned';
+  if(document.getElementById('mf-status-sold').classList.contains('active')) return 'sold';
+  if(document.getElementById('mf-status-wishlist').classList.contains('active')) return 'wishlist';
+  return 'owned';
 }
 
 function closeManualForm(){
@@ -2009,7 +2010,8 @@ async function saveManualCap(){
     material:   document.getElementById('mf-material').value.trim(),
     notes:      document.getElementById('mf-notes').value.trim(),
     images:     mfImages,
-    wishlisted: (!editId && getMfStatus()==='wishlist') ? 1 : 0,
+    status:     getMfStatus(),
+    wishlisted: getMfStatus()==='wishlist' ? 1 : 0,
     cap_type:   document.getElementById('mf-cap-type').value,
     panels:     document.getElementById('mf-panels').value || null,
   };
@@ -2032,21 +2034,11 @@ async function deleteManualCap(id){
   loadStats();
 }
 
-async function setManualSold(id, sold){
+async function setManualStatus(id, status){
   await fetch(`/api/manual_cap/${id}`, {
     method:'POST',
     headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({sold}),
-  });
-  load();
-  loadStats();
-}
-
-async function setManualWishlisted(id, wishlisted){
-  await fetch(`/api/manual_cap/${id}`, {
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({wishlisted}),
+    body: JSON.stringify({status}),
   });
   load();
   loadStats();
@@ -2075,7 +2067,7 @@ async function openManualCap(id){
       ['Style',    cap.style],
       ['Panels',   panelLabel],
     ].filter(([,v])=>v);
-    const statusLabel = cap.sold ? '🏷 Sold' : cap.wishlisted ? '⭐ Wishlisted' : '✅ Owned';
+    const statusLabel = cap.sold ? '🏷 Sold' : cap.wishlisted ? '⭐ Wishlist' : '✅ Owned';
 
     let meta = `<div class="m-cat">Manual Cap${showType ? ` · ${CAP_TYPE_LABELS[cap.cap_type]||cap.cap_type}` : ''}</div>
       <div class="m-title">${x(cap.name)}</div>`;
@@ -2089,8 +2081,7 @@ async function openManualCap(id){
     let body = '';
     if(cap.notes) body += `<div class="desc-block">${x(cap.notes)}</div>`;
     body += `<div style="display:flex;gap:8px;padding:12px 16px 16px;">
-      <button class="view-btn" style="text-decoration:none;cursor:pointer;" onclick="closeModal();openEditManualCap(${cap.id})">✏️ Edit</button>
-      <button class="view-btn" style="background:#c0392b;border-color:#c0392b;text-decoration:none;cursor:pointer;" onclick="closeModal();deleteManualCap(${cap.id})">🗑 Delete</button>
+      <button class="view-btn" style="text-decoration:none;cursor:pointer;" onclick="openEditManualCap(${cap.id})">✏️ Edit</button>
     </div>`;
     document.getElementById('m-body').innerHTML = body;
   }catch(e){
@@ -2102,8 +2093,18 @@ async function openEditManualCap(id){
   try{
     const caps = await fetch('/api/manual_caps').then(r=>r.json());
     const cap = caps.find(c=>c.id===id);
-    if(cap) openManualForm(cap);
+    if(cap){ openManualForm(cap); closeModal(); }
   }catch(e){ console.error('openEditManualCap failed', e); }
+}
+
+async function deleteFromEditForm(){
+  const editId = document.getElementById('mf-edit-id').value;
+  if(!editId) return;
+  if(!confirm('Delete this cap?')) return;
+  closeManualForm();
+  await fetch(`/api/manual_cap/${editId}`, { method:'DELETE' });
+  load();
+  loadStats();
 }
 
 async function loadManualCaps(){

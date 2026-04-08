@@ -52,11 +52,12 @@ SKIP_PANELS = set()   # All panel types are now tracked
 
 # ── Panel detection ───────────────────────────────────────────────
 PANEL_RE = [
-    (re.compile(r'\bbaker[- ]?boy\b',    re.I), "baker"),  # must come before 8-panel
-    (re.compile(r'\b5[- ]panel\b',       re.I), "5"),      # must come before single-panel
-    (re.compile(r'\bsingle[- ]panel\b', re.I), "single"),
-    (re.compile(r'\b6[- ]panel\b',       re.I), "6"),
-    (re.compile(r'\b8[- ]panel\b',       re.I), "8"),
+    (re.compile(r'\bbaker[- ]?boy\b',          re.I), "baker"),  # must come before 8-panel
+    (re.compile(r'\b(5|five)[- ]panel\b',      re.I), "5"),      # must come before single-panel
+    (re.compile(r'\bsingle[- ]panel\b',        re.I), "single"),
+    (re.compile(r'\b(6|six)[- ]panel\b',       re.I), "6"),
+    (re.compile(r'\b(8|eight)[- ]panel\b',     re.I), "8"),
+    (re.compile(r'\btrucker\b',                re.I), "6"),      # trucker caps are 6-panel
 ]
 
 logging.basicConfig(
@@ -418,11 +419,11 @@ def process(conn, product, known_ids):
                              f"{emoji} {title}\n{vtit}",
                              priority="urgent", tags="star,tada,shopping", click=url)
                     elif wl and ps:
-                        ntfy("⭐ Wishlisted Restock",
+                        ntfy("⭐ Wishlist Restock",
                              f"{emoji} {title}\n{vtit} (not your size)",
                              priority="high", tags="star,tada,shopping", click=url)
                     elif wl:
-                        ntfy("⭐ Wishlisted Restock!",
+                        ntfy("⭐ Wishlist Restock!",
                              f"{emoji} {title}\n{vtit}",
                              priority="urgent", tags="star,tada,shopping", click=url)
                     else:
@@ -436,7 +437,7 @@ def process(conn, product, known_ids):
                           f"PRICE DROP: {title} — {vtit}: ${op:.2f}→${price:.2f}")
                 url = f"https://bostonscally.com/products/{handle}"
                 if is_wishlisted(pid):
-                    ntfy("⭐ Wishlisted Price Drop!",
+                    ntfy("⭐ Wishlist Price Drop!",
                          f"{title} — {vtit}\n${op:.2f} → ${price:.2f}",
                          priority="urgent", tags="star,chart_with_downwards_trend", click=url)
                 else:

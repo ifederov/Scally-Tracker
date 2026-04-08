@@ -358,6 +358,17 @@ def api_manual_cap_create():
 def api_manual_cap_update(mid):
     data = request.get_json()
     with db() as conn:
+        status = data.get("status")
+        if status == "owned":
+            conn.execute("UPDATE manual_caps SET sold=0, wishlisted=0 WHERE id=?", (mid,))
+            return jsonify({"ok": True, "status": "owned"})
+        if status == "wishlisted":
+            conn.execute("UPDATE manual_caps SET sold=0, wishlisted=1 WHERE id=?", (mid,))
+            return jsonify({"ok": True, "status": "wishlisted"})
+        if status == "sold":
+            conn.execute("UPDATE manual_caps SET sold=1, wishlisted=0 WHERE id=?", (mid,))
+            return jsonify({"ok": True, "status": "sold"})
+        # legacy field-level updates
         if "wishlisted" in data:
             wishlisted = int(bool(data["wishlisted"]))
             conn.execute("UPDATE manual_caps SET wishlisted=? WHERE id=?", (wishlisted, mid))
@@ -376,9 +387,12 @@ def api_manual_cap_edit(mid):
     images = [i for i in (data.get("images") or []) if i]
     images_json_str = json.dumps(images)
     first_image = images[0] if images else None
+    status = data.get("status", "owned")
+    sold = 1 if status == "sold" else 0
+    wishlisted = 1 if status == "wishlisted" else 0
     with db() as conn:
         conn.execute("""
-            UPDATE manual_caps SET name=?, color=?, style=?, material=?, notes=?, image=?, images_json=?, cap_type=?, panels=?
+            UPDATE manual_caps SET name=?, color=?, style=?, material=?, notes=?, image=?, images_json=?, cap_type=?, panels=?, sold=?, wishlisted=?
             WHERE id=?
         """, (
             data.get("name","").strip(),
@@ -390,6 +404,7 @@ def api_manual_cap_edit(mid):
             images_json_str,
             data.get("cap_type", "other").strip() or "other",
             data.get("panels", None),
+            sold, wishlisted,
             mid,
         ))
     return jsonify({"ok": True})
