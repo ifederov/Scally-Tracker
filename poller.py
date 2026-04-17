@@ -205,6 +205,8 @@ def init_db():
             CREATE INDEX IF NOT EXISTS idx_snap ON snapshots(variant_id, checked_at);
             CREATE INDEX IF NOT EXISTS idx_prod_cat ON products(category);
             CREATE INDEX IF NOT EXISTS idx_prod_pan ON products(panels);
+            CREATE INDEX IF NOT EXISTS idx_var_pid ON variants(product_id);
+            CREATE INDEX IF NOT EXISTS idx_alert_pid ON alerts(product_id, alert_type, created_at);
         """)
         try:
             conn.execute("ALTER TABLE products ADD COLUMN images_json TEXT")

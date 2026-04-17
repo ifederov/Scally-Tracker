@@ -6,6 +6,7 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23b8860b'/><text x='16' y='23' font-family='Georgia,serif' font-size='22' font-weight='bold' text-anchor='middle' fill='white'>S</text></svg>">
 <title>Scally Tracker</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -740,8 +741,8 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
     <div class="filter-inner">
       <span class="flabel">Availability</span>
       <div class="pill-row" id="avail-pills">
-        <button class="pill"        data-avail="all" onclick="setAvail(this)">All</button>
-        <button class="pill active" data-avail="in"  onclick="setAvail(this)">In Stock</button>
+        <button class="pill active" data-avail="all" onclick="setAvail(this)">All</button>
+        <button class="pill"        data-avail="in"  onclick="setAvail(this)">In Stock</button>
         <button class="pill"        data-avail="out" onclick="setAvail(this)">Out of Stock</button>
       </div>
       <div class="sort-wrap">
@@ -761,11 +762,11 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
     <div class="panel-inner">
       <span class="flabel">Panels</span>
       <div class="pill-row" id="panel-pills">
-        <button class="pill"        data-panels="all"    onclick="setPanel(this)">All</button>
+        <button class="pill active" data-panels="all"    onclick="setPanel(this)">All</button>
         <button class="pill"        data-panels="single" onclick="setPanel(this)">1</button>
         <button class="pill"        data-panels="5"      onclick="setPanel(this)">5</button>
         <button class="pill"        data-panels="6"      onclick="setPanel(this)">6</button>
-        <button class="pill active" data-panels="8"      onclick="setPanel(this)">8</button>
+        <button class="pill"        data-panels="8"      onclick="setPanel(this)">8</button>
         <button class="pill"        data-panels="baker"  onclick="setPanel(this)">BB</button>
       </div>
     </div>
@@ -789,17 +790,18 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
       <label class="own-chk-lbl">
         Caps <input type="checkbox" id="own-caps-chk" checked onchange="setOwnFilter()">
       </label>
-      <div class="own-panel-radios" id="own-panel-radios">
-        <label class="own-radio-lbl">All <input type="radio" name="own-panel" value="all"    checked onchange="setOwnFilter()"></label>
-        <label class="own-radio-lbl">1   <input type="radio" name="own-panel" value="single"        onchange="setOwnFilter()"></label>
-        <label class="own-radio-lbl">5   <input type="radio" name="own-panel" value="5"             onchange="setOwnFilter()"></label>
-        <label class="own-radio-lbl">6   <input type="radio" name="own-panel" value="6"             onchange="setOwnFilter()"></label>
-        <label class="own-radio-lbl">8   <input type="radio" name="own-panel" value="8"             onchange="setOwnFilter()"></label>
-        <label class="own-radio-lbl">BB  <input type="radio" name="own-panel" value="baker"         onchange="setOwnFilter()"></label>
+      <span class="flabel">Panels</span>
+      <div class="pill-row" id="own-panel-pills">
+        <button class="pill active" data-panels="all"    onclick="setOwnPanel(this)">All</button>
+        <button class="pill"        data-panels="single" onclick="setOwnPanel(this)">1</button>
+        <button class="pill"        data-panels="5"      onclick="setOwnPanel(this)">5</button>
+        <button class="pill"        data-panels="6"      onclick="setOwnPanel(this)">6</button>
+        <button class="pill"        data-panels="8"      onclick="setOwnPanel(this)">8</button>
+        <button class="pill"        data-panels="baker"  onclick="setOwnPanel(this)">BB</button>
       </div>
       <div class="own-sep"></div>
       <label class="own-chk-lbl">
-        Pins <input type="checkbox" id="own-pins-chk" checked onchange="setOwnFilter()">
+        Pins <input type="checkbox" id="own-pins-chk" onchange="setOwnFilter()">
       </label>
     </div>
   </div>
@@ -1020,11 +1022,39 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
 
 <script>
 // ── State ──────────────────────────────────────────────────────
-let cat = 'caps', avail = 'in',  panels = '8', sort = 'newest', timer = null;
+let cat = 'collection', avail = 'all', panels = 'all', sort = 'title', timer = null;
+let _manualCapsCache = null, _manualCapsFetching = null;
+let _productsCache = new Map();
+const PRODUCTS_TTL = 60_000;
 let collectionView = 'owned';
-let ownShowCaps = true, ownShowPins = true, ownCapsPanel = 'all';
+let ownShowCaps = true, ownShowPins = false, ownCapsPanel = 'all';
 
 let modalPid = null, modalStatus = 'none', modalNotes = '', modalPrefSize = '';
+
+// Shared manual caps fetcher — deduplicates concurrent calls and caches result
+function fetchManualCaps(invalidate=false){
+  if(invalidate) _manualCapsCache = null;
+  if(_manualCapsCache !== null) return Promise.resolve(_manualCapsCache);
+  if(!_manualCapsFetching){
+    _manualCapsFetching = fetch('/api/manual_caps').then(r=>r.json()).then(data=>{
+      _manualCapsCache = data;
+      _manualCapsFetching = null;
+      return data;
+    }).catch(e=>{ _manualCapsFetching = null; throw e; });
+  }
+  return _manualCapsFetching;
+}
+
+// Client-side product cache — keyed on query string, 60s TTL
+function invalidateProductsCache(){ _productsCache.clear(); }
+async function fetchProducts(q){
+  const key = q.toString();
+  const hit = _productsCache.get(key);
+  if(hit && (Date.now() - hit.ts) < PRODUCTS_TTL) return hit.data;
+  const data = await fetch('/api/products?' + key).then(r => r.json());
+  _productsCache.set(key, {data, ts: Date.now()});
+  return data;
+}
 
 const CAT_LABELS = { caps:'Caps', pins:'Pins', apparel:'Apparel', other:'Other' };
 const PANEL_LABELS = { single:'1', '5':'5', '6':'6', '8':'8', baker:'BB' };
@@ -1102,7 +1132,7 @@ async function triggerPoll(){
   try{
     await fetch('/api/poll', {method:'POST'});
     // Poll runs async — refresh UI after ~10s to pick up new data
-    setTimeout(()=>{ load(); loadStats(); }, 10000);
+    setTimeout(()=>{ invalidateProductsCache(); load(); loadStats(); }, 10000);
   }catch(e){ console.warn('Poll trigger failed', e); }
   setTimeout(()=> btn.classList.remove('spinning'), 10000);
 }
@@ -1120,7 +1150,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if(btn) btn.textContent = '☀️';
   }
   document.getElementById('sort').value = 'title';
-  showProducts(); loadStats(); load(); setInterval(loadStats, 60_000);
+  document.getElementById('collection-bar').style.display = '';
+  document.getElementById('own-filter-bar').style.display = '';
+  document.getElementById('filter-bar').style.display = 'none';
+  showProducts(); loadStats(); load(); setInterval(loadStats, 300_000);
   document.addEventListener('keydown', e => {
     if(document.getElementById('lb-overlay').classList.contains('open')){
       if(e.key==='Escape')     closeLightbox();
@@ -1283,12 +1316,19 @@ function setCollView(btn){
 }
 
 function setOwnFilter(){
-  ownShowCaps  = document.getElementById('own-caps-chk').checked;
-  ownShowPins  = document.getElementById('own-pins-chk').checked;
-  ownCapsPanel = document.querySelector('input[name="own-panel"]:checked')?.value || 'all';
-  // Dim panel radios when caps is hidden
-  document.getElementById('own-panel-radios').style.opacity = ownShowCaps ? '1' : '0.35';
-  document.getElementById('own-panel-radios').style.pointerEvents = ownShowCaps ? '' : 'none';
+  ownShowCaps = document.getElementById('own-caps-chk').checked;
+  ownShowPins = document.getElementById('own-pins-chk').checked;
+  // Dim panel pills when caps is hidden
+  const pillsEl = document.getElementById('own-panel-pills');
+  pillsEl.style.opacity       = ownShowCaps ? '1' : '0.35';
+  pillsEl.style.pointerEvents = ownShowCaps ? '' : 'none';
+  load();
+}
+
+function setOwnPanel(btn){
+  document.querySelectorAll('#own-panel-pills .pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  ownCapsPanel = btn.dataset.panels;
   load();
 }
 
@@ -1352,7 +1392,7 @@ async function loadStats(){
   try{
     const [s, manual] = await Promise.all([
       fetch('/api/stats').then(r=>r.json()),
-      fetch('/api/manual_caps').then(r=>r.json()),
+      fetchManualCaps(),
     ]);
     // manual caps are caps so include in caps-only owned count
     s.owned = (s.owned||0) + (manual||[]).length;
@@ -1416,8 +1456,8 @@ async function load(){
     countEl.style.display = isSearching ? 'block' : 'none';
     if(!isSearching) countEl.textContent = '';
 
-    const fetches = [fetch('/api/products?'+q).then(r=>r.json())];
-    if(!isSearching && (isOwned||isSold||isWish||cat==='caps')) fetches.push(fetch('/api/manual_caps').then(r=>r.json()));
+    const fetches = [fetchProducts(q)];
+    if(!isSearching && (isOwned||isSold||isWish||cat==='caps')) fetches.push(fetchManualCaps());
     const [products, manualCaps] = await Promise.all(fetches);
     render(products, manualCaps||[]);
   }catch(e){
@@ -1457,7 +1497,7 @@ function render(products, manualCaps=[]){
   function mkCard(p, i){
     if(p._manual){
       const img = p.image_url
-        ? `<img class="card-img" src="${p.image_url}" alt="${x(p.title)}">`
+        ? `<img class="card-img" src="${p.image_url}" loading="lazy" alt="${x(p.title)}">`
         : `<div class="card-ph">🧢</div>`;
       const CAP_TYPE_LABELS = { one_off:'One-Off Drop', retired:'Retired', seasonal:'Seasonal', other:'Other' };
       const CAP_TYPE_CSS    = { one_off:'cap-one-off', retired:'cap-retired', seasonal:'cap-seasonal', other:'cap-other' };
@@ -1486,7 +1526,7 @@ function render(products, manualCaps=[]){
     const priceStr = (p.min_price!==p.max_price && p.max_price)
       ? `<span class="from">from</span>${lo}` : lo;
     const img = p.image_url
-      ? `<img class="card-img" src="${x(p.image_url)}" alt="${x(p.title)}">`
+      ? `<img class="card-img" src="${x(p.image_url)}" loading="lazy" alt="${x(p.title)}">`
       : `<div class="card-ph">${catEmoji(p.category)}</div>`;
     const pip = (p.category==='caps' && p.panels)
       ? `<div class="panel-pip" style="opacity:0">${PANEL_LABELS[p.panels]||p.panels}</div>` : '';
@@ -2023,15 +2063,14 @@ async function saveManualCap(){
       body: JSON.stringify(payload),
     });
     const data = await resp.json();
-    if(data.ok){ closeManualForm(); load(); loadStats(); }
+    if(data.ok){ closeManualForm(); fetchManualCaps(true); load(); loadStats(); }
   }catch(e){ console.error('Save failed', e); }
 }
 
 async function deleteManualCap(id){
   if(!confirm('Delete this cap?')) return;
   await fetch(`/api/manual_cap/${id}`, { method:'DELETE' });
-  load();
-  loadStats();
+  fetchManualCaps(true); load(); loadStats();
 }
 
 async function setManualStatus(id, status){
@@ -2040,8 +2079,7 @@ async function setManualStatus(id, status){
     headers:{'Content-Type':'application/json'},
     body: JSON.stringify({status}),
   });
-  load();
-  loadStats();
+  fetchManualCaps(true); load(); loadStats();
 }
 
 async function openManualCap(id){
@@ -2091,7 +2129,7 @@ async function openManualCap(id){
 
 async function openEditManualCap(id){
   try{
-    const caps = await fetch('/api/manual_caps').then(r=>r.json());
+    const caps = await fetchManualCaps();
     const cap = caps.find(c=>c.id===id);
     if(cap){ openManualForm(cap); closeModal(); }
   }catch(e){ console.error('openEditManualCap failed', e); }
@@ -2103,7 +2141,7 @@ async function deleteFromEditForm(){
   if(!confirm('Delete this cap?')) return;
   closeManualForm();
   await fetch(`/api/manual_cap/${editId}`, { method:'DELETE' });
-  load();
+  fetchManualCaps(true); load();
   loadStats();
 }
 
@@ -2166,6 +2204,7 @@ async function saveUserItem(){
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify({ status: modalStatus, notes: modalNotes, preferred_size: modalPrefSize }),
     });
+    invalidateProductsCache();
   }catch(e){ console.error('Save failed', e); }
 }
 
@@ -2233,11 +2272,9 @@ async function loadReleases(){
   list.innerHTML = `<div class="state"><span class="spin"></span> Loading…</div>`;
   try{
     const search = document.getElementById('search').value.trim();
-    const useFlatMD = _relSort === 'date' && (_relYears.size >= 2 || _relMonths.size > 0);
     const params = { limited: _relLimited ? 'yes' : 'all', search };
     if(_relYears.size > 0)  params.years  = [..._relYears].sort((a,b)=>a-b).join(',');
     if(_relMonths.size > 0) params.months = [..._relMonths].sort((a,b)=>a-b).join(',');
-    if(useFlatMD) params.sort = 'mday';
     const q = new URLSearchParams(params);
     const rows = await fetch('/api/releases?' + q).then(r=>r.json());
     // Populate cache and datalist
@@ -2267,15 +2304,7 @@ function renderReleases(rows){
     return;
   }
 
-  const useFlatMD = _relSort === 'date' && (_relYears.size >= 2 || _relMonths.size > 0);
-
-  // Date sort: multi-year or month filter → flat M/D/Y list
-  if(useFlatMD){
-    renderFlatMDView(rows, list);
-    return;
-  }
-
-  // Date sort: 0 or 1 year, no months → year groups sorted by date desc within
+  // Date sort: always show year groups, newest date first, alphabetical within same date
   if(_relSort === 'date'){
     renderDateYearView(rows, list);
     return;
@@ -2337,12 +2366,13 @@ function renderDateYearView(rows, list){
       g.entries.push(r);
       if(r.is_limited) g.isLimited = true;
     });
-    // Sort by date descending within year
+    // Sort by date descending, then alphabetically within same date
     const condensed = [...condensedMap.values()].sort((a,b) => {
       const [am, ad] = a.date.split('/');
       const [bm, bd] = b.date.split('/');
       if(+bm !== +am) return +bm - +am;
-      return +bd - +ad;
+      if(+bd !== +ad) return +bd - +ad;
+      return stripThe(a.baseName).localeCompare(stripThe(b.baseName));
     });
     const startIdx = _relYearCondensed.length;
     _relYearCondensed.push(...condensed);
@@ -2364,19 +2394,21 @@ function renderFlatMDView(rows, list){
     const baseName = dashIdx >= 0 ? r.name.slice(0, dashIdx) : r.name;
     const key = baseName + '\x00' + mo + '\x00' + dy;
     if(!groupMap.has(key))
-      groupMap.set(key, {baseName, mo, dy, entries:[], isLimited:false, minYear:Infinity, dates: new Map()});
+      groupMap.set(key, {baseName, mo, dy, entries:[], isLimited:false, minYear:Infinity, maxYear:-Infinity, dates: new Map()});
     const g = groupMap.get(key);
     g.entries.push(r);
     if(r.is_limited) g.isLimited = true;
     if(yr < g.minYear) g.minYear = yr;
+    if(yr > g.maxYear) g.maxYear = yr;
     if(!g.dates.has(r.release_date)) g.dates.set(r.release_date, []);
     g.dates.get(r.release_date).push(r);
   });
-  // Sort groups by (month, day, minYear)
+  // Sort by most recent full date descending, then alphabetically within same date
   _relFlatMDGroups = [...groupMap.values()].sort((a,b) => {
-    if(a.mo !== b.mo) return a.mo - b.mo;
-    if(a.dy !== b.dy) return a.dy - b.dy;
-    return a.minYear - b.minYear;
+    const aDate = a.maxYear * 10000 + a.mo * 100 + a.dy;
+    const bDate = b.maxYear * 10000 + b.mo * 100 + b.dy;
+    if(bDate !== aDate) return bDate - aDate;
+    return stripThe(a.baseName).localeCompare(stripThe(b.baseName));
   });
   list.innerHTML = _relFlatMDGroups.map((g,i) => relFlatMDRowHtml(g,i)).join('');
 }

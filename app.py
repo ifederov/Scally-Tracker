@@ -14,6 +14,7 @@ DB  = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "inventor
 def db():
     c = sqlite3.connect(DB)
     c.row_factory = sqlite3.Row
+    c.execute("PRAGMA journal_mode=WAL")
     return c
 
 def init_user_items():
@@ -89,9 +90,32 @@ def api_products():
     wishlisted = request.args.get("wishlisted", "0") == "1"
     sold_view  = request.args.get("sold",       "0") == "1"
 
+    sql_conditions = []
+    sql_params = []
+
+    # Push all filters into SQL up front so the DB returns only matching rows
+    if owned:
+        sql_conditions.append("u.owned = 1")
+    if wishlisted:
+        sql_conditions.append("u.wishlisted = 1")
+    if sold_view:
+        sql_conditions.append("u.sold = 1")
+    if category != "all" and not owned and not wishlisted and not sold_view:
+        sql_conditions.append("p.category = ?")
+        sql_params.append(category)
+    if panels != "all" and not owned and not wishlisted and not sold_view:
+        sql_conditions.append("p.panels = ?")
+        sql_params.append(panels)
+    if search:
+        sql_conditions.append("LOWER(p.title) LIKE ?")
+        sql_params.append(f"%{search}%")
+
+    where_clause = ("WHERE " + " AND ".join(sql_conditions)) if sql_conditions else "WHERE 1=1"
+
     with db() as conn:
-        rows = conn.execute("""
-            SELECT p.*,
+        rows = conn.execute(f"""
+            SELECT p.id, p.title, p.category, p.image_url, p.product_type,
+                p.panels, p.first_seen,
                 COUNT(v.id)      AS variant_count,
                 SUM(v.available) AS variants_available,
                 SUM(CASE WHEN v.title LIKE 'X-Large%' AND v.title NOT LIKE 'XX-Large%' THEN v.available ELSE 0 END) AS xl_available,
@@ -115,17 +139,13 @@ def api_products():
             FROM products p
             LEFT JOIN variants   v ON v.product_id = p.id
             LEFT JOIN user_items u ON u.product_id = p.id
-            WHERE 1=1
+            {where_clause}
             GROUP BY p.id
-        """).fetchall()
+        """, sql_params).fetchall()
 
     out = []
     for r in rows:
         p = dict(r)
-
-        if owned      and not p["owned"]:      continue
-        if wishlisted and not p["wishlisted"]: continue
-        if sold_view  and not p["sold"]:       continue
 
         # Category filter
         if category != "all" and p["category"] != category:
@@ -151,9 +171,6 @@ def api_products():
 
         if avail == "in"  and not p["my_size_in_stock"]: continue
         if avail == "out" and     p["my_size_in_stock"]: continue
-
-        if search and search not in (p["title"] or "").lower():
-            continue
 
         out.append(p)
 
@@ -199,7 +216,9 @@ def api_products():
     if owned or wishlisted or sold_view:
         out.sort(key=lambda x: CAT_SORT.get(x.get("category","other"), 3))
 
-    return jsonify(out)
+    resp = jsonify(out)
+    resp.headers["Cache-Control"] = "private, no-store"
+    return resp
 
 
 @app.route("/api/product/<int:pid>")
@@ -419,29 +438,53 @@ def api_manual_cap_delete(mid):
 
 @app.route("/api/stats")
 def api_stats():
+    today = datetime.now(CT).strftime("%Y-%m-%d")
     with db() as conn:
-        def n(q, *a): return conn.execute(q, a).fetchone()[0]
-        return jsonify({
-            "total":       n("SELECT COUNT(*) FROM products"),
-            "caps":        n("SELECT COUNT(*) FROM products WHERE category='caps'"),
-            "pins":        n("SELECT COUNT(*) FROM products WHERE category='pins'"),
-            "apparel":     n("SELECT COUNT(*) FROM products WHERE category='apparel'"),
-            "in_stock":    n("""SELECT COUNT(DISTINCT p.id) FROM products p
-                WHERE EXISTS(SELECT 1 FROM variants v WHERE v.product_id=p.id AND v.available=1)"""),
-            "out_of_stock":n("""SELECT COUNT(DISTINCT p.id) FROM products p
-                WHERE NOT EXISTS(SELECT 1 FROM variants v WHERE v.product_id=p.id AND v.available=1)"""),
-            "alerts_today":n("SELECT COUNT(*) FROM alerts WHERE date(created_at, 'localtime')=?",
-                             datetime.now(CT).strftime("%Y-%m-%d")),
-            "last_poll":   conn.execute("SELECT MAX(checked_at) FROM snapshots").fetchone()[0],
-            "owned":       n("SELECT COUNT(*) FROM user_items u JOIN products p ON p.id=u.product_id WHERE u.owned=1 AND p.category='caps'"),
-            "wishlisted":  n("SELECT COUNT(*) FROM user_items u JOIN products p ON p.id=u.product_id WHERE u.wishlisted=1 AND p.category='caps'"),
-            "wishlisted_restocks": n("""
-                SELECT COUNT(*) FROM alerts a
-                JOIN user_items u ON u.product_id = a.product_id
-                WHERE a.alert_type='back_in_stock' AND u.wishlisted=1
-                AND datetime(a.created_at) >= datetime('now', '-7 days')
-            """),
-        })
+        # All product/user counts in one pass
+        counts = conn.execute("""
+            SELECT
+                COUNT(DISTINCT p.id) AS total,
+                SUM(CASE WHEN p.category='caps'    THEN 1 ELSE 0 END) AS caps,
+                SUM(CASE WHEN p.category='pins'    THEN 1 ELSE 0 END) AS pins,
+                SUM(CASE WHEN p.category='apparel' THEN 1 ELSE 0 END) AS apparel,
+                SUM(CASE WHEN EXISTS(
+                    SELECT 1 FROM variants v WHERE v.product_id=p.id AND v.available=1
+                ) THEN 1 ELSE 0 END) AS in_stock,
+                SUM(CASE WHEN NOT EXISTS(
+                    SELECT 1 FROM variants v WHERE v.product_id=p.id AND v.available=1
+                ) THEN 1 ELSE 0 END) AS out_of_stock,
+                SUM(CASE WHEN u.owned=1      AND p.category='caps' THEN 1 ELSE 0 END) AS owned,
+                SUM(CASE WHEN u.wishlisted=1 AND p.category='caps' THEN 1 ELSE 0 END) AS wishlisted
+            FROM products p
+            LEFT JOIN user_items u ON u.product_id = p.id
+        """).fetchone()
+        # Time-sensitive scalars in one query
+        misc = conn.execute("""
+            SELECT
+                (SELECT COUNT(*) FROM alerts
+                 WHERE date(created_at, 'localtime') = ?) AS alerts_today,
+                (SELECT MAX(checked_at) FROM snapshots)   AS last_poll,
+                (SELECT COUNT(*) FROM alerts a
+                 JOIN user_items u ON u.product_id = a.product_id
+                 WHERE a.alert_type='back_in_stock' AND u.wishlisted=1
+                 AND datetime(a.created_at) >= datetime('now', '-7 days')
+                ) AS wishlisted_restocks
+        """, (today,)).fetchone()
+    resp = jsonify({
+        "total":               counts["total"],
+        "caps":                counts["caps"],
+        "pins":                counts["pins"],
+        "apparel":             counts["apparel"],
+        "in_stock":            counts["in_stock"],
+        "out_of_stock":        counts["out_of_stock"],
+        "owned":               counts["owned"],
+        "wishlisted":          counts["wishlisted"],
+        "alerts_today":        misc["alerts_today"],
+        "last_poll":           misc["last_poll"],
+        "wishlisted_restocks": misc["wishlisted_restocks"],
+    })
+    resp.headers["Cache-Control"] = "private, max-age=55"
+    return resp
 
 
 @app.route("/api/alerts")
