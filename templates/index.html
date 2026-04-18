@@ -264,6 +264,7 @@ input[type="search"]::-webkit-search-cancel-button {
   border-radius:20px; padding:3px 12px; cursor:pointer; transition:all .15s; white-space:nowrap;
 }
 .pill:hover { border-color:var(--navy); color:var(--navy); }
+.pill:focus { outline: none; }
 .pill.active { background:var(--navy); border-color:var(--navy); color:#fff; }
 .sort-wrap { margin-left:auto; display:flex; align-items:center; gap:8px; }
 select.srt {
@@ -288,7 +289,7 @@ select.srt {
   font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
   color:var(--text2); cursor:pointer; white-space:nowrap; user-select:none;
 }
-.own-chk-lbl input[type="checkbox"] { accent-color:var(--navy); cursor:pointer; }
+.own-chk-lbl input[type="checkbox"] { accent-color:var(--navy); cursor:pointer; outline:none; }
 .own-panel-radios { display:flex; align-items:center; gap:6px; }
 .own-radio-lbl {
   display:flex; align-items:center; gap:3px;
@@ -697,11 +698,11 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
       </div>
 
       <div class="cat-tabs">
-<button class="cat-tab active" data-cat="caps"    onclick="setCat(this)">🧢 Caps</button>
+<button class="cat-tab"        data-cat="caps"    onclick="setCat(this)">🧢 Caps</button>
         <button class="cat-tab"        data-cat="pins"    onclick="setCat(this)">📌 Pins</button>
         <button class="cat-tab"        data-cat="apparel" onclick="setCat(this)">👕 Apparel</button>
         <button class="cat-tab"        data-cat="other"    onclick="setCat(this)">🛍 Other</button>
-        <button class="cat-tab"        data-cat="collection" onclick="setCat(this)">🗂 Collection<span class="tab-badge" id="wl-badge"></span></button>
+        <button class="cat-tab active" data-cat="collection" onclick="setCat(this)">🗂 Collection<span class="tab-badge" id="wl-badge"></span></button>
         <button class="cat-tab"        data-cat="releases" onclick="setCat(this)">📅 Releases</button>
       </div>
 
@@ -1597,8 +1598,7 @@ function render(products, manualCaps=[]){
     // Apply owned caps/pins filter to catalog products
     if(collectionView === 'owned'){
       products = products.filter(p => {
-        if(p._manual) return true; // manual caps already filtered above
-        if(p.category === 'caps'){
+        if(p.category === 'caps' || p._manual){
           if(!ownShowCaps) return false;
           if(ownCapsPanel !== 'all' && String(p.panels||'') !== ownCapsPanel) return false;
           return true;
