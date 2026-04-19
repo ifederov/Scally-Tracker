@@ -5074,3 +5074,52 @@
 2026-04-18 18:30:03,907 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
 2026-04-18 18:30:04,010 [INFO] ══ Poll complete ══
 
+2026-04-18 19:00:03,978 [INFO] ══ Scally Tracker — 2026-04-18 07:00 PM CT ══
+2026-04-18 19:00:03,982 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-18 19:00:06,057 [INFO] Fetched 650 products from BSC
+2026-04-18 19:00:06,627 [INFO] Purged 96 alert(s) older than 30 days
+2026-04-18 19:00:06,627 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-18 19:00:06,741 [INFO] ══ Poll complete ══
+
+2026-04-19 07:00:05,924 [INFO] ══ Scally Tracker — 2026-04-19 07:00 AM CT ══
+2026-04-19 07:00:05,928 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-19 07:00:07,630 [INFO] Fetched 650 products from BSC
+2026-04-19 07:00:08,193 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-19 07:00:08,309 [INFO] ══ Poll complete ══
+
+2026-04-19 07:30:05,987 [INFO] ══ Scally Tracker — 2026-04-19 07:30 AM CT ══
+2026-04-19 07:30:05,991 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-19 07:30:07,696 [INFO] Fetched 650 products from BSC
+2026-04-19 07:30:08,215 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-19 07:30:08,318 [INFO] ══ Poll complete ══
+
+2026-04-19 08:00:05,920 [INFO] ══ Scally Tracker — 2026-04-19 08:00 AM CT ══
+2026-04-19 08:00:05,924 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-19 08:00:07,618 [INFO] Fetched 650 products from BSC
+2026-04-19 08:00:08,154 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-19 08:00:08,263 [INFO] ══ Poll complete ══
+
+2026-04-19 08:30:05,889 [INFO] ══ Scally Tracker — 2026-04-19 08:30 AM CT ══
+2026-04-19 08:30:05,894 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-19 08:30:07,556 [INFO] Fetched 650 products from BSC
+2026-04-19 08:30:09,083 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-19 08:30:09,195 [INFO] ══ Poll complete ══
+
+2026-04-19 09:00:05,896 [INFO] ══ Scally Tracker — 2026-04-19 09:00 AM CT ══
+2026-04-19 09:00:05,899 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-19 09:00:07,553 [INFO] Fetched 650 products from BSC
+2026-04-19 09:00:08,082 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-19 09:00:08,167 [INFO] ══ Poll complete ══
+
+2026-04-19 09:30:05,912 [INFO] ══ Scally Tracker — 2026-04-19 09:30 AM CT ══
+2026-04-19 09:30:05,915 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-19 09:30:07,786 [INFO] Fetched 650 products from BSC
+2026-04-19 09:30:08,301 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-19 09:30:08,400 [INFO] ══ Poll complete ══
+
+2026-04-19 10:00:05,889 [INFO] ══ Scally Tracker — 2026-04-19 10:00 AM CT ══
+2026-04-19 10:00:05,892 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-19 10:00:07,459 [INFO] Fetched 650 products from BSC
+2026-04-19 10:00:08,047 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-19 10:00:08,152 [INFO] ══ Poll complete ══
+

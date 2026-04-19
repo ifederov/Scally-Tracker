@@ -18960,3 +18960,136 @@ sqlite3.OperationalError: database is locked
 100.82.67.2 - - [18/Apr/2026 18:56:46] "GET /api/products?category=all&avail=all&panels=all&search=&sort=newest&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
 100.82.67.2 - - [18/Apr/2026 18:57:22] "GET /api/product/7304071282775 HTTP/1.1" 200 -
 100.82.67.2 - - [18/Apr/2026 18:57:25] "GET /api/product/7326664523863 HTTP/1.1" 200 -
+100.76.50.88 - - [18/Apr/2026 20:42:45] "GET / HTTP/1.1" 200 -
+100.76.50.88 - - [18/Apr/2026 20:42:46] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [18/Apr/2026 20:42:46] "GET /api/manual_caps HTTP/1.1" 200 -
+100.76.50.88 - - [18/Apr/2026 20:42:48] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=0&wishlisted=1&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [18/Apr/2026 20:42:49] "GET /api/stats HTTP/1.1" 200 -
+100.76.50.88 - - [18/Apr/2026 20:43:09] "GET /api/product/6739104727127 HTTP/1.1" 200 -
+100.76.50.88 - - [18/Apr/2026 20:43:25] "GET /api/product/6904596955223 HTTP/1.1" 200 -
+100.76.50.88 - - [18/Apr/2026 20:43:36] "GET /api/products?category=caps&avail=in&panels=8&search=&sort=title&owned=0&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [18/Apr/2026 20:43:38] "GET /api/products?category=caps&avail=in&panels=single&search=&sort=title&owned=0&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [18/Apr/2026 20:43:53] "GET /api/product/4689640718423 HTTP/1.1" 200 -
+100.76.50.88 - - [18/Apr/2026 20:47:46] "GET / HTTP/1.1" 200 -
+100.76.50.88 - - [18/Apr/2026 20:47:47] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [18/Apr/2026 20:47:47] "GET /api/manual_caps HTTP/1.1" 200 -
+100.76.50.88 - - [18/Apr/2026 20:47:49] "GET /api/stats HTTP/1.1" 200 -
+100.76.50.88 - - [18/Apr/2026 20:47:50] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=0&wishlisted=1&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [18/Apr/2026 20:47:56] "GET /api/product/6858372448343 HTTP/1.1" 200 -
+100.76.50.88 - - [18/Apr/2026 20:48:21] "GET /api/product/6739104727127 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:07:22] "GET / HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:07:23] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:07:24] "GET /api/manual_caps HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:07:25] "GET /api/stats HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:07:46] "GET /api/alerts?limit=100 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:07:54] "GET /api/products?category=caps&avail=in&panels=8&search=&sort=title&owned=0&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:08:00] "GET /api/products?category=caps&avail=in&panels=single&search=&sort=title&owned=0&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:08:17] "GET /api/products?category=all&avail=all&panels=all&search=P&sort=title&owned=0&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:08:18] "GET /api/products?category=all&avail=all&panels=all&search=Pa&sort=title&owned=0&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:08:18] "GET /api/products?category=all&avail=all&panels=all&search=Pat&sort=title&owned=0&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:08:19] "GET /api/products?category=all&avail=all&panels=all&search=Patc&sort=title&owned=0&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:08:19] "GET /api/products?category=all&avail=all&panels=all&search=Patch&sort=title&owned=0&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:08:20] "GET /api/products?category=all&avail=all&panels=all&search=Patchw&sort=title&owned=0&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:08:21] "GET /api/products?category=all&avail=all&panels=all&search=Patchwo&sort=title&owned=0&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:08:21] "GET /api/products?category=all&avail=all&panels=all&search=Patchwor&sort=title&owned=0&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:08:22] "GET /api/products?category=all&avail=all&panels=all&search=Patchwork&sort=title&owned=0&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:08:43] "GET /api/product/4689640718423 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:08:46] "POST /api/user_item/4689640718423 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:08:46] "GET /api/products?category=all&avail=all&panels=all&search=Patchwork&sort=title&owned=0&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:08:48] "POST /api/user_item/4689640718423 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:08:48] "GET /api/stats HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:08:52] "GET /api/products?category=all&avail=all&panels=all&search=Patchwork&sort=title&owned=0&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:09:10] "GET /api/product/6858372448343 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:09:14] "POST /api/user_item/6858372448343 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:09:14] "GET /api/products?category=all&avail=all&panels=all&search=Patchwork&sort=title&owned=0&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:09:15] "POST /api/user_item/6858372448343 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:09:27] "GET /api/products?category=caps&avail=in&panels=single&search=&sort=title&owned=0&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:10:13] "GET /api/product/6859961172055 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:11:38] "GET /api/product/4346354794583 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:11:41] "POST /api/user_item/4346354794583 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:11:41] "GET /api/products?category=caps&avail=in&panels=single&search=&sort=title&owned=0&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:11:43] "GET /api/stats HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:11:48] "GET /api/product/4346357514327 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:11:50] "POST /api/user_item/4346357514327 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:11:50] "GET /api/products?category=caps&avail=in&panels=single&search=&sort=title&owned=0&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 08:11:57] "GET /api/products?category=all&avail=all&panels=all&search=&sort=newest&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://10.10.10.21:5001
+[33mPress CTRL+C to quit[0m
+100.76.50.88 - - [19/Apr/2026 09:51:22] "GET / HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 09:51:23] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 09:51:24] "GET /api/manual_caps HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 09:51:26] "GET /api/stats HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:54:28] "GET / HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:54:28] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:54:28] "GET /api/manual_caps HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:54:30] "GET /api/stats HTTP/1.1" 200 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://10.10.10.21:5001
+[33mPress CTRL+C to quit[0m
+100.82.67.2 - - [19/Apr/2026 09:54:58] "GET / HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:54:59] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:54:59] "GET /api/manual_caps HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:55:01] "GET /api/stats HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 09:55:23] "GET / HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 09:55:23] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 09:55:23] "GET /api/manual_caps HTTP/1.1" 200 -
+100.76.50.88 - - [19/Apr/2026 09:55:25] "GET /api/stats HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:56:03] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:56:05] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=0&wishlisted=1&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:56:06] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=0&wishlisted=0&sold=1 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:56:25] "GET /api/product/7530874241111 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:56:29] "POST /api/user_item/7530874241111 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:56:29] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=0&wishlisted=1&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:56:32] "GET /api/stats HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:56:34] "GET /api/product/6860215877719 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:56:37] "POST /api/user_item/6860215877719 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:56:37] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=0&wishlisted=1&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:56:41] "GET /api/product/7287060332631 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:56:44] "POST /api/user_item/7287060332631 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:56:44] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=0&wishlisted=1&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:56:49] "GET /api/product/4482939584599 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:56:53] "POST /api/user_item/4482939584599 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:56:53] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=0&wishlisted=1&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:56:59] "GET /api/product/7361818329175 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:57:02] "POST /api/user_item/7361818329175 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:57:02] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=0&wishlisted=1&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:57:09] "GET /api/product/7138293907543 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:57:12] "POST /api/user_item/7138293907543 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:57:12] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=0&wishlisted=1&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:57:17] "GET /api/product/7336849211479 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:57:19] "POST /api/user_item/7336849211479 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:57:19] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=0&wishlisted=1&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:57:28] "GET /api/product/7305306832983 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:57:31] "POST /api/user_item/7305306832983 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:57:31] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=0&wishlisted=1&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:57:32] "GET /api/stats HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:57:36] "GET /api/product/7483497906263 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:57:39] "POST /api/user_item/7483497906263 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:57:39] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=0&wishlisted=1&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:57:43] "GET /api/product/6858372677719 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:57:46] "POST /api/user_item/6858372677719 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:57:46] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=0&wishlisted=1&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:57:52] "GET /api/product/7467229085783 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:57:55] "POST /api/user_item/7467229085783 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:57:55] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=0&wishlisted=1&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:58:07] "GET /api/product/7250301517911 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:58:10] "POST /api/user_item/7250301517911 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:58:10] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=0&wishlisted=1&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:58:16] "GET / HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:58:16] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:58:16] "GET /api/manual_caps HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 09:58:17] "GET /api/stats HTTP/1.1" 200 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://10.10.10.21:5001
+[33mPress CTRL+C to quit[0m
+100.82.67.2 - - [19/Apr/2026 10:01:42] "GET / HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 10:01:42] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 10:01:42] "GET /api/manual_caps HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 10:01:44] "GET /api/stats HTTP/1.1" 200 -

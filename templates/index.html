@@ -653,6 +653,22 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
   .panel-inner { height:100%; overflow-x:auto; scrollbar-width:none; gap:6px; min-height:unset; align-items:center; }
   .panel-inner::-webkit-scrollbar { display:none; }
 
+  /* ── Own filter bar — sits directly on top of collection-bar ── */
+  .own-filter-bar {
+    position:fixed; left:0; right:0; z-index:198;
+    bottom:calc(var(--tab-h) + var(--filter-h) + env(safe-area-inset-bottom,0px));
+    height:var(--panel-h);
+    background:var(--navy); padding:0 14px;
+    border-top:1px solid rgba(255,255,255,.12);
+    border-bottom:none;
+  }
+  .own-filter-inner {
+    height:100%; display:flex; overflow-x:auto; scrollbar-width:none;
+    gap:6px; min-height:unset; align-items:center; flex-wrap:nowrap;
+  }
+  .own-filter-inner::-webkit-scrollbar { display:none; }
+  .own-sep { width:1px; height:16px; background:rgba(255,255,255,.2); flex-shrink:0; }
+
   .hdr-right { order:2; flex:1; gap:6px; }
   input[type="search"] { flex:1; width:auto !important; font-size:13px; padding:6px 10px 6px 28px; }
   .alerts-btn { padding:6px 10px; font-size:11px; }
@@ -788,10 +804,11 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
   <!-- Owned page: caps/pins filter -->
   <div class="own-filter-bar" id="own-filter-bar" style="display:none">
     <div class="own-filter-inner">
-      <label class="own-chk-lbl">
-        Caps <input type="checkbox" id="own-caps-chk" checked onchange="setOwnFilter()">
-      </label>
-      <span class="flabel">Panels</span>
+      <div class="pill-row" id="own-type-pills">
+        <button class="pill active" data-type="caps" onclick="setOwnType(this)">Caps</button>
+        <button class="pill"        data-type="pins" onclick="setOwnType(this)">Pins</button>
+      </div>
+      <div class="own-sep"></div>
       <div class="pill-row" id="own-panel-pills">
         <button class="pill active" data-panels="all"    onclick="setOwnPanel(this)">All</button>
         <button class="pill"        data-panels="single" onclick="setOwnPanel(this)">1</button>
@@ -800,10 +817,6 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
         <button class="pill"        data-panels="8"      onclick="setOwnPanel(this)">8</button>
         <button class="pill"        data-panels="baker"  onclick="setOwnPanel(this)">BB</button>
       </div>
-      <div class="own-sep"></div>
-      <label class="own-chk-lbl">
-        Pins <input type="checkbox" id="own-pins-chk" onchange="setOwnFilter()">
-      </label>
     </div>
   </div>
 
@@ -1316,10 +1329,10 @@ function setCollView(btn){
   load();
 }
 
-function setOwnFilter(){
-  ownShowCaps = document.getElementById('own-caps-chk').checked;
-  ownShowPins = document.getElementById('own-pins-chk').checked;
-  // Dim panel pills when caps is hidden
+function setOwnType(btn){
+  btn.classList.toggle('active');
+  ownShowCaps = document.querySelector('#own-type-pills [data-type="caps"]').classList.contains('active');
+  ownShowPins = document.querySelector('#own-type-pills [data-type="pins"]').classList.contains('active');
   const pillsEl = document.getElementById('own-panel-pills');
   pillsEl.style.opacity       = ownShowCaps ? '1' : '0.35';
   pillsEl.style.pointerEvents = ownShowCaps ? '' : 'none';
@@ -1488,10 +1501,18 @@ function render(products, manualCaps=[]){
     }
   }
   if(!products.length){
+    let emptyIcon = '🔍', emptyTitle = 'No products found', emptySub = 'Try adjusting your filters.';
+    if(cat === 'collection' && collectionView === 'owned' && ownShowCaps && ownCapsPanel !== 'all'){
+      const PANEL_LABELS = { single:'1-panel', '5':'5-panel', '6':'6-panel', '8':'8-panel', baker:'Baker Boy' };
+      const panelLabel = PANEL_LABELS[ownCapsPanel] || ownCapsPanel;
+      emptyIcon  = '🧢';
+      emptyTitle = `No ${panelLabel} caps`;
+      emptySub   = 'None of your owned caps match that panel count.';
+    }
     grid.innerHTML=`<div class="state" style="grid-column:1/-1">
-      <div class="state-icon">🔍</div>
-      <div class="state-title">No products found</div>
-      <div class="state-sub">Try adjusting your filters.</div></div>`;
+      <div class="state-icon">${emptyIcon}</div>
+      <div class="state-title">${emptyTitle}</div>
+      <div class="state-sub">${emptySub}</div></div>`;
     return;
   }
 
@@ -1606,6 +1627,17 @@ function render(products, manualCaps=[]){
         if(p.category === 'pins') return ownShowPins;
         return true;
       });
+      if(!products.length){
+        const PANEL_LABELS = { single:'1-panel', '5':'5-panel', '6':'6-panel', '8':'8-panel', baker:'Baker Boy' };
+        const panelLabel = ownShowCaps && ownCapsPanel !== 'all' ? (PANEL_LABELS[ownCapsPanel] || ownCapsPanel) : null;
+        const emptyTitle = panelLabel ? `No ${panelLabel} caps` : 'Nothing here yet';
+        const emptySub   = panelLabel ? 'None of your owned caps match that panel count.' : 'Add items to your collection.';
+        grid.innerHTML=`<div class="state" style="grid-column:1/-1">
+          <div class="state-icon">🧢</div>
+          <div class="state-title">${emptyTitle}</div>
+          <div class="state-sub">${emptySub}</div></div>`;
+        return;
+      }
     }
     const catCounts = {};
     products.forEach(p=>{ catCounts[p.category]=(catCounts[p.category]||0)+1; });
