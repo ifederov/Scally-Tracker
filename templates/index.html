@@ -128,15 +128,16 @@ header { background:var(--navy); box-shadow:0 2px 14px rgba(26,35,64,.35); }
 }
 body.dark .rel-radio-lbl, body.dark .rel-check-lbl { color:var(--text2); }
 .rel-pill {
-  display:inline-flex; align-items:center; gap:5px;
-  font-family:'Source Sans 3',sans-serif; font-size:12px; font-weight:700;
-  letter-spacing:.06em; text-transform:uppercase;
-  padding:5px 14px; border-radius:20px; border:1.5px solid var(--border);
-  background:var(--cream); color:var(--text2); cursor:pointer; transition:all .15s;
+  font-family:'Source Sans 3',sans-serif; font-size:11px; font-weight:700;
+  letter-spacing:.05em; text-transform:uppercase;
+  padding:3px 12px; border-radius:20px; border:1px solid var(--border);
+  background:var(--cream); color:var(--text2); cursor:pointer; transition:all .15s; white-space:nowrap;
 }
 .rel-pill:hover { border-color:var(--navy); color:var(--navy); }
 .rel-pill.active { background:var(--navy); border-color:var(--navy); color:#fff; }
 .rel-pill.limited.active { background:#e67e22; border-color:#e67e22; }
+.rel-controls-bar { display:flex; align-items:center; gap:12px; margin-bottom:10px; flex-wrap:wrap; }
+.rel-controls-bar .add-manual-btn { margin-bottom:0; margin-left:auto; }
 .rel-year-group { margin-bottom:24px; }
 .rel-year-hdr {
   font-family:'Playfair Display',serif; font-size:18px; font-weight:700;
@@ -403,13 +404,11 @@ main { max-width:1320px; margin:0 auto; padding:24px 20px; }
 #alerts-panel.show { display:block; }
 #prod-panel.hide { display:none; }
 .panel-head { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:var(--navy); margin-bottom:20px; padding-bottom:14px; border-bottom:2px solid var(--cream3); }
-.alert-filters { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px; }
-.af-pill { display:inline-flex; align-items:center; gap:5px; font-family:'Source Sans 3',sans-serif; font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:5px 14px; border-radius:20px; border:1.5px solid var(--border); background:var(--cream); color:var(--text2); cursor:pointer; transition:all .15s; }
+.alert-filters { display:flex; gap:5px; flex-wrap:wrap; align-items:center; margin-bottom:10px; }
+.af-pill { font-family:'Source Sans 3',sans-serif; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:3px 12px; border-radius:20px; border:1px solid var(--border); background:var(--cream); color:var(--text2); cursor:pointer; transition:all .15s; white-space:nowrap; }
 .af-pill:hover { border-color:var(--navy); color:var(--navy); }
 .af-pill.active { background:var(--navy); border-color:var(--navy); color:#fff; }
 .af-pill.instock.active  { background:var(--green); border-color:var(--green); }
-.xl-toggle { display:inline-flex; align-items:center; gap:5px; font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--text2); cursor:pointer; margin-left:6px; }
-.xl-toggle input { accent-color:var(--navy); cursor:pointer; }
 .af-pill.outstock.active { background:var(--red);   border-color:var(--red); }
 /* Status buttons in manual cap form — distinct colors so active state is obvious in both light + dark */
 .af-pill.status-owned.active    { background:#276749; border-color:#276749; color:#fff; }
@@ -850,6 +849,14 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
   </div>
 
   <div id="releases-panel">
+    <div class="rel-controls-bar">
+      <div class="rel-radios">
+        <label class="rel-radio-lbl"><input type="radio" name="rel-sort" value="alpha" checked onchange="setRelSort(this)"> A–Z</label>
+        <label class="rel-radio-lbl"><input type="radio" name="rel-sort" value="date"  onchange="setRelSort(this)"> Date</label>
+      </div>
+      <label class="rel-check-lbl"><input type="checkbox" id="rel-limited-chk" onchange="toggleRelLimited()"> ⭐ Limited</label>
+      <button class="add-manual-btn" onclick="openRelForm()">Add Release <span class="plus-circle">+</span></button>
+    </div>
     <div class="rel-filters">
       <span class="flabel">Year</span>
       <div id="rel-year-pills" style="display:flex;gap:4px;flex-wrap:wrap;">
@@ -860,15 +867,6 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
         <button class="rel-pill" data-year="2023" onclick="setRelYear(this)">2023</button>
         <button class="rel-pill" data-year="2022" onclick="setRelYear(this)">2022</button>
         <button class="rel-pill" data-year="2021" onclick="setRelYear(this)">2021</button>
-      </div>
-      <div class="rel-right-controls">
-        <span class="flabel">Sort</span>
-        <div class="rel-radios">
-          <label class="rel-radio-lbl"><input type="radio" name="rel-sort" value="alpha" checked onchange="setRelSort(this)"> A–Z</label>
-          <label class="rel-radio-lbl"><input type="radio" name="rel-sort" value="date"  onchange="setRelSort(this)"> Date</label>
-        </div>
-        <label class="rel-check-lbl"><input type="checkbox" id="rel-limited-chk" onchange="toggleRelLimited()"> ⭐ Limited</label>
-        <button class="add-manual-btn" onclick="openRelForm()">Add Release <span class="plus-circle">+</span></button>
       </div>
     </div>
     <div class="rel-filters" style="margin-bottom:12px;">
@@ -895,22 +893,17 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
   </div>
 
   <div id="alerts-panel">
-    <div class="panel-head">Recent Alerts</div>
     <div class="alert-filters">
       <button class="af-pill active" data-af="back_in_stock" onclick="setAlertFilter(this)">🎉 Restocked</button>
       <button class="af-pill"        data-af="new_product"   onclick="setAlertFilter(this)">🆕 New</button>
       <button class="af-pill"        data-af="out_of_stock"  onclick="setAlertFilter(this)">❌ Out of Stock</button>
-      <label class="xl-toggle" id="xl-toggle-wrap" title="Only show XL for caps &amp; apparel">
-        <input type="checkbox" id="xl-only-chk" onchange="renderAlerts()"> XL Only
-      </label>
-      <label class="xl-toggle" id="xxl-toggle-wrap" title="Only show XXL for caps &amp; apparel">
-        <input type="checkbox" id="xxl-only-chk" onchange="renderAlerts()"> XXL Only
-      </label>
     </div>
-    <div class="alert-filters" id="bis-subfilters" style="margin-top:6px;">
-      <button class="af-pill active" data-bis="all"  onclick="setBisFilter(this)">All</button>
-      <button class="af-pill"        data-bis="caps" onclick="setBisFilter(this)">🧢 Caps</button>
-      <button class="af-pill"        data-bis="pins" onclick="setBisFilter(this)">📌 Pins</button>
+    <div class="alert-filters" id="bis-subfilters">
+      <span id="bis-cat-pills" style="display:inline-flex;gap:6px;">
+        <button class="af-pill active" data-bis="all"  onclick="setBisFilter(this)">All</button>
+        <button class="af-pill"        data-bis="caps" onclick="setBisFilter(this)">🧢 Caps</button>
+        <button class="af-pill"        data-bis="pins" onclick="setBisFilter(this)">📌 Pins</button>
+      </span>
     </div>
     <div class="alerts-list" id="alert-list">
       <div class="state"><span class="spin"></span> Loading…</div>
@@ -1283,6 +1276,7 @@ function setCat(btn){
     document.getElementById('filter-bar').style.display = 'none';
     document.getElementById('panel-bar').classList.remove('show');
     document.getElementById('own-filter-bar').style.display = 'none';
+    document.getElementById('collection-bar').style.display = 'none';
     document.getElementById('alerts-btn').classList.remove('on');
     searchEl.value = '';
     searchEl.placeholder = 'Search releases…';
@@ -1381,6 +1375,8 @@ function showProducts(){
   const _isTagView = cat==='collection';
   document.getElementById('filter-bar').style.display = _isTagView ? 'none' : '';
   document.getElementById('panel-bar').classList.toggle('show', cat==='caps');
+  document.getElementById('collection-bar').style.display = _isTagView ? '' : 'none';
+  document.getElementById('own-filter-bar').style.display = (_isTagView && collectionView==='owned') ? '' : 'none';
   document.getElementById('alerts-btn').classList.remove('on');
   const activeTab = document.querySelector(`.cat-tab[data-cat="${cat}"]`);
   if(activeTab) activeTab.classList.add('active');
@@ -1395,6 +1391,7 @@ function toggleAlerts(){
   document.getElementById('filter-bar').style.display='none';
   document.getElementById('panel-bar').classList.remove('show');
   document.getElementById('own-filter-bar').style.display='none';
+  document.getElementById('collection-bar').style.display='none';
   document.getElementById('alerts-btn').classList.add('on');
   document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
   _alertFilter = 'back_in_stock';
@@ -1403,6 +1400,7 @@ function toggleAlerts(){
   document.querySelector('.af-pill[data-af="back_in_stock"]').classList.add('active');
   document.querySelector('#bis-subfilters .af-pill[data-bis="all"]').classList.add('active');
   document.getElementById('bis-subfilters').style.display = '';
+  document.getElementById('bis-cat-pills').style.display = 'inline-flex';
   loadAlerts();
 }
 
@@ -1752,15 +1750,13 @@ function setAlertFilter(btn){
   _alertFilter = btn.dataset.af;
   document.querySelectorAll('#alerts-panel .alert-filters:not(#bis-subfilters) .af-pill').forEach(p => p.classList.remove('active'));
   btn.classList.add('active');
-  // Show sub-filters only for Back in Stock; reset to All
   const sub = document.getElementById('bis-subfilters');
   if(_alertFilter === 'back_in_stock'){
     sub.style.display = '';
+    document.getElementById('bis-cat-pills').style.display = 'inline-flex';
     _bisFilter = 'all';
     document.querySelectorAll('#bis-subfilters .af-pill').forEach(p => p.classList.remove('active'));
     document.querySelector('#bis-subfilters .af-pill[data-bis="all"]').classList.add('active');
-    const chk = document.getElementById('xl-only-chk');
-    if(chk) chk.checked = false;
   } else {
     sub.style.display = 'none';
   }
@@ -1785,18 +1781,15 @@ function isXXL(variantTitle){
 function renderAlerts(){
   const list = document.getElementById('alert-list');
   let filtered = _allAlerts.filter(a => a.alert_type === _alertFilter);
-  if(_alertFilter === 'back_in_stock' && _bisFilter !== 'all'){
-    filtered = filtered.filter(a => a.category === _bisFilter);
-  }
-  // For caps and apparel, optionally filter to XL / XXL
-  const xlOnly  = document.getElementById('xl-only-chk')?.checked  ?? false;
-  const xxlOnly = document.getElementById('xxl-only-chk')?.checked ?? false;
-  if(xlOnly || xxlOnly){
+  // Restock and Out of Stock: only pins + XL/XXL caps/apparel are relevant
+  if(_alertFilter === 'back_in_stock' || _alertFilter === 'out_of_stock'){
+    if(_alertFilter === 'back_in_stock' && _bisFilter !== 'all'){
+      filtered = filtered.filter(a => a.category === _bisFilter);
+    }
     filtered = filtered.filter(a => {
-      if(a.category === 'caps' || a.category === 'apparel'){
-        return (xlOnly && isXL(a.variant_title)) || (xxlOnly && isXXL(a.variant_title));
-      }
-      return true;
+      if(a.category === 'pins') return true;
+      if(a.category === 'caps' || a.category === 'apparel') return isXL(a.variant_title) || isXXL(a.variant_title);
+      return false;
     });
   }
   if(!filtered.length){

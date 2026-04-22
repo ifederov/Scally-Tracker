@@ -19221,3 +19221,156 @@ sqlite3.OperationalError: database is locked
 [33mPress CTRL+C to quit[0m
 100.82.67.2 - - [19/Apr/2026 16:39:19] "GET /api/stats HTTP/1.1" 200 -
 100.82.67.2 - - [19/Apr/2026 16:44:18] "GET /api/stats HTTP/1.1" 200 -
+100.82.67.2 - - [19/Apr/2026 16:49:16] "GET /api/stats HTTP/1.1" 200 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://127.0.0.1:5001
+[33mPress CTRL+C to quit[0m
+100.82.67.2 - - [22/Apr/2026 01:38:09] "GET / HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 01:38:09] "[33mGET /apple-touch-icon-precomposed.png HTTP/1.1[0m" 404 -
+100.82.67.2 - - [22/Apr/2026 01:38:09] "[33mGET /apple-touch-icon-precomposed.png HTTP/1.1[0m" 404 -
+100.82.67.2 - - [22/Apr/2026 01:38:09] "[33mGET /apple-touch-icon.png HTTP/1.1[0m" 404 -
+100.82.67.2 - - [22/Apr/2026 01:38:09] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+100.82.67.2 - - [22/Apr/2026 01:38:10] "[33mGET /apple-touch-icon.png HTTP/1.1[0m" 404 -
+100.82.67.2 - - [22/Apr/2026 01:38:10] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 01:38:10] "GET /api/manual_caps HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 01:38:10] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+100.82.67.2 - - [22/Apr/2026 01:38:12] "GET /api/stats HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 01:38:15] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=0&wishlisted=1&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 01:38:21] "GET /api/product/7381770993751 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 01:38:24] "POST /api/user_item/7381770993751 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 01:38:24] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=0&wishlisted=1&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 07:12:00] "GET / HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 07:12:00] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 07:12:00] "GET /api/manual_caps HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 07:12:02] "GET /api/stats HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 07:22:41] "GET /api/stats HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 07:23:33] "GET /api/alerts?limit=100 HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 07:23:55] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=0&wishlisted=1&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 07:23:58] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 07:24:16] "GET /api/stats HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 07:24:18] "GET /api/products?category=caps&avail=in&panels=8&search=&sort=title&owned=0&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 07:24:23] "GET /api/products?category=all&avail=all&panels=all&search=&sort=newest&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 07:24:31] "GET / HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 07:24:32] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 07:24:32] "GET /api/manual_caps HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 07:24:41] "GET /api/alerts?limit=100 HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 07:26:14] "GET /api/releases?limited=all&search= HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 07:26:24] "GET /api/releases?limited=all&search=&years=2026 HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 07:26:25] "GET /api/releases?limited=all&search=&years=2026&months=4 HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 07:26:36] "GET /api/releases?limited=all&search=&years=2026&months=4 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 11:56:21] "GET / HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 11:56:27] "GET /api/manual_caps HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 11:56:27] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 11:56:28] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=0&wishlisted=1&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 11:56:29] "GET /api/stats HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 12:01:29] "GET /api/stats HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 12:06:29] "GET /api/stats HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 12:08:43] "GET /api/product/7466252861527 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 12:27:50] "GET / HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 12:27:52] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 12:27:52] "GET /api/manual_caps HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 12:27:54] "GET /api/stats HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 12:32:55] "GET /api/stats HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 12:37:55] "GET /api/stats HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 12:42:12] "GET /api/products?category=all&avail=all&panels=all&search=new&sort=title&owned=0&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 12:42:12] "GET /api/products?category=all&avail=all&panels=all&search=n&sort=title&owned=0&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 12:42:12] "GET /api/products?category=all&avail=all&panels=all&search=news&sort=title&owned=0&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 12:42:13] "GET /api/products?category=all&avail=all&panels=all&search=newsboy&sort=title&owned=0&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 13:28:30] "GET / HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 13:28:33] "GET /api/manual_caps HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 13:28:33] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 13:28:35] "GET /api/stats HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 13:29:48] "GET /api/releases?limited=all&search= HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 13:29:52] "GET /api/alerts?limit=100 HTTP/1.1" 200 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://10.10.10.127:5001
+[33mPress CTRL+C to quit[0m
+100.76.50.88 - - [22/Apr/2026 13:56:18] "GET /api/stats HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 13:56:51] "GET / HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 13:56:53] "GET /api/manual_caps HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 13:56:53] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 13:59:44] "GET /api/releases?limited=all&search= HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 13:59:47] "GET /api/products?category=all&avail=all&panels=all&search=&sort=newest&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 13:59:50] "GET /api/alerts?limit=100 HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 14:01:57] "GET /api/stats HTTP/1.1" 200 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://10.10.10.127:5001
+[33mPress CTRL+C to quit[0m
+100.76.50.88 - - [22/Apr/2026 14:06:58] "GET /api/stats HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 14:08:13] "GET / HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 14:08:18] "GET /api/manual_caps HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 14:08:19] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 14:08:19] "GET /api/stats HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 14:08:32] "GET /api/releases?limited=all&search= HTTP/1.1" 200 -
+100.76.50.88 - - [22/Apr/2026 14:08:42] "GET /api/alerts?limit=100 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 14:41:32] "GET / HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 14:41:32] "GET /api/manual_caps HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 14:41:32] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 14:41:35] "GET /api/stats HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 14:42:16] "GET /api/releases?limited=all&search= HTTP/1.1" 200 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://10.10.10.127:5001
+[33mPress CTRL+C to quit[0m
+100.82.67.2 - - [22/Apr/2026 14:46:34] "GET /api/stats HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 14:50:16] "GET / HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 14:50:19] "GET /api/manual_caps HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 14:50:19] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 14:50:21] "GET /api/stats HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 14:51:39] "GET /api/products?category=all&avail=all&panels=all&search=&sort=newest&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 14:51:41] "GET /api/products?category=all&avail=all&panels=all&search=&sort=newest&owned=0&wishlisted=1&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 14:51:54] "GET /api/releases?limited=all&search= HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 14:52:03] "GET /api/products?category=caps&avail=in&panels=8&search=&sort=title&owned=0&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 14:52:06] "GET /api/releases?limited=all&search= HTTP/1.1" 200 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://10.10.10.127:5001
+[33mPress CTRL+C to quit[0m
+100.82.67.2 - - [22/Apr/2026 14:54:36] "GET / HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 14:54:38] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 14:54:38] "GET /api/manual_caps HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 14:54:39] "GET /api/stats HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 14:55:02] "GET /api/releases?limited=all&search= HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 14:55:06] "GET /api/products?category=caps&avail=in&panels=8&search=&sort=title&owned=0&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 14:55:09] "GET /api/releases?limited=all&search= HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 14:55:10] "GET /api/alerts?limit=100 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 14:55:18] "GET /api/products?category=other&avail=in&panels=all&search=&sort=title&owned=0&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 14:55:21] "GET /api/products?category=all&avail=all&panels=all&search=&sort=newest&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 14:55:23] "GET /api/releases?limited=all&search= HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 14:56:32] "GET /api/alerts?limit=100 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 14:56:36] "GET /api/products?category=all&avail=all&panels=all&search=&sort=newest&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 14:56:38] "GET /api/alerts?limit=100 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 14:59:39] "GET /api/stats HTTP/1.1" 200 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://10.10.10.127:5001
+[33mPress CTRL+C to quit[0m
+100.82.67.2 - - [22/Apr/2026 15:04:18] "GET / HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 15:04:20] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 15:04:20] "GET /api/manual_caps HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 15:04:22] "GET /api/stats HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 15:05:32] "GET /api/releases?limited=all&search= HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 15:05:34] "GET /api/alerts?limit=100 HTTP/1.1" 200 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://10.10.10.127:5001
+[33mPress CTRL+C to quit[0m
+100.82.67.2 - - [22/Apr/2026 15:06:35] "GET / HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 15:06:35] "GET /api/products?category=all&avail=all&panels=all&search=&sort=title&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 15:06:35] "GET /api/manual_caps HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 15:06:38] "GET /api/stats HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 15:06:38] "GET /api/releases?limited=all&search= HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 15:06:41] "GET /api/products?category=all&avail=all&panels=all&search=&sort=newest&owned=1&wishlisted=0&sold=0 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 15:06:43] "GET /api/releases?limited=all&search= HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 15:06:46] "GET /api/alerts?limit=100 HTTP/1.1" 200 -
+100.82.67.2 - - [22/Apr/2026 15:07:04] "GET /api/alerts?limit=100 HTTP/1.1" 200 -
