@@ -473,8 +473,35 @@ def run_poll():
             log.info("First run — building baseline, no alerts will fire")
             known = {p["id"] for p in products}
 
+        seen_ids = set()
         for p in products:
             process(conn, p, known)
+            seen_ids.add(p["id"])
+
+        # Mark variants unavailable for products that vanished from the feed
+        if not first_run:
+            missing_ids = known - seen_ids
+            for pid in missing_ids:
+                variants = conn.execute(
+                    "SELECT id, title, price, available FROM variants WHERE product_id=? AND available=1",
+                    (pid,)
+                ).fetchall()
+                if not variants:
+                    continue
+                title = conn.execute("SELECT title FROM products WHERE id=?", (pid,)).fetchone()["title"]
+                now = datetime.now(CT).isoformat()
+                for v in variants:
+                    conn.execute(
+                        "UPDATE variants SET available=0, updated_at=? WHERE id=?",
+                        (now, v["id"])
+                    )
+                    conn.execute(
+                        "INSERT INTO snapshots (variant_id,product_id,price,available,checked_at) VALUES (?,?,?,?,?)",
+                        (v["id"], pid, v["price"], 0, now)
+                    )
+                    log_alert(conn, pid, v["id"], "out_of_stock",
+                              f"OUT OF STOCK (delisted): {title} — {v['title']}")
+                log.info("DELISTED [unavailable]: %s (%d variant(s) zeroed)", title, len(variants))
 
         # Purge alerts older than 30 days
         deleted = conn.execute(

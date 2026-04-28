@@ -464,10 +464,14 @@ def api_stats():
                 (SELECT COUNT(*) FROM alerts
                  WHERE date(created_at, 'localtime') = ?) AS alerts_today,
                 (SELECT MAX(checked_at) FROM snapshots)   AS last_poll,
-                (SELECT COUNT(*) FROM alerts a
+                (SELECT COUNT(DISTINCT a.product_id) FROM alerts a
                  JOIN user_items u ON u.product_id = a.product_id
                  WHERE a.alert_type='back_in_stock' AND u.wishlisted=1
                  AND datetime(a.created_at) >= datetime('now', '-7 days')
+                 AND EXISTS(
+                     SELECT 1 FROM variants v
+                     WHERE v.product_id = a.product_id AND v.available=1
+                 )
                 ) AS wishlisted_restocks
         """, (today,)).fetchone()
     resp = jsonify({

@@ -1564,7 +1564,7 @@ function render(products, manualCaps=[]){
       p.wishlisted ? `<span class="ribbon-tag wishlist">⭐ Wishlist</span>` : '',
       p.sold       ? `<span class="ribbon-tag sold">🏷 Sold</span>`         : '',
       (!p.owned && !p.wishlisted && !p.sold && p.is_new_product) ? `<span class="ribbon-tag new-item">New</span>` : '',
-      (!p.owned && !p.wishlisted && !p.sold && p.is_restocked && p.my_size_in_stock) ? `<span class="ribbon-tag restocked">🎉 Restocked</span>` : '',
+      (!p.owned && !p.sold && p.is_restocked && p.my_size_in_stock) ? `<span class="ribbon-tag restocked">🎉 Restocked</span>` : '',
     ].filter(Boolean).join('');
     const ribbon = ribbons ? `<div class="card-ribbon">${ribbons}</div>` : '';
     const oosBadge = (isWish && p.oos_days)
