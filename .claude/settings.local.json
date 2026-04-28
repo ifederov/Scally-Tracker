@@ -34,7 +34,11 @@
       "Bash(git -C /Users/sterling/app/scally-tracker diff)",
       "Bash(git:*)",
       "Bash(chmod:*)",
-      "Bash(ls /Users/sterling/Desktop/*.png)"
+      "Bash(ls /Users/sterling/Desktop/*.png)",
+      "Bash(/usr/bin/python3 poller.py)",
+      "Bash(git commit:*)",
+      "Bash(Stock\" display for products BSC has unpublished \\(e.g. The Shillelagh\\).:*)",
+      "Bash(bash backup.sh)"
     ]
   }
 }

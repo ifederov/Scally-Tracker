@@ -6331,3 +6331,1239 @@ NameError: name 'is_wishlisted' is not defined
 2026-04-22 16:00:04,955 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
 2026-04-22 16:00:05,093 [INFO] ══ Poll complete ══
 
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-22 16:30:05,176 [INFO] ══ Scally Tracker — 2026-04-22 04:30 PM CT ══
+2026-04-22 16:30:05,179 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-22 16:30:07,072 [INFO] Fetched 650 products from BSC
+2026-04-22 16:30:07,678 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-22 16:30:07,810 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-22 17:00:06,204 [INFO] ══ Scally Tracker — 2026-04-22 05:00 PM CT ══
+2026-04-22 17:00:06,207 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-22 17:00:07,781 [INFO] Fetched 650 products from BSC
+2026-04-22 17:00:08,383 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-22 17:00:08,520 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-22 17:30:06,188 [INFO] ══ Scally Tracker — 2026-04-22 05:30 PM CT ══
+2026-04-22 17:30:06,191 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-22 17:30:08,489 [INFO] Fetched 650 products from BSC
+2026-04-22 17:30:09,090 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-22 17:30:09,226 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-22 18:00:06,212 [INFO] ══ Scally Tracker — 2026-04-22 06:00 PM CT ══
+2026-04-22 18:00:06,214 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-22 18:00:07,947 [INFO] Fetched 650 products from BSC
+2026-04-22 18:00:08,545 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-22 18:00:08,671 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-22 18:30:06,180 [INFO] ══ Scally Tracker — 2026-04-22 06:30 PM CT ══
+2026-04-22 18:30:06,183 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-22 18:30:08,084 [INFO] Fetched 650 products from BSC
+2026-04-22 18:30:08,680 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-22 18:30:08,809 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-22 19:00:06,183 [INFO] ══ Scally Tracker — 2026-04-22 07:00 PM CT ══
+2026-04-22 19:00:06,186 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-22 19:00:07,971 [INFO] Fetched 650 products from BSC
+2026-04-22 19:00:08,573 [INFO] Purged 28 alert(s) older than 30 days
+2026-04-22 19:00:08,573 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-22 19:00:08,701 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-23 07:00:06,304 [INFO] ══ Scally Tracker — 2026-04-23 07:00 AM CT ══
+2026-04-23 07:00:06,309 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-23 07:00:08,078 [INFO] Fetched 650 products from BSC
+2026-04-23 07:00:08,737 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-23 07:00:08,867 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-23 07:30:06,173 [INFO] ══ Scally Tracker — 2026-04-23 07:30 AM CT ══
+2026-04-23 07:30:06,176 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-23 07:30:08,002 [INFO] Fetched 650 products from BSC
+2026-04-23 07:30:08,458 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-23 07:30:08,587 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-23 08:00:06,194 [INFO] ══ Scally Tracker — 2026-04-23 08:00 AM CT ══
+2026-04-23 08:00:06,196 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-23 08:00:08,050 [INFO] Fetched 650 products from BSC
+2026-04-23 08:00:08,461 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-23 08:00:08,562 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-23 08:30:06,179 [INFO] ══ Scally Tracker — 2026-04-23 08:30 AM CT ══
+2026-04-23 08:30:06,182 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-23 08:30:08,009 [INFO] Fetched 650 products from BSC
+2026-04-23 08:30:08,612 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-23 08:30:08,739 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-23 09:00:06,178 [INFO] ══ Scally Tracker — 2026-04-23 09:00 AM CT ══
+2026-04-23 09:00:06,180 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-23 09:00:08,764 [INFO] Fetched 650 products from BSC
+2026-04-23 09:00:09,583 [INFO] ntfy 200: 🎉 Restock!
+2026-04-23 09:00:09,804 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-23 09:00:09,927 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-23 09:30:06,195 [INFO] ══ Scally Tracker — 2026-04-23 09:30 AM CT ══
+2026-04-23 09:30:06,198 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-23 09:30:08,008 [INFO] Fetched 650 products from BSC
+2026-04-23 09:30:08,601 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-23 09:30:08,726 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-23 10:00:06,192 [INFO] ══ Scally Tracker — 2026-04-23 10:00 AM CT ══
+2026-04-23 10:00:06,195 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-23 10:00:08,079 [INFO] Fetched 650 products from BSC
+2026-04-23 10:00:08,851 [INFO] ntfy 200: 🎉 Restock!
+2026-04-23 10:00:09,192 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-23 10:00:09,318 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-23 10:30:06,179 [INFO] ══ Scally Tracker — 2026-04-23 10:30 AM CT ══
+2026-04-23 10:30:06,182 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-23 10:30:07,966 [INFO] Fetched 650 products from BSC
+2026-04-23 10:30:08,450 [INFO] ntfy 200: 🎉 Restock!
+2026-04-23 10:30:08,875 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-23 10:30:09,001 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-23 11:00:06,188 [INFO] ══ Scally Tracker — 2026-04-23 11:00 AM CT ══
+2026-04-23 11:00:06,191 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-23 11:00:07,809 [INFO] Fetched 650 products from BSC
+2026-04-23 11:00:08,401 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-23 11:00:08,527 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-23 11:30:01,167 [INFO] ══ Scally Tracker — 2026-04-23 11:30 AM CT ══
+2026-04-23 11:30:01,170 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-23 11:30:03,096 [INFO] Fetched 650 products from BSC
+2026-04-23 11:30:03,466 [INFO] ntfy 200: 🎉 Restock!
+2026-04-23 11:30:04,104 [INFO] ntfy 200: 🎉 Restock!
+2026-04-23 11:30:04,498 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-23 11:30:04,633 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-23 12:00:02,212 [INFO] ══ Scally Tracker — 2026-04-23 12:00 PM CT ══
+2026-04-23 12:00:02,215 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-23 12:00:05,321 [INFO] Fetched 650 products from BSC
+2026-04-23 12:00:05,753 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-23 12:00:05,879 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-23 12:30:05,170 [INFO] ══ Scally Tracker — 2026-04-23 12:30 PM CT ══
+2026-04-23 12:30:05,173 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-23 12:30:07,403 [INFO] Fetched 650 products from BSC
+2026-04-23 12:30:07,836 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-23 12:30:07,968 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-23 13:00:04,215 [INFO] ══ Scally Tracker — 2026-04-23 01:00 PM CT ══
+2026-04-23 13:00:04,218 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-23 13:00:06,043 [INFO] Fetched 650 products from BSC
+2026-04-23 13:00:06,464 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-23 13:00:06,589 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-23 13:30:01,184 [INFO] ══ Scally Tracker — 2026-04-23 01:30 PM CT ══
+2026-04-23 13:30:01,187 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-23 13:30:04,423 [INFO] Fetched 650 products from BSC
+2026-04-23 13:30:05,010 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-23 13:30:05,140 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-23 14:00:05,213 [INFO] ══ Scally Tracker — 2026-04-23 02:00 PM CT ══
+2026-04-23 14:00:05,221 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-23 14:00:06,812 [INFO] Fetched 650 products from BSC
+2026-04-23 14:00:07,037 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-23 14:00:07,218 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-23 14:30:01,179 [INFO] ══ Scally Tracker — 2026-04-23 02:30 PM CT ══
+2026-04-23 14:30:01,182 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-23 14:30:03,512 [INFO] Fetched 650 products from BSC
+2026-04-23 14:30:04,090 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-23 14:30:04,215 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-23 15:00:02,213 [INFO] ══ Scally Tracker — 2026-04-23 03:00 PM CT ══
+2026-04-23 15:00:02,215 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-23 15:00:04,131 [INFO] Fetched 650 products from BSC
+2026-04-23 15:00:04,574 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-23 15:00:04,689 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-23 15:30:01,188 [INFO] ══ Scally Tracker — 2026-04-23 03:30 PM CT ══
+2026-04-23 15:30:01,191 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-23 15:30:02,982 [INFO] Fetched 650 products from BSC
+2026-04-23 15:30:03,413 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-23 15:30:03,545 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-23 16:00:02,202 [INFO] ══ Scally Tracker — 2026-04-23 04:00 PM CT ══
+2026-04-23 16:00:02,206 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-23 16:00:19,725 [INFO] Fetched 650 products from BSC
+2026-04-23 16:00:20,316 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-23 16:00:20,450 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-23 16:30:03,190 [INFO] ══ Scally Tracker — 2026-04-23 04:30 PM CT ══
+2026-04-23 16:30:03,193 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-23 16:30:05,218 [INFO] Fetched 650 products from BSC
+2026-04-23 16:30:05,804 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-23 16:30:05,933 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-23 17:00:02,213 [INFO] ══ Scally Tracker — 2026-04-23 05:00 PM CT ══
+2026-04-23 17:00:02,216 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-23 17:00:03,940 [INFO] Fetched 650 products from BSC
+2026-04-23 17:00:04,517 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-23 17:00:04,647 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-23 17:30:05,517 [INFO] ══ Scally Tracker — 2026-04-23 05:30 PM CT ══
+2026-04-23 17:30:05,520 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-23 17:30:07,278 [INFO] Fetched 650 products from BSC
+2026-04-23 17:30:07,859 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-23 17:30:07,987 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-23 18:00:05,543 [INFO] ══ Scally Tracker — 2026-04-23 06:00 PM CT ══
+2026-04-23 18:00:05,546 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-23 18:00:07,301 [INFO] Fetched 650 products from BSC
+2026-04-23 18:00:07,882 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-23 18:00:08,014 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-23 18:30:05,528 [INFO] ══ Scally Tracker — 2026-04-23 06:30 PM CT ══
+2026-04-23 18:30:05,531 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-23 18:30:07,294 [INFO] Fetched 650 products from BSC
+2026-04-23 18:30:07,879 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-23 18:30:08,001 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-23 19:00:05,536 [INFO] ══ Scally Tracker — 2026-04-23 07:00 PM CT ══
+2026-04-23 19:00:05,539 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-23 19:00:07,401 [INFO] Fetched 650 products from BSC
+2026-04-23 19:00:07,990 [INFO] Purged 48 alert(s) older than 30 days
+2026-04-23 19:00:07,990 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-23 19:00:08,113 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-24 07:00:05,291 [INFO] ══ Scally Tracker — 2026-04-24 07:00 AM CT ══
+2026-04-24 07:00:05,294 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-24 07:00:07,031 [INFO] Fetched 650 products from BSC
+2026-04-24 07:00:07,673 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-24 07:00:07,805 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-24 07:30:06,187 [INFO] ══ Scally Tracker — 2026-04-24 07:30 AM CT ══
+2026-04-24 07:30:06,190 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-24 07:30:08,020 [INFO] Fetched 650 products from BSC
+2026-04-24 07:30:08,618 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-24 07:30:08,759 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-24 08:00:06,185 [INFO] ══ Scally Tracker — 2026-04-24 08:00 AM CT ══
+2026-04-24 08:00:06,188 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-24 08:00:08,072 [INFO] Fetched 650 products from BSC
+2026-04-24 08:00:08,651 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-24 08:00:08,774 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-24 08:30:06,192 [INFO] ══ Scally Tracker — 2026-04-24 08:30 AM CT ══
+2026-04-24 08:30:06,195 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-24 08:30:08,078 [INFO] Fetched 650 products from BSC
+2026-04-24 08:30:08,672 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-24 08:30:08,805 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-24 09:00:06,202 [INFO] ══ Scally Tracker — 2026-04-24 09:00 AM CT ══
+2026-04-24 09:00:06,205 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-24 09:00:07,933 [INFO] Fetched 650 products from BSC
+2026-04-24 09:00:08,520 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-24 09:00:08,646 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-24 09:30:06,183 [INFO] ══ Scally Tracker — 2026-04-24 09:30 AM CT ══
+2026-04-24 09:30:06,185 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-24 09:30:08,135 [INFO] Fetched 650 products from BSC
+2026-04-24 09:30:08,732 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-24 09:30:08,858 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-24 10:00:06,200 [INFO] ══ Scally Tracker — 2026-04-24 10:00 AM CT ══
+2026-04-24 10:00:06,203 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-24 10:00:07,940 [INFO] Fetched 650 products from BSC
+2026-04-24 10:00:08,314 [INFO] ntfy 200: 🎉 Restock!
+2026-04-24 10:00:08,748 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-24 10:00:08,864 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-24 10:30:06,201 [INFO] ══ Scally Tracker — 2026-04-24 10:30 AM CT ══
+2026-04-24 10:30:06,203 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-24 10:30:08,090 [INFO] Fetched 650 products from BSC
+2026-04-24 10:30:08,535 [INFO] Categories: {'apparel': 144, 'caps': 386, 'other': 17, 'pins': 157}
+2026-04-24 10:30:08,653 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-24 11:00:06,189 [INFO] ══ Scally Tracker — 2026-04-24 11:00 AM CT ══
+2026-04-24 11:00:06,191 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-24 11:00:07,890 [INFO] Fetched 652 products from BSC
+2026-04-24 11:00:07,897 [INFO] NEW [pins]: Boston Scally The Big Lebowski Pin Set
+2026-04-24 11:00:08,508 [INFO] ntfy 200: 🆕 New on BSC!
+2026-04-24 11:00:08,515 [INFO] NEW [caps]: The Big Lebowski Boston Scally Cap - The Dude Patchwork
+2026-04-24 11:00:08,837 [INFO] ntfy 200: 🆕 New on BSC!
+2026-04-24 11:00:08,843 [INFO] RELEASE auto-added: The Big Lebowski - The Dude Patchwork on 4/24/26
+2026-04-24 11:00:09,170 [INFO] ntfy 200: 🎉 Restock!
+2026-04-24 11:00:09,426 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-24 11:00:09,551 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-24 11:30:03,192 [INFO] ══ Scally Tracker — 2026-04-24 11:30 AM CT ══
+2026-04-24 11:30:03,195 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-24 11:30:04,982 [INFO] Fetched 652 products from BSC
+2026-04-24 11:30:05,572 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-24 11:30:05,701 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-24 12:00:06,203 [INFO] ══ Scally Tracker — 2026-04-24 12:00 PM CT ══
+2026-04-24 12:00:06,205 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-24 12:00:08,438 [INFO] Fetched 652 products from BSC
+2026-04-24 12:00:08,829 [INFO] ntfy 200: 🎉 Restock!
+2026-04-24 12:00:09,302 [INFO] ntfy 200: 🎉 Restock!
+2026-04-24 12:00:09,551 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-24 12:00:09,680 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-24 12:30:06,196 [INFO] ══ Scally Tracker — 2026-04-24 12:30 PM CT ══
+2026-04-24 12:30:06,199 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-24 12:30:08,330 [INFO] Fetched 652 products from BSC
+2026-04-24 12:30:08,922 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-24 12:30:09,055 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-24 13:00:06,188 [INFO] ══ Scally Tracker — 2026-04-24 01:00 PM CT ══
+2026-04-24 13:00:06,191 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-24 13:00:07,983 [INFO] Fetched 652 products from BSC
+2026-04-24 13:00:08,581 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-24 13:00:08,708 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-24 13:30:06,184 [INFO] ══ Scally Tracker — 2026-04-24 01:30 PM CT ══
+2026-04-24 13:30:06,187 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-24 13:30:08,099 [INFO] Fetched 652 products from BSC
+2026-04-24 13:30:08,473 [INFO] ntfy 200: 🎉 Restock!
+2026-04-24 13:30:09,038 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-24 13:30:09,174 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-24 14:00:06,192 [INFO] ══ Scally Tracker — 2026-04-24 02:00 PM CT ══
+2026-04-24 14:00:06,196 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-24 14:00:08,031 [INFO] Fetched 652 products from BSC
+2026-04-24 14:00:08,629 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-24 14:00:08,766 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-24 14:30:06,184 [INFO] ══ Scally Tracker — 2026-04-24 02:30 PM CT ══
+2026-04-24 14:30:06,187 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-24 14:30:08,184 [INFO] Fetched 652 products from BSC
+2026-04-24 14:30:08,546 [INFO] ntfy 200: 🎉 Restock!
+2026-04-24 14:30:08,916 [INFO] ntfy 200: 🎉 Restock!
+2026-04-24 14:30:09,432 [INFO] ntfy 200: 🎉 Restock!
+2026-04-24 14:30:09,937 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-24 14:30:10,069 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-24 15:00:06,201 [INFO] ══ Scally Tracker — 2026-04-24 03:00 PM CT ══
+2026-04-24 15:00:06,204 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-24 15:00:08,123 [INFO] Fetched 652 products from BSC
+2026-04-24 15:00:08,720 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-24 15:00:08,846 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-24 15:30:06,179 [INFO] ══ Scally Tracker — 2026-04-24 03:30 PM CT ══
+2026-04-24 15:30:06,182 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-24 15:30:07,837 [INFO] Fetched 652 products from BSC
+2026-04-24 15:30:08,435 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-24 15:30:08,571 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-24 16:00:06,204 [INFO] ══ Scally Tracker — 2026-04-24 04:00 PM CT ══
+2026-04-24 16:00:06,207 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-24 16:00:08,003 [INFO] Fetched 652 products from BSC
+2026-04-24 16:00:08,608 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-24 16:00:08,740 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-24 16:30:06,182 [INFO] ══ Scally Tracker — 2026-04-24 04:30 PM CT ══
+2026-04-24 16:30:06,185 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-24 16:30:08,157 [INFO] Fetched 652 products from BSC
+2026-04-24 16:30:08,755 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-24 16:30:08,886 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-24 17:00:06,235 [INFO] ══ Scally Tracker — 2026-04-24 05:00 PM CT ══
+2026-04-24 17:00:06,238 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-24 17:00:08,158 [INFO] Fetched 652 products from BSC
+2026-04-24 17:00:08,570 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-24 17:00:08,701 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-24 17:30:01,179 [INFO] ══ Scally Tracker — 2026-04-24 05:30 PM CT ══
+2026-04-24 17:30:01,182 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-24 17:30:03,473 [INFO] Fetched 652 products from BSC
+2026-04-24 17:30:04,075 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-24 17:30:04,210 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-24 18:00:05,194 [INFO] ══ Scally Tracker — 2026-04-24 06:00 PM CT ══
+2026-04-24 18:00:05,196 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-24 18:00:07,062 [INFO] Fetched 652 products from BSC
+2026-04-24 18:00:07,469 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-24 18:00:07,640 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-24 18:30:05,202 [INFO] ══ Scally Tracker — 2026-04-24 06:30 PM CT ══
+2026-04-24 18:30:05,205 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-24 18:30:07,097 [INFO] Fetched 652 products from BSC
+2026-04-24 18:30:07,709 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-24 18:30:07,845 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-24 19:00:02,188 [INFO] ══ Scally Tracker — 2026-04-24 07:00 PM CT ══
+2026-04-24 19:00:02,191 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-24 19:00:03,876 [INFO] Fetched 652 products from BSC
+2026-04-24 19:00:04,496 [INFO] Purged 148 alert(s) older than 30 days
+2026-04-24 19:00:04,496 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-24 19:00:04,629 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-25 07:00:01,560 [INFO] ══ Scally Tracker — 2026-04-25 07:00 AM CT ══
+2026-04-25 07:00:01,563 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-25 07:00:04,087 [INFO] Fetched 652 products from BSC
+2026-04-25 07:00:04,715 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-25 07:00:04,859 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-25 07:30:04,532 [INFO] ══ Scally Tracker — 2026-04-25 07:30 AM CT ══
+2026-04-25 07:30:04,535 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-25 07:30:06,442 [INFO] Fetched 652 products from BSC
+2026-04-25 07:30:07,060 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-25 07:30:07,196 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-25 08:00:03,535 [INFO] ══ Scally Tracker — 2026-04-25 08:00 AM CT ══
+2026-04-25 08:00:03,538 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-25 08:00:05,254 [INFO] Fetched 652 products from BSC
+2026-04-25 08:00:05,683 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-25 08:00:05,819 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-25 08:30:05,210 [INFO] ══ Scally Tracker — 2026-04-25 08:30 AM CT ══
+2026-04-25 08:30:05,214 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-25 08:30:07,528 [INFO] Fetched 652 products from BSC
+2026-04-25 08:30:08,152 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-25 08:30:08,286 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-25 09:00:01,539 [INFO] ══ Scally Tracker — 2026-04-25 09:00 AM CT ══
+2026-04-25 09:00:01,542 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-25 09:00:03,222 [INFO] Fetched 652 products from BSC
+2026-04-25 09:00:03,839 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-25 09:00:03,973 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-25 09:30:03,523 [INFO] ══ Scally Tracker — 2026-04-25 09:30 AM CT ══
+2026-04-25 09:30:03,526 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-25 09:30:05,191 [INFO] Fetched 652 products from BSC
+2026-04-25 09:30:05,819 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-25 09:30:05,959 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-25 10:00:03,164 [INFO] ══ Scally Tracker — 2026-04-25 10:00 AM CT ══
+2026-04-25 10:00:03,167 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-25 10:00:04,767 [INFO] Fetched 652 products from BSC
+2026-04-25 10:00:05,393 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-25 10:00:05,526 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-25 10:30:06,212 [INFO] ══ Scally Tracker — 2026-04-25 10:30 AM CT ══
+2026-04-25 10:30:06,215 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-25 10:30:07,841 [INFO] Fetched 652 products from BSC
+2026-04-25 10:30:08,465 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-25 10:30:08,601 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-25 11:00:06,192 [INFO] ══ Scally Tracker — 2026-04-25 11:00 AM CT ══
+2026-04-25 11:00:06,195 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-25 11:00:07,821 [INFO] Fetched 652 products from BSC
+2026-04-25 11:00:08,451 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-25 11:00:08,591 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-25 11:30:03,196 [INFO] ══ Scally Tracker — 2026-04-25 11:30 AM CT ══
+2026-04-25 11:30:03,199 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-25 11:30:04,022 [ERROR] Fetch error page 2: 503 Server Error: Service Unavailable for url: https://bostonscally.com/products.json?limit=250&page=2
+2026-04-25 11:30:04,023 [INFO] Fetched 250 products from BSC
+2026-04-25 11:30:04,298 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-25 11:30:04,357 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-25 12:00:06,197 [INFO] ══ Scally Tracker — 2026-04-25 12:00 PM CT ══
+2026-04-25 12:00:06,201 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-25 12:00:07,890 [INFO] Fetched 652 products from BSC
+2026-04-25 12:00:08,515 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-25 12:00:08,666 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-25 12:30:06,190 [INFO] ══ Scally Tracker — 2026-04-25 12:30 PM CT ══
+2026-04-25 12:30:06,193 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-25 12:30:07,911 [INFO] Fetched 652 products from BSC
+2026-04-25 12:30:08,526 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-25 12:30:08,663 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-25 13:00:02,068 [INFO] ══ Scally Tracker — 2026-04-25 01:00 PM CT ══
+2026-04-25 13:00:02,071 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-25 13:00:03,792 [INFO] Fetched 652 products from BSC
+2026-04-25 13:00:04,253 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-25 13:00:04,392 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-25 13:30:05,816 [INFO] ══ Scally Tracker — 2026-04-25 01:30 PM CT ══
+2026-04-25 13:30:05,819 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-25 13:30:07,545 [INFO] Fetched 652 products from BSC
+2026-04-25 13:30:08,168 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-25 13:30:08,306 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-25 14:00:05,198 [INFO] ══ Scally Tracker — 2026-04-25 02:00 PM CT ══
+2026-04-25 14:00:05,202 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-25 14:00:06,839 [INFO] Fetched 652 products from BSC
+2026-04-25 14:00:07,450 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-25 14:00:07,584 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-25 14:30:06,206 [INFO] ══ Scally Tracker — 2026-04-25 02:30 PM CT ══
+2026-04-25 14:30:06,208 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-25 14:30:07,919 [INFO] Fetched 652 products from BSC
+2026-04-25 14:30:08,379 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-25 14:30:08,514 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-25 15:00:06,190 [INFO] ══ Scally Tracker — 2026-04-25 03:00 PM CT ══
+2026-04-25 15:00:06,193 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-25 15:00:08,040 [INFO] Fetched 652 products from BSC
+2026-04-25 15:00:08,656 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-25 15:00:08,796 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-25 15:30:06,181 [INFO] ══ Scally Tracker — 2026-04-25 03:30 PM CT ══
+2026-04-25 15:30:06,184 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-25 15:30:07,887 [INFO] Fetched 652 products from BSC
+2026-04-25 15:30:08,497 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-25 15:30:08,629 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-25 16:00:06,193 [INFO] ══ Scally Tracker — 2026-04-25 04:00 PM CT ══
+2026-04-25 16:00:06,196 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-25 16:00:07,853 [INFO] Fetched 652 products from BSC
+2026-04-25 16:00:08,470 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-25 16:00:08,606 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-25 16:30:06,179 [INFO] ══ Scally Tracker — 2026-04-25 04:30 PM CT ══
+2026-04-25 16:30:06,182 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-25 16:30:08,945 [INFO] Fetched 652 products from BSC
+2026-04-25 16:30:09,567 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-25 16:30:09,706 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-25 17:00:06,222 [INFO] ══ Scally Tracker — 2026-04-25 05:00 PM CT ══
+2026-04-25 17:00:06,225 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-25 17:00:07,961 [INFO] Fetched 652 products from BSC
+2026-04-25 17:00:08,398 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-25 17:00:08,530 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-25 17:30:06,196 [INFO] ══ Scally Tracker — 2026-04-25 05:30 PM CT ══
+2026-04-25 17:30:06,200 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-25 17:30:07,973 [INFO] Fetched 652 products from BSC
+2026-04-25 17:30:08,595 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-25 17:30:08,728 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-25 18:00:06,189 [INFO] ══ Scally Tracker — 2026-04-25 06:00 PM CT ══
+2026-04-25 18:00:06,192 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-25 18:00:07,973 [INFO] Fetched 652 products from BSC
+2026-04-25 18:00:08,589 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-25 18:00:08,732 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-25 18:30:06,176 [INFO] ══ Scally Tracker — 2026-04-25 06:30 PM CT ══
+2026-04-25 18:30:06,180 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-25 18:30:07,965 [INFO] Fetched 652 products from BSC
+2026-04-25 18:30:08,576 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-25 18:30:08,713 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-25 19:00:06,201 [INFO] ══ Scally Tracker — 2026-04-25 07:00 PM CT ══
+2026-04-25 19:00:06,204 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-25 19:00:07,895 [INFO] Fetched 652 products from BSC
+2026-04-25 19:00:08,500 [INFO] Purged 90 alert(s) older than 30 days
+2026-04-25 19:00:08,501 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-25 19:00:08,641 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-26 07:00:06,226 [INFO] ══ Scally Tracker — 2026-04-26 07:00 AM CT ══
+2026-04-26 07:00:06,229 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-26 07:00:07,921 [INFO] Fetched 652 products from BSC
+2026-04-26 07:00:08,535 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-26 07:00:08,666 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-26 07:30:05,525 [INFO] ══ Scally Tracker — 2026-04-26 07:30 AM CT ══
+2026-04-26 07:30:05,528 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-26 07:30:07,279 [INFO] Fetched 652 products from BSC
+2026-04-26 07:30:07,887 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-26 07:30:08,015 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-26 08:00:05,559 [INFO] ══ Scally Tracker — 2026-04-26 08:00 AM CT ══
+2026-04-26 08:00:05,562 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-26 08:00:07,242 [INFO] Fetched 652 products from BSC
+2026-04-26 08:00:07,698 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-26 08:00:07,827 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-26 08:30:05,526 [INFO] ══ Scally Tracker — 2026-04-26 08:30 AM CT ══
+2026-04-26 08:30:05,530 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-26 08:30:07,132 [INFO] Fetched 652 products from BSC
+2026-04-26 08:30:07,736 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-26 08:30:07,866 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-26 09:00:05,579 [INFO] ══ Scally Tracker — 2026-04-26 09:00 AM CT ══
+2026-04-26 09:00:05,582 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-26 09:00:07,530 [INFO] Fetched 652 products from BSC
+2026-04-26 09:00:07,979 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-26 09:00:08,095 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-26 09:30:05,530 [INFO] ══ Scally Tracker — 2026-04-26 09:30 AM CT ══
+2026-04-26 09:30:05,533 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-26 09:30:07,240 [INFO] Fetched 652 products from BSC
+2026-04-26 09:30:07,846 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-26 09:30:07,979 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-26 10:00:02,530 [INFO] ══ Scally Tracker — 2026-04-26 10:00 AM CT ══
+2026-04-26 10:00:02,533 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-26 10:00:04,403 [INFO] Fetched 652 products from BSC
+2026-04-26 10:00:04,858 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-26 10:00:04,990 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-26 10:30:02,187 [INFO] ══ Scally Tracker — 2026-04-26 10:30 AM CT ══
+2026-04-26 10:30:02,189 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-26 10:30:04,064 [INFO] Fetched 652 products from BSC
+2026-04-26 10:30:04,519 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-26 10:30:04,703 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-26 11:00:05,193 [INFO] ══ Scally Tracker — 2026-04-26 11:00 AM CT ══
+2026-04-26 11:00:05,197 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-26 11:00:07,137 [INFO] Fetched 652 products from BSC
+2026-04-26 11:00:07,739 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-26 11:00:07,879 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-26 11:30:02,561 [INFO] ══ Scally Tracker — 2026-04-26 11:30 AM CT ══
+2026-04-26 11:30:02,564 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-26 11:30:04,569 [INFO] Fetched 652 products from BSC
+2026-04-26 11:30:05,175 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-26 11:30:05,307 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-26 12:00:05,547 [INFO] ══ Scally Tracker — 2026-04-26 12:00 PM CT ══
+2026-04-26 12:00:05,549 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-26 12:00:07,504 [INFO] Fetched 652 products from BSC
+2026-04-26 12:00:08,108 [INFO] ntfy 200: 🎉 Restock!
+2026-04-26 12:00:08,470 [INFO] ntfy 200: 🎉 Restock!
+2026-04-26 12:00:08,753 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-26 12:00:08,878 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-26 12:30:03,531 [INFO] ══ Scally Tracker — 2026-04-26 12:30 PM CT ══
+2026-04-26 12:30:03,534 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-26 12:30:05,280 [INFO] Fetched 652 products from BSC
+2026-04-26 12:30:05,887 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-26 12:30:06,021 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-26 13:00:02,569 [INFO] ══ Scally Tracker — 2026-04-26 01:00 PM CT ══
+2026-04-26 13:00:02,572 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-26 13:00:04,363 [INFO] Fetched 652 products from BSC
+2026-04-26 13:00:04,968 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-26 13:00:05,097 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-26 13:30:00,525 [INFO] ══ Scally Tracker — 2026-04-26 01:30 PM CT ══
+2026-04-26 13:30:00,528 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-26 13:30:02,455 [INFO] Fetched 652 products from BSC
+2026-04-26 13:30:02,904 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-26 13:30:03,033 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-26 14:00:01,533 [INFO] ══ Scally Tracker — 2026-04-26 02:00 PM CT ══
+2026-04-26 14:00:01,536 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-26 14:00:03,302 [INFO] Fetched 652 products from BSC
+2026-04-26 14:00:03,900 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-26 14:00:04,028 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-26 14:30:03,543 [INFO] ══ Scally Tracker — 2026-04-26 02:30 PM CT ══
+2026-04-26 14:30:03,547 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-26 14:30:05,396 [INFO] Fetched 652 products from BSC
+2026-04-26 14:30:05,992 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-26 14:30:06,121 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-26 15:00:01,539 [INFO] ══ Scally Tracker — 2026-04-26 03:00 PM CT ══
+2026-04-26 15:00:01,542 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-26 15:00:03,330 [INFO] Fetched 652 products from BSC
+2026-04-26 15:00:03,929 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-26 15:00:04,061 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-26 15:30:00,523 [INFO] ══ Scally Tracker — 2026-04-26 03:30 PM CT ══
+2026-04-26 15:30:00,526 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-26 15:30:02,366 [INFO] Fetched 652 products from BSC
+2026-04-26 15:30:02,962 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-26 15:30:03,091 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-26 16:00:02,544 [INFO] ══ Scally Tracker — 2026-04-26 04:00 PM CT ══
+2026-04-26 16:00:02,547 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-26 16:00:04,543 [INFO] Fetched 652 products from BSC
+2026-04-26 16:00:05,145 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-26 16:00:05,287 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-26 16:30:00,535 [INFO] ══ Scally Tracker — 2026-04-26 04:30 PM CT ══
+2026-04-26 16:30:00,538 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-26 16:30:03,527 [INFO] Fetched 652 products from BSC
+2026-04-26 16:30:04,123 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-26 16:30:04,256 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-26 17:00:03,565 [INFO] ══ Scally Tracker — 2026-04-26 05:00 PM CT ══
+2026-04-26 17:00:03,568 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-26 17:00:05,239 [INFO] Fetched 652 products from BSC
+2026-04-26 17:00:05,844 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-26 17:00:05,991 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-26 17:30:00,524 [INFO] ══ Scally Tracker — 2026-04-26 05:30 PM CT ══
+2026-04-26 17:30:00,527 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-26 17:30:02,172 [INFO] Fetched 652 products from BSC
+2026-04-26 17:30:02,769 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-26 17:30:02,901 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-26 18:00:05,542 [INFO] ══ Scally Tracker — 2026-04-26 06:00 PM CT ══
+2026-04-26 18:00:05,545 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-26 18:00:08,342 [INFO] Fetched 652 products from BSC
+2026-04-26 18:00:08,942 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-26 18:00:09,072 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-26 18:30:05,179 [INFO] ══ Scally Tracker — 2026-04-26 06:30 PM CT ══
+2026-04-26 18:30:05,182 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-26 18:30:07,159 [INFO] Fetched 652 products from BSC
+2026-04-26 18:30:07,759 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-26 18:30:07,890 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-26 19:00:06,181 [INFO] ══ Scally Tracker — 2026-04-26 07:00 PM CT ══
+2026-04-26 19:00:06,184 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-26 19:00:08,049 [INFO] Fetched 652 products from BSC
+2026-04-26 19:00:08,647 [INFO] Purged 121 alert(s) older than 30 days
+2026-04-26 19:00:08,648 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-26 19:00:08,775 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-27 07:00:06,249 [INFO] ══ Scally Tracker — 2026-04-27 07:00 AM CT ══
+2026-04-27 07:00:06,253 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-27 07:00:08,039 [INFO] Fetched 652 products from BSC
+2026-04-27 07:00:08,632 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-27 07:00:08,755 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-27 07:30:01,190 [INFO] ══ Scally Tracker — 2026-04-27 07:30 AM CT ══
+2026-04-27 07:30:01,193 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-27 07:30:03,218 [INFO] Fetched 652 products from BSC
+2026-04-27 07:30:03,817 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-27 07:30:03,949 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-27 08:00:02,196 [INFO] ══ Scally Tracker — 2026-04-27 08:00 AM CT ══
+2026-04-27 08:00:02,199 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-27 08:00:04,071 [INFO] Fetched 652 products from BSC
+2026-04-27 08:00:04,696 [INFO] ntfy 200: 🎉 Restock!
+2026-04-27 08:00:05,546 [INFO] ntfy 200: 🎉 Restock!
+2026-04-27 08:00:05,936 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-27 08:00:06,064 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-27 08:30:05,205 [INFO] ══ Scally Tracker — 2026-04-27 08:30 AM CT ══
+2026-04-27 08:30:05,208 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-27 08:30:07,056 [INFO] Fetched 652 products from BSC
+2026-04-27 08:30:07,652 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-27 08:30:07,781 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-27 09:00:02,180 [INFO] ══ Scally Tracker — 2026-04-27 09:00 AM CT ══
+2026-04-27 09:00:02,183 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-27 09:00:03,940 [INFO] Fetched 652 products from BSC
+2026-04-27 09:00:04,399 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-27 09:00:04,522 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-27 09:30:04,171 [INFO] ══ Scally Tracker — 2026-04-27 09:30 AM CT ══
+2026-04-27 09:30:04,174 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-27 09:30:06,219 [INFO] Fetched 652 products from BSC
+2026-04-27 09:30:06,818 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-27 09:30:06,953 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-27 10:00:02,192 [INFO] ══ Scally Tracker — 2026-04-27 10:00 AM CT ══
+2026-04-27 10:00:02,195 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-27 10:00:03,932 [INFO] Fetched 652 products from BSC
+2026-04-27 10:00:04,769 [INFO] ntfy 200: 🎉 Restock!
+2026-04-27 10:00:05,798 [INFO] ntfy 200: 🎉 Restock!
+2026-04-27 10:00:06,057 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-27 10:00:06,195 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-27 10:30:01,174 [INFO] ══ Scally Tracker — 2026-04-27 10:30 AM CT ══
+2026-04-27 10:30:01,177 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-27 10:30:03,000 [INFO] Fetched 652 products from BSC
+2026-04-27 10:30:03,603 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-27 10:30:03,733 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-27 11:00:05,543 [INFO] ══ Scally Tracker — 2026-04-27 11:00 AM CT ══
+2026-04-27 11:00:05,546 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-27 11:00:07,108 [INFO] Fetched 652 products from BSC
+2026-04-27 11:00:07,716 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-27 11:00:07,848 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-27 11:30:01,160 [INFO] ══ Scally Tracker — 2026-04-27 11:30 AM CT ══
+2026-04-27 11:30:01,162 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-27 11:30:02,943 [INFO] Fetched 652 products from BSC
+2026-04-27 11:30:04,052 [INFO] ntfy 200: 🎉 Restock!
+2026-04-27 11:30:04,526 [INFO] ntfy 200: ⭐ Wishlist Restock!
+2026-04-27 11:30:05,077 [INFO] ntfy 200: 🎉 Restock!
+2026-04-27 11:30:05,497 [INFO] ntfy 200: ⭐ Wishlist Restock!
+2026-04-27 11:30:06,160 [INFO] ntfy 200: 🎉 Restock!
+2026-04-27 11:30:06,322 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-27 11:30:06,456 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-27 12:00:03,209 [INFO] ══ Scally Tracker — 2026-04-27 12:00 PM CT ══
+2026-04-27 12:00:03,212 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-27 12:00:05,136 [INFO] Fetched 652 products from BSC
+2026-04-27 12:00:06,516 [INFO] ntfy 200: 🎉 Restock!
+2026-04-27 12:00:06,927 [INFO] ntfy 200: 🎉 Restock!
+2026-04-27 12:00:07,161 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-27 12:00:07,275 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-27 12:30:03,172 [INFO] ══ Scally Tracker — 2026-04-27 12:30 PM CT ══
+2026-04-27 12:30:03,175 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-27 12:30:04,778 [INFO] Fetched 652 products from BSC
+2026-04-27 12:30:05,268 [INFO] ntfy 200: 🎉 Restock!
+2026-04-27 12:30:05,830 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-27 12:30:05,960 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-27 13:00:02,180 [INFO] ══ Scally Tracker — 2026-04-27 01:00 PM CT ══
+2026-04-27 13:00:02,182 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-27 13:00:03,901 [INFO] Fetched 652 products from BSC
+2026-04-27 13:00:04,548 [INFO] ntfy 200: 🎉 Restock!
+2026-04-27 13:00:04,832 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-27 13:00:04,963 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-27 13:30:05,180 [INFO] ══ Scally Tracker — 2026-04-27 01:30 PM CT ══
+2026-04-27 13:30:05,183 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-27 13:30:06,971 [INFO] Fetched 652 products from BSC
+2026-04-27 13:30:07,581 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-27 13:30:07,716 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-27 14:00:05,545 [INFO] ══ Scally Tracker — 2026-04-27 02:00 PM CT ══
+2026-04-27 14:00:05,548 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-27 14:00:07,263 [INFO] Fetched 652 products from BSC
+2026-04-27 14:00:07,688 [INFO] ntfy 200: 🎉 Restock!
+2026-04-27 14:00:08,246 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-27 14:00:08,372 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-27 14:30:05,516 [INFO] ══ Scally Tracker — 2026-04-27 02:30 PM CT ══
+2026-04-27 14:30:05,519 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-27 14:30:07,311 [INFO] Fetched 652 products from BSC
+2026-04-27 14:30:07,920 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-27 14:30:08,057 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-27 15:00:05,533 [INFO] ══ Scally Tracker — 2026-04-27 03:00 PM CT ══
+2026-04-27 15:00:05,535 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-27 15:00:07,202 [INFO] Fetched 652 products from BSC
+2026-04-27 15:00:07,805 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-27 15:00:07,928 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-27 15:30:05,544 [INFO] ══ Scally Tracker — 2026-04-27 03:30 PM CT ══
+2026-04-27 15:30:05,547 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-27 15:30:07,207 [INFO] Fetched 652 products from BSC
+2026-04-27 15:30:07,808 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-27 15:30:07,940 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-27 16:00:05,539 [INFO] ══ Scally Tracker — 2026-04-27 04:00 PM CT ══
+2026-04-27 16:00:05,542 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-27 16:00:07,101 [INFO] Fetched 652 products from BSC
+2026-04-27 16:00:07,559 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-27 16:00:07,689 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-27 16:30:05,535 [INFO] ══ Scally Tracker — 2026-04-27 04:30 PM CT ══
+2026-04-27 16:30:05,538 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-27 16:30:07,207 [INFO] Fetched 652 products from BSC
+2026-04-27 16:30:07,822 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-27 16:30:07,958 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-27 17:00:05,553 [INFO] ══ Scally Tracker — 2026-04-27 05:00 PM CT ══
+2026-04-27 17:00:05,556 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-27 17:00:07,170 [INFO] Fetched 652 products from BSC
+2026-04-27 17:00:07,783 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-27 17:00:07,926 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-27 17:30:05,530 [INFO] ══ Scally Tracker — 2026-04-27 05:30 PM CT ══
+2026-04-27 17:30:05,533 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-27 17:30:07,433 [INFO] Fetched 652 products from BSC
+2026-04-27 17:30:08,046 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-27 17:30:08,182 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-27 18:00:05,527 [INFO] ══ Scally Tracker — 2026-04-27 06:00 PM CT ══
+2026-04-27 18:00:05,530 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-27 18:00:07,620 [INFO] Fetched 652 products from BSC
+2026-04-27 18:00:08,234 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-27 18:00:08,368 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-27 18:30:02,527 [INFO] ══ Scally Tracker — 2026-04-27 06:30 PM CT ══
+2026-04-27 18:30:02,530 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-27 18:30:04,403 [INFO] Fetched 652 products from BSC
+2026-04-27 18:30:05,017 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-27 18:30:05,158 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-27 19:00:01,534 [INFO] ══ Scally Tracker — 2026-04-27 07:00 PM CT ══
+2026-04-27 19:00:01,537 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-27 19:00:03,277 [INFO] Fetched 652 products from BSC
+2026-04-27 19:00:03,893 [INFO] Purged 10 alert(s) older than 30 days
+2026-04-27 19:00:03,893 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-27 19:00:04,031 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-28 07:00:06,291 [INFO] ══ Scally Tracker — 2026-04-28 07:00 AM CT ══
+2026-04-28 07:00:06,295 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-28 07:00:08,207 [INFO] Fetched 652 products from BSC
+2026-04-28 07:00:08,856 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-28 07:00:08,994 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-28 07:30:06,186 [INFO] ══ Scally Tracker — 2026-04-28 07:30 AM CT ══
+2026-04-28 07:30:06,189 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-28 07:30:08,214 [INFO] Fetched 652 products from BSC
+2026-04-28 07:30:08,843 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-28 07:30:08,979 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-28 08:00:06,180 [INFO] ══ Scally Tracker — 2026-04-28 08:00 AM CT ══
+2026-04-28 08:00:06,183 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-28 08:00:08,178 [INFO] Fetched 652 products from BSC
+2026-04-28 08:00:08,800 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-28 08:00:08,940 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-28 08:30:06,192 [INFO] ══ Scally Tracker — 2026-04-28 08:30 AM CT ══
+2026-04-28 08:30:06,195 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-28 08:30:08,172 [INFO] Fetched 652 products from BSC
+2026-04-28 08:30:08,628 [INFO] ntfy 200: 🎉 Restock!
+2026-04-28 08:30:09,216 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-28 08:30:09,353 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-28 09:00:06,200 [INFO] ══ Scally Tracker — 2026-04-28 09:00 AM CT ══
+2026-04-28 09:00:06,202 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-28 09:00:07,970 [INFO] Fetched 652 products from BSC
+2026-04-28 09:00:08,313 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-28 09:00:08,486 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-28 09:30:06,180 [INFO] ══ Scally Tracker — 2026-04-28 09:30 AM CT ══
+2026-04-28 09:30:06,183 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-28 09:30:07,901 [INFO] Fetched 652 products from BSC
+2026-04-28 09:30:08,220 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-28 09:30:08,424 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-28 10:00:06,165 [INFO] ══ Scally Tracker — 2026-04-28 10:00 AM CT ══
+2026-04-28 10:00:06,167 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-28 10:00:07,887 [INFO] Fetched 652 products from BSC
+2026-04-28 10:00:08,427 [INFO] ntfy 200: 🎉 Restock!
+2026-04-28 10:00:08,639 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-28 10:00:08,838 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-28 10:30:06,192 [INFO] ══ Scally Tracker — 2026-04-28 10:30 AM CT ══
+2026-04-28 10:30:06,195 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-28 10:30:07,913 [INFO] Fetched 652 products from BSC
+2026-04-28 10:30:08,568 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-28 10:30:08,704 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-28 11:00:06,204 [INFO] ══ Scally Tracker — 2026-04-28 11:00 AM CT ══
+2026-04-28 11:00:06,207 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-28 11:00:07,812 [INFO] Fetched 652 products from BSC
+2026-04-28 11:00:08,439 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-28 11:00:08,586 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-28 11:30:03,203 [INFO] ══ Scally Tracker — 2026-04-28 11:30 AM CT ══
+2026-04-28 11:30:03,206 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-28 11:30:05,022 [INFO] Fetched 652 products from BSC
+2026-04-28 11:30:05,420 [INFO] ntfy 200: 🎉 Restock!
+2026-04-28 11:30:06,053 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-28 11:30:06,193 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-28 12:00:06,214 [INFO] ══ Scally Tracker — 2026-04-28 12:00 PM CT ══
+2026-04-28 12:00:06,217 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-28 12:00:08,116 [INFO] Fetched 652 products from BSC
+2026-04-28 12:00:08,748 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-28 12:00:08,879 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-28 12:30:06,175 [INFO] ══ Scally Tracker — 2026-04-28 12:30 PM CT ══
+2026-04-28 12:30:06,178 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-28 12:30:07,871 [INFO] Fetched 652 products from BSC
+2026-04-28 12:30:08,490 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-28 12:30:08,625 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-28 13:00:06,205 [INFO] ══ Scally Tracker — 2026-04-28 01:00 PM CT ══
+2026-04-28 13:00:06,208 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-28 13:00:08,096 [INFO] Fetched 652 products from BSC
+2026-04-28 13:00:08,717 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-28 13:00:08,859 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-28 13:30:06,174 [INFO] ══ Scally Tracker — 2026-04-28 01:30 PM CT ══
+2026-04-28 13:30:06,177 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-28 13:30:08,277 [INFO] Fetched 652 products from BSC
+2026-04-28 13:30:08,898 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-28 13:30:09,033 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-28 14:00:03,167 [INFO] ══ Scally Tracker — 2026-04-28 02:00 PM CT ══
+2026-04-28 14:00:03,170 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-28 14:00:04,807 [INFO] Fetched 652 products from BSC
+2026-04-28 14:00:05,429 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-28 14:00:05,566 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-28 14:30:06,202 [INFO] ══ Scally Tracker — 2026-04-28 02:30 PM CT ══
+2026-04-28 14:30:06,205 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-28 14:30:08,207 [INFO] Fetched 652 products from BSC
+2026-04-28 14:30:08,825 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-28 14:30:08,958 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-28 15:00:05,226 [INFO] ══ Scally Tracker — 2026-04-28 03:00 PM CT ══
+2026-04-28 15:00:05,229 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-28 15:00:06,985 [INFO] Fetched 652 products from BSC
+2026-04-28 15:00:07,605 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-28 15:00:07,729 [INFO] ══ Poll complete ══
+
+/Users/sterling/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2026-04-28 15:30:01,222 [INFO] ══ Scally Tracker — 2026-04-28 03:30 PM CT ══
+2026-04-28 15:30:01,224 [INFO] DB ready: /Users/sterling/app/scally-tracker/data/inventory.db
+2026-04-28 15:30:03,153 [INFO] Fetched 652 products from BSC
+2026-04-28 15:30:03,338 [INFO] Categories: {'apparel': 144, 'caps': 387, 'other': 17, 'pins': 158}
+2026-04-28 15:30:03,466 [INFO] ══ Poll complete ══
+
