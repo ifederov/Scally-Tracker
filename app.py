@@ -472,7 +472,12 @@ def api_stats():
                      SELECT 1 FROM variants v
                      WHERE v.product_id = a.product_id AND v.available=1
                  )
-                ) AS wishlisted_restocks
+                ) AS wishlisted_restocks,
+                (SELECT COUNT(DISTINCT a.product_id) FROM alerts a
+                 JOIN products p ON p.id = a.product_id
+                 WHERE a.alert_type='new_product' AND p.category='caps'
+                 AND datetime(a.created_at) >= datetime('now', '-5 days')
+                ) AS new_caps
         """, (today,)).fetchone()
     resp = jsonify({
         "total":               counts["total"],
@@ -486,6 +491,7 @@ def api_stats():
         "alerts_today":        misc["alerts_today"],
         "last_poll":           misc["last_poll"],
         "wishlisted_restocks": misc["wishlisted_restocks"],
+        "new_caps":            misc["new_caps"],
     })
     resp.headers["Cache-Control"] = "private, max-age=55"
     return resp

@@ -267,6 +267,7 @@ input[type="search"]::-webkit-search-cancel-button {
 .pill:hover { border-color:var(--navy); color:var(--navy); }
 .pill:focus { outline: none; }
 .pill.active { background:var(--navy); border-color:var(--navy); color:#fff; }
+.pill.pill-dimmed { opacity:0.35; pointer-events:none; cursor:default; }
 .sort-wrap { margin-left:auto; display:flex; align-items:center; gap:8px; }
 select.srt {
   background:var(--white); border:1px solid var(--border); border-radius:var(--r);
@@ -633,7 +634,7 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
   .pill:hover { border-color:var(--gold-lt); color:#fff; }
   .pill.active { background:var(--gold-lt); border-color:var(--gold-lt); color:var(--navy); }
   .pill-row { flex-wrap:nowrap; gap:5px; }
-  .sort-wrap { margin-left:auto; flex-shrink:0; position:relative; }
+  .sort-wrap { display:none; }
   .sort-wrap::before {
     content:'↑'; position:absolute; left:10px; top:50%; transform:translateY(-50%);
     color:var(--gold-lt); font-size:13px; pointer-events:none; z-index:1;
@@ -767,6 +768,7 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
         <button class="pill active" data-avail="all" onclick="setAvail(this)">All</button>
         <button class="pill"        data-avail="in"  onclick="setAvail(this)">In Stock</button>
         <button class="pill"        data-avail="out" onclick="setAvail(this)">Out of Stock</button>
+        <button class="pill pill-dimmed" data-avail="new" id="avail-new-pill" onclick="setAvail(this)">New</button>
       </div>
       <div class="sort-wrap">
         <span class="flabel">Sort</span>
@@ -1359,6 +1361,10 @@ function setAvail(btn){
   } else {
     sortEl.value = 'newest';
   }
+  const panelPills = document.getElementById('panel-pills');
+  const isNew = avail === 'new';
+  panelPills.style.opacity       = isNew ? '0.35' : '';
+  panelPills.style.pointerEvents = isNew ? 'none'  : '';
   load();
 }
 
@@ -1437,6 +1443,8 @@ async function loadStats(){
       wlBadge.classList.add('show');
     else
       wlBadge.classList.remove('show');
+    const newPill = document.getElementById('avail-new-pill');
+    if(newPill) newPill.classList.toggle('pill-dimmed', !(s.new_caps > 0));
     if(s.last_poll){
       const fmt = new Date(s.last_poll).toLocaleString('en-US',{
         timeZone:'America/Chicago',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',hour12:true
@@ -1461,8 +1469,8 @@ async function load(){
     // While searching: ignore all filters, search entire catalog
     const q = new URLSearchParams({
       category:   isSearching ? 'all' : (isOwned||isWish||isSold ? 'all' : cat),
-      avail:      isSearching ? 'all' : (isOwned||isWish||isSold ? 'all' : avail),
-      panels:     isSearching ? 'all' : panels,
+      avail:      isSearching ? 'all' : (isOwned||isWish||isSold ? 'all' : (avail === 'new' ? 'all' : avail)),
+      panels:     isSearching ? 'all' : (avail === 'new' ? 'all' : panels),
       search:     searchVal,
       sort:       isSearching ? 'title' : (document.getElementById('sort').value || sort),
       owned:      (!isSearching && isOwned)  ? '1' : '0',
@@ -1479,7 +1487,8 @@ async function load(){
 
     const fetches = [fetchProducts(q)];
     if(!isSearching && (isOwned||isSold||isWish||cat==='caps')) fetches.push(fetchManualCaps());
-    const [products, manualCaps] = await Promise.all(fetches);
+    let [products, manualCaps] = await Promise.all(fetches);
+    if(avail === 'new') products = products.filter(p => p.is_new_product);
     render(products, manualCaps||[]);
   }catch(e){
     grid.innerHTML=`<div class="state" style="grid-column:1/-1">
@@ -1586,7 +1595,8 @@ function render(products, manualCaps=[]){
   if(cat === 'caps' && manualCaps.length){
     manualCaps
       .filter(c => {
-        if(avail === 'in') return false;
+        if(avail === 'in')  return false;
+        if(avail === 'new') return false;
         if(panels !== 'all' && c.panels !== panels) return false;
         return true;
       })
