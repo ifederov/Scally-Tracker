@@ -677,7 +677,7 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
   .own-sep { width:1px; height:16px; background:rgba(255,255,255,.2); flex-shrink:0; }
 
   .hdr-right { order:2; flex:1; gap:6px; }
-  input[type="search"] { flex:1; width:auto !important; font-size:13px; padding:6px 10px 6px 28px; }
+  input[type="search"] { flex:1; width:auto !important; font-size:16px; padding:6px 10px 6px 28px; }
   .alerts-btn { padding:6px 10px; font-size:11px; }
   .stats-bar { padding:4px 6px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
   .stats-inner { flex-wrap:nowrap; min-width:max-content; }
@@ -706,6 +706,12 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
   .var-grid { grid-template-columns:1fr 1fr; }
   .arow { padding:10px 12px; gap:8px; }
   .atime { display:none; }
+  /* Prevent overflow from forcing Safari to zoom out */
+  body { overflow-x: hidden; }
+  /* Bump modal inputs to 16px so iOS doesn't auto-zoom on focus */
+  .mf-row input[type="text"], .mf-url-input { font-size:16px; }
+  /* Make releases cap-left fluid so it can't overflow the viewport */
+  .rel-cap-left { width:auto; min-width:0; flex:1; }
 }
 </style>
 </head>
