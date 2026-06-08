@@ -58,6 +58,8 @@ body.dark .own-radio-lbl input[type="radio"] { accent-color: var(--gold-lt); }
 body.dark .section-hdr-count { color: var(--text3); }
 body.dark .arow        { background: var(--cream2); border-color: var(--border); }
 body.dark .arow.today  { background: var(--cream3); }
+body.dark .arow.back_in_stock.today { background: var(--green-bg); }
+body.dark .arow.out_of_stock.today  { background: var(--red-bg); }
 body.dark .hprice      { color: #ffd95a; }
 body.dark .modal       { background: var(--cream2); }
 body.dark .m-img       { background: var(--cream3); border-color: var(--border); }
@@ -425,6 +427,11 @@ body.dark .af-pill.status-sold.active     { background:#d4703f; border-color:#d4
 .arow.price_drop     { border-left-color:#2980b9; }
 .arow.price_increase { border-left-color:#e67e22; }
 .arow.today { background:var(--cream2); border-left-width:5px; }
+.arow.back_in_stock.today { background:var(--green-bg); }
+.arow.out_of_stock.today  { background:var(--red-bg); }
+.today-badge { font-size:9px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; padding:1px 6px; border-radius:3px; margin-left:6px; vertical-align:middle; }
+.arow.back_in_stock .today-badge { background:var(--green); color:#fff; }
+.arow.out_of_stock  .today-badge { background:var(--red);   color:#fff; }
 .aicon { font-size:18px; flex-shrink:0; margin-top:1px; }
 .amsg  { font-size:14px; color:var(--text); flex:1; line-height:1.45; }
 .atime { font-size:11px; color:var(--text3); white-space:nowrap; font-weight:600; }
@@ -1825,9 +1832,10 @@ function renderAlerts(){
     });
     const isToday = d.toLocaleDateString('en-CA',{timeZone:'America/Chicago'}) === todayStr;
     const isClickable = a.handle && (a.alert_type === 'back_in_stock' || a.alert_type === 'new_product');
+    const showTodayBadge = isToday && (a.alert_type === 'back_in_stock' || a.alert_type === 'out_of_stock');
     const rowInner = `<div class="aicon">${icon}</div>
       <div class="amsg">${x(a.message)}</div>
-      <div class="atime">${time} CT</div>`;
+      <div class="atime">${time} CT${showTodayBadge ? '<span class="today-badge">Today</span>' : ''}</div>`;
     return isClickable
       ? `<a class="arow ${a.alert_type}${isToday ? ' today' : ''}" href="https://bostonscally.com/products/${a.handle}" target="_blank" rel="noopener">${rowInner}</a>`
       : `<div class="arow ${a.alert_type}${isToday ? ' today' : ''}">${rowInner}</div>`;
