@@ -417,9 +417,6 @@ def process(conn, product, known_ids, latest_snaps, panels_overrides, wishlist):
                              priority="high", tags="tada,shopping", click=url)
             elif oa == 1 and avail == 0:
                 log_alert(conn, pid, vid, "out_of_stock", f"OUT OF STOCK: {title} — {vtit}")
-            elif price > op:
-                log_alert(conn, pid, vid, "price_increase",
-                          f"PRICE UP: {title} — {vtit}: ${op:.2f}→${price:.2f}")
 
         if not prev or prev["price"] != price or prev["available"] != avail:
             conn.execute(
