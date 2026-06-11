@@ -450,10 +450,11 @@ def process(conn, product, known_ids):
                 log_alert(conn, pid, vid, "price_increase",
                           f"PRICE UP: {title} — {vtit}: ${op:.2f}→${price:.2f}")
 
-        conn.execute(
-            "INSERT INTO snapshots (variant_id,product_id,price,available,checked_at) VALUES (?,?,?,?,?)",
-            (vid, pid, price, avail, now),
-        )
+        if not prev or prev["price"] != price or prev["available"] != avail:
+            conn.execute(
+                "INSERT INTO snapshots (variant_id,product_id,price,available,checked_at) VALUES (?,?,?,?,?)",
+                (vid, pid, price, avail, now),
+            )
 
 
 # ── Main ──────────────────────────────────────────────────────────
@@ -503,12 +504,12 @@ def run_poll():
                               f"OUT OF STOCK (delisted): {title} — {v['title']}")
                 log.info("DELISTED [unavailable]: %s (%d variant(s) zeroed)", title, len(variants))
 
-        # Purge alerts older than 30 days
+        # Purge alerts older than 5 days
         deleted = conn.execute(
-            "DELETE FROM alerts WHERE created_at < datetime('now', '-30 days')"
+            "DELETE FROM alerts WHERE created_at < datetime('now', '-5 days')"
         ).rowcount
         if deleted:
-            log.info("Purged %d alert(s) older than 30 days", deleted)
+            log.info("Purged %d alert(s) older than 5 days", deleted)
 
         # Summary
         counts = {r[0]: r[1] for r in conn.execute(
