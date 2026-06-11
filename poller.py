@@ -290,19 +290,7 @@ def is_notify_size(vtit, category, panels):
     return False
 
 
-def get_wishlist_info(product_id):
-    """Returns (is_wishlisted, preferred_size). preferred_size is None if not set."""
-    with get_db() as conn:
-        row = conn.execute(
-            "SELECT preferred_size FROM user_items WHERE product_id=? AND wishlisted=1",
-            (product_id,)
-        ).fetchone()
-        if row is None:
-            return False, None
-        return True, row["preferred_size"]
-
-
-def process(conn, product, known_ids):
+def process(conn, product, known_ids, latest_snaps, panels_overrides, wishlist):
     now    = datetime.now(CT).isoformat()
     pid    = product["id"]
     title  = product["title"]
@@ -334,10 +322,7 @@ def process(conn, product, known_ids):
     is_new      = pid not in known_ids
 
     # Respect panels_override if set — never overwrite a manual correction
-    override_row = conn.execute(
-        "SELECT panels_override FROM products WHERE id=?", (pid,)
-    ).fetchone()
-    effective_panels = (override_row["panels_override"] if override_row and override_row["panels_override"] else panels)
+    effective_panels = panels_overrides.get(pid) or panels
 
     conn.execute("""
         INSERT INTO products
@@ -403,10 +388,7 @@ def process(conn, product, known_ids):
                 updated_at=excluded.updated_at
         """, (vid, pid, vtit, price, avail, now))
 
-        prev = conn.execute(
-            "SELECT price,available FROM snapshots WHERE variant_id=? ORDER BY checked_at DESC LIMIT 1",
-            (vid,)
-        ).fetchone()
+        prev = latest_snaps.get(vid)
 
         if prev and not is_new:
             oa, op = prev["available"], prev["price"]
@@ -415,7 +397,8 @@ def process(conn, product, known_ids):
                 if is_notify_size(vtit, category, effective_panels):
                     url = f"https://bostonscally.com/products/{handle}"
                     emoji = {"caps": "🧢", "apparel": "👕", "pins": "📌"}.get(category, "🛍")
-                    wl, ps = get_wishlist_info(pid)
+                    wl = pid in wishlist
+                    ps = wishlist.get(pid)
                     if wl and ps and vtit == ps:
                         ntfy("⭐ Your Size is Back!",
                              f"{emoji} {title}\n{vtit}",
@@ -434,18 +417,6 @@ def process(conn, product, known_ids):
                              priority="high", tags="tada,shopping", click=url)
             elif oa == 1 and avail == 0:
                 log_alert(conn, pid, vid, "out_of_stock", f"OUT OF STOCK: {title} — {vtit}")
-            elif price < op:
-                log_alert(conn, pid, vid, "price_drop",
-                          f"PRICE DROP: {title} — {vtit}: ${op:.2f}→${price:.2f}")
-                url = f"https://bostonscally.com/products/{handle}"
-                if is_wishlisted(pid):
-                    ntfy("⭐ Wishlist Price Drop!",
-                         f"{title} — {vtit}\n${op:.2f} → ${price:.2f}",
-                         priority="urgent", tags="star,chart_with_downwards_trend", click=url)
-                else:
-                    ntfy("📉 Price Drop!",
-                         f"{title} — {vtit}\n${op:.2f} → ${price:.2f}",
-                         tags="chart_with_downwards_trend", click=url)
             elif price > op:
                 log_alert(conn, pid, vid, "price_increase",
                           f"PRICE UP: {title} — {vtit}: ${op:.2f}→${price:.2f}")
@@ -474,9 +445,26 @@ def run_poll():
             log.info("First run — building baseline, no alerts will fire")
             known = {p["id"] for p in products}
 
+        # Bulk pre-loads — replaces per-row queries inside process()
+        snap_rows = conn.execute(
+            "SELECT variant_id, price, available FROM snapshots "
+            "WHERE rowid IN (SELECT MAX(rowid) FROM snapshots GROUP BY variant_id)"
+        ).fetchall()
+        latest_snaps = {r["variant_id"]: r for r in snap_rows}
+
+        override_rows = conn.execute(
+            "SELECT id, panels_override FROM products WHERE panels_override IS NOT NULL"
+        ).fetchall()
+        panels_overrides = {r["id"]: r["panels_override"] for r in override_rows}
+
+        wish_rows = conn.execute(
+            "SELECT product_id, preferred_size FROM user_items WHERE wishlisted=1"
+        ).fetchall()
+        wishlist = {r["product_id"]: r["preferred_size"] for r in wish_rows}
+
         seen_ids = set()
         for p in products:
-            process(conn, p, known)
+            process(conn, p, known, latest_snaps, panels_overrides, wishlist)
             seen_ids.add(p["id"])
 
         # Mark variants unavailable for products that vanished from the feed
