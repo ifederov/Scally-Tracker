@@ -5,7 +5,7 @@
   <key>Label</key><string>com.scallytracker.poller</string>
   <key>ProgramArguments</key>
   <array>
-    <string>/usr/bin/python3</string>
+    <string>/opt/homebrew/bin/python3</string>
     <string>/Users/sterling/app/scally-tracker/poller.py</string>
   </array>
   <!-- Every 30 min, 7:00am–7:00pm CT (25 runs/day) -->

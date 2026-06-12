@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23b8860b'/><text x='16' y='23' font-family='Georgia,serif' font-size='22' font-weight='bold' text-anchor='middle' fill='white'>S</text></svg>">
+<title>Activity · Admin · Scally Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:    #faf7f2; --cream2: #f2ede4; --cream3: #e8e0d0;
+  --navy:     #1a2340; --navy2:  #243058;
+  --gold:     #b8942a; --gold-lt: #d4ad4a;
+  --text:     #1a2340; --text2: #4a5568; --text3: #8a9bb0;
+  --white:    #ffffff;
+  --border:   rgba(26,35,64,.10);
+  --sh-lg:    0 12px 40px rgba(26,35,64,.18);
+  --r: 6px;
+}
+body.dark {
+  --cream:    #0f1523; --cream2: #151d2e; --cream3: #1e2a40;
+  --white:    #1a2340;
+  --text:     #e8e4db; --text2: #b0bcc8; --text3: #6a7f96;
+  --border:   rgba(255,255,255,.09);
+  --sh-lg:    0 12px 40px rgba(0,0,0,.5);
+  background: #0f1523; color: var(--text);
+}
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html,body { min-height:100vh; }
+body { background:var(--cream); color:var(--text); font-family:'Source Sans 3',sans-serif; line-height:1.5; padding:24px; }
+.wrap { max-width:800px; margin:0 auto; }
+.adm-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:24px; flex-wrap:wrap; gap:12px; }
+.adm-title { font-family:'Playfair Display',serif; font-size:24px; font-weight:900; color:var(--navy); }
+body.dark .adm-title { color:#fff; }
+.adm-title em { font-style:normal; color:var(--gold-lt); }
+.adm-back { font-size:13px; font-weight:700; color:var(--navy); text-decoration:none; }
+body.dark .adm-back { color:var(--gold-lt); }
+.adm-back:hover { text-decoration:underline; }
+.panel { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:18px; box-shadow:var(--sh-lg); }
+.activity-list { list-style:none; font-size:13px; }
+.activity-list li { padding:9px 0; border-bottom:1px solid var(--border); display:flex; gap:10px; }
+.activity-list li:last-child { border-bottom:none; }
+.activity-list .ts { color:var(--text3); font-size:11px; white-space:nowrap; min-width:140px; }
+.activity-list .who { font-weight:700; color:var(--navy); }
+body.dark .activity-list .who { color:var(--gold-lt); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="adm-header">
+    <div class="adm-title">Activity<em> Feed</em></div>
+    <a class="adm-back" href="{{ url_for('admin.dashboard') }}">&larr; Back to Admin</a>
+  </div>
+  <div class="panel">
+    <ul class="activity-list">
+      {% for e in activity %}
+      <li><span class="ts">{{ e.ts[:16].replace('T',' ') if e.ts else '' }}</span><span><span class="who">{{ e.username }}</span> {{ e.description }}</span></li>
+      {% else %}
+      <li>No activity yet.</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+<script>
+if(localStorage.getItem('bsc-dark')==='1'){ document.body.classList.add('dark'); }
+</script>
+</body>
+</html>

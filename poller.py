@@ -6,14 +6,20 @@ Categories: caps | pins | apparel | other
 Skips: 5-panel and baker boy caps
 """
 
-import sqlite3, requests, os, re, logging
+import requests, os, re, logging
 from html.parser import HTMLParser
-from datetime import datetime
+from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
+from flask import Flask
+from sqlalchemy import func
+from sqlalchemy.dialects.postgresql import insert as pg_insert
+
+from config import Config
+from models import db, Product, Variant, Snapshot, Alert, Release, UserItem, User
+
 # ── Config ────────────────────────────────────────────────────────
-DB_PATH     = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "inventory.db")
-NTFY_TOPIC  = "sterling-scally-tracker"
+NTFY_TOPIC  = Config.NTFY_TOPIC or "sterling-scally-tracker"
 NTFY_SERVER = "https://ntfy.sh"
 CT          = ZoneInfo("America/Chicago")
 
@@ -73,6 +79,15 @@ logging.basicConfig(
 log = logging.getLogger(__name__)
 
 
+# ── Flask app (for SQLAlchemy app context only — not run as a server) ─────
+def create_app():
+    flask_app = Flask(__name__)
+    flask_app.config["SQLALCHEMY_DATABASE_URI"] = Config.DATABASE_URL
+    flask_app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    db.init_app(flask_app)
+    return flask_app
+
+
 # ── HTML → plain text ─────────────────────────────────────────────
 class _Strip(HTMLParser):
     def __init__(self):
@@ -107,7 +122,7 @@ def categorize(title: str, ptype: str) -> str:
     """
     Determine category from title and product_type ONLY.
     Body text / tags deliberately excluded — they cause too many false positives.
-    
+
     Priority: product_type (when it's a clear signal) > title keywords.
     """
     title_l = title.lower().strip()
@@ -151,76 +166,9 @@ def categorize(title: str, ptype: str) -> str:
     return "other"
 
 
-# ── Database ──────────────────────────────────────────────────────
-def get_db():
-    c = sqlite3.connect(DB_PATH)
-    c.row_factory = sqlite3.Row
-    return c
-
-def init_db():
-    os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
-    with get_db() as conn:
-        conn.executescript("""
-            CREATE TABLE IF NOT EXISTS products (
-                id           INTEGER PRIMARY KEY,
-                title        TEXT NOT NULL,
-                handle       TEXT NOT NULL,
-                product_type TEXT,
-                category     TEXT,
-                image_url    TEXT,
-                vendor       TEXT,
-                tags         TEXT,
-                description  TEXT,
-                style        TEXT,
-                color        TEXT,
-                material     TEXT,
-                panels       TEXT,
-                first_seen   TEXT,
-                updated_at   TEXT
-            );
-            CREATE TABLE IF NOT EXISTS variants (
-                id         INTEGER PRIMARY KEY,
-                product_id INTEGER NOT NULL,
-                title      TEXT NOT NULL,
-                price      REAL NOT NULL,
-                available  INTEGER NOT NULL DEFAULT 0,
-                updated_at TEXT
-            );
-            CREATE TABLE IF NOT EXISTS snapshots (
-                id         INTEGER PRIMARY KEY AUTOINCREMENT,
-                variant_id INTEGER NOT NULL,
-                product_id INTEGER NOT NULL,
-                price      REAL NOT NULL,
-                available  INTEGER NOT NULL,
-                checked_at TEXT NOT NULL
-            );
-            CREATE TABLE IF NOT EXISTS alerts (
-                id         INTEGER PRIMARY KEY AUTOINCREMENT,
-                product_id INTEGER,
-                variant_id INTEGER,
-                alert_type TEXT NOT NULL,
-                message    TEXT NOT NULL,
-                created_at TEXT NOT NULL
-            );
-            CREATE INDEX IF NOT EXISTS idx_snap ON snapshots(variant_id, checked_at);
-            CREATE INDEX IF NOT EXISTS idx_prod_cat ON products(category);
-            CREATE INDEX IF NOT EXISTS idx_prod_pan ON products(panels);
-            CREATE INDEX IF NOT EXISTS idx_var_pid ON variants(product_id);
-            CREATE INDEX IF NOT EXISTS idx_alert_pid ON alerts(product_id, alert_type, created_at);
-        """)
-        try:
-            conn.execute("ALTER TABLE products ADD COLUMN images_json TEXT")
-        except Exception:
-            pass
-        try:
-            conn.execute("ALTER TABLE products ADD COLUMN panels_override TEXT")
-        except Exception:
-            pass
-    log.info("DB ready: %s", DB_PATH)
-
-
 # ── Notifications ─────────────────────────────────────────────────
-def ntfy(title, body, priority="default", tags="", click=""):
+def ntfy(title, body, priority="default", tags="", click="", topic=None):
+    topic = topic or NTFY_TOPIC
     try:
         headers = {
             "Title":        title.encode('utf-8'),
@@ -231,20 +179,31 @@ def ntfy(title, body, priority="default", tags="", click=""):
         if click:
             headers["Click"] = click
         r = requests.post(
-            f"{NTFY_SERVER}/{NTFY_TOPIC}",
+            f"{NTFY_SERVER}/{topic}",
             data=body.encode('utf-8'),
             headers=headers,
             timeout=10,
         )
-        log.info("ntfy %d: %s", r.status_code, title)
+        log.info("ntfy %d (%s): %s", r.status_code, topic, title)
     except Exception as e:
-        log.error("ntfy error: %s", e)
+        log.error("ntfy error (%s): %s", topic, e)
 
-def log_alert(conn, pid, vid, atype, msg):
-    conn.execute(
-        "INSERT INTO alerts (product_id,variant_id,alert_type,message,created_at) VALUES (?,?,?,?,?)",
-        (pid, vid, atype, msg, datetime.now(CT).isoformat()),
-    )
+def in_quiet_hours(start, end, now_hour):
+    """True if now_hour falls within the [start, end) quiet-hours window (wraps past midnight)."""
+    if start is None or end is None:
+        return False
+    if start == end:
+        return False  # zero-length window = disabled
+    if start < end:
+        return start <= now_hour < end
+    return now_hour >= start or now_hour < end  # wraps midnight
+
+
+def log_alert(pid, vid, atype, msg):
+    db.session.add(Alert(
+        product_id=pid, variant_id=vid, alert_type=atype, message=msg,
+        created_at=datetime.now(CT).isoformat(),
+    ))
 
 
 # ── Fetch ─────────────────────────────────────────────────────────
@@ -290,7 +249,7 @@ def is_notify_size(vtit, category, panels):
     return False
 
 
-def process(conn, product, known_ids, latest_snaps, panels_overrides, wishlist):
+def process(product, known_ids, latest_snaps, panels_overrides, wishlist, user_wishlist=None, new_product_topics=None):
     now    = datetime.now(CT).isoformat()
     pid    = product["id"]
     title  = product["title"]
@@ -324,23 +283,28 @@ def process(conn, product, known_ids, latest_snaps, panels_overrides, wishlist):
     # Respect panels_override if set — never overwrite a manual correction
     effective_panels = panels_overrides.get(pid) or panels
 
-    conn.execute("""
-        INSERT INTO products
-            (id,title,handle,product_type,category,image_url,images_json,vendor,
-             tags,description,style,color,material,panels,first_seen,updated_at)
-        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
-        ON CONFLICT(id) DO UPDATE SET
-            title=excluded.title, handle=excluded.handle,
-            product_type=excluded.product_type, category=excluded.category,
-            image_url=excluded.image_url, images_json=excluded.images_json,
-            vendor=excluded.vendor,
-            tags=excluded.tags, description=excluded.description,
-            style=excluded.style, color=excluded.color,
-            material=excluded.material,
-            panels=COALESCE((SELECT panels_override FROM products WHERE id=excluded.id), excluded.panels),
-            updated_at=excluded.updated_at
-    """, (pid, title, handle, ptype, category, image_url, images_json, vendor,
-          tags_str, description, style, color, material, effective_panels, now, now))
+    stmt = pg_insert(Product.__table__).values(
+        id=pid, title=title, handle=handle, product_type=ptype, category=category,
+        image_url=image_url, images_json=images_json, vendor=vendor,
+        tags=tags_str, description=description, style=style, color=color,
+        material=material, panels=effective_panels, first_seen=now, updated_at=now,
+        panels_override=panels_overrides.get(pid),
+    )
+    stmt = stmt.on_conflict_do_update(
+        index_elements=["id"],
+        set_=dict(
+            title=stmt.excluded.title, handle=stmt.excluded.handle,
+            product_type=stmt.excluded.product_type, category=stmt.excluded.category,
+            image_url=stmt.excluded.image_url, images_json=stmt.excluded.images_json,
+            vendor=stmt.excluded.vendor,
+            tags=stmt.excluded.tags, description=stmt.excluded.description,
+            style=stmt.excluded.style, color=stmt.excluded.color,
+            material=stmt.excluded.material,
+            panels=func.coalesce(Product.__table__.c.panels_override, stmt.excluded.panels),
+            updated_at=stmt.excluded.updated_at,
+        ),
+    )
+    db.session.execute(stmt)
 
     if is_new:
         vs        = product.get("variants", [])
@@ -350,12 +314,19 @@ def process(conn, product, known_ids, latest_snaps, panels_overrides, wishlist):
         if prices: lo, hi = min(prices), max(prices)
         price_str = f"${lo:.2f}" if lo == hi else f"${lo:.2f}–${hi:.2f}"
         emoji     = {"caps": "🧢", "apparel": "👕", "pins": "📌"}.get(category, "🛍")
-        log_alert(conn, pid, None, "new_product", f"NEW: {title} ({price_str})")
+        log_alert(pid, None, "new_product", f"NEW: {title} ({price_str})")
         log.info("NEW [%s]: %s", category, title)
+        new_url = f"https://bostonscally.com/products/{handle}"
         ntfy("🆕 New on BSC!",
              f"{emoji} {title}\n{price_str} · {avail_cnt} variant(s) available",
              priority="urgent", tags="new,tada",
-             click=f"https://bostonscally.com/products/{handle}")
+             click=new_url)
+
+        # Per-user opt-in notifications for new product listings
+        for u_topic in (new_product_topics or []):
+            ntfy("🆕 New on BSC!",
+                 f"{emoji} {title}\n{price_str} · {avail_cnt} variant(s) available",
+                 priority="default", tags="new,tada", click=new_url, topic=u_topic)
 
         # Auto-add a release entry for new caps
         if category == "caps":
@@ -365,11 +336,12 @@ def process(conn, product, known_ids, latest_snaps, panels_overrides, wishlist):
             rel_name = re.sub(r'\s*Boston Scally Cap\b', '', title, flags=re.IGNORECASE).strip()
             rel_name = re.sub(r'\s{2,}', ' ', rel_name).strip()
             try:
-                conn.execute(
-                    "INSERT OR IGNORE INTO releases (name, release_date, is_limited, notes) "
-                    "VALUES (?, ?, 0, 'Auto-added from new product alert')",
-                    (rel_name, rel_date)
+                rel_stmt = pg_insert(Release.__table__).values(
+                    name=rel_name, release_date=rel_date, is_limited=0,
+                    notes="Auto-added from new product alert",
                 )
+                rel_stmt = rel_stmt.on_conflict_do_nothing(index_elements=["name", "release_date"])
+                db.session.execute(rel_stmt)
                 log.info("RELEASE auto-added: %s on %s", rel_name, rel_date)
             except Exception as e:
                 log.warning("Could not auto-add release for %s: %s", title, e)
@@ -380,20 +352,22 @@ def process(conn, product, known_ids, latest_snaps, panels_overrides, wishlist):
         avail = 1 if v.get("available") else 0
         vtit  = v.get("title", "Default")
 
-        conn.execute("""
-            INSERT INTO variants (id,product_id,title,price,available,updated_at)
-            VALUES (?,?,?,?,?,?)
-            ON CONFLICT(id) DO UPDATE SET
-                price=excluded.price, available=excluded.available,
-                updated_at=excluded.updated_at
-        """, (vid, pid, vtit, price, avail, now))
+        var_stmt = pg_insert(Variant.__table__).values(
+            id=vid, product_id=pid, title=vtit, price=price, available=avail, updated_at=now,
+        )
+        var_stmt = var_stmt.on_conflict_do_update(
+            index_elements=["id"],
+            set_=dict(price=var_stmt.excluded.price, available=var_stmt.excluded.available,
+                      updated_at=var_stmt.excluded.updated_at),
+        )
+        db.session.execute(var_stmt)
 
         prev = latest_snaps.get(vid)
 
         if prev and not is_new:
             oa, op = prev["available"], prev["price"]
             if oa == 0 and avail == 1:
-                log_alert(conn, pid, vid, "back_in_stock", f"RESTOCKED: {title} — {vtit}")
+                log_alert(pid, vid, "back_in_stock", f"RESTOCKED: {title} — {vtit}")
                 if is_notify_size(vtit, category, effective_panels):
                     url = f"https://bostonscally.com/products/{handle}"
                     emoji = {"caps": "🧢", "apparel": "👕", "pins": "📌"}.get(category, "🛍")
@@ -415,22 +389,39 @@ def process(conn, product, known_ids, latest_snaps, panels_overrides, wishlist):
                         ntfy("🎉 Restock!",
                              f"{emoji} {title}\n{vtit}",
                              priority="high", tags="tada,shopping", click=url)
+
+                    # Per-user opt-in notifications for anyone who wishlisted this product
+                    for entry in (user_wishlist or {}).get(pid, []):
+                        u_topic = entry["ntfy_topic"]
+                        u_ps    = entry["preferred_size"]
+                        if u_ps and vtit == u_ps:
+                            ntfy("⭐ Your Size is Back!",
+                                 f"{emoji} {title}\n{vtit}",
+                                 priority="urgent", tags="star,tada,shopping", click=url, topic=u_topic)
+                        elif u_ps:
+                            ntfy("⭐ Wishlist Restock",
+                                 f"{emoji} {title}\n{vtit} (not your size)",
+                                 priority="high", tags="star,tada,shopping", click=url, topic=u_topic)
+                        else:
+                            ntfy("⭐ Wishlist Restock!",
+                                 f"{emoji} {title}\n{vtit}",
+                                 priority="urgent", tags="star,tada,shopping", click=url, topic=u_topic)
             elif oa == 1 and avail == 0:
-                log_alert(conn, pid, vid, "out_of_stock", f"OUT OF STOCK: {title} — {vtit}")
+                log_alert(pid, vid, "out_of_stock", f"OUT OF STOCK: {title} — {vtit}")
 
         if not prev or prev["price"] != price or prev["available"] != avail:
-            conn.execute(
-                "INSERT INTO snapshots (variant_id,product_id,price,available,checked_at) VALUES (?,?,?,?,?)",
-                (vid, pid, price, avail, now),
-            )
+            db.session.add(Snapshot(
+                variant_id=vid, product_id=pid, price=price, available=avail, checked_at=now,
+            ))
 
 
 # ── Main ──────────────────────────────────────────────────────────
 def run_poll():
     log.info("══ Scally Tracker — %s ══", datetime.now(CT).strftime("%Y-%m-%d %I:%M %p CT"))
-    init_db()
-    with get_db() as conn:
-        known = {r[0] for r in conn.execute("SELECT id FROM products")}
+
+    flask_app = create_app()
+    with flask_app.app_context():
+        known = {row[0] for row in db.session.query(Product.id).all()}
         first_run = len(known) == 0
 
         products = fetch_bsc()
@@ -443,63 +434,111 @@ def run_poll():
             known = {p["id"] for p in products}
 
         # Bulk pre-loads — replaces per-row queries inside process()
-        snap_rows = conn.execute(
-            "SELECT variant_id, price, available FROM snapshots "
-            "WHERE rowid IN (SELECT MAX(rowid) FROM snapshots GROUP BY variant_id)"
-        ).fetchall()
-        latest_snaps = {r["variant_id"]: r for r in snap_rows}
+        latest_id_subq = (
+            db.session.query(func.max(Snapshot.id))
+            .group_by(Snapshot.variant_id)
+            .subquery()
+        )
+        snap_rows = (
+            db.session.query(Snapshot.variant_id, Snapshot.price, Snapshot.available)
+            .filter(Snapshot.id.in_(db.session.query(latest_id_subq)))
+            .all()
+        )
+        latest_snaps = {r.variant_id: {"price": r.price, "available": r.available} for r in snap_rows}
 
-        override_rows = conn.execute(
-            "SELECT id, panels_override FROM products WHERE panels_override IS NOT NULL"
-        ).fetchall()
-        panels_overrides = {r["id"]: r["panels_override"] for r in override_rows}
+        override_rows = (
+            db.session.query(Product.id, Product.panels_override)
+            .filter(Product.panels_override.isnot(None))
+            .all()
+        )
+        panels_overrides = {r.id: r.panels_override for r in override_rows}
 
-        wish_rows = conn.execute(
-            "SELECT product_id, preferred_size FROM user_items WHERE wishlisted=1"
-        ).fetchall()
-        wishlist = {r["product_id"]: r["preferred_size"] for r in wish_rows}
+        wish_rows = (
+            db.session.query(UserItem.product_id, UserItem.preferred_size)
+            .filter(UserItem.wishlisted == 1)
+            .all()
+        )
+        wishlist = {r.product_id: r.preferred_size for r in wish_rows}
+
+        now_hour = datetime.now(CT).hour
+
+        # Per-user opt-in ntfy notifications for wishlisted restocks
+        notify_rows = (
+            db.session.query(
+                UserItem.product_id, UserItem.preferred_size, User.ntfy_topic,
+                User.quiet_hours_start, User.quiet_hours_end,
+            )
+            .join(User, User.id == UserItem.user_id)
+            .filter(
+                UserItem.wishlisted == 1,
+                User.notify_wishlist == 1,
+                User.ntfy_topic.isnot(None),
+                User.ntfy_topic != "",
+            )
+            .all()
+        )
+        user_wishlist = {}
+        for r in notify_rows:
+            if in_quiet_hours(r.quiet_hours_start, r.quiet_hours_end, now_hour):
+                continue
+            user_wishlist.setdefault(r.product_id, []).append(
+                {"preferred_size": r.preferred_size, "ntfy_topic": r.ntfy_topic}
+            )
+
+        # Per-user opt-in ntfy notifications for new products
+        new_product_rows = (
+            db.session.query(User.ntfy_topic, User.quiet_hours_start, User.quiet_hours_end)
+            .filter(
+                User.notify_new_products == 1,
+                User.ntfy_topic.isnot(None),
+                User.ntfy_topic != "",
+            )
+            .all()
+        )
+        new_product_topics = [
+            r.ntfy_topic for r in new_product_rows
+            if not in_quiet_hours(r.quiet_hours_start, r.quiet_hours_end, now_hour)
+        ]
 
         seen_ids = set()
         for p in products:
-            process(conn, p, known, latest_snaps, panels_overrides, wishlist)
+            process(p, known, latest_snaps, panels_overrides, wishlist, user_wishlist, new_product_topics)
             seen_ids.add(p["id"])
 
         # Mark variants unavailable for products that vanished from the feed
         if not first_run:
             missing_ids = known - seen_ids
             for pid in missing_ids:
-                variants = conn.execute(
-                    "SELECT id, title, price, available FROM variants WHERE product_id=? AND available=1",
-                    (pid,)
-                ).fetchall()
+                variants = Variant.query.filter_by(product_id=pid, available=1).all()
                 if not variants:
                     continue
-                title = conn.execute("SELECT title FROM products WHERE id=?", (pid,)).fetchone()["title"]
+                prod = Product.query.get(pid)
+                title = prod.title if prod else f"#{pid}"
                 now = datetime.now(CT).isoformat()
                 for v in variants:
-                    conn.execute(
-                        "UPDATE variants SET available=0, updated_at=? WHERE id=?",
-                        (now, v["id"])
-                    )
-                    conn.execute(
-                        "INSERT INTO snapshots (variant_id,product_id,price,available,checked_at) VALUES (?,?,?,?,?)",
-                        (v["id"], pid, v["price"], 0, now)
-                    )
-                    log_alert(conn, pid, v["id"], "out_of_stock",
-                              f"OUT OF STOCK (delisted): {title} — {v['title']}")
+                    v.available = 0
+                    v.updated_at = now
+                    db.session.add(Snapshot(
+                        variant_id=v.id, product_id=pid, price=v.price, available=0, checked_at=now,
+                    ))
+                    log_alert(pid, v.id, "out_of_stock",
+                              f"OUT OF STOCK (delisted): {title} — {v.title}")
                 log.info("DELISTED [unavailable]: %s (%d variant(s) zeroed)", title, len(variants))
 
         # Purge alerts older than 5 days
-        deleted = conn.execute(
-            "DELETE FROM alerts WHERE created_at < datetime('now', '-5 days')"
-        ).rowcount
+        cutoff = (datetime.now(CT) - timedelta(days=5)).isoformat()
+        deleted = Alert.query.filter(Alert.created_at < cutoff).delete(synchronize_session=False)
         if deleted:
             log.info("Purged %d alert(s) older than 5 days", deleted)
 
+        db.session.commit()
+
         # Summary
-        counts = {r[0]: r[1] for r in conn.execute(
-            "SELECT category, COUNT(*) FROM products GROUP BY category"
-        )}
+        counts = dict(
+            db.session.query(Product.category, func.count(Product.id))
+            .group_by(Product.category)
+            .all()
+        )
         log.info("Categories: %s", counts)
 
     log.info("══ Poll complete ══\n")

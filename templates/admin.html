@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23b8860b'/><text x='16' y='23' font-family='Georgia,serif' font-size='22' font-weight='bold' text-anchor='middle' fill='white'>S</text></svg>">
+<title>Admin · Scally Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:    #faf7f2; --cream2: #f2ede4; --cream3: #e8e0d0;
+  --navy:     #1a2340; --navy2:  #243058;
+  --gold:     #b8942a; --gold-lt: #d4ad4a;
+  --text:     #1a2340; --text2: #4a5568; --text3: #8a9bb0;
+  --white:    #ffffff;
+  --red:      #c0392b; --red-bg: #fdf0ee;
+  --green:    #2e8b57; --green-bg: #e9f6ee;
+  --border:   rgba(26,35,64,.10);
+  --sh-lg:    0 12px 40px rgba(26,35,64,.18);
+  --r: 6px;
+}
+body.dark {
+  --cream:    #0f1523; --cream2: #151d2e; --cream3: #1e2a40;
+  --white:    #1a2340;
+  --text:     #e8e4db; --text2: #b0bcc8; --text3: #6a7f96;
+  --border:   rgba(255,255,255,.09);
+  --sh-lg:    0 12px 40px rgba(0,0,0,.5);
+  --red-bg: #2e0f0b; --green-bg: #0f2418;
+  background: #0f1523; color: var(--text);
+}
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html,body { min-height:100vh; }
+body {
+  background:var(--cream); color:var(--text); font-family:'Source Sans 3',sans-serif; line-height:1.5;
+  padding:24px;
+}
+.wrap { max-width:1000px; margin:0 auto; }
+.adm-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:24px; flex-wrap:wrap; gap:12px; }
+.adm-title { font-family:'Playfair Display',serif; font-size:24px; font-weight:900; color:var(--navy); }
+body.dark .adm-title { color:#fff; }
+.adm-title em { font-style:normal; color:var(--gold-lt); }
+.adm-back { font-size:13px; font-weight:700; color:var(--navy); text-decoration:none; }
+body.dark .adm-back { color:var(--gold-lt); }
+.adm-back:hover { text-decoration:underline; }
+
+.flash { border-radius:var(--r); font-size:13px; font-weight:600; padding:10px 14px; margin-bottom:16px; }
+.flash.success { background:var(--green-bg); color:var(--green); border:1px solid rgba(46,139,87,.25); }
+.flash.error { background:var(--red-bg); color:var(--red); border:1px solid rgba(192,57,43,.25); }
+
+.stats-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:14px; margin-bottom:28px; }
+.stat-card { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:16px 18px; box-shadow:var(--sh-lg); }
+.stat-card .num { font-family:'Playfair Display',serif; font-size:28px; font-weight:900; color:var(--navy); }
+body.dark .stat-card .num { color:#fff; }
+.stat-card .lbl { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text3); margin-top:4px; }
+
+.section-hdr { font-family:'Playfair Display',serif; font-size:14px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--navy); border-bottom:2px solid var(--gold); padding-bottom:6px; margin:0 0 14px; display:flex; justify-content:space-between; align-items:baseline; }
+body.dark .section-hdr { color:#ffffff; border-bottom-color:var(--gold-lt); }
+.section-hdr a { font-size:11px; text-transform:none; letter-spacing:normal; color:var(--navy); text-decoration:none; font-weight:700; }
+body.dark .section-hdr a { color:var(--gold-lt); }
+
+.panel { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:18px; box-shadow:var(--sh-lg); margin-bottom:28px; }
+
+table { width:100%; border-collapse:collapse; font-size:13px; }
+th, td { text-align:left; padding:8px 10px; border-bottom:1px solid var(--border); }
+th { font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--text3); }
+tr:last-child td { border-bottom:none; }
+.badge { display:inline-block; font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:2px 8px; border-radius:10px; background:var(--gold); color:#fff; }
+
+.del-btn { font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--red); background:var(--red-bg); border:1px solid rgba(192,57,43,.25); border-radius:var(--r); padding:5px 10px; cursor:pointer; }
+.del-btn:hover { opacity:.8; }
+
+.activity-list { list-style:none; font-size:13px; }
+.activity-list li { padding:8px 0; border-bottom:1px solid var(--border); display:flex; gap:10px; }
+.activity-list li:last-child { border-bottom:none; }
+.activity-list .ts { color:var(--text3); font-size:11px; white-space:nowrap; min-width:140px; }
+.activity-list .who { font-weight:700; color:var(--navy); }
+body.dark .activity-list .who { color:var(--gold-lt); }
+
+/* Confirm modal */
+.overlay { display:none; position:fixed; inset:0; background:rgba(26,35,64,.92); align-items:center; justify-content:center; z-index:100; }
+.overlay.open { display:flex; }
+.confirm-modal { background:var(--white); border-radius:10px; padding:24px; width:100%; max-width:380px; box-shadow:var(--sh-lg); }
+.confirm-modal h2 { font-family:'Playfair Display',serif; font-size:18px; color:var(--navy); margin-bottom:10px; }
+body.dark .confirm-modal h2 { color:#fff; }
+.confirm-modal p { font-size:13px; color:var(--text2); margin-bottom:12px; }
+.confirm-modal input { width:100%; border:1.5px solid var(--border); border-radius:var(--r); background:var(--cream); color:var(--text); font-size:14px; padding:9px 12px; margin-bottom:14px; }
+.confirm-modal input:focus { outline:none; border-color:var(--gold); }
+.confirm-modal .btns { display:flex; gap:8px; justify-content:flex-end; }
+.confirm-modal button { font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:8px 14px; border-radius:var(--r); border:2px solid var(--border); background:transparent; color:var(--text); cursor:pointer; }
+.confirm-modal .confirm-del { border-color:var(--red); background:var(--red); color:#fff; }
+.confirm-modal .confirm-del:disabled { opacity:.4; cursor:not-allowed; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="adm-header">
+    <div class="adm-title">Admin<em> Dashboard</em></div>
+    <a class="adm-back" href="{{ url_for('index') }}">&larr; Back to Scally Tracker</a>
+  </div>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="flash {{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+
+  <div class="stats-grid">
+    <div class="stat-card"><div class="num">{{ total_users }}</div><div class="lbl">Total Users</div></div>
+    <div class="stat-card"><div class="num">{{ total_caps }}</div><div class="lbl">Total Caps in System</div></div>
+    <div class="stat-card"><div class="num">{{ total_owned }}</div><div class="lbl">Total Owned</div></div>
+    <div class="stat-card"><div class="num">{{ total_wishlisted }}</div><div class="lbl">Total Wishlisted</div></div>
+  </div>
+
+  <div class="panel">
+    <div class="section-hdr">Users</div>
+    <table>
+      <thead>
+        <tr><th>Username</th><th>Email</th><th>Joined</th><th>Last Login</th><th>Role</th><th></th></tr>
+      </thead>
+      <tbody>
+        {% for u in users %}
+        <tr>
+          <td>{{ u.username }}</td>
+          <td>{{ u.email }}</td>
+          <td>{{ u.created_at[:10] if u.created_at else '—' }}</td>
+          <td>{{ u.last_login[:16].replace('T',' ') if u.last_login else '—' }}</td>
+          <td>{% if u.is_admin %}<span class="badge">Admin</span>{% else %}—{% endif %}</td>
+          <td>
+            {% if u.id != current_user.id %}
+            <button class="del-btn" onclick="openDelete({{ u.id }}, '{{ u.username|e }}')">Delete</button>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="panel">
+    <div class="section-hdr">Recent Activity <a href="{{ url_for('admin.activity') }}">View all &rarr;</a></div>
+    <ul class="activity-list">
+      {% for e in activity %}
+      <li><span class="ts">{{ e.ts[:16].replace('T',' ') if e.ts else '' }}</span><span><span class="who">{{ e.username }}</span> {{ e.description }}</span></li>
+      {% else %}
+      <li>No activity yet.</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<!-- Delete confirm modal -->
+<div class="overlay" id="del-overlay" onclick="delBgClick(event)">
+  <div class="confirm-modal">
+    <h2>Delete User</h2>
+    <p>This permanently deletes <strong id="del-username"></strong> and all of their collection data (owned/wishlisted items, manual caps). This cannot be undone.</p>
+    <p>Type the username to confirm:</p>
+    <input type="text" id="del-confirm-input" autocomplete="off">
+    <form id="del-form" method="POST">
+      <div class="btns">
+        <button type="button" onclick="closeDelete()">Cancel</button>
+        <button type="submit" class="confirm-del" id="del-submit" disabled>Delete User</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+if(localStorage.getItem('bsc-dark')==='1'){ document.body.classList.add('dark'); }
+
+let pendingUsername = '';
+
+function openDelete(uid, username){
+  pendingUsername = username;
+  document.getElementById('del-username').textContent = username;
+  document.getElementById('del-confirm-input').value = '';
+  document.getElementById('del-submit').disabled = true;
+  document.getElementById('del-form').action = '/admin/user/' + uid + '/delete';
+  document.getElementById('del-overlay').classList.add('open');
+}
+function closeDelete(){
+  document.getElementById('del-overlay').classList.remove('open');
+}
+function delBgClick(e){
+  if(e.target === document.getElementById('del-overlay')) closeDelete();
+}
+document.getElementById('del-confirm-input').addEventListener('input', function(){
+  document.getElementById('del-submit').disabled = (this.value !== pendingUsername);
+});
+</script>
+</body>
+</html>

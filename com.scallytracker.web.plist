@@ -5,7 +5,7 @@
   <key>Label</key><string>com.scallytracker.web</string>
   <key>ProgramArguments</key>
   <array>
-    <string>/usr/bin/python3</string>
+    <string>/opt/homebrew/bin/python3</string>
     <string>/Users/sterling/app/scally-tracker/app.py</string>
   </array>
   <key>RunAtLoad</key><true/>

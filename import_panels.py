@@ -12,9 +12,10 @@ CSV format: id, title, panels
   so the poller never overwrites the correction.
 """
 
-import csv, sqlite3, os, sys
+import csv, os, sys
 
-DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "inventory.db")
+from app import app
+from models import db, Product
 
 VALID_PANELS = {"single", "5", "6", "8", "baker"}
 ALIASES      = {"1": "single", "bb": "baker"}  # normalize shorthand values
@@ -31,7 +32,7 @@ def main():
 
     updated, skipped, invalid = 0, 0, []
 
-    with sqlite3.connect(DB_PATH) as conn:
+    with app.app_context():
         with open(csv_file, newline="", encoding="utf-8") as f:
             reader = csv.DictReader(f)
             for row in reader:
@@ -48,11 +49,12 @@ def main():
                     invalid.append(f"  ID {pid}: '{panels}' — must be one of {sorted(VALID_PANELS)}")
                     continue
 
-                conn.execute(
-                    "UPDATE products SET panels=?, panels_override=? WHERE id=?",
-                    (panels, panels, pid)
+                db.session.query(Product).filter(Product.id == int(pid)).update(
+                    {"panels": panels, "panels_override": panels}
                 )
                 updated += 1
+
+        db.session.commit()
 
     print(f"\nDone.")
     print(f"  Updated : {updated}")

@@ -132,7 +132,8 @@ body.dark .rel-radio-lbl, body.dark .rel-check-lbl { color:var(--text2); }
 .rel-pill {
   font-family:'Source Sans 3',sans-serif; font-size:11px; font-weight:700;
   letter-spacing:.05em; text-transform:uppercase;
-  padding:3px 12px; border-radius:20px; border:1px solid var(--border);
+  padding:0 12px; height:25px; display:inline-flex; align-items:center;
+  border-radius:20px; border:1px solid var(--border);
   background:var(--cream); color:var(--text2); cursor:pointer; transition:all .15s; white-space:nowrap;
 }
 .rel-pill:hover { border-color:var(--navy); color:var(--navy); }
@@ -239,9 +240,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 .dark-toggle { background:none; border:1px solid rgba(255,255,255,.25); border-radius:20px; padding:5px 10px; font-size:14px; cursor:pointer; color:rgba(255,255,255,.8); transition:all .2s; line-height:1; }
 .dark-toggle:hover { border-color:var(--gold-lt); color:#fff; }
-.poll-btn { background:none; border:1px solid rgba(255,255,255,.25); border-radius:20px; padding:5px 10px; font-size:14px; cursor:pointer; color:rgba(255,255,255,.8); transition:all .2s; line-height:1; }
-.poll-btn:hover { border-color:var(--gold-lt); color:#fff; }
-.poll-btn.spinning { animation:spin .7s linear infinite; pointer-events:none; opacity:.6; }
+#poll-btn.spinning { animation:spin .7s linear infinite; pointer-events:none; opacity:.6; }
 .alerts-btn {
   background:transparent; border:1px solid rgba(255,255,255,.2); border-radius:var(--r);
   color:rgba(255,255,255,.65); font-family:'Source Sans 3',sans-serif;
@@ -264,7 +263,8 @@ input[type="search"]::-webkit-search-cancel-button {
 .pill {
   font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
   color:var(--text2); background:var(--cream); border:1px solid var(--border);
-  border-radius:20px; padding:3px 12px; cursor:pointer; transition:all .15s; white-space:nowrap;
+  border-radius:20px; padding:0 12px; height:25px; display:inline-flex; align-items:center;
+  cursor:pointer; transition:all .15s; white-space:nowrap;
 }
 .pill:hover { border-color:var(--navy); color:var(--navy); }
 .pill:focus { outline: none; }
@@ -302,6 +302,48 @@ select.srt {
 }
 .own-radio-lbl input[type="radio"] { accent-color:var(--navy); cursor:pointer; }
 .own-sep { width:1px; height:20px; background:var(--border); flex-shrink:0; }
+
+/* ── Scroll-fade gradient on horizontally-scrolling subfilter bars (mobile) ── */
+.own-filter-bar { position:relative; }
+.own-filter-bar::after {
+  content:''; position:absolute; top:0; right:0; bottom:0; width:28px;
+  background:linear-gradient(to right, transparent, var(--cream2));
+  pointer-events:none; display:none;
+}
+@media (max-width:700px){
+  .own-filter-bar::after { display:block; }
+}
+
+/* ── Card select checkbox (bulk mode) ── */
+.card-select-chk {
+  position:absolute; top:6px; left:6px; width:20px; height:20px; z-index:3;
+  accent-color:var(--navy); cursor:pointer;
+}
+.card-added-label {
+  font-size:10px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--text3); margin-top:2px;
+}
+.card-sold-info {
+  font-size:11px; font-weight:700; color:var(--text2); margin-top:2px;
+}
+
+/* ── List view ── */
+#grid.list-view {
+  display:flex; flex-direction:column; gap:6px;
+}
+#grid.list-view .card {
+  display:flex; flex-direction:row; align-items:center; gap:12px; animation:none;
+  padding:8px 12px;
+}
+#grid.list-view .card-img-wrap {
+  width:48px; height:48px; flex-shrink:0; margin:0;
+}
+#grid.list-view .card-img, #grid.list-view .card-ph { width:48px; height:48px; border-radius:6px; }
+#grid.list-view .card-body { flex:1; display:flex; flex-direction:row; align-items:center; gap:12px; padding:0; }
+#grid.list-view .card-title { flex:1; }
+#grid.list-view .card-cat, #grid.list-view .panel-pip, #grid.list-view .card-ribbon { display:none; }
+#grid.list-view .card-foot { margin-top:0; }
+#grid.list-view .owned-section-hdr { margin-top:8px; }
 
 /* ── Stats bar ── */
 .stats-bar { background:var(--navy); padding:4px 20px; }
@@ -408,7 +450,7 @@ main { max-width:1320px; margin:0 auto; padding:24px 20px; }
 #prod-panel.hide { display:none; }
 .panel-head { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:var(--navy); margin-bottom:20px; padding-bottom:14px; border-bottom:2px solid var(--cream3); }
 .alert-filters { display:flex; gap:5px; flex-wrap:wrap; align-items:center; margin-bottom:10px; }
-.af-pill { font-family:'Source Sans 3',sans-serif; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:3px 12px; border-radius:20px; border:1px solid var(--border); background:var(--cream); color:var(--text2); cursor:pointer; transition:all .15s; white-space:nowrap; }
+.af-pill { font-family:'Source Sans 3',sans-serif; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:0 12px; height:25px; display:inline-flex; align-items:center; border-radius:20px; border:1px solid var(--border); background:var(--cream); color:var(--text2); cursor:pointer; transition:all .15s; white-space:nowrap; }
 .af-pill:hover { border-color:var(--navy); color:var(--navy); }
 .af-pill.active { background:var(--navy); border-color:var(--navy); color:#fff; }
 .af-pill.instock.active  { background:var(--green); border-color:var(--green); }
@@ -421,7 +463,10 @@ body.dark .af-pill.status-owned.active    { background:#2ea86e; border-color:#2e
 body.dark .af-pill.status-wishlist.active { background:var(--gold-lt); border-color:var(--gold-lt); color:#1a2340; }
 body.dark .af-pill.status-sold.active     { background:#d4703f; border-color:#d4703f; color:#fff; }
 .alerts-list { display:flex; flex-direction:column; gap:8px; }
-.arow { background:var(--white); border:1px solid var(--border); border-left:3px solid var(--gold); border-radius:var(--r); padding:12px 16px; display:flex; align-items:flex-start; gap:12px; animation:fadeUp .2s ease both; text-decoration:none; color:inherit; }
+.alert-section-hdr { font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--text3); margin:14px 0 4px; padding-left:2px; }
+.alert-section-hdr:first-child { margin-top:0; }
+.arow { background:var(--white); border:1px solid var(--border); border-left:3px solid var(--gold); border-radius:var(--r); padding:10px 16px; display:flex; align-items:center; gap:12px; animation:fadeUp .2s ease both; text-decoration:none; color:inherit; transition:border-color .15s, box-shadow .15s, transform .1s; }
+.arow[href]:hover { border-color:var(--gold); box-shadow:0 2px 10px rgba(26,35,64,.08); transform:translateY(-1px); }
 .arow.back_in_stock  { border-left-color:var(--green); }
 .arow.out_of_stock   { border-left-color:var(--red); }
 .arow.price_drop     { border-left-color:#2980b9; }
@@ -429,12 +474,12 @@ body.dark .af-pill.status-sold.active     { background:#d4703f; border-color:#d4
 .arow.today { background:var(--cream2); border-left-width:5px; }
 .arow.back_in_stock.today { background:var(--green-bg); }
 .arow.out_of_stock.today  { background:var(--red-bg); }
-.today-badge { font-size:9px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; padding:1px 6px; border-radius:3px; margin-left:6px; vertical-align:middle; }
-.arow.back_in_stock .today-badge { background:var(--green); color:#fff; }
-.arow.out_of_stock  .today-badge { background:var(--red);   color:#fff; }
-.aicon { font-size:18px; flex-shrink:0; margin-top:1px; }
-.amsg  { font-size:14px; color:var(--text); flex:1; line-height:1.45; }
-.atime { font-size:11px; color:var(--text3); white-space:nowrap; font-weight:600; }
+.athumb { width:38px; height:38px; border-radius:6px; object-fit:cover; flex-shrink:0; background:var(--cream2); border:1px solid var(--border); }
+.aicon { font-size:16px; flex-shrink:0; width:38px; height:38px; display:flex; align-items:center; justify-content:center; border-radius:6px; background:var(--cream2); }
+.amsg  { font-size:14px; color:var(--text); flex:1; line-height:1.45; min-width:0; }
+.atime { font-size:11px; color:var(--text3); white-space:nowrap; font-weight:600; flex-shrink:0; }
+.arow .agototext { font-size:11px; font-weight:700; color:var(--gold); opacity:0; transition:opacity .15s; white-space:nowrap; flex-shrink:0; }
+.arow[href]:hover .agototext { opacity:1; }
 .card-notes { font-size:11px; color:var(--text3); margin-top:2px; font-style:italic; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
 /* ── Modal ── */
@@ -497,6 +542,7 @@ body.dark .car-btn:hover { background:rgba(0,0,0,.9); }
 .m-meta { padding:18px 22px 16px; border-bottom:1px solid var(--border); }
 .m-cat { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-bottom:5px; }
 .m-title { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:var(--navy); line-height:1.3; margin-bottom:12px; }
+.limited-badge { display:inline-block; font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--navy); background:var(--gold-lt); border-radius:3px; padding:3px 8px; white-space:nowrap; margin-top:6px; }
 .spec-row { display:flex; gap:6px; flex-wrap:wrap; }
 .spec-chip { display:flex; flex-direction:column; background:var(--cream2); border:1px solid var(--border); border-radius:var(--r); padding:5px 10px; min-width:68px; }
 .spec-k { font-size:9px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--text3); margin-bottom:2px; }
@@ -510,6 +556,8 @@ body.dark .car-btn:hover { background:rgba(0,0,0,.9); }
 .status-select:focus { outline:none; border-color:var(--navy); }
 .notes-wrap  { margin-top:8px; display:none; }
 .notes-wrap.show { display:block; }
+.notes-toggle-btn { margin-top:8px; background:none; border:none; padding:0; font-family:'Source Sans 3',sans-serif; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text3); cursor:pointer; transition:color .15s; }
+.notes-toggle-btn:hover { color:var(--navy); }
 .size-pref-wrap { display:none; align-items:center; gap:10px; margin-top:8px; }
 .size-pref-wrap.show { display:flex; }
 .notes-area  { width:100%; font-family:'Source Sans 3',sans-serif; font-size:13px; padding:8px 10px; border-radius:var(--r); border:2px solid var(--border); background:var(--cream); color:var(--text); resize:vertical; min-height:64px; transition:border-color .18s; }
@@ -535,8 +583,13 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
 .mf-row-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
 .mf-row-grid label { font-size:12px; }
 .mf-row label { display:block; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text3); margin-bottom:6px; }
-.mf-row input[type="text"] { width:100%; box-sizing:border-box; border:1.5px solid var(--border); border-radius:var(--r); background:var(--cream); color:var(--text); font-family:'Source Sans 3',sans-serif; font-size:14px; padding:9px 12px; transition:border-color .15s; }
-.mf-row input[type="text"]:focus { outline:none; border-color:var(--gold); }
+.mf-row input[type="text"], .mf-row input[type="email"], .mf-row input[type="password"] { width:100%; box-sizing:border-box; border:1.5px solid var(--border); border-radius:var(--r); background:var(--cream); color:var(--text); font-family:'Source Sans 3',sans-serif; font-size:14px; padding:9px 12px; transition:border-color .15s; }
+.mf-row input[type="text"]:focus, .mf-row input[type="email"]:focus, .mf-row input[type="password"]:focus { outline:none; border-color:var(--gold); }
+.settings-section-hdr { font-family:'Playfair Display',serif; font-size:13px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--navy); border-bottom:2px solid var(--gold); padding-bottom:4px; margin:20px 0 14px; }
+body.dark .settings-section-hdr { color:#ffffff; border-bottom-color:var(--gold-lt); }
+.settings-inline-msg { font-size:12px; margin-top:6px; min-height:14px; }
+.settings-inline-msg.error { color:#e74c3c; }
+.settings-inline-msg.ok { color:#2e8b57; }
 .mf-photo-tabs { display:flex; gap:4px; margin-bottom:8px; }
 .mf-ptab { background:var(--cream2); border:1.5px solid var(--border); border-radius:var(--r); font-family:'Source Sans 3',sans-serif; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--text2); padding:4px 14px; cursor:pointer; transition:all .15s; }
 .mf-ptab.active { background:var(--navy); color:#fff; border-color:var(--navy); }
@@ -560,26 +613,35 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
 .m-close { position:absolute; top:10px; right:10px; z-index:3; background:rgba(26,35,64,.6); border:none; color:#fff; border-radius:50%; width:32px; height:32px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px; transition:background .15s; }
 .m-close:hover { background:rgba(26,35,64,.95); }
 .m-body { padding:18px 22px 24px; }
-.desc-block { background:var(--cream); border:1px solid var(--border); border-radius:var(--r); padding:12px 14px; margin-bottom:18px; font-size:13px; color:var(--text2); line-height:1.65; }
+.desc-block { background:var(--cream); border:1px solid var(--border); border-radius:var(--r); padding:12px 14px; margin-bottom:18px; font-size:13px; color:var(--text2); line-height:1.65; position:relative; }
+.desc-block.collapsed { max-height:4.95em; overflow:hidden; }
+.desc-block.collapsed::after { content:''; position:absolute; left:0; right:0; bottom:0; height:28px; background:linear-gradient(transparent, var(--cream)); border-radius:0 0 var(--r) var(--r); }
+.desc-toggle { display:inline-block; margin-top:6px; background:none; border:none; padding:0; font-family:'Source Sans 3',sans-serif; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--navy); cursor:pointer; }
+.desc-toggle:hover { opacity:.7; }
 .sec-lbl { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--text3); margin-bottom:10px; }
-.var-list { display:flex; flex-direction:column; gap:4px; margin-bottom:16px; }
-.var-cols { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:16px; }
-.var-col  { display:flex; flex-direction:column; gap:4px; }
-@media (max-width:480px){ .var-cols { grid-template-columns:1fr; } }
-.vrow { display:flex; align-items:center; gap:8px; padding:5px 10px; border-radius:var(--r); border:1px solid var(--border); background:var(--cream); min-width:0; }
+.var-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:6px; margin-bottom:16px; }
+.vrow { display:flex; flex-direction:column; gap:3px; padding:6px 9px; border-radius:var(--r); border:1px solid var(--border); background:var(--cream); min-width:0; }
 .vrow.in  { border-color:rgba(39,103,73,.2); background:var(--green-bg); }
 .vrow.out { opacity:.55; }
-.vname  { font-size:12px; font-weight:600; color:var(--text); flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.vname  { font-size:11px; font-weight:600; color:var(--text); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.vbottom { display:flex; align-items:center; justify-content:space-between; gap:6px; }
 .vprice { font-family:'Playfair Display',serif; font-size:13px; font-weight:700; color:var(--navy); white-space:nowrap; }
-.vstatus { font-size:9px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; white-space:nowrap; }
-.vrow.in  .vstatus { color:var(--green); }
-.vrow.out .vstatus { color:var(--red); }
-.hist-list { display:flex; flex-direction:column; gap:4px; margin-bottom:20px; }
+.vdot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.vrow.in  .vdot { background:var(--green); }
+.vrow.out .vdot { background:var(--red); }
+.hist-acc { margin-bottom:20px; }
+.hist-acc summary { cursor:pointer; list-style:none; }
+.hist-acc summary::-webkit-details-marker { display:none; }
+.hist-acc .sec-lbl { display:inline; margin-bottom:0; }
+.hist-acc summary::after { content:'▾'; float:right; color:var(--text3); }
+.hist-acc[open] summary::after { content:'▴'; }
+.hist-list { display:flex; flex-direction:column; gap:4px; margin-top:10px; }
 .hrow { display:flex; align-items:center; gap:12px; font-size:12px; padding:5px 0; border-bottom:1px solid var(--border); }
 .hdate  { color:var(--text3); width:145px; flex-shrink:0; }
 .hprice { font-weight:700; color:var(--navy); width:64px; }
-.view-btn { display:inline-flex; align-items:center; gap:6px; background:var(--navy); color:#fff; font-family:'Source Sans 3',sans-serif; font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; padding:9px 18px; border-radius:var(--r); transition:background .15s; }
-.view-btn:hover { background:var(--navy2); }
+.view-btn { display:flex; align-items:center; justify-content:center; gap:6px; width:100%; box-sizing:border-box; background:var(--gold); color:var(--navy); font-family:'Source Sans 3',sans-serif; font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; padding:11px 18px; border-radius:var(--r); transition:background .15s; }
+.view-btn:hover { background:var(--gold-lt); }
+body.dark .view-btn { color:var(--navy); }
 
 /* ── Mobile ── */
 @media (max-width:600px) {
@@ -687,7 +749,6 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
   .search-wrap { flex:1; min-width:0; display:flex; align-items:center; }
   input[type="search"] { flex:1; min-width:0; width:auto !important; font-size:16px; padding:6px 10px 6px 28px; }
   .alerts-btn { padding:6px 10px; font-size:11px; }
-  .poll-btn { display:none; }
   .stats-bar { padding:4px 6px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
   .stats-inner { flex-wrap:nowrap; min-width:max-content; }
   .stat { padding:2px 7px; border-right:1px solid rgba(255,255,255,.08); }
@@ -736,11 +797,11 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
       </div>
 
       <div class="cat-tabs">
-<button class="cat-tab"        data-cat="caps"    onclick="setCat(this)">🧢 Caps</button>
+<button class="cat-tab active" data-cat="collection" onclick="setCat(this)">🗂 Collection<span class="tab-badge" id="wl-badge"></span></button>
+        <button class="cat-tab"        data-cat="caps"    onclick="setCat(this)">🧢 Caps</button>
         <button class="cat-tab"        data-cat="pins"    onclick="setCat(this)">📌 Pins</button>
         <button class="cat-tab"        data-cat="apparel" onclick="setCat(this)">👕 Apparel</button>
         <button class="cat-tab"        data-cat="other"    onclick="setCat(this)">🛍 Other</button>
-        <button class="cat-tab active" data-cat="collection" onclick="setCat(this)">🗂 Collection<span class="tab-badge" id="wl-badge"></span></button>
         <button class="cat-tab"        data-cat="releases" onclick="setCat(this)">📅 Releases</button>
       </div>
 
@@ -754,8 +815,7 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
         <button class="alerts-btn" id="alerts-btn" onclick="toggleAlerts()">
           🔔 Alerts <span class="abadge" id="abadge"></span>
         </button>
-        <button class="poll-btn" id="poll-btn" onclick="triggerPoll()" title="Poll now">🔄</button>
-        <button class="dark-toggle" id="dark-toggle" onclick="toggleDark()">🌙</button>
+        <button class="dark-toggle" id="settings-btn" onclick="openSettings()" title="Settings">⚙️</button>
       </div>
     </div>
   </header>
@@ -821,6 +881,31 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
         <button class="pill"        data-cv="wishlist" onclick="setCollView(this)">⭐ Wishlist</button>
         <button class="pill"        data-cv="sold"     onclick="setCollView(this)">🏷 Sold</button>
       </div>
+      <div class="sort-wrap">
+        <span class="flabel">Sort</span>
+        <select class="srt" id="coll-sort" onchange="setCollSort(this.value)">
+          <option value="title" selected>A–Z</option>
+          <option value="added">Recently Added</option>
+          <option value="price_asc">Price ↑</option>
+          <option value="price_desc">Price ↓</option>
+        </select>
+        <button class="pill" id="view-toggle-btn" onclick="toggleViewMode()" title="Toggle list view">☰ List</button>
+        <button class="pill" id="bulk-toggle-btn" onclick="toggleBulkMode()" title="Select multiple">☑ Select</button>
+        <button class="pill" id="export-view-btn" onclick="exportCurrentView()" title="Export this view">⬇ Export</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bulk-action bar (shown when bulk-select mode is active) -->
+  <div class="filter-bar" id="bulk-bar" style="display:none">
+    <div class="filter-inner">
+      <span class="flabel" id="bulk-count">0 selected</span>
+      <div class="pill-row">
+        <button class="pill" onclick="bulkAction('owned')">✅ Mark Owned</button>
+        <button class="pill" onclick="bulkAction('wishlisted')">⭐ Move to Wishlist</button>
+        <button class="pill" onclick="bulkAction('sold')">🏷 Mark Sold</button>
+        <button class="pill" onclick="toggleBulkMode()">Cancel</button>
+      </div>
     </div>
   </div>
 
@@ -828,11 +913,14 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
   <div class="own-filter-bar" id="own-filter-bar" style="display:none">
     <div class="own-filter-inner">
       <div class="pill-row" id="own-type-pills">
-        <button class="pill active" data-type="caps" onclick="setOwnType(this)">Caps</button>
-        <button class="pill"        data-type="pins" onclick="setOwnType(this)">Pins</button>
+        <button class="pill active" data-type="all"     onclick="setOwnType(this)">All</button>
+        <button class="pill"        data-type="caps"    onclick="setOwnType(this)">Caps</button>
+        <button class="pill"        data-type="pins"    onclick="setOwnType(this)">Pins</button>
+        <button class="pill"        data-type="apparel" onclick="setOwnType(this)">Apparel</button>
+        <button class="pill"        data-type="other"   onclick="setOwnType(this)">Other</button>
       </div>
-      <div class="own-sep"></div>
-      <div class="pill-row" id="own-panel-pills">
+      <div class="own-sep" id="own-sep" style="display:none"></div>
+      <div class="pill-row" id="own-panel-pills" style="display:none">
         <button class="pill active" data-panels="all"    onclick="setOwnPanel(this)">All</button>
         <button class="pill"        data-panels="single" onclick="setOwnPanel(this)">1</button>
         <button class="pill"        data-panels="5"      onclick="setOwnPanel(this)">5</button>
@@ -855,9 +943,6 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
     <div id="search-result-count" style="display:none"></div>
     <div style="display:flex; align-items:center; justify-content:space-between; min-height:24px; margin-bottom:4px">
       <div id="cat-count"></div>
-      <div id="manual-btn-wrap" style="display:none">
-        <button class="add-manual-btn" onclick="openManualForm()">Add Cap <span class="plus-circle">+</span></button>
-      </div>
     </div>
     <div id="grid">
       <div class="state" style="grid-column:1/-1"><span class="spin"></span> Loading inventory…</div>
@@ -866,13 +951,13 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
   </div>
 
   <div id="releases-panel">
+    <div class="panel-head">Releases</div>
     <div class="rel-controls-bar">
       <div class="rel-radios">
         <label class="rel-radio-lbl"><input type="radio" name="rel-sort" value="alpha" checked onchange="setRelSort(this)"> A–Z</label>
         <label class="rel-radio-lbl"><input type="radio" name="rel-sort" value="date"  onchange="setRelSort(this)"> Date</label>
       </div>
       <label class="rel-check-lbl"><input type="checkbox" id="rel-limited-chk" onchange="toggleRelLimited()"> ⭐ Limited</label>
-      <button class="add-manual-btn" onclick="openRelForm()">Add Release <span class="plus-circle">+</span></button>
     </div>
     <div class="rel-filters">
       <span class="flabel">Year</span>
@@ -910,6 +995,7 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
   </div>
 
   <div id="alerts-panel">
+    <div class="panel-head">Alerts</div>
     <div class="alert-filters">
       <button class="af-pill active" data-af="back_in_stock" onclick="setAlertFilter(this)">🎉 Restocked</button>
       <button class="af-pill"        data-af="new_product"   onclick="setAlertFilter(this)">🆕 New</button>
@@ -921,6 +1007,11 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
         <button class="af-pill"        data-bis="caps" onclick="setBisFilter(this)">🧢 Caps</button>
         <button class="af-pill"        data-bis="pins" onclick="setBisFilter(this)">📌 Pins</button>
       </span>
+    </div>
+    <div class="alert-filters" id="size-subfilters" style="display:none;">
+      <span class="flabel">Sort</span>
+      <button class="af-pill active" data-sort="time" onclick="setAlertSort(this)">Newest</button>
+      <button class="af-pill"        data-sort="size" onclick="setAlertSort(this)">Size</button>
     </div>
     <div class="alerts-list" id="alert-list">
       <div class="state"><span class="spin"></span> Loading…</div>
@@ -958,6 +1049,102 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
   </div>
 </div>
 
+<!-- Settings overlay -->
+<div class="overlay" id="settings-overlay" onclick="settingsBgClick(event)" style="background:rgba(26,35,64,.92);">
+  <div class="manual-modal" style="max-height:85vh; overflow-y:auto;">
+    <h2>Settings</h2>
+
+    {% if current_user.is_admin %}
+    <div class="settings-section-hdr" style="margin-top:0;">Admin</div>
+    <div class="mf-row mf-row-grid">
+      <a href="/admin/" class="mf-cancel" style="display:inline-block; text-decoration:none; text-align:center;">Open Admin Dashboard</a>
+      <button class="mf-cancel" id="poll-btn" onclick="triggerPoll()">🔄 Poll Now</button>
+    </div>
+    <div class="mf-row mf-row-grid">
+      <button class="mf-cancel" onclick="closeSettings(); openManualForm()">Add Cap <span class="plus-circle">+</span></button>
+      <button class="mf-cancel" onclick="closeSettings(); openRelForm()">Add Release <span class="plus-circle">+</span></button>
+    </div>
+    {% endif %}
+
+    <div class="mf-row">
+      <label class="own-chk-lbl" style="display:flex; align-items:center; gap:8px; font-weight:400;">
+        <input type="checkbox" id="set-dark-mode" onchange="toggleDark()">
+        Dark mode
+      </label>
+    </div>
+
+    <div class="settings-section-hdr">Notifications</div>
+
+    <div class="mf-row">
+      <label class="own-chk-lbl" style="display:flex; align-items:center; gap:8px; font-weight:400;">
+        <input type="checkbox" id="set-notify-wishlist">
+        Notify me when a wishlisted item comes back in stock
+      </label>
+    </div>
+    <div class="mf-row">
+      <label class="own-chk-lbl" style="display:flex; align-items:center; gap:8px; font-weight:400;">
+        <input type="checkbox" id="set-notify-new-products">
+        Notify me when new products are listed
+      </label>
+    </div>
+    <div class="mf-row" id="set-topic-row" style="display:none;">
+      <label>Your ntfy topic</label>
+      <input type="text" id="set-ntfy-topic" placeholder="e.g. scallytracker-yourname-ab12cd34">
+      <div style="font-size:12px; color:var(--text3); margin-top:6px; line-height:1.5;">
+        Install the <strong>ntfy</strong> app (iOS/Android) and subscribe to this topic name to receive push alerts. Leave blank to auto-generate one.
+      </div>
+    </div>
+    <div class="mf-row" id="set-quiet-row" style="display:none;">
+      <label>Quiet hours (no pushes during this window)</label>
+      <div style="display:flex; align-items:center; gap:8px; margin-top:4px;">
+        <select id="set-quiet-start" style="flex:1; padding:6px 10px; border:1px solid var(--border); border-radius:6px; font-family:'Source Sans 3',sans-serif; font-size:13px; background:var(--white); color:var(--text);"></select>
+        <span style="color:var(--text3);">to</span>
+        <select id="set-quiet-end" style="flex:1; padding:6px 10px; border:1px solid var(--border); border-radius:6px; font-family:'Source Sans 3',sans-serif; font-size:13px; background:var(--white); color:var(--text);"></select>
+      </div>
+    </div>
+
+    <div class="settings-section-hdr">Collection Defaults</div>
+    <div class="mf-row">
+      <label>Default cap size (used when wishlisting without a size)</label>
+      <input type="text" id="set-default-caps" placeholder="e.g. X-Large or XX-Large">
+    </div>
+    <div class="mf-row">
+      <label>Default apparel size (used when wishlisting without a size)</label>
+      <input type="text" id="set-default-apparel" placeholder="e.g. X-Large">
+    </div>
+
+    <div class="settings-section-hdr">Data</div>
+    <div class="mf-row">
+      <a href="/api/export/csv" class="mf-cancel" style="display:inline-block; text-decoration:none; text-align:center;">Export collection as CSV</a>
+    </div>
+
+    <div class="settings-section-hdr">Account</div>
+    <div class="mf-row" style="display:flex; align-items:center; justify-content:space-between;">
+      <span>Logged in as <strong>{{ current_user.username }}</strong></span>
+      <a href="/auth/logout" class="mf-cancel" style="text-decoration:none; text-align:center;">Log Out</a>
+    </div>
+    <div class="mf-row">
+      <label>Email</label>
+      <input type="email" id="set-email" placeholder="you@example.com">
+      <div class="settings-inline-msg" id="email-msg"></div>
+      <button class="mf-save" style="margin-top:8px;" onclick="saveEmail()">Update Email</button>
+    </div>
+    <div class="mf-row">
+      <label>Change Password</label>
+      <input type="password" id="set-current-pw" placeholder="Current password" autocomplete="current-password" style="margin-top:4px;">
+      <input type="password" id="set-new-pw" placeholder="New password (min 8 characters)" autocomplete="new-password" style="margin-top:8px;">
+      <input type="password" id="set-confirm-pw" placeholder="Confirm new password" autocomplete="new-password" style="margin-top:8px;">
+      <div class="settings-inline-msg" id="password-msg"></div>
+      <button class="mf-save" style="margin-top:8px;" onclick="savePassword()">Update Password</button>
+    </div>
+
+    <div class="mf-btns">
+      <button class="mf-cancel" onclick="closeSettings()">Close</button>
+      <button class="mf-save"   onclick="saveSettings()">Save Settings</button>
+    </div>
+  </div>
+</div>
+
 <!-- Manual cap form overlay -->
 <div class="overlay" id="manual-overlay" onclick="manualBgClick(event)" style="background:rgba(26,35,64,.92);">
   <div class="manual-modal">
@@ -970,6 +1157,10 @@ body.dark .add-manual-btn:hover .plus-circle { background:var(--gold); }
         <button type="button" class="af-pill status-wishlist"        id="mf-status-wishlist" onclick="setMfStatus('wishlist')">⭐ Wishlist</button>
         <button type="button" class="af-pill status-sold"            id="mf-status-sold"     onclick="setMfStatus('sold')">🏷 Sold</button>
       </div>
+    </div>
+    <div class="mf-row mf-row-grid" id="mf-sold-row" style="display:none">
+      <div><label>Sold Price</label><input type="number" step="0.01" id="mf-sold-price" placeholder="e.g. 45.00"></div>
+      <div><label>Sold Date</label><input type="date" id="mf-sold-date"></div>
     </div>
     <div class="mf-row">
       <label>Type</label>
@@ -1059,9 +1250,13 @@ let _manualCapsCache = null, _manualCapsFetching = null;
 let _productsCache = new Map();
 const PRODUCTS_TTL = 60_000;
 let collectionView = 'owned';
-let ownShowCaps = true, ownShowPins = false, ownCapsPanel = 'all';
+let ownType = 'all', ownCapsPanel = 'all';
+let collectionSort = 'title';
+let listViewMode = false;
+let bulkMode = false;
+let bulkSelected = new Set();
 
-let modalPid = null, modalStatus = 'none', modalNotes = '', modalPrefSize = '';
+let modalPid = null, modalStatus = 'none', modalNotes = '', modalPrefSize = '', modalSoldPrice = '', modalSoldDate = '';
 
 // Shared manual caps fetcher — deduplicates concurrent calls and caches result
 function fetchManualCaps(invalidate=false){
@@ -1090,6 +1285,19 @@ async function fetchProducts(q){
 
 const CAT_LABELS = { caps:'Caps', pins:'Pins', apparel:'Apparel', other:'Other' };
 const PANEL_LABELS = { single:'1', '5':'5', '6':'6', '8':'8', baker:'BB' };
+const PANEL_LABELS_LONG = { single:'1-panel', '5':'5-panel', '6':'6-panel', '8':'8-panel', baker:'Baker Boy' };
+
+// Empty-state copy for the "Own" collection view when a cap-panel subfilter
+// is active and excludes everything. Returns null if no panel filter applies.
+function ownPanelEmptyState(){
+  if(!(ownType === 'caps' && ownCapsPanel !== 'all')) return null;
+  const panelLabel = PANEL_LABELS_LONG[ownCapsPanel] || ownCapsPanel;
+  return {
+    icon:  '🧢',
+    title: `No ${panelLabel} caps`,
+    sub:   'None of your owned caps match that panel count.',
+  };
+}
 function displayTitle(p){
   if(p.category==='caps') return (p.title||'').replace(/\s+Boston Scally Cap\b/i,'');
   return (p.title||'').replace(/^Boston Scally\s+/i,'');
@@ -1172,14 +1380,15 @@ async function triggerPoll(){
 function toggleDark(){
   const dark = document.body.classList.toggle('dark');
   localStorage.setItem('bsc-dark', dark ? '1' : '0');
-  document.getElementById('dark-toggle').textContent = dark ? '☀️' : '🌙';
+  const chk = document.getElementById('set-dark-mode');
+  if(chk) chk.checked = dark;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   if(localStorage.getItem('bsc-dark')==='1'){
     document.body.classList.add('dark');
-    const btn = document.getElementById('dark-toggle');
-    if(btn) btn.textContent = '☀️';
+    const chk = document.getElementById('set-dark-mode');
+    if(chk) chk.checked = true;
   }
   document.getElementById('sort').value = 'title';
   document.getElementById('collection-bar').style.display = '';
@@ -1314,7 +1523,7 @@ function setCat(btn){
       document.getElementById('wl-badge').classList.remove('show');
     }
   }
-  panels = (cat==='caps') ? '8' : 'all';
+  panels = 'all';
   avail = (cat==='collection') ? 'all' : 'in';
 
   document.querySelectorAll('#panel-pills .pill').forEach(b=>b.classList.remove('active'));
@@ -1328,7 +1537,6 @@ function setCat(btn){
   document.getElementById('own-filter-bar').style.display = (cat==='collection' && collectionView==='owned') ? '' : 'none';
   const isTagView = cat==='collection';
   document.getElementById('filter-bar').style.display = isTagView ? 'none' : '';
-  document.getElementById('manual-btn-wrap').style.display = (cat==='caps') ? 'block' : 'none';
 
   showProducts();
   load();
@@ -1336,7 +1544,7 @@ function setCat(btn){
 }
 
 function setCollView(btn){
-  document.querySelectorAll('#collection-bar .pill').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('#collection-bar .pill[data-cv]').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   collectionView = btn.dataset.cv;
   if(collectionView === 'wishlist'){
@@ -1344,17 +1552,83 @@ function setCollView(btn){
     document.getElementById('wl-badge').classList.remove('show');
   }
   document.getElementById('own-filter-bar').style.display = (collectionView === 'owned') ? '' : 'none';
+  if(bulkMode) toggleBulkMode();
   showProducts();
   load();
 }
 
+function setCollSort(val){
+  collectionSort = val;
+  load();
+}
+
+function toggleViewMode(){
+  listViewMode = !listViewMode;
+  document.getElementById('view-toggle-btn').classList.toggle('active', listViewMode);
+  document.getElementById('grid').classList.toggle('list-view', listViewMode);
+  load();
+}
+
+function toggleBulkMode(){
+  bulkMode = !bulkMode;
+  bulkSelected.clear();
+  document.getElementById('bulk-toggle-btn').classList.toggle('active', bulkMode);
+  document.getElementById('bulk-bar').style.display = bulkMode ? '' : 'none';
+  updateBulkCount();
+  load();
+}
+
+function updateBulkCount(){
+  document.getElementById('bulk-count').textContent = `${bulkSelected.size} selected`;
+}
+
+function toggleSelect(key, checked){
+  if(checked) bulkSelected.add(key); else bulkSelected.delete(key);
+  updateBulkCount();
+}
+
+async function bulkAction(status){
+  if(!bulkSelected.size) return;
+  const jobs = [...bulkSelected].map(key=>{
+    if(key.startsWith('m')){
+      const id = key.slice(1);
+      return fetch(`/api/manual_cap/${id}`, {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({status}),
+      });
+    } else {
+      const id = key.slice(1);
+      return fetch(`/api/user_item/${id}`, {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({status}),
+      });
+    }
+  });
+  await Promise.all(jobs);
+  invalidateProductsCache();
+  fetchManualCaps(true);
+  toggleBulkMode();
+  loadStats(); load();
+}
+
+function exportCurrentView(){
+  const view = collectionView; // 'owned' | 'wishlist' | 'sold'
+  window.open(`/api/export/csv?view=${view}`, '_blank');
+}
+
 function setOwnType(btn){
-  btn.classList.toggle('active');
-  ownShowCaps = document.querySelector('#own-type-pills [data-type="caps"]').classList.contains('active');
-  ownShowPins = document.querySelector('#own-type-pills [data-type="pins"]').classList.contains('active');
-  const pillsEl = document.getElementById('own-panel-pills');
-  pillsEl.style.opacity       = ownShowCaps ? '1' : '0.35';
-  pillsEl.style.pointerEvents = ownShowCaps ? '' : 'none';
+  document.querySelectorAll('#own-type-pills .pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  ownType = btn.dataset.type;
+  document.getElementById('own-panel-pills').style.display = ownType === 'caps' ? '' : 'none';
+  document.getElementById('own-sep').style.display = ownType === 'caps' ? '' : 'none';
+  if(ownType !== 'caps'){
+    // Reset the caps panel subfilter so it doesn't silently apply when
+    // switching back to "All" (or another type) later.
+    ownCapsPanel = 'all';
+    document.querySelectorAll('#own-panel-pills .pill').forEach(b => b.classList.remove('active'));
+    document.querySelector('#own-panel-pills .pill[data-panels="all"]').classList.add('active');
+  }
   load();
 }
 
@@ -1481,31 +1755,42 @@ async function load(){
     const isOwned = cat==='collection' && collectionView==='owned';
     const isWish  = cat==='collection' && collectionView==='wishlist';
     const isSold  = cat==='collection' && collectionView==='sold';
+    const isColl  = isOwned||isWish||isSold;
 
-    // While searching: ignore all filters, search entire catalog
+    // While searching outside the Collection tab: ignore all filters, search entire catalog.
+    // While searching inside the Collection tab, stay scoped to the active sub-tab (owned/wishlist/sold).
+    const collSort = collectionSort === 'price_asc' || collectionSort === 'price_desc'
+      ? collectionSort : (collectionSort === 'title' ? 'title' : 'added');
     const q = new URLSearchParams({
-      category:   isSearching ? 'all' : (isOwned||isWish||isSold ? 'all' : cat),
-      avail:      isSearching ? 'all' : (isOwned||isWish||isSold ? 'all' : (avail === 'new' ? 'all' : avail)),
+      category:   (isSearching && !isColl) ? 'all' : (isColl ? 'all' : cat),
+      avail:      (isSearching && !isColl) ? 'all' : (isColl ? 'all' : (avail === 'new' ? 'all' : avail)),
       panels:     isSearching ? 'all' : (avail === 'new' ? 'all' : panels),
       search:     searchVal,
-      sort:       isSearching ? 'title' : (document.getElementById('sort').value || sort),
-      owned:      (!isSearching && isOwned)  ? '1' : '0',
-      wishlisted: (!isSearching && isWish)   ? '1' : '0',
-      sold:       (!isSearching && isSold)   ? '1' : '0',
+      sort:       isColl ? collSort : (isSearching ? 'title' : (document.getElementById('sort').value || sort)),
+      owned:      isOwned ? '1' : '0',
+      wishlisted: isWish  ? '1' : '0',
+      sold:       isSold  ? '1' : '0',
     });
 
     // Hide/show sub-filter bars and result count based on search state
-    document.getElementById('filter-bar').style.visibility = isSearching ? 'hidden' : '';
-    document.getElementById('panel-bar').style.visibility  = isSearching ? 'hidden' : '';
+    const hideBars = isSearching && !isColl;
+    document.getElementById('filter-bar').style.visibility = hideBars ? 'hidden' : '';
+    document.getElementById('panel-bar').style.visibility  = hideBars ? 'hidden' : '';
     const countEl = document.getElementById('search-result-count');
-    countEl.style.display = isSearching ? 'block' : 'none';
-    if(!isSearching) countEl.textContent = '';
+    countEl.style.display = hideBars ? 'block' : 'none';
+    if(!hideBars) countEl.textContent = '';
 
     const fetches = [fetchProducts(q)];
-    if(!isSearching && (isOwned||isSold||isWish||cat==='caps')) fetches.push(fetchManualCaps());
+    if(isOwned||isSold||isWish||cat==='caps') fetches.push(fetchManualCaps());
     let [products, manualCaps] = await Promise.all(fetches);
     if(avail === 'new') products = products.filter(p => p.is_new_product);
-    render(products, manualCaps||[]);
+    manualCaps = manualCaps || [];
+    if(isSearching && isColl){
+      const term = searchVal.toLowerCase();
+      products = products.filter(p => (p.title||'').toLowerCase().includes(term));
+      manualCaps = manualCaps.filter(c => (c.name||'').toLowerCase().includes(term));
+    }
+    render(products, manualCaps);
   }catch(e){
     grid.innerHTML=`<div class="state" style="grid-column:1/-1">
       <div class="state-icon">⚠️</div>
@@ -1516,6 +1801,7 @@ async function load(){
 
 function render(products, manualCaps=[]){
   const grid = document.getElementById('grid');
+  grid.classList.toggle('list-view', listViewMode && cat==='collection');
   const isWish = cat === 'collection' && collectionView === 'wishlist';
   const searchVal = document.getElementById('search').value.trim();
   if(searchVal){
@@ -1534,12 +1820,9 @@ function render(products, manualCaps=[]){
   }
   if(!products.length){
     let emptyIcon = '🔍', emptyTitle = 'No products found', emptySub = 'Try adjusting your filters.';
-    if(cat === 'collection' && collectionView === 'owned' && ownShowCaps && ownCapsPanel !== 'all'){
-      const PANEL_LABELS = { single:'1-panel', '5':'5-panel', '6':'6-panel', '8':'8-panel', baker:'Baker Boy' };
-      const panelLabel = PANEL_LABELS[ownCapsPanel] || ownCapsPanel;
-      emptyIcon  = '🧢';
-      emptyTitle = `No ${panelLabel} caps`;
-      emptySub   = 'None of your owned caps match that panel count.';
+    if(cat === 'collection' && collectionView === 'owned'){
+      const s = ownPanelEmptyState();
+      if(s){ emptyIcon = s.icon; emptyTitle = s.title; emptySub = s.sub; }
     }
     grid.innerHTML=`<div class="state" style="grid-column:1/-1">
       <div class="state-icon">${emptyIcon}</div>
@@ -1566,11 +1849,19 @@ function render(products, manualCaps=[]){
       ].filter(Boolean).join('');
       const ribbon = `<div class="card-ribbon">${ribbons}</div>`;
       const btns = '';
-      return `<div class="card manual-card" onclick="openManualCap(${p._mid})">
+      const mKey = `m${p._mid}`;
+      const chk = bulkCheckboxHtml(mKey);
+      const addedHtml = (cat==='collection' && collectionView==='owned' && p._created_at)
+        ? `<div class="card-added-label">${addedLabel(p._created_at)}</div>` : '';
+      const soldHtml = (cat==='collection' && collectionView==='sold' && (p._sold_price!=null || p._sold_date))
+        ? `<div class="card-sold-info">${p._sold_price!=null?`$${(+p._sold_price).toFixed(2)}`:''}${p._sold_price!=null && p._sold_date?' · ':''}${p._sold_date?x(p._sold_date):''}</div>` : '';
+      return `<div class="card manual-card" onclick="${bulkMode?'':`openManualCap(${p._mid})`}">
+        ${chk}
         <div class="card-img-wrap">${img}<div class="dot" style="opacity:0"></div>${ribbon}</div>
         <div class="card-body">
           <div class="card-cat">CAPS</div>
           <div class="card-title">${x(p.title)}</div>
+          ${addedHtml}${soldHtml}
           <div class="card-foot">${btns}</div>
         </div></div>`;
     }
@@ -1593,12 +1884,19 @@ function render(products, manualCaps=[]){
     const ribbon = ribbons ? `<div class="card-ribbon">${ribbons}</div>` : '';
     const oosBadge = (isWish && p.oos_days)
       ? `<div class="oos-days">OOS ${p.oos_days} day${p.oos_days===1?'':'s'}</div>` : '';
-    return `<div class="card" onclick="openProduct(${p.id})" style="animation-delay:${Math.min(i*.025,.4)}s">
+    const pKey = `p${p.id}`;
+    const chk = bulkCheckboxHtml(pKey);
+    const addedHtml = (cat==='collection' && collectionView==='owned' && p.collection_updated_at)
+      ? `<div class="card-added-label">${addedLabel(p.collection_updated_at)}</div>` : '';
+    const soldHtml = (cat==='collection' && collectionView==='sold' && (p.sold_price!=null || p.sold_date))
+      ? `<div class="card-sold-info">${p.sold_price!=null?`$${(+p.sold_price).toFixed(2)}`:''}${p.sold_price!=null && p.sold_date?' · ':''}${p.sold_date?x(p.sold_date):''}</div>` : '';
+    return `<div class="card" onclick="${bulkMode?'':`openProduct(${p.id})`}" style="animation-delay:${Math.min(i*.025,.4)}s">
+      ${chk}
       <div class="card-img-wrap">${img}<div class="dot" style="opacity:0"></div>${pip}${ribbon}</div>
       <div class="card-body">
         <div class="card-cat">${CAT_LABELS[p.category]||p.category||''}</div>
         <div class="card-title">${x(displayTitle(p))}</div>
-        ${oosBadge}
+        ${oosBadge}${addedHtml}${soldHtml}
         <div class="card-foot">
           <div class="card-price">${priceStr}</div>
           <span class="badge ${inStock?'in':'out'}">${inStock?'In Stock':'Out of Stock'}</span>
@@ -1635,7 +1933,7 @@ function render(products, manualCaps=[]){
         if(collectionView==='wishlist') return c.wishlisted && !c.sold;
         if(!c.sold && !c.wishlisted){
           // owned: apply caps panel filter here at the source
-          if(!ownShowCaps) return false;
+          if(ownType !== 'all' && ownType !== 'caps') return false;
           if(ownCapsPanel !== 'all' && String(c.panels||'') !== ownCapsPanel) return false;
           return true;
         }
@@ -1643,7 +1941,8 @@ function render(products, manualCaps=[]){
       })
       .forEach(c=> products.push({
         _manual:true, _mid:c.id, _sold:c.sold, _wishlisted:c.wishlisted, _cap_type:c.cap_type||'none',
-        _notes:c.notes||'',
+        _notes:c.notes||'', _created_at:c.created_at||'',
+        _sold_price:c.sold_price, _sold_date:c.sold_date,
         title:c.name, category:'caps',
         owned:c.wishlisted?0:1, sold:c.sold, wishlisted:c.wishlisted, in_stock:false,
         image_url:c.image||null, min_price:null, max_price:null, panels:c.panels||null,
@@ -1652,24 +1951,37 @@ function render(products, manualCaps=[]){
     if(collectionView === 'owned'){
       products = products.filter(p => {
         if(p.category === 'caps' || p._manual){
-          if(!ownShowCaps) return false;
+          if(ownType !== 'all' && ownType !== 'caps') return false;
           if(ownCapsPanel !== 'all' && String(p.panels||'') !== ownCapsPanel) return false;
           return true;
         }
-        if(p.category === 'pins') return ownShowPins;
-        return true;
+        return ownType === 'all' || p.category === ownType;
       });
       if(!products.length){
-        const PANEL_LABELS = { single:'1-panel', '5':'5-panel', '6':'6-panel', '8':'8-panel', baker:'Baker Boy' };
-        const panelLabel = ownShowCaps && ownCapsPanel !== 'all' ? (PANEL_LABELS[ownCapsPanel] || ownCapsPanel) : null;
-        const emptyTitle = panelLabel ? `No ${panelLabel} caps` : 'Nothing here yet';
-        const emptySub   = panelLabel ? 'None of your owned caps match that panel count.' : 'Add items to your collection.';
+        const s = ownPanelEmptyState();
+        const emptyIcon  = s ? s.icon  : '🧢';
+        const emptyTitle = s ? s.title : 'Nothing here yet';
+        const emptySub   = s ? s.sub   : 'Add items to your collection.';
         grid.innerHTML=`<div class="state" style="grid-column:1/-1">
-          <div class="state-icon">🧢</div>
+          <div class="state-icon">${emptyIcon}</div>
           <div class="state-title">${emptyTitle}</div>
           <div class="state-sub">${emptySub}</div></div>`;
         return;
       }
+    }
+    function collSortCompare(a,b){
+      if(collectionSort === 'added'){
+        const ta = a._manual ? (a._created_at||'') : (a.collection_updated_at||'');
+        const tb = b._manual ? (b._created_at||'') : (b.collection_updated_at||'');
+        return tb.localeCompare(ta); // newest first
+      }
+      if(collectionSort === 'price_asc' || collectionSort === 'price_desc'){
+        const pa = a.min_price==null ? Infinity : +a.min_price;
+        const pb = b.min_price==null ? Infinity : +b.min_price;
+        const diff = pa - pb;
+        return collectionSort === 'price_desc' ? -diff : diff;
+      }
+      return displayTitle(a).localeCompare(displayTitle(b));
     }
     const catCounts = {};
     products.forEach(p=>{ catCounts[p.category]=(catCounts[p.category]||0)+1; });
@@ -1682,9 +1994,22 @@ function render(products, manualCaps=[]){
         if(cntDiff!==0) return cntDiff;
         return a.category.localeCompare(b.category);
       }
-      return displayTitle(a).localeCompare(displayTitle(b));
+      return collSortCompare(a,b);
     });
-    let lastCat = null, html = '';
+
+    // ── Wishlist "needs attention" section (restocked / in-your-size items) ──
+    let attentionHtml = '';
+    if(collectionView === 'wishlist'){
+      const attention = products.filter(p => !p._manual && p.is_restocked && p.my_size_in_stock);
+      if(attention.length){
+        attentionHtml += `<div class="owned-section-hdr">🎉 Needs Attention <span class="section-hdr-count">[${attention.length}]</span></div>`;
+        attention.forEach((p,i)=>{ attentionHtml += mkCard(p, i); });
+        const attentionIds = new Set(attention.map(p=>p.id));
+        products = products.filter(p => p._manual || !attentionIds.has(p.id));
+      }
+    }
+
+    let lastCat = null, html = attentionHtml;
     products.forEach((p,i)=>{
       if(p.category !== lastCat){
         html += `<div class="owned-section-hdr">${CAT_HDR[p.category]||p.category} <span class="section-hdr-count">[${catCounts[p.category]}]</span></div>`;
@@ -1770,10 +2095,11 @@ function render(products, manualCaps=[]){
 let _allAlerts = [];
 let _alertFilter = 'back_in_stock';
 let _bisFilter   = 'all';
+let _alertSort   = 'time';
 
 function setAlertFilter(btn){
   _alertFilter = btn.dataset.af;
-  document.querySelectorAll('#alerts-panel .alert-filters:not(#bis-subfilters) .af-pill').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('#alerts-panel .alert-filters:not(#bis-subfilters):not(#size-subfilters) .af-pill').forEach(p => p.classList.remove('active'));
   btn.classList.add('active');
   const sub = document.getElementById('bis-subfilters');
   if(_alertFilter === 'back_in_stock'){
@@ -1785,6 +2111,8 @@ function setAlertFilter(btn){
   } else {
     sub.style.display = 'none';
   }
+  _alertSort  = 'time';
+  document.querySelectorAll('#size-subfilters .af-pill[data-sort]').forEach(p => p.classList.toggle('active', p.dataset.sort === 'time'));
   renderAlerts();
 }
 
@@ -1795,51 +2123,108 @@ function setBisFilter(btn){
   renderAlerts();
 }
 
-function isXL(variantTitle){
-  // Match "X-Large" or "X-Large [...]" but NOT "XX-Large"
-  return /^X-Large\b/i.test(variantTitle || '');
+function setAlertSort(btn){
+  _alertSort = btn.dataset.sort;
+  document.querySelectorAll('#size-subfilters .af-pill[data-sort]').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  renderAlerts();
 }
-function isXXL(variantTitle){
-  return /^XX-Large\b/i.test(variantTitle || '');
+
+// Extract a normalized size token (e.g. "X-Large") from a variant title like
+// "X-Large / Navy" so caps/apparel/pins with different naming still group sensibly.
+const SIZE_ORDER = ['X-Small','Small','Medium','Large','X-Large','XX-Large','XXX-Large','One Size'];
+function sizeToken(variantTitle){
+  const first = (variantTitle || '').split('/')[0].trim();
+  return first || 'One Size';
+}
+function sizeRank(variantTitle){
+  const idx = SIZE_ORDER.indexOf(sizeToken(variantTitle));
+  return idx === -1 ? SIZE_ORDER.length : idx;
+}
+
+function relevantAlerts(alerts, type, bisFilter){
+  let out = alerts.filter(a => a.alert_type === type);
+  if(type === 'back_in_stock' || type === 'out_of_stock'){
+    if(type === 'back_in_stock' && bisFilter !== 'all'){
+      out = out.filter(a => a.category === bisFilter);
+    }
+  }
+  return out;
+}
+
+function relTime(d){
+  const diffMs = Date.now() - d.getTime();
+  const mins = Math.round(diffMs/60000);
+  if(mins < 1) return 'just now';
+  if(mins < 60) return `${mins}m ago`;
+  const hrs = Math.round(mins/60);
+  if(hrs < 24) return `${hrs}h ago`;
+  const days = Math.round(hrs/24);
+  if(days < 7) return `${days}d ago`;
+  return d.toLocaleDateString('en-US',{timeZone:'America/Chicago',month:'short',day:'numeric'});
 }
 
 function renderAlerts(){
   const list = document.getElementById('alert-list');
-  let filtered = _allAlerts.filter(a => a.alert_type === _alertFilter);
-  // Restock and Out of Stock: only pins + XL/XXL caps/apparel are relevant
-  if(_alertFilter === 'back_in_stock' || _alertFilter === 'out_of_stock'){
-    if(_alertFilter === 'back_in_stock' && _bisFilter !== 'all'){
-      filtered = filtered.filter(a => a.category === _bisFilter);
-    }
-    filtered = filtered.filter(a => {
-      if(a.category === 'pins') return true;
-      if(a.category === 'caps' || a.category === 'apparel') return isXL(a.variant_title) || isXXL(a.variant_title);
-      return false;
-    });
-  }
+
+  // Sort row only makes sense for restock/out-of-stock tabs.
+  const sizeSub = document.getElementById('size-subfilters');
+  const showSizeSub = (_alertFilter === 'back_in_stock' || _alertFilter === 'out_of_stock');
+  sizeSub.style.display = showSizeSub ? '' : 'none';
+
+  const filtered = relevantAlerts(_allAlerts, _alertFilter, _bisFilter);
   if(!filtered.length){
-    const activeBtn = document.querySelector(`.af-pill[data-af="${_alertFilter}"]`);
-    const label = activeBtn ? activeBtn.textContent.trim() : _alertFilter;
     list.innerHTML=`<div class="state"><div class="state-icon">🔔</div><div class="state-title">No alerts of this type yet.</div></div>`;
     return;
   }
-  const todayStr = new Date().toLocaleDateString('en-CA', {timeZone:'America/Chicago'});
-  list.innerHTML = filtered.map(a=>{
-    const icon=ALERT_ICONS[a.alert_type]||'🔔';
-    const d = new Date(a.created_at);
-    const time=d.toLocaleString('en-US',{
-      timeZone:'America/Chicago',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',hour12:true
+
+  // Group rows for faster scanning: by date (Today/Yesterday/Earlier) when sorted
+  // by time, or by size when sorted by size.
+  const sections = {};
+  if(_alertSort === 'size' && showSizeSub){
+    filtered.slice().sort((a,b) => sizeRank(a.variant_title) - sizeRank(b.variant_title)).forEach(a=>{
+      const label = sizeToken(a.variant_title);
+      (sections[label] = sections[label] || []).push(a);
     });
-    const isToday = d.toLocaleDateString('en-CA',{timeZone:'America/Chicago'}) === todayStr;
-    const isClickable = a.handle && (a.alert_type === 'back_in_stock' || a.alert_type === 'new_product');
-    const showTodayBadge = isToday && (a.alert_type === 'back_in_stock' || a.alert_type === 'out_of_stock');
-    const rowInner = `<div class="aicon">${icon}</div>
-      <div class="amsg">${x(a.message)}</div>
-      <div class="atime">${time} CT${showTodayBadge ? '<span class="today-badge">Today</span>' : ''}</div>`;
-    return isClickable
-      ? `<a class="arow ${a.alert_type}${isToday ? ' today' : ''}" href="https://bostonscally.com/products/${a.handle}" target="_blank" rel="noopener">${rowInner}</a>`
-      : `<div class="arow ${a.alert_type}${isToday ? ' today' : ''}">${rowInner}</div>`;
-  }).join('');
+  } else {
+    const now = new Date();
+    const todayStr = now.toLocaleDateString('en-CA', {timeZone:'America/Chicago'});
+    const yest = new Date(now); yest.setDate(yest.getDate()-1);
+    const yestStr = yest.toLocaleDateString('en-CA', {timeZone:'America/Chicago'});
+    sections.Today = []; sections.Yesterday = []; sections.Earlier = [];
+    filtered.forEach(a=>{
+      const d = new Date(a.created_at);
+      const dayStr = d.toLocaleDateString('en-CA',{timeZone:'America/Chicago'});
+      const bucket = dayStr === todayStr ? 'Today' : (dayStr === yestStr ? 'Yesterday' : 'Earlier');
+      sections[bucket].push(a);
+    });
+  }
+
+  let html = '';
+  for(const [label, rows] of Object.entries(sections)){
+    if(!rows.length) continue;
+    html += `<div class="alert-section-hdr">${label}</div>`;
+    html += rows.map(a=>{
+      const icon = ALERT_ICONS[a.alert_type]||'🔔';
+      const d = new Date(a.created_at);
+      const fullTime = d.toLocaleString('en-US',{
+        timeZone:'America/Chicago',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',hour12:true
+      });
+      const isToday = label === 'Today';
+      const isClickable = a.handle && (a.alert_type === 'back_in_stock' || a.alert_type === 'new_product');
+      const thumb = a.image_url
+        ? `<img class="athumb" src="${x(a.image_url)}" alt="" loading="lazy">`
+        : `<div class="aicon">${icon}</div>`;
+      const rowInner = `${thumb}
+        <div class="amsg">${x(a.message)}</div>
+        <div class="atime" title="${fullTime} CT">${relTime(d)}</div>
+        ${isClickable ? '<div class="agototext">View →</div>' : ''}`;
+      return isClickable
+        ? `<a class="arow ${a.alert_type}${isToday ? ' today' : ''}" href="https://bostonscally.com/products/${a.handle}" target="_blank" rel="noopener">${rowInner}</a>`
+        : `<div class="arow ${a.alert_type}${isToday ? ' today' : ''}">${rowInner}</div>`;
+    }).join('');
+  }
+  list.innerHTML = html;
 }
 
 async function loadAlerts(){
@@ -1881,15 +2266,20 @@ async function openProduct(id){
     if(category==='apparel' && p.material){
       meta+=`<div class="spec-row"><div class="spec-chip"><span class="spec-k">Material</span><span class="spec-v">${x(p.material)}</span></div></div>`;
     }
+    let limitedNote = '';
     if(category==='caps'){
+      const LIMIT_RE = /Limit of[^.]*(?:release|customer)[^.]*\.?/i;
       function cleanField(val){
         if(!val) return '';
         return val
           .replace(/\s*(Color|Style|Material|Panels?)\s*:.*/i, '')
+          .replace(LIMIT_RE, '')
           .replace(/Fitted/gi, '')
           .replace(/\*\*.*$/,'')
           .trim();
       }
+      const limitMatch = (p.color||'').match(LIMIT_RE);
+      if(limitMatch) limitedNote = limitMatch[0].trim();
       // Color: prefer DB color, else extract from title after last " - "
       let color = cleanField(p.color);
       if(!color){
@@ -1907,9 +2297,10 @@ async function openProduct(id){
       ];
       meta+=`<div class="spec-row">`+
         specs.map(([k,v])=>`<div class="spec-chip"><span class="spec-k">${k}</span><span class="spec-v">${v?x(v):'—'}</span></div>`).join('')+`</div>`;
+      if(limitedNote) meta+=`<div class="limited-badge">${x(limitedNote)}</div>`;
     }
     const st = p.sold ? 'sold' : p.owned ? 'owned' : p.wishlisted ? 'wishlisted' : 'none';
-    const notesShow = (st==='owned'||st==='sold'||st==='wishlisted') ? 'show' : '';
+    const notesShow = (p.notes && p.notes.trim()) ? 'show' : '';
     const cmVal = t => { const m = t.match(/\[(\d+)cm\]/i); return m ? parseInt(m[1]) : 999; };
     const sizeOpts = [...variants].sort((a,b)=>cmVal(a.title)-cmVal(b.title)).map(v=>
       `<option value="${x(v.title)}" ${p.preferred_size===v.title?'selected':''}>${x(displayTitle(v.title))}</option>`
@@ -1930,25 +2321,35 @@ async function openProduct(id){
         ${sizeOpts}
       </select>
     </div>
+    <div class="size-pref-wrap ${st==='sold'?'show':''}" id="sold-info-wrap" style="${st==='sold'?'':'display:none'}">
+      <span class="status-label">Sold Price</span>
+      <input type="number" step="0.01" class="status-select" id="sold-price-inp" placeholder="e.g. 45.00" value="${p.sold_price!=null?p.sold_price:''}" oninput="modalSoldPrice=this.value" onchange="saveUserItem()">
+      <span class="status-label">Sold Date</span>
+      <input type="date" class="status-select" id="sold-date-inp" value="${p.sold_date||''}" oninput="modalSoldDate=this.value" onchange="saveUserItem()">
+    </div>
     <div class="notes-wrap ${notesShow}" id="notes-wrap">
       <textarea class="notes-area" id="notes-area" placeholder="Notes…" oninput="modalNotes=this.value">${x(p.notes||'')}</textarea>
       <button class="notes-save-btn" onclick="saveUserItem()">Save</button>
-    </div>`;
+    </div>
+    <button class="notes-toggle-btn" id="notes-toggle-btn" onclick="toggleNotes()">${notesShow?'Hide notes':'+ Add notes'}</button>`;
     modalPid = p.id;
     modalStatus = st;
     modalNotes = p.notes || '';
     modalPrefSize = p.preferred_size || '';
+    modalSoldPrice = p.sold_price!=null ? p.sold_price : '';
+    modalSoldDate = p.sold_date || '';
     document.getElementById('m-meta').innerHTML=meta;
 
     let html='';
-    if(p.description && (category==='caps'||category==='pins'))
-      html+=`<div class="desc-block">${x(p.description)}</div>`;
+    if(p.description && (category==='caps'||category==='pins')){
+      const isLong = p.description.length > 280;
+      html+=`<div class="desc-block ${isLong?'collapsed':''}" id="desc-block">${x(p.description)}</div>`;
+      if(isLong) html+=`<button class="desc-toggle" id="desc-toggle-btn" onclick="toggleDesc()">Read more</button>`;
+    }
 
-    // ── Smart variant columns ──────────────────────────────────
+    // ── Variant grid ──────────────────────────────────
     const CAP_ORDER = ['x-small','small/medium','small','medium/large','medium','large','x-large','xx-large','xxx-large','one size'];
     const APP_ORDER = ['small','medium','large','x-large','xx-large','xxx-large','one size'];
-    const CAP_LEFT  = ['x-small','small/medium','small','medium/large','medium'];
-    const APP_LEFT  = ['small','medium','large'];
 
     function sizeRank(title, order){
       const t = title.toLowerCase();
@@ -1962,7 +2363,6 @@ async function openProduct(id){
     const isCap     = category==='caps';
     const isApparel = category==='apparel';
     const order     = isCap ? CAP_ORDER : isApparel ? APP_ORDER : null;
-    const leftSizes = isCap ? CAP_LEFT  : isApparel ? APP_LEFT  : null;
 
     const sorted = order ? [...variants].sort((a,b)=>sizeRank(a.title,order)-sizeRank(b.title,order)) : [...variants];
 
@@ -1970,32 +2370,17 @@ async function openProduct(id){
       const cls = v.available?'in':'out';
       return `<div class="vrow ${cls}">
         <div class="vname">${x(displayTitle(v.title))}</div>
-        <div class="vprice">$${(+v.price).toFixed(2)}</div>
-        <div class="vstatus">${v.available?'✓ In Stock':'✗ Out of Stock'}</div></div>`;
+        <div class="vbottom"><span class="vprice">$${(+v.price).toFixed(2)}</span><span class="vdot" title="${v.available?'In Stock':'Out of Stock'}"></span></div>
+      </div>`;
     }
-
-    let leftVars=[], rightVars=[];
-    if(sorted.length > 1){
-      const mid = Math.ceil(sorted.length / 2);
-      leftVars  = sorted.slice(0, mid);
-      rightVars = sorted.slice(mid);
-    }
-    const useCols = leftVars.length>0 && rightVars.length>0;
 
     html+=`<div class="sec-lbl">Variants &amp; Availability</div>`;
-    if(useCols){
-      html+=`<div class="var-cols">
-        <div class="var-col">${leftVars.map(varRow).join('')}</div>
-        <div class="var-col">${rightVars.map(varRow).join('')}</div>
-      </div>`;
-    } else {
-      html+=`<div class="var-list">${sorted.map(varRow).join('')}</div>`;
-    }
+    html+=`<div class="var-grid">${sorted.map(varRow).join('')}</div>`;
 
     const vid=variants[0]?.id;
     const hist=vid?(history[vid]||[]):[];
     if(hist.length>1){
-      html+=`<div class="sec-lbl" style="margin-top:4px">Price &amp; Stock History</div>`;
+      html+=`<details class="hist-acc"><summary class="sec-lbl">Price &amp; Stock History</summary>`;
       html+=`<div class="hist-list">`;
       [...hist].reverse().forEach(s=>{
         const dt=new Date(s.checked_at).toLocaleString('en-US',{
@@ -2006,9 +2391,9 @@ async function openProduct(id){
           <span class="hprice">$${(+s.price).toFixed(2)}</span>
           <span class="badge ${s.available?'in':'out'}">${s.available?'In Stock':'Out of Stock'}</span></div>`;
       });
-      html+=`</div>`;
+      html+=`</div></details>`;
     }
-    html+=`<a class="view-btn" href="https://bostonscally.com/products/${x(p.handle)}" target="_blank" rel="noopener">↗ View on Boston Scally Co.</a>`;
+    html+=`<a class="view-btn" href="https://bostonscally.com/products/${x(p.handle)}" target="_blank" rel="noopener">↗ View item on BSC website</a>`;
     document.getElementById('m-body').innerHTML=html;
   }catch(e){
     document.getElementById('m-body').innerHTML=`<div class="state"><div class="state-title">Failed to load product</div></div>`;
@@ -2028,6 +2413,8 @@ function openManualForm(cap=null){
   document.getElementById('mf-panels').value = cap ? (cap.panels||'') : '';
   document.getElementById('mf-edit-id').value = cap ? cap.id : '';
   document.getElementById('mf-modal-title').textContent = cap ? 'Edit Cap' : 'Add Cap Manually';
+  document.getElementById('mf-sold-price').value = (cap && cap.sold_price!=null) ? cap.sold_price : '';
+  document.getElementById('mf-sold-date').value = (cap && cap.sold_date) ? cap.sold_date : '';
   const curStatus = cap
     ? (cap.sold ? 'sold' : cap.wishlisted ? 'wishlisted' : 'owned')
     : ((cat==='collection' && collectionView==='wishlist') ? 'wishlist' : 'owned');
@@ -2083,6 +2470,7 @@ function setMfStatus(status){
   document.getElementById('mf-status-owned').classList.toggle('active', status==='owned');
   document.getElementById('mf-status-wishlist').classList.toggle('active', status==='wishlist');
   document.getElementById('mf-status-sold').classList.toggle('active', status==='sold');
+  document.getElementById('mf-sold-row').style.display = status==='sold' ? '' : 'none';
 }
 
 function getMfStatus(){
@@ -2097,6 +2485,133 @@ function closeManualForm(){
 
 function manualBgClick(e){
   if(e.target===document.getElementById('manual-overlay')) closeManualForm();
+}
+
+function _populateQuietHourSelects(){
+  const fmt = h => {
+    if(h === 0) return '12 AM';
+    if(h < 12) return `${h} AM`;
+    if(h === 12) return '12 PM';
+    return `${h-12} PM`;
+  };
+  for(const id of ['set-quiet-start', 'set-quiet-end']){
+    const sel = document.getElementById(id);
+    if(sel.options.length) continue; // already populated
+    const off = document.createElement('option');
+    off.value = ''; off.textContent = 'Off';
+    sel.appendChild(off);
+    for(let h=0; h<24; h++){
+      const opt = document.createElement('option');
+      opt.value = String(h);
+      opt.textContent = fmt(h);
+      sel.appendChild(opt);
+    }
+  }
+}
+
+function _updateNotifyRowsVisibility(){
+  const anyNotify = document.getElementById('set-notify-wishlist').checked
+                  || document.getElementById('set-notify-new-products').checked;
+  document.getElementById('set-topic-row').style.display = anyNotify ? 'block' : 'none';
+  document.getElementById('set-quiet-row').style.display = anyNotify ? 'block' : 'none';
+}
+
+async function openSettings(){
+  document.getElementById('set-dark-mode').checked = document.body.classList.contains('dark');
+  _populateQuietHourSelects();
+
+  const r = await fetch('/api/settings');
+  const data = await r.json();
+  document.getElementById('set-notify-wishlist').checked = !!data.notify_wishlist;
+  document.getElementById('set-notify-new-products').checked = !!data.notify_new_products;
+  document.getElementById('set-ntfy-topic').value = data.ntfy_topic || '';
+  document.getElementById('set-quiet-start').value = (data.quiet_hours_start ?? '') === null ? '' : (data.quiet_hours_start ?? '');
+  document.getElementById('set-quiet-end').value   = (data.quiet_hours_end   ?? '') === null ? '' : (data.quiet_hours_end   ?? '');
+  document.getElementById('set-default-caps').value    = data.default_size_caps || '';
+  document.getElementById('set-default-apparel').value = data.default_size_apparel || '';
+  document.getElementById('set-email').value = data.email || '';
+  document.getElementById('set-current-pw').value = '';
+  document.getElementById('set-new-pw').value = '';
+  document.getElementById('set-confirm-pw').value = '';
+  document.getElementById('email-msg').textContent = '';
+  document.getElementById('password-msg').textContent = '';
+  _updateNotifyRowsVisibility();
+  document.getElementById('settings-overlay').classList.add('open');
+}
+
+function closeSettings(){
+  document.getElementById('settings-overlay').classList.remove('open');
+}
+
+function settingsBgClick(e){
+  if(e.target===document.getElementById('settings-overlay')) closeSettings();
+}
+
+document.addEventListener('change', (e) => {
+  if(e.target && (e.target.id === 'set-notify-wishlist' || e.target.id === 'set-notify-new-products')){
+    _updateNotifyRowsVisibility();
+  }
+});
+
+async function saveSettings(){
+  const payload = {
+    notify_wishlist:     document.getElementById('set-notify-wishlist').checked,
+    notify_new_products: document.getElementById('set-notify-new-products').checked,
+    ntfy_topic:           document.getElementById('set-ntfy-topic').value.trim(),
+    quiet_hours_start:    document.getElementById('set-quiet-start').value,
+    quiet_hours_end:      document.getElementById('set-quiet-end').value,
+    default_size_caps:    document.getElementById('set-default-caps').value.trim(),
+    default_size_apparel: document.getElementById('set-default-apparel').value.trim(),
+  };
+  const r = await fetch('/api/settings', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(payload),
+  });
+  const data = await r.json();
+  if(data.ntfy_topic) document.getElementById('set-ntfy-topic').value = data.ntfy_topic;
+  closeSettings();
+}
+
+async function saveEmail(){
+  const msg = document.getElementById('email-msg');
+  const email = document.getElementById('set-email').value.trim();
+  const r = await fetch('/api/account/email', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({email}),
+  });
+  const data = await r.json();
+  if(data.error){
+    msg.textContent = data.error;
+    msg.className = 'settings-inline-msg error';
+  } else {
+    msg.textContent = 'Email updated.';
+    msg.className = 'settings-inline-msg ok';
+  }
+}
+
+async function savePassword(){
+  const msg = document.getElementById('password-msg');
+  const current_password = document.getElementById('set-current-pw').value;
+  const new_password     = document.getElementById('set-new-pw').value;
+  const confirm_password = document.getElementById('set-confirm-pw').value;
+  const r = await fetch('/api/account/password', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({current_password, new_password, confirm_password}),
+  });
+  const data = await r.json();
+  if(data.error){
+    msg.textContent = data.error;
+    msg.className = 'settings-inline-msg error';
+  } else {
+    msg.textContent = 'Password updated.';
+    msg.className = 'settings-inline-msg ok';
+    document.getElementById('set-current-pw').value = '';
+    document.getElementById('set-new-pw').value = '';
+    document.getElementById('set-confirm-pw').value = '';
+  }
 }
 
 async function saveManualCap(){
@@ -2114,6 +2629,8 @@ async function saveManualCap(){
     wishlisted: getMfStatus()==='wishlist' ? 1 : 0,
     cap_type:   document.getElementById('mf-cap-type').value,
     panels:     document.getElementById('mf-panels').value || null,
+    sold_price: document.getElementById('mf-sold-price').value || null,
+    sold_date:  document.getElementById('mf-sold-date').value || null,
   };
   try{
     const url = editId ? `/api/manual_cap/${editId}/edit` : '/api/manual_cap';
@@ -2189,9 +2706,10 @@ async function openManualCap(id){
 
 async function openEditManualCap(id){
   try{
-    const caps = await fetchManualCaps();
-    const cap = caps.find(c=>c.id===id);
-    if(cap){ openManualForm(cap); closeModal(); }
+    // Fetch full detail (includes the complete image gallery) rather than
+    // relying on the lightweight /api/manual_caps list, which omits it.
+    const cap = await fetch(`/api/manual_cap/${id}`).then(r=>r.json());
+    if(cap && !cap.error){ openManualForm(cap); closeModal(); }
   }catch(e){ console.error('openEditManualCap failed', e); }
 }
 
@@ -2243,14 +2761,37 @@ async function loadManualCaps(){
   }catch(e){ console.error('loadManualCaps failed', e); }
 }
 
+function toggleDesc(){
+  const block = document.getElementById('desc-block');
+  const btn = document.getElementById('desc-toggle-btn');
+  const collapsed = block.classList.toggle('collapsed');
+  if(btn) btn.textContent = collapsed ? 'Read more' : 'Show less';
+}
+
+function toggleNotes(){
+  const wrap = document.getElementById('notes-wrap');
+  const btn = document.getElementById('notes-toggle-btn');
+  const show = !wrap.classList.contains('show');
+  wrap.classList.toggle('show', show);
+  if(btn) btn.textContent = show ? 'Hide notes' : '+ Add notes';
+}
+
 async function setStatus(val){
   if(!modalPid) return;
   modalStatus = val;
   const wrap = document.getElementById('notes-wrap');
-  if(wrap) wrap.classList.toggle('show', val==='owned'||val==='sold'||val==='wishlisted');
+  const notesBtn = document.getElementById('notes-toggle-btn');
+  if(wrap){
+    const show = wrap.classList.contains('show') || val==='owned'||val==='sold'||val==='wishlisted';
+    wrap.classList.toggle('show', show);
+    if(notesBtn) notesBtn.textContent = show ? 'Hide notes' : '+ Add notes';
+  }
   const sizePref = document.getElementById('size-pref-wrap');
   if(sizePref) sizePref.classList.toggle('show', val==='wishlisted');
+  const soldWrap = document.getElementById('sold-info-wrap');
+  if(soldWrap) soldWrap.style.display = (val==='sold') ? '' : 'none';
   if(val !== 'wishlisted') modalPrefSize = '';
+  if(val !== 'sold'){ modalSoldPrice = ''; modalSoldDate = ''; }
   await saveUserItem();
   loadStats(); load();
 }
@@ -2262,7 +2803,7 @@ async function saveUserItem(){
     await fetch(`/api/user_item/${modalPid}`, {
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ status: modalStatus, notes: modalNotes, preferred_size: modalPrefSize }),
+      body: JSON.stringify({ status: modalStatus, notes: modalNotes, preferred_size: modalPrefSize, sold_price: modalSoldPrice, sold_date: modalSoldDate }),
     });
     invalidateProductsCache();
   }catch(e){ console.error('Save failed', e); }
@@ -2272,6 +2813,11 @@ function bgClick(e){ if(e.target===document.getElementById('overlay')) closeModa
 function closeModal(){ document.getElementById('overlay').classList.remove('open'); }
 function set(id,v){ const el=document.getElementById(id); if(el) el.textContent=v; }
 function x(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function bulkCheckboxHtml(key){
+  if(!bulkMode) return '';
+  const checked = bulkSelected.has(key) ? 'checked' : '';
+  return `<input type="checkbox" class="card-select-chk" ${checked} onclick="event.stopPropagation()" onchange="toggleSelect('${key}', this.checked)">`;
+}
 function catEmoji(c){ return {caps:'🧢',apparel:'👕',pins:'📌'}[c]||'🛍'; }
 
 // ── Releases ────────────────────────────────────────────────────
@@ -2281,7 +2827,6 @@ let _relYears = new Set(), _relMonths = new Set(), _relLimited = false, _relSort
 let _relCache  = {};   // id → release object
 let _relGroups = [];   // [{name, entries}] for all-years submenu lookup
 let _relYearCondensed = []; // [{baseName, date, colors, entries, isLimited}] for year-view submenu
-let _relFlatMDGroups  = []; // [{baseName, mo, dy, entries, dates, isLimited}] for flat M/D submenu
 let _relEditId = null;
 let _relSubmenuOpen = null;
 
@@ -2337,24 +2882,25 @@ async function loadReleases(){
     if(_relMonths.size > 0) params.months = [..._relMonths].sort((a,b)=>a-b).join(',');
     const q = new URLSearchParams(params);
     const rows = await fetch('/api/releases?' + q).then(r=>r.json());
-    // Populate cache and datalist
+    // Populate cache
     _relCache = {};
     rows.forEach(r => { _relCache[r.id] = r; });
-    // Populate all unique names into datalist (fetch all for autocomplete)
-    populateRelNamelist(rows);
+    if(!_relNamesLoaded) populateRelNamelist();
     renderReleases(rows);
   }catch(e){
     list.innerHTML = `<div class="state"><div class="state-title">Failed to load releases</div></div>`;
   }
 }
 
-function populateRelNamelist(rows){
+let _relNamesLoaded = false;
+async function populateRelNamelist(){
   const dl = document.getElementById('rf-name-list');
   if(!dl) return;
-  const seen = new Set();
-  Object.values(_relCache).forEach(r => seen.add(r.name));
-  rows.forEach(r => seen.add(r.name));
-  dl.innerHTML = [...seen].sort().map(n=>`<option value="${x(n)}">`).join('');
+  try{
+    const names = await fetch('/api/release_names').then(r=>r.json());
+    dl.innerHTML = names.map(n=>`<option value="${x(n)}">`).join('');
+    _relNamesLoaded = true;
+  }catch(e){ /* leave datalist empty on failure */ }
 }
 
 function renderReleases(rows){
@@ -2443,98 +2989,6 @@ function renderDateYearView(rows, list){
   }).join('');
 }
 
-function renderFlatMDView(rows, list){
-  // rows pre-sorted by (month, day, year) asc from backend
-  // Group by (baseName, month, day) — same cap on same calendar day across years → one row
-  const groupMap = new Map();
-  rows.forEach(r => {
-    const parts = r.release_date.split('/');
-    const mo = parseInt(parts[0]), dy = parseInt(parts[1]), yr = 2000 + parseInt(parts[2]);
-    const dashIdx = r.name.indexOf(' - ');
-    const baseName = dashIdx >= 0 ? r.name.slice(0, dashIdx) : r.name;
-    const key = baseName + '\x00' + mo + '\x00' + dy;
-    if(!groupMap.has(key))
-      groupMap.set(key, {baseName, mo, dy, entries:[], isLimited:false, minYear:Infinity, maxYear:-Infinity, dates: new Map()});
-    const g = groupMap.get(key);
-    g.entries.push(r);
-    if(r.is_limited) g.isLimited = true;
-    if(yr < g.minYear) g.minYear = yr;
-    if(yr > g.maxYear) g.maxYear = yr;
-    if(!g.dates.has(r.release_date)) g.dates.set(r.release_date, []);
-    g.dates.get(r.release_date).push(r);
-  });
-  // Sort by most recent full date descending, then alphabetically within same date
-  _relFlatMDGroups = [...groupMap.values()].sort((a,b) => {
-    const aDate = a.maxYear * 10000 + a.mo * 100 + a.dy;
-    const bDate = b.maxYear * 10000 + b.mo * 100 + b.dy;
-    if(bDate !== aDate) return bDate - aDate;
-    return stripThe(a.baseName).localeCompare(stripThe(b.baseName));
-  });
-  list.innerHTML = _relFlatMDGroups.map((g,i) => relFlatMDRowHtml(g,i)).join('');
-}
-
-function relFlatMDRowHtml(g, idx){
-  const limited = g.isLimited ? ' limited' : '';
-  const badge   = g.isLimited ? `<span class="rel-badge">★ Limited</span>` : '';
-  const displayName = stripThe(g.baseName);
-  // Date chips sorted year ascending (earliest left)
-  const sortedDates = [...g.dates.keys()].sort((a,b) => {
-    return (2000 + parseInt(a.split('/')[2])) - (2000 + parseInt(b.split('/')[2]));
-  });
-  const chips = sortedDates.map(d => `<span class="rel-date-chip">${x(d)}</span>`).join('');
-  if(g.entries.length === 1){
-    const r = g.entries[0];
-    return `<div class="rel-cap-row${limited}">
-      <div class="rel-cap-left"><span class="rel-cap-name">${x(displayName)}</span>${badge}</div>
-      <div class="rel-cap-dates">${chips}</div>
-      <div class="rel-cap-btns">
-        <button class="rel-row-btn rel-more-btn" title="Actions" onclick="openRelRowSubmenu(${r.id},this)">⋯</button>
-      </div>
-    </div>`;
-  }
-  return `<div class="rel-cap-row${limited}">
-    <div class="rel-cap-left"><span class="rel-cap-name">${x(displayName)}</span>${badge}</div>
-    <div class="rel-cap-dates">${chips}</div>
-    <div class="rel-cap-btns">
-      <button class="rel-row-btn rel-more-btn" title="Actions" onclick="openFlatMDSubmenu(${idx},this)">⋯</button>
-    </div>
-  </div>`;
-}
-
-function openFlatMDSubmenu(idx, anchorEl){
-  const submenu = document.getElementById('rel-submenu');
-  if(_relSubmenuOpen === ('fmd-'+idx) && submenu.classList.contains('open')){
-    closeRelSubmenu(); return;
-  }
-  if(_relMoreBtn) _relMoreBtn.classList.remove('active');
-  _relMoreBtn = anchorEl;
-  anchorEl.classList.add('active');
-  _relSubmenuOpen = 'fmd-' + idx;
-  const group = _relFlatMDGroups[idx];
-  // Sort entries by year asc for submenu ordering
-  const sortedEntries = [...group.entries].sort((a,b) => {
-    return (2000 + parseInt(a.release_date.split('/')[2])) - (2000 + parseInt(b.release_date.split('/')[2]));
-  });
-  const allSameDate = new Set(sortedEntries.map(r=>r.release_date)).size === 1;
-  submenu.innerHTML = sortedEntries.map(r => {
-    const dashIdx = r.name.indexOf(' - ');
-    const color = dashIdx >= 0 ? r.name.slice(dashIdx + 3) : null;
-    const label = allSameDate
-      ? x(color || r.release_date)
-      : (color ? `${x(color)} (${x(r.release_date)})` : x(r.release_date));
-    return `<div class="rel-submenu-row">
-      <span class="rel-submenu-date">${label}</span>
-      <button class="rel-row-btn" title="Edit" onclick="editRelEntry(${r.id});closeRelSubmenu()">✏️</button>
-      <button class="rel-row-btn del" title="Delete" onclick="deleteRelEntry(${r.id});closeRelSubmenu()">🗑</button>
-    </div>`;
-  }).join('');
-  const rect = anchorEl.closest('.rel-cap-btns').getBoundingClientRect();
-  submenu.style.top  = (rect.bottom + 4) + 'px';
-  submenu.style.left = 'auto';
-  submenu.style.right = (window.innerWidth - rect.right) + 'px';
-  submenu.classList.add('open');
-}
-
 function renderFilteredYearView(rows, list){
   // Group by year descending; within each year, condense same-name+date by color, sort alphabetically
   const groups = {};
@@ -2607,81 +3061,67 @@ function relCondensedRowHtml(g, idx){
   </div>`;
 }
 
-function openYearCondensedSubmenu(idx, anchorEl){
+// ── Release Submenu ─────────────────────────────────────────────
+let _relMoreBtn = null;
+
+// Shared submenu renderer for all Releases "⋯" actions menus.
+function renderRelSubmenu(entries, anchorEl, opts={}){
   const submenu = document.getElementById('rel-submenu');
-  if(_relSubmenuOpen === ('yc-'+idx) && submenu.classList.contains('open')){
+  if(_relSubmenuOpen === opts.key && submenu.classList.contains('open')){
     closeRelSubmenu(); return;
   }
   if(_relMoreBtn) _relMoreBtn.classList.remove('active');
   _relMoreBtn = anchorEl;
   anchorEl.classList.add('active');
-  _relSubmenuOpen = 'yc-' + idx;
-  const group = _relYearCondensed[idx];
-  submenu.innerHTML = group.entries.map(r => {
-    const dashIdx = r.name.indexOf(' - ');
-    const color = dashIdx >= 0 ? r.name.slice(dashIdx + 3) : r.name;
+  _relSubmenuOpen = opts.key;
+  submenu.innerHTML = entries.map(r => {
+    const label = opts.labelFor ? opts.labelFor(r) : x(r.release_date);
+    const reRelease = opts.allowReRelease
+      ? `<button class="rel-row-btn" title="Re-release" onclick="reReleaseEntry(${r.id});closeRelSubmenu()">↺</button>`
+      : '';
     return `<div class="rel-submenu-row">
-      <span class="rel-submenu-date">${x(color)}</span>
+      <span class="rel-submenu-date">${label}</span>
+      ${reRelease}
       <button class="rel-row-btn" title="Edit" onclick="editRelEntry(${r.id});closeRelSubmenu()">✏️</button>
       <button class="rel-row-btn del" title="Delete" onclick="deleteRelEntry(${r.id});closeRelSubmenu()">🗑</button>
     </div>`;
   }).join('');
-  const rect = anchorEl.closest('.rel-cap-btns').getBoundingClientRect();
+  const anchorBox = opts.anchorBox || anchorEl.closest('.rel-cap-btns');
+  const rect = anchorBox.getBoundingClientRect();
   submenu.style.top  = (rect.bottom + 4) + 'px';
   submenu.style.left = 'auto';
   submenu.style.right = (window.innerWidth - rect.right) + 'px';
   submenu.classList.add('open');
+}
+
+function openYearCondensedSubmenu(idx, anchorEl){
+  const group = _relYearCondensed[idx];
+  renderRelSubmenu(group.entries, anchorEl, {
+    key: 'yc-' + idx,
+    allowReRelease: false,
+    labelFor: r => {
+      const dashIdx = r.name.indexOf(' - ');
+      const color = dashIdx >= 0 ? r.name.slice(dashIdx + 3) : r.name;
+      return x(color);
+    }
+  });
 }
 
 function openRelRowSubmenu(rid, anchorEl){
-  const submenu = document.getElementById('rel-submenu');
-  if(_relSubmenuOpen === ('row-'+rid) && submenu.classList.contains('open')){
-    closeRelSubmenu(); return;
-  }
-  if(_relMoreBtn) _relMoreBtn.classList.remove('active');
-  _relMoreBtn = anchorEl;
-  anchorEl.classList.add('active');
-  _relSubmenuOpen = 'row-' + rid;
   const r = _relCache[rid];
-  submenu.innerHTML = `
-    <div class="rel-submenu-row">
-      <span class="rel-submenu-date">${r ? x(r.release_date) : ''}</span>
-      <button class="rel-row-btn" title="Re-release" onclick="reReleaseEntry(${rid});closeRelSubmenu()">↺</button>
-      <button class="rel-row-btn" title="Edit" onclick="editRelEntry(${rid});closeRelSubmenu()">✏️</button>
-      <button class="rel-row-btn del" title="Delete" onclick="deleteRelEntry(${rid});closeRelSubmenu()">🗑</button>
-    </div>`;
-  const rect = anchorEl.getBoundingClientRect();
-  submenu.style.top   = (rect.bottom + 4) + 'px';
-  submenu.style.left  = 'auto';
-  submenu.style.right = (window.innerWidth - rect.right) + 'px';
-  submenu.classList.add('open');
+  renderRelSubmenu(r ? [r] : [], anchorEl, {
+    key: 'row-' + rid,
+    allowReRelease: true,
+    anchorBox: anchorEl
+  });
 }
 
-// ── Release Submenu ─────────────────────────────────────────────
-let _relMoreBtn = null;
-
 function openRelSubmenu(idx, anchorEl){
-  const submenu = document.getElementById('rel-submenu');
-  if(_relSubmenuOpen === idx && submenu.classList.contains('open')){
-    closeRelSubmenu(); return;
-  }
-  if(_relMoreBtn) _relMoreBtn.classList.remove('active');
-  _relMoreBtn = anchorEl;
-  anchorEl.classList.add('active');
-  _relSubmenuOpen = idx;
   const group = _relGroups[idx];
-  submenu.innerHTML = group.entries.map(r => `
-    <div class="rel-submenu-row">
-      <span class="rel-submenu-date">${x(r.release_date)}</span>
-      <button class="rel-row-btn" title="Re-release" onclick="reReleaseEntry(${r.id});closeRelSubmenu()">↺</button>
-      <button class="rel-row-btn" title="Edit" onclick="editRelEntry(${r.id});closeRelSubmenu()">✏️</button>
-      <button class="rel-row-btn del" title="Delete" onclick="deleteRelEntry(${r.id});closeRelSubmenu()">🗑</button>
-    </div>`).join('');
-  const rect = anchorEl.closest('.rel-cap-btns').getBoundingClientRect();
-  submenu.style.top  = (rect.bottom + 4) + 'px';
-  submenu.style.left = 'auto';
-  submenu.style.right = (window.innerWidth - rect.right) + 'px';
-  submenu.classList.add('open');
+  renderRelSubmenu(group.entries, anchorEl, {
+    key: 'flat-' + idx,
+    allowReRelease: true
+  });
 }
 
 function closeRelSubmenu(){

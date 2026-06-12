@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23b8860b'/><text x='16' y='23' font-family='Georgia,serif' font-size='22' font-weight='bold' text-anchor='middle' fill='white'>S</text></svg>">
+<title>Register · Scally Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:    #faf7f2; --cream2: #f2ede4; --cream3: #e8e0d0;
+  --navy:     #1a2340; --navy2:  #243058;
+  --gold:     #b8942a; --gold-lt: #d4ad4a;
+  --text:     #1a2340; --text2: #4a5568; --text3: #8a9bb0;
+  --white:    #ffffff;
+  --red:      #c0392b; --red-bg: #fdf0ee;
+  --border:   rgba(26,35,64,.10);
+  --sh-lg:    0 12px 40px rgba(26,35,64,.18);
+  --r: 6px;
+}
+body.dark {
+  --cream:    #0f1523; --cream2: #151d2e; --cream3: #1e2a40;
+  --white:    #1a2340;
+  --text:     #e8e4db; --text2: #b0bcc8; --text3: #6a7f96;
+  --border:   rgba(255,255,255,.09);
+  --sh-lg:    0 12px 40px rgba(0,0,0,.5);
+  --red-bg: #2e0f0b;
+  background: #0f1523; color: var(--text);
+}
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html,body { min-height:100vh; }
+body {
+  background:var(--cream); color:var(--text); font-family:'Source Sans 3',sans-serif; line-height:1.5;
+  display:flex; align-items:center; justify-content:center; padding:20px;
+}
+.auth-wrap { width:100%; max-width:380px; }
+.auth-logo { text-align:center; margin-bottom:22px; }
+.auth-logo .logo {
+  font-family:'Playfair Display',serif; font-weight:900; font-size:26px; color:var(--navy); letter-spacing:.02em;
+}
+body.dark .auth-logo .logo { color:#fff; }
+.auth-logo .logo em { font-style:normal; color:var(--gold-lt); }
+.auth-logo small {
+  display:block; font-family:'Source Sans 3',sans-serif; font-size:10px; font-weight:600;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--text3); margin-top:4px;
+}
+.auth-card {
+  background:var(--white); border-radius:10px; width:100%;
+  padding:28px 28px 24px; box-shadow:var(--sh-lg); border:1px solid var(--border);
+}
+.auth-card h1 {
+  font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:var(--navy);
+  margin:0 0 18px; text-align:center;
+}
+body.dark .auth-card h1 { color:#fff; }
+.auth-flash {
+  background:var(--red-bg); color:var(--red); border:1px solid rgba(192,57,43,.25);
+  border-radius:var(--r); font-size:13px; font-weight:600; padding:9px 12px; margin-bottom:14px;
+}
+.af-row { margin-bottom:16px; }
+.af-row label {
+  display:block; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--text3); margin-bottom:6px;
+}
+.af-row input {
+  width:100%; box-sizing:border-box; border:1.5px solid var(--border); border-radius:var(--r);
+  background:var(--cream); color:var(--text); font-family:'Source Sans 3',sans-serif;
+  font-size:14px; padding:9px 12px; transition:border-color .15s;
+}
+.af-row input:focus { outline:none; border-color:var(--gold); }
+.af-submit {
+  width:100%; font-family:'Source Sans 3',sans-serif; font-size:13px; font-weight:700;
+  letter-spacing:.08em; text-transform:uppercase; padding:10px 14px; border-radius:var(--r);
+  border:2px solid var(--navy); background:var(--navy); color:#fff; cursor:pointer;
+  transition:opacity .18s; margin-top:4px;
+}
+.af-submit:hover { opacity:.85; }
+body.dark .af-submit { border-color:var(--gold-lt); background:var(--gold-lt); color:var(--navy); }
+.auth-foot { text-align:center; font-size:13px; color:var(--text2); margin-top:18px; }
+.auth-foot a { color:var(--navy); font-weight:700; text-decoration:none; }
+body.dark .auth-foot a { color:var(--gold-lt); }
+.auth-foot a:hover { text-decoration:underline; }
+</style>
+</head>
+<body>
+<div class="auth-wrap">
+  <div class="auth-logo">
+    <div class="logo">Scally<em> Tracker</em></div>
+    <small>Boston Scally Co. Monitor</small>
+  </div>
+  <div class="auth-card">
+    <h1>Create Account</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+        <div class="auth-flash">{{ message }}</div>
+      {% endfor %}
+    {% endwith %}
+    <form method="POST">
+      <div class="af-row">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" autocomplete="username" required autofocus>
+      </div>
+      <div class="af-row">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" autocomplete="email" required>
+      </div>
+      <div class="af-row">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" autocomplete="new-password" required>
+      </div>
+      <div class="af-row">
+        <label for="confirm">Confirm Password</label>
+        <input type="password" id="confirm" name="confirm" autocomplete="new-password" required>
+      </div>
+      <button type="submit" class="af-submit">Create Account</button>
+    </form>
+    <div class="auth-foot">Already have an account? <a href="{{ url_for('auth.login') }}">Sign In</a></div>
+  </div>
+</div>
+<script>
+if(localStorage.getItem('bsc-dark')==='1'){ document.body.classList.add('dark'); }
+</script>
+</body>
+</html>
