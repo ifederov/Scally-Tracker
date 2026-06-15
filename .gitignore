@@ -10,3 +10,5 @@ venv/
 _backup/
 data/*.log
 data/.fuse_hidden*
+*.sql
+*.png

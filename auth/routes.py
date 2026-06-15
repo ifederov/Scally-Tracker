@@ -27,7 +27,8 @@ def login():
 
         user.last_login = datetime.now(CT).isoformat()
         db.session.commit()
-        login_user(user)
+        remember = request.form.get("remember") == "on"
+        login_user(user, remember=remember)
         return redirect(url_for("index"))
 
     return render_template("login.html")

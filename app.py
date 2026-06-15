@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 from flask import Flask, render_template, jsonify, request, Response
 from sqlalchemy import func, case, and_, exists
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 CT = ZoneInfo("America/Chicago")
 
@@ -13,6 +14,7 @@ from config import Config
 from models import db, Product, Variant, Snapshot, Alert, UserItem, ManualCap, Release, User
 
 app = Flask(__name__)
+app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
 app.config.from_object(Config)
 app.config["SQLALCHEMY_DATABASE_URI"] = Config.DATABASE_URL
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
