@@ -1852,21 +1852,25 @@ function render(products, manualCaps=[]){
         showType      ? `<span class="ribbon-tag ${typeCss}">${typeLabel}</span>` : '',
       ].filter(Boolean).join('');
       const ribbon = `<div class="card-ribbon">${ribbons}</div>`;
-      const btns = '';
+      const pip = p.panels ? `<div class="panel-pip" style="opacity:0">${PANEL_LABELS[p.panels]||p.panels}</div>` : '';
       const mKey = `m${p._mid}`;
       const chk = bulkCheckboxHtml(mKey);
       const addedHtml = (cat==='collection' && collectionView==='owned' && p._created_at)
         ? `<div class="card-added-label">${addedLabel(p._created_at)}</div>` : '';
       const soldHtml = (cat==='collection' && collectionView==='sold' && (p._sold_price!=null || p._sold_date))
         ? `<div class="card-sold-info">${p._sold_price!=null?`$${(+p._sold_price).toFixed(2)}`:''}${p._sold_price!=null && p._sold_date?' · ':''}${p._sold_date?x(p._sold_date):''}</div>` : '';
-      return `<div class="card manual-card" onclick="${bulkMode?'':`openManualCap(${p._mid})`}">
+      const footParts = [p._color, p._style, p._material].filter(Boolean);
+      const footHtml = footParts.length
+        ? `<div class="card-notes">${x(footParts.join(' · '))}</div>`
+        : `<span class="badge out" style="font-size:9px;letter-spacing:.08em">Manual</span>`;
+      return `<div class="card manual-card" onclick="${bulkMode?'':`openManualCap(${p._mid})`}" style="animation-delay:${Math.min(i*.025,.4)}s">
         ${chk}
-        <div class="card-img-wrap">${img}<div class="dot" style="opacity:0"></div>${ribbon}</div>
+        <div class="card-img-wrap">${img}<div class="dot" style="opacity:0"></div>${pip}${ribbon}</div>
         <div class="card-body">
           <div class="card-cat">CAPS</div>
           <div class="card-title">${x(p.title)}</div>
           ${addedHtml}${soldHtml}
-          <div class="card-foot">${btns}</div>
+          <div class="card-foot">${footHtml}</div>
         </div></div>`;
     }
     const inStock = p.my_size_in_stock;
@@ -1919,7 +1923,7 @@ function render(products, manualCaps=[]){
       })
       .forEach(c => products.push({
         _manual:true, _mid:c.id, _sold:c.sold, _wishlisted:c.wishlisted, _cap_type:c.cap_type||'none',
-        _notes:c.notes||'',
+        _notes:c.notes||'', _color:c.color||'', _style:c.style||'', _material:c.material||'',
         title:c.name, category:'caps',
         owned:c.wishlisted?0:1, sold:c.sold, wishlisted:c.wishlisted, in_stock:false,
         image_url:c.image||null, min_price:null, max_price:null, panels:c.panels||null,
@@ -1947,6 +1951,7 @@ function render(products, manualCaps=[]){
         _manual:true, _mid:c.id, _sold:c.sold, _wishlisted:c.wishlisted, _cap_type:c.cap_type||'none',
         _notes:c.notes||'', _created_at:c.created_at||'',
         _sold_price:c.sold_price, _sold_date:c.sold_date,
+        _color:c.color||'', _style:c.style||'', _material:c.material||'',
         title:c.name, category:'caps',
         owned:c.wishlisted?0:1, sold:c.sold, wishlisted:c.wishlisted, in_stock:false,
         image_url:c.image||null, min_price:null, max_price:null, panels:c.panels||null,
