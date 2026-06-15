@@ -1150,6 +1150,7 @@ body.dark .view-btn { color:var(--navy); }
   <div class="manual-modal">
     <input type="hidden" id="mf-edit-id" value="">
     <h2 id="mf-modal-title">Add Cap Manually</h2>
+    <div class="mf-row"><label>Cap Name *</label><input type="text" id="mf-name" placeholder="e.g. The Worker Flat Cap"></div>
     <div class="mf-row" id="mf-status-row">
       <label id="mf-status-label">Status</label>
       <div style="display:flex; gap:8px; margin-top:4px">
@@ -1162,26 +1163,29 @@ body.dark .view-btn { color:var(--navy); }
       <div><label>Sold Price</label><input type="number" step="0.01" id="mf-sold-price" placeholder="e.g. 45.00"></div>
       <div><label>Sold Date</label><input type="date" id="mf-sold-date"></div>
     </div>
-    <div class="mf-row">
-      <label>Type</label>
-      <select id="mf-cap-type" style="margin-top:4px; padding:6px 10px; border:1px solid var(--border); border-radius:6px; font-family:'Source Sans 3',sans-serif; font-size:13px; background:var(--white); color:var(--text); width:100%">
-        <option value="none">None</option>
-        <option value="one_off">One-Off Drop</option>
-        <option value="retired">Retired</option>
-      </select>
+    <div class="mf-row mf-row-grid">
+      <div>
+        <label>Type</label>
+        <select id="mf-cap-type" style="margin-top:4px; padding:6px 10px; border:1px solid var(--border); border-radius:6px; font-family:'Source Sans 3',sans-serif; font-size:13px; background:var(--white); color:var(--text); width:100%">
+          <option value="other">Other</option>
+          <option value="one_off">One-Off Drop</option>
+          <option value="retired">Retired</option>
+          <option value="seasonal">Seasonal</option>
+        </select>
+      </div>
+      <div>
+        <label>Panels</label>
+        <select id="mf-panels" style="margin-top:4px; padding:6px 10px; border:1px solid var(--border); border-radius:6px; font-family:'Source Sans 3',sans-serif; font-size:13px; background:var(--white); color:var(--text); width:100%">
+          <option value="">Unknown</option>
+          <option value="single">Single Panel</option>
+          <option value="5">5-Panel</option>
+          <option value="6">6-Panel</option>
+          <option value="8">8-Panel</option>
+          <option value="baker">Baker Boy</option>
+        </select>
+      </div>
     </div>
-    <div class="mf-row">
-      <label>Panels</label>
-      <select id="mf-panels" style="margin-top:4px; padding:6px 10px; border:1px solid var(--border); border-radius:6px; font-family:'Source Sans 3',sans-serif; font-size:13px; background:var(--white); color:var(--text); width:100%">
-        <option value="">Unknown</option>
-        <option value="single">Single Panel</option>
-        <option value="5">5-Panel</option>
-        <option value="6">6-Panel</option>
-        <option value="8">8-Panel</option>
-        <option value="baker">Baker Boy</option>
-      </select>
-    </div>
-    <div class="mf-row"><label>Cap Name *</label><input type="text" id="mf-name" placeholder="e.g. The Worker Flat Cap"></div>
+
     <div class="mf-row mf-row-grid">
       <div><label>Color</label><input type="text" id="mf-color" placeholder="e.g. Charcoal Grey"></div>
       <div><label>Style</label><input type="text" id="mf-style" placeholder="e.g. 8-Panel Flat Cap"></div>
@@ -2618,6 +2622,10 @@ async function saveManualCap(){
   const name = document.getElementById('mf-name').value.trim();
   if(!name){ alert('Cap name is required.'); return; }
   const editId = document.getElementById('mf-edit-id').value;
+  const btn = document.querySelector('.mf-save');
+  if(btn.disabled) return;           // guard against double-click
+  btn.disabled = true;
+  btn.textContent = 'Saving…';
   const payload = {
     name,
     color:      document.getElementById('mf-color').value.trim(),
@@ -2641,7 +2649,16 @@ async function saveManualCap(){
     });
     const data = await resp.json();
     if(data.ok){ closeManualForm(); fetchManualCaps(true); load(); loadStats(); }
-  }catch(e){ console.error('Save failed', e); }
+    else{
+      btn.disabled = false;
+      btn.textContent = 'Save Cap';
+      alert(data.error || 'Save failed.');
+    }
+  }catch(e){
+    console.error('Save failed', e);
+    btn.disabled = false;
+    btn.textContent = 'Save Cap';
+  }
 }
 
 async function deleteManualCap(id){
