@@ -9,6 +9,7 @@ class Config:
     SECRET_KEY   = os.environ.get("SECRET_KEY", "dev-key-change-me")
     SHOPIFY_URL  = os.environ.get("SHOPIFY_URL", "https://bostonscally.com")
     NTFY_TOPIC   = os.environ.get("NTFY_TOPIC", "")
+    CRON_SECRET  = os.environ.get("CRON_SECRET", "")
     FLASK_ENV    = os.environ.get("FLASK_ENV", "production")
     DEBUG        = FLASK_ENV == "development"
 

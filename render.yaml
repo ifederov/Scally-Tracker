@@ -20,3 +20,5 @@ services:
         sync: false
       - key: NTFY_TOPIC
         sync: false
+      - key: CRON_SECRET
+        sync: false

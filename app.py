@@ -823,6 +823,41 @@ def api_poll():
     return jsonify({"ok": True})
 
 
+@app.route("/api/cron-poll", methods=["GET", "POST"])
+def api_cron_poll():
+    """Unauthenticated poll trigger for external uptime monitors.
+
+    Requires a shared-secret `token` query param matching CRON_SECRET.
+    Only runs the poller during 7am-7pm CT, and only if at least 30
+    minutes have passed since the last snapshot, so a 5-minute monitor
+    ping doesn't spam the poller.
+    """
+    secret = Config.CRON_SECRET
+    if not secret or request.args.get("token") != secret:
+        return jsonify({"ok": False, "error": "unauthorized"}), 403
+
+    now = datetime.now(CT)
+    if not (7 <= now.hour < 19):
+        return jsonify({"ok": True, "ran": False, "reason": "outside poll hours"})
+
+    last = db.session.query(func.max(Snapshot.checked_at)).scalar()
+    if last:
+        try:
+            last_dt = datetime.fromisoformat(last)
+            if last_dt.tzinfo is None:
+                last_dt = last_dt.replace(tzinfo=CT)
+            elapsed = (now - last_dt).total_seconds()
+            if elapsed < 30 * 60:
+                return jsonify({"ok": True, "ran": False, "reason": "polled recently",
+                                 "minutes_ago": round(elapsed / 60, 1)})
+        except ValueError:
+            pass
+
+    poller = os.path.join(os.path.dirname(os.path.abspath(__file__)), "poller.py")
+    subprocess.Popen([sys.executable, poller])
+    return jsonify({"ok": True, "ran": True})
+
+
 @app.route("/api/release", methods=["POST"])
 @login_required
 def api_release_create():
