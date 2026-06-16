@@ -1177,7 +1177,7 @@ body.dark .view-btn { color:var(--navy); }
     <input type="hidden" id="mf-edit-id" value="">
     <h2 id="mf-modal-title">Add Cap Manually</h2>
     <div class="mf-row"><label>Cap Name *</label><input type="text" id="mf-name" placeholder="e.g. The Worker Flat Cap"></div>
-    <div class="mf-row" id="mf-status-row">
+    <div class="mf-row" id="mf-status-row" style="display:none">
       <label id="mf-status-label">Status</label>
       <div style="display:flex; gap:8px; margin-top:4px">
         <button type="button" class="af-pill status-owned active"    id="mf-status-owned"    onclick="setMfStatus('owned')">✅ Owned</button>
@@ -1287,6 +1287,9 @@ let bulkMode = false;
 let bulkSelected = new Set();
 
 let modalPid = null, modalStatus = 'none', modalNotes = '', modalPrefSize = '', modalSoldPrice = '', modalSoldDate = '';
+let modalManualId = null, modalManualIsCatalog = false;
+let _editCapIsCatalog = false;
+const IS_ADMIN = {{ current_user.is_admin | tojson }};
 
 // Shared manual caps fetcher — deduplicates concurrent calls and caches result
 function fetchManualCaps(invalidate=false){
@@ -1741,7 +1744,8 @@ async function loadStats(){
     ]);
     // manual caps: count only truly owned (not wishlisted, not sold)
     const mc = manual || [];
-    s.owned     = (s.owned||0)     + mc.filter(c => !c.wishlisted && !c.sold).length;
+    // Catalog caps: count only if user has explicitly claimed them (owned field set)
+    s.owned      = (s.owned||0)     + mc.filter(c => !c.wishlisted && !c.sold && (!c.is_catalog || c.owned)).length;
     s.wishlisted = (s.wishlisted||0) + mc.filter(c =>  c.wishlisted && !c.sold).length;
     set('s-tot', s.total        ?? '—');
     set('s-cap', s.caps         ?? '—');
@@ -1873,10 +1877,12 @@ function render(products, manualCaps=[]){
       const showType  = p._cap_type && p._cap_type !== 'none';
       const typeLabel = showType ? (CAP_TYPE_LABELS[p._cap_type] || p._cap_type) : '';
       const typeCss   = CAP_TYPE_CSS[p._cap_type] || 'cap-other';
+      // Catalog caps: only show ownership ribbon if user has claimed it
+      const showOwned = p._catalog ? (!!p._owned && !p._sold && !p._wishlisted) : (!p._sold && !p._wishlisted);
       const ribbons = [
         p._sold       ? `<span class="ribbon-tag sold">🏷 Sold</span>`        : '',
         p._wishlisted ? `<span class="ribbon-tag wishlist">⭐ Wishlist</span>` : '',
-        (!p._sold && !p._wishlisted) ? `<span class="ribbon-tag owned">✅ Own</span>` : '',
+        showOwned     ? `<span class="ribbon-tag owned">✅ Own</span>`         : '',
         showType      ? `<span class="ribbon-tag ${typeCss}">${typeLabel}</span>` : '',
       ].filter(Boolean).join('');
       const ribbon = `<div class="card-ribbon">${ribbons}</div>`;
@@ -1951,10 +1957,11 @@ function render(products, manualCaps=[]){
         return true;
       })
       .forEach(c => products.push({
-        _manual:true, _mid:c.id, _sold:c.sold, _wishlisted:c.wishlisted, _cap_type:c.cap_type||'none',
+        _manual:true, _mid:c.id, _catalog:!!c.is_catalog,
+        _sold:c.sold, _wishlisted:c.wishlisted, _owned:c.owned||0, _cap_type:c.cap_type||'none',
         _notes:c.notes||'', _color:c.color||'', _style:c.style||'', _material:c.material||'',
         title:c.name, category:'caps',
-        owned:c.wishlisted?0:1, sold:c.sold, wishlisted:c.wishlisted, in_stock:false,
+        owned:c.owned||0, sold:c.sold, wishlisted:c.wishlisted, in_stock:false,
         image_url:c.image||null, min_price:null, max_price:null, panels:c.panels||null,
       }));
     products.sort((a,b) => (a.title||'').localeCompare(b.title||''));
@@ -1966,6 +1973,8 @@ function render(products, manualCaps=[]){
     const CAT_HDR = { caps:'🧢 Caps', pins:'📌 Pins', apparel:'👕 Apparel', other:'🛍 Other' };
     manualCaps
       .filter(c=> {
+        // Unclaimed catalog caps never show in collection
+        if(c.is_catalog && !c.owned && !c.wishlisted && !c.sold) return false;
         if(collectionView==='sold')     return c.sold;
         if(collectionView==='wishlist') return c.wishlisted && !c.sold;
         if(!c.sold && !c.wishlisted){
@@ -1977,12 +1986,13 @@ function render(products, manualCaps=[]){
         return false;
       })
       .forEach(c=> products.push({
-        _manual:true, _mid:c.id, _sold:c.sold, _wishlisted:c.wishlisted, _cap_type:c.cap_type||'none',
+        _manual:true, _mid:c.id, _catalog:!!c.is_catalog,
+        _sold:c.sold, _wishlisted:c.wishlisted, _owned:c.owned||0, _cap_type:c.cap_type||'none',
         _notes:c.notes||'', _created_at:c.created_at||'',
         _sold_price:c.sold_price, _sold_date:c.sold_date,
         _color:c.color||'', _style:c.style||'', _material:c.material||'',
         title:c.name, category:'caps',
-        owned:c.wishlisted?0:1, sold:c.sold, wishlisted:c.wishlisted, in_stock:false,
+        owned:c.owned||0, sold:c.sold, wishlisted:c.wishlisted, in_stock:false,
         image_url:c.image||null, min_price:null, max_price:null, panels:c.panels||null,
       }));
     // Apply owned caps/pins filter to catalog products
@@ -2442,6 +2452,8 @@ async function openProduct(id){
 let mfImages = [];
 
 function openManualForm(cap=null){
+  // Track whether we're editing a personal (non-catalog) cap
+  _editCapIsCatalog = cap ? !!cap.is_catalog : true;  // new caps are always catalog
   document.getElementById('mf-name').value = cap ? cap.name : '';
   document.getElementById('mf-color').value = cap ? (cap.color||'') : '';
   document.getElementById('mf-style').value = cap ? (cap.style||'') : '';
@@ -2450,13 +2462,16 @@ function openManualForm(cap=null){
   document.getElementById('mf-cap-type').value = cap ? (cap.cap_type||'none') : 'none';
   document.getElementById('mf-panels').value = cap ? (cap.panels||'') : '';
   document.getElementById('mf-edit-id').value = cap ? cap.id : '';
-  document.getElementById('mf-modal-title').textContent = cap ? 'Edit Cap' : 'Add Cap Manually';
+  document.getElementById('mf-modal-title').textContent = cap ? 'Edit Cap' : 'Add Cap to Catalog';
+  // Status row only applies to personal (non-catalog) caps
+  const showStatus = cap && !cap.is_catalog;
+  document.getElementById('mf-status-row').style.display = showStatus ? '' : 'none';
   document.getElementById('mf-sold-price').value = (cap && cap.sold_price!=null) ? cap.sold_price : '';
   document.getElementById('mf-sold-date').value = (cap && cap.sold_date) ? cap.sold_date : '';
-  const curStatus = cap
-    ? (cap.sold ? 'sold' : cap.wishlisted ? 'wishlisted' : 'owned')
-    : ((cat==='collection' && collectionView==='wishlist') ? 'wishlist' : 'owned');
-  setMfStatus(curStatus);
+  if(showStatus){
+    const curStatus = cap.sold ? 'sold' : cap.wishlisted ? 'wishlisted' : 'owned';
+    setMfStatus(curStatus);
+  }
   const delBtn = document.getElementById('mf-delete-btn');
   if(delBtn) delBtn.style.display = cap ? '' : 'none';
   mfImages = cap ? (cap.images && cap.images.length ? [...cap.images] : (cap.image ? [cap.image] : [])) : [];
@@ -2695,18 +2710,21 @@ async function saveManualCap(){
   btn.textContent = 'Saving…';
   const payload = {
     name,
-    color:      document.getElementById('mf-color').value.trim(),
-    style:      document.getElementById('mf-style').value.trim(),
-    material:   document.getElementById('mf-material').value.trim(),
-    notes:      document.getElementById('mf-notes').value.trim(),
-    images:     mfImages,
-    status:     getMfStatus(),
-    wishlisted: getMfStatus()==='wishlist' ? 1 : 0,
-    cap_type:   document.getElementById('mf-cap-type').value,
-    panels:     document.getElementById('mf-panels').value || null,
-    sold_price: document.getElementById('mf-sold-price').value || null,
-    sold_date:  document.getElementById('mf-sold-date').value || null,
+    color:    document.getElementById('mf-color').value.trim(),
+    style:    document.getElementById('mf-style').value.trim(),
+    material: document.getElementById('mf-material').value.trim(),
+    notes:    document.getElementById('mf-notes').value.trim(),
+    images:   mfImages,
+    cap_type: document.getElementById('mf-cap-type').value,
+    panels:   document.getElementById('mf-panels').value || null,
   };
+  // Only send status for personal (non-catalog) caps
+  if(!_editCapIsCatalog){
+    payload.status     = getMfStatus();
+    payload.wishlisted = getMfStatus()==='wishlist' ? 1 : 0;
+    payload.sold_price = document.getElementById('mf-sold-price').value || null;
+    payload.sold_date  = document.getElementById('mf-sold-date').value || null;
+  }
   try{
     const url = editId ? `/api/manual_cap/${editId}/edit` : '/api/manual_cap';
     const resp = await fetch(url, {
@@ -2734,17 +2752,9 @@ async function deleteManualCap(id){
   fetchManualCaps(true); load(); loadStats();
 }
 
-async function setManualStatus(id, status){
-  await fetch(`/api/manual_cap/${id}`, {
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({status}),
-  });
-  fetchManualCaps(true); load(); loadStats();
-}
-
 async function openManualCap(id){
   modalPid = null;
+  modalManualId = id;
   document.getElementById('m-meta').innerHTML='';
   document.getElementById('m-body').innerHTML=`<div class="state"><span class="spin"></span> Loading…</div>`;
   document.getElementById('m-img').src='';
@@ -2753,6 +2763,7 @@ async function openManualCap(id){
   document.getElementById('overlay').classList.add('open');
   try{
     const cap = await fetch(`/api/manual_cap/${id}`).then(r=>r.json());
+    modalManualIsCatalog = !!cap.is_catalog;
     const images = cap.images && cap.images.length ? cap.images : (cap.image ? [cap.image] : []);
     initCarousel(images);
     if(!images.length) document.getElementById('m-img').style.display='none';
@@ -2761,7 +2772,6 @@ async function openManualCap(id){
     const showType = cap.cap_type && cap.cap_type !== 'none';
     const panelLabel = cap.panels ? (PANEL_LABELS[cap.panels]||cap.panels)+'-Panel' : '';
 
-    // spec chips — same structure as Shopify detail
     const specs = [
       ['Color',    cap.color],
       ['Material', cap.material],
@@ -2770,7 +2780,9 @@ async function openManualCap(id){
       ...(showType ? [['Type', CAP_TYPE_LABELS[cap.cap_type]||cap.cap_type]] : []),
     ].filter(([,v])=>v);
 
-    const st = cap.sold ? 'sold' : cap.wishlisted ? 'wishlisted' : 'owned';
+    // For catalog caps, status comes from user_catalog_items (merged by API)
+    // For personal caps, status comes from the cap row directly
+    const st = cap.sold ? 'sold' : cap.wishlisted ? 'wishlisted' : (cap.owned ? 'owned' : 'none');
     const addedStr = cap.created_at ? addedLabel(cap.created_at) : '';
     const notesShow = (cap.notes && cap.notes.trim()) ? 'show' : '';
 
@@ -2783,69 +2795,77 @@ async function openManualCap(id){
         specs.map(([k,v])=>`<div class="spec-chip"><span class="spec-k">${k}</span><span class="spec-v">${x(v)}</span></div>`).join('')+`</div>`;
     }
 
-    // interactive status dropdown — same markup as Shopify
     meta += `<div class="status-row">
       <span class="status-label">Status</span>
-      <select class="status-select" onchange="setManualStatus(${cap.id}, this.value)">
+      <select class="status-select" onchange="setManualCapStatus(this.value)">
+        <option value="none"       ${st==='none'      ?'selected':''}>— None</option>
         <option value="wishlisted" ${st==='wishlisted'?'selected':''}>⭐ Wishlist</option>
         <option value="owned"      ${st==='owned'     ?'selected':''}>✅ Own</option>
-        <option value="sold"       ${st==='sold'       ?'selected':''}>🏷 Sold</option>
+        <option value="sold"       ${st==='sold'      ?'selected':''}>🏷 Sold</option>
       </select>
     </div>
     <div class="size-pref-wrap ${st==='sold'?'show':''}" id="manual-sold-wrap" style="${st==='sold'?'':'display:none'}">
       <span class="status-label">Sold Price</span>
-      <input type="number" step="0.01" class="status-select" id="manual-sold-price" placeholder="e.g. 45.00" value="${cap.sold_price!=null?cap.sold_price:''}" onchange="saveManualSold(${cap.id})">
+      <input type="number" step="0.01" class="status-select" id="manual-sold-price" placeholder="e.g. 45.00" value="${cap.sold_price!=null?cap.sold_price:''}" onchange="saveManualCapSold()">
       <span class="status-label">Sold Date</span>
-      <input type="date" class="status-select" id="manual-sold-date" value="${cap.sold_date||''}" onchange="saveManualSold(${cap.id})">
+      <input type="date" class="status-select" id="manual-sold-date" value="${cap.sold_date||''}" onchange="saveManualCapSold()">
     </div>
     <div class="notes-wrap ${notesShow}" id="notes-wrap">
       <textarea class="notes-area" id="notes-area" placeholder="Notes…">${x(cap.notes||'')}</textarea>
-      <button class="notes-save-btn" onclick="saveManualNotes(${cap.id})">Save</button>
+      <button class="notes-save-btn" onclick="saveManualCapNotes()">Save</button>
     </div>
     <button class="notes-toggle-btn" id="notes-toggle-btn" onclick="toggleNotes()">${notesShow?'Hide notes':'+ Add notes'}</button>`;
 
     document.getElementById('m-meta').innerHTML = meta;
 
-    let body = `<div style="display:flex;gap:8px;padding:12px 16px 16px;">
-      <button class="view-btn" style="text-decoration:none;cursor:pointer;" onclick="openEditManualCap(${cap.id})">✏️ Edit cap details</button>
-    </div>`;
+    // Edit button only for admins
+    let body = '';
+    if(IS_ADMIN){
+      body = `<div style="display:flex;gap:8px;padding:12px 16px 16px;">
+        <button class="view-btn" style="text-decoration:none;cursor:pointer;" onclick="openEditManualCap(${cap.id})">✏️ Edit cap details</button>
+      </div>`;
+    }
     document.getElementById('m-body').innerHTML = body;
   }catch(e){
     document.getElementById('m-body').innerHTML=`<div class="state"><div class="state-title">Failed to load cap</div></div>`;
   }
 }
 
-async function setManualStatus(id, status){
+// Unified manual/catalog cap status handler — routes by modalManualIsCatalog
+async function setManualCapStatus(status){
+  const id = modalManualId;
+  if(!id) return;
   const soldWrap = document.getElementById('manual-sold-wrap');
-  if(soldWrap) soldWrap.style.display = status==='sold' ? '' : 'none';
-  if(soldWrap) soldWrap.classList.toggle('show', status==='sold');
+  if(soldWrap) { soldWrap.style.display = status==='sold' ? '' : 'none'; soldWrap.classList.toggle('show', status==='sold'); }
   const payload = {status};
-  if(status==='sold'){
+  if(status === 'sold'){
     payload.sold_price = document.getElementById('manual-sold-price')?.value || null;
     payload.sold_date  = document.getElementById('manual-sold-date')?.value  || null;
   }
-  await fetch(`/api/manual_cap/${id}`, {
-    method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)
-  });
+  const url = modalManualIsCatalog ? `/api/catalog_cap/${id}` : `/api/manual_cap/${id}`;
+  await fetch(url, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
   fetchManualCaps(true); loadStats();
 }
 
-async function saveManualSold(id){
+async function saveManualCapSold(){
+  const id = modalManualId;
+  if(!id) return;
   const price = document.getElementById('manual-sold-price')?.value || null;
   const date  = document.getElementById('manual-sold-date')?.value  || null;
-  await fetch(`/api/manual_cap/${id}`, {
+  const url = modalManualIsCatalog ? `/api/catalog_cap/${id}` : `/api/manual_cap/${id}`;
+  await fetch(url, {
     method:'POST', headers:{'Content-Type':'application/json'},
     body:JSON.stringify({status:'sold', sold_price:price, sold_date:date})
   });
   fetchManualCaps(true);
 }
 
-async function saveManualNotes(id){
+async function saveManualCapNotes(){
+  const id = modalManualId;
+  if(!id) return;
   const notes = document.getElementById('notes-area')?.value || '';
-  await fetch(`/api/manual_cap/${id}/notes`, {
-    method:'POST', headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({notes})
-  });
+  const url = modalManualIsCatalog ? `/api/catalog_cap/${id}/notes` : `/api/manual_cap/${id}/notes`;
+  await fetch(url, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({notes}) });
 }
 
 async function openEditManualCap(id){

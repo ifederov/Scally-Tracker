@@ -11,7 +11,7 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 CT = ZoneInfo("America/Chicago")
 
 from config import Config
-from models import db, Product, Variant, Snapshot, Alert, UserItem, ManualCap, Release, User, Feedback
+from models import db, Product, Variant, Snapshot, Alert, UserItem, ManualCap, UserCatalogItem, Release, User, Feedback
 
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
@@ -555,13 +555,26 @@ def api_export_csv():
 @app.route("/api/manual_caps")
 @login_required
 def api_manual_caps():
-    rows = ManualCap.query.filter_by(user_id=current_user.id).order_by(ManualCap.created_at.desc()).all()
+    # Personal caps owned by this user (non-catalog)
+    personal = ManualCap.query.filter_by(user_id=current_user.id, is_catalog=0).order_by(ManualCap.created_at.desc()).all()
+    # Shared catalog caps (visible to all users)
+    catalog = ManualCap.query.filter_by(is_catalog=1).order_by(ManualCap.name.asc()).all()
+    # Current user's catalog ownership
+    uci_map = {u.manual_cap_id: u for u in UserCatalogItem.query.filter_by(user_id=current_user.id).all()}
+
     result = []
-    for r in rows:
-        # List view only needs the primary thumbnail (`image`); the full
-        # gallery (`images_json`) is large (base64) and only needed when a
-        # specific cap is opened via /api/manual_cap/<id>.
+    for r in personal:
         cap = {c.name: getattr(r, c.name) for c in ManualCap.__table__.columns if c.name != 'images_json'}
+        result.append(cap)
+    for r in catalog:
+        cap = {c.name: getattr(r, c.name) for c in ManualCap.__table__.columns if c.name != 'images_json'}
+        uci = uci_map.get(r.id)
+        cap['owned']      = uci.owned      if uci else 0
+        cap['wishlisted'] = uci.wishlisted if uci else 0
+        cap['sold']       = uci.sold       if uci else 0
+        cap['notes']      = uci.notes      if uci else None
+        cap['sold_price'] = uci.sold_price if uci else None
+        cap['sold_date']  = uci.sold_date  if uci else None
         result.append(cap)
     return jsonify(result)
 
@@ -569,8 +582,11 @@ def api_manual_caps():
 @app.route("/api/manual_cap/<int:mid>", methods=["GET"])
 @login_required
 def api_manual_cap_get(mid):
-    r = ManualCap.query.filter_by(id=mid, user_id=current_user.id).first()
+    r = ManualCap.query.filter_by(id=mid).first()
     if not r:
+        return jsonify({"error": "not found"}), 404
+    # Personal caps: only the owner may view
+    if not r.is_catalog and r.user_id != current_user.id:
         return jsonify({"error": "not found"}), 404
     cap = {c.name: getattr(r, c.name) for c in ManualCap.__table__.columns}
     if cap.get('images_json'):
@@ -580,12 +596,23 @@ def api_manual_cap_get(mid):
             cap['images'] = [cap['image']] if cap.get('image') else []
     else:
         cap['images'] = [cap['image']] if cap.get('image') else []
+    # Merge per-user ownership for catalog caps
+    if r.is_catalog:
+        uci = UserCatalogItem.query.filter_by(user_id=current_user.id, manual_cap_id=mid).first()
+        cap['owned']      = uci.owned      if uci else 0
+        cap['wishlisted'] = uci.wishlisted if uci else 0
+        cap['sold']       = uci.sold       if uci else 0
+        cap['notes']      = uci.notes      if uci else None
+        cap['sold_price'] = uci.sold_price if uci else None
+        cap['sold_date']  = uci.sold_date  if uci else None
     return jsonify(cap)
 
 
 @app.route("/api/manual_cap", methods=["POST"])
 @login_required
 def api_manual_cap_create():
+    if not current_user.is_admin:
+        return jsonify({"error": "admin only"}), 403
     data = request.get_json()
     if not data.get("name"):
         return jsonify({"error": "name is required"}), 400
@@ -603,9 +630,11 @@ def api_manual_cap_create():
         notes=data.get("notes", "").strip(),
         image=first_image,
         images_json=images_json_str,
-        wishlisted=int(bool(data.get("wishlisted", False))),
+        wishlisted=0,
+        sold=0,
         cap_type=data.get("cap_type", "other").strip() or "other",
         panels=data.get("panels", None),
+        is_catalog=1,
         created_at=now,
     )
     db.session.add(cap)
@@ -620,6 +649,8 @@ def api_manual_cap_update(mid):
     cap = ManualCap.query.filter_by(id=mid, user_id=current_user.id).first()
     if not cap:
         return jsonify({"error": "not found"}), 404
+    if cap.is_catalog:
+        return jsonify({"error": "use /api/catalog_cap/<id> for catalog caps"}), 400
 
     status = data.get("status")
     if status == "owned":
@@ -662,18 +693,18 @@ def api_manual_cap_update(mid):
 @app.route("/api/manual_cap/<int:mid>/edit", methods=["POST"])
 @login_required
 def api_manual_cap_edit(mid):
+    if not current_user.is_admin:
+        return jsonify({"error": "admin only"}), 403
     data = request.get_json()
     if not data.get("name"):
         return jsonify({"error": "name is required"}), 400
-    cap = ManualCap.query.filter_by(id=mid, user_id=current_user.id).first()
+    cap = ManualCap.query.filter_by(id=mid).first()
     if not cap:
         return jsonify({"error": "not found"}), 404
 
     images = [i for i in (data.get("images") or []) if i]
     images_json_str = json.dumps(images)
     first_image = images[0] if images else None
-    status = data.get("status", "owned")
-
     cap.name = data.get("name", "").strip()
     cap.color = data.get("color", "").strip()
     cap.style = data.get("style", "").strip()
@@ -683,18 +714,78 @@ def api_manual_cap_edit(mid):
     cap.images_json = images_json_str
     cap.cap_type = data.get("cap_type", "other").strip() or "other"
     cap.panels = data.get("panels", None)
-    cap.sold = 1 if status == "sold" else 0
-    cap.wishlisted = 1 if status == "wishlisted" else 0
-    if status == "sold":
+    # Catalog caps: ownership is per-user in user_catalog_items; don't touch status here
+    if not cap.is_catalog:
+        status = data.get("status", "owned")
+        cap.sold = 1 if status == "sold" else 0
+        cap.wishlisted = 1 if status == "wishlisted" else 0
+        if status == "sold":
+            sold_price = data.get("sold_price")
+            try:
+                cap.sold_price = float(sold_price) if sold_price not in (None, "") else None
+            except (TypeError, ValueError):
+                cap.sold_price = None
+            cap.sold_date = (data.get("sold_date") or "").strip() or None
+        else:
+            cap.sold_price = None
+            cap.sold_date = None
+    db.session.commit()
+    return jsonify({"ok": True})
+
+
+@app.route("/api/catalog_cap/<int:mid>", methods=["POST"])
+@login_required
+def api_catalog_cap_update(mid):
+    cap = ManualCap.query.filter_by(id=mid, is_catalog=1).first()
+    if not cap:
+        return jsonify({"error": "not found"}), 404
+    data = request.get_json()
+    now = datetime.now().isoformat()
+
+    uci = UserCatalogItem.query.filter_by(user_id=current_user.id, manual_cap_id=mid).first()
+    if not uci:
+        uci = UserCatalogItem(user_id=current_user.id, manual_cap_id=mid)
+        db.session.add(uci)
+
+    status = data.get("status")
+    if status == "owned":
+        uci.owned = 1; uci.wishlisted = 0; uci.sold = 0
+        uci.sold_price = None; uci.sold_date = None
+    elif status == "wishlisted":
+        uci.owned = 0; uci.wishlisted = 1; uci.sold = 0
+        uci.sold_price = None; uci.sold_date = None
+    elif status == "sold":
+        uci.owned = 0; uci.wishlisted = 0; uci.sold = 1
         sold_price = data.get("sold_price")
         try:
-            cap.sold_price = float(sold_price) if sold_price not in (None, "") else None
+            uci.sold_price = float(sold_price) if sold_price not in (None, "") else None
         except (TypeError, ValueError):
-            cap.sold_price = None
-        cap.sold_date = (data.get("sold_date") or "").strip() or None
-    else:
-        cap.sold_price = None
-        cap.sold_date = None
+            uci.sold_price = None
+        uci.sold_date = (data.get("sold_date") or "").strip() or None
+    elif status == "none":
+        uci.owned = 0; uci.wishlisted = 0; uci.sold = 0
+        uci.sold_price = None; uci.sold_date = None
+
+    uci.updated_at = now
+    db.session.commit()
+    return jsonify({"ok": True})
+
+
+@app.route("/api/catalog_cap/<int:mid>/notes", methods=["POST"])
+@login_required
+def api_catalog_cap_notes(mid):
+    cap = ManualCap.query.filter_by(id=mid, is_catalog=1).first()
+    if not cap:
+        return jsonify({"error": "not found"}), 404
+    data = request.get_json()
+    now = datetime.now().isoformat()
+
+    uci = UserCatalogItem.query.filter_by(user_id=current_user.id, manual_cap_id=mid).first()
+    if not uci:
+        uci = UserCatalogItem(user_id=current_user.id, manual_cap_id=mid)
+        db.session.add(uci)
+    uci.notes = (data.get("notes") or "").strip() or None
+    uci.updated_at = now
     db.session.commit()
     return jsonify({"ok": True})
 

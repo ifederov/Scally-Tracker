@@ -96,6 +96,24 @@ class ManualCap(db.Model):
     sold_price  = db.Column(db.Float)
     sold_date   = db.Column(db.Text)
     created_at  = db.Column(db.Text)
+    is_catalog  = db.Column(db.Integer, nullable=False, default=0)
+
+
+class UserCatalogItem(db.Model):
+    __tablename__ = "user_catalog_items"
+
+    id            = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id       = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    manual_cap_id = db.Column(db.Integer, db.ForeignKey("manual_caps.id"), nullable=False)
+    owned         = db.Column(db.Integer, nullable=False, default=0)
+    wishlisted    = db.Column(db.Integer, nullable=False, default=0)
+    sold          = db.Column(db.Integer, nullable=False, default=0)
+    notes         = db.Column(db.Text)
+    sold_price    = db.Column(db.Float)
+    sold_date     = db.Column(db.Text)
+    updated_at    = db.Column(db.Text)
+
+    __table_args__ = (db.UniqueConstraint("user_id", "manual_cap_id", name="uq_user_catalog_item"),)
 
 
 class User(UserMixin, db.Model):
