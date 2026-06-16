@@ -1888,9 +1888,10 @@ function render(products, manualCaps=[]){
       const soldHtml = (cat==='collection' && collectionView==='sold' && (p._sold_price!=null || p._sold_date))
         ? `<div class="card-sold-info">${p._sold_price!=null?`$${(+p._sold_price).toFixed(2)}`:''}${p._sold_price!=null && p._sold_date?' · ':''}${p._sold_date?x(p._sold_date):''}</div>` : '';
       const footParts = [p._color, p._style, p._material].filter(Boolean);
+      const panelFoot = (!footParts.length && p.panels) ? (PANEL_LABELS[p.panels]||p.panels)+'-Panel' : '';
       const footHtml = footParts.length
         ? `<div class="card-notes">${x(footParts.join(' · '))}</div>`
-        : `<span class="badge out" style="font-size:9px;letter-spacing:.08em">Manual</span>`;
+        : panelFoot ? `<div class="card-notes">${x(panelFoot)}</div>` : '';
       return `<div class="card manual-card" onclick="${bulkMode?'':`openManualCap(${p._mid})`}" style="animation-delay:${Math.min(i*.025,.4)}s">
         ${chk}
         <div class="card-img-wrap">${img}<div class="dot" style="opacity:0"></div>${pip}${ribbon}</div>
@@ -2759,32 +2760,92 @@ async function openManualCap(id){
     const CAP_TYPE_LABELS = { one_off:'One-Off Drop', retired:'Retired', seasonal:'Seasonal', other:'Other' };
     const showType = cap.cap_type && cap.cap_type !== 'none';
     const panelLabel = cap.panels ? (PANEL_LABELS[cap.panels]||cap.panels)+'-Panel' : '';
+
+    // spec chips — same structure as Shopify detail
     const specs = [
       ['Color',    cap.color],
       ['Material', cap.material],
       ['Style',    cap.style],
       ['Panels',   panelLabel],
+      ...(showType ? [['Type', CAP_TYPE_LABELS[cap.cap_type]||cap.cap_type]] : []),
     ].filter(([,v])=>v);
-    const statusLabel = cap.sold ? '🏷 Sold' : cap.wishlisted ? '⭐ Wishlist' : '✅ Owned';
 
-    let meta = `<div class="m-cat">Manual Cap${showType ? ` · ${CAP_TYPE_LABELS[cap.cap_type]||cap.cap_type}` : ''}</div>
-      <div class="m-title">${x(cap.name)}</div>`;
+    const st = cap.sold ? 'sold' : cap.wishlisted ? 'wishlisted' : 'owned';
+    const addedStr = cap.created_at ? addedLabel(cap.created_at) : '';
+    const notesShow = (cap.notes && cap.notes.trim()) ? 'show' : '';
+
+    let meta = `<div class="m-cat">CAPS</div>
+      <div class="m-title">${x(cap.name)}</div>
+      ${addedStr ? `<div class="first-seen">${addedStr}</div>` : ''}`;
+
     if(specs.length){
       meta += `<div class="spec-row">`+
         specs.map(([k,v])=>`<div class="spec-chip"><span class="spec-k">${k}</span><span class="spec-v">${x(v)}</span></div>`).join('')+`</div>`;
     }
-    meta += `<div class="status-row"><span class="status-label">Status</span><span style="font-weight:600">${statusLabel}</span></div>`;
+
+    // interactive status dropdown — same markup as Shopify
+    meta += `<div class="status-row">
+      <span class="status-label">Status</span>
+      <select class="status-select" onchange="setManualStatus(${cap.id}, this.value)">
+        <option value="wishlisted" ${st==='wishlisted'?'selected':''}>⭐ Wishlist</option>
+        <option value="owned"      ${st==='owned'     ?'selected':''}>✅ Own</option>
+        <option value="sold"       ${st==='sold'       ?'selected':''}>🏷 Sold</option>
+      </select>
+    </div>
+    <div class="size-pref-wrap ${st==='sold'?'show':''}" id="manual-sold-wrap" style="${st==='sold'?'':'display:none'}">
+      <span class="status-label">Sold Price</span>
+      <input type="number" step="0.01" class="status-select" id="manual-sold-price" placeholder="e.g. 45.00" value="${cap.sold_price!=null?cap.sold_price:''}" onchange="saveManualSold(${cap.id})">
+      <span class="status-label">Sold Date</span>
+      <input type="date" class="status-select" id="manual-sold-date" value="${cap.sold_date||''}" onchange="saveManualSold(${cap.id})">
+    </div>
+    <div class="notes-wrap ${notesShow}" id="notes-wrap">
+      <textarea class="notes-area" id="notes-area" placeholder="Notes…">${x(cap.notes||'')}</textarea>
+      <button class="notes-save-btn" onclick="saveManualNotes(${cap.id})">Save</button>
+    </div>
+    <button class="notes-toggle-btn" id="notes-toggle-btn" onclick="toggleNotes()">${notesShow?'Hide notes':'+ Add notes'}</button>`;
+
     document.getElementById('m-meta').innerHTML = meta;
 
-    let body = '';
-    if(cap.notes) body += `<div class="desc-block">${x(cap.notes)}</div>`;
-    body += `<div style="display:flex;gap:8px;padding:12px 16px 16px;">
-      <button class="view-btn" style="text-decoration:none;cursor:pointer;" onclick="openEditManualCap(${cap.id})">✏️ Edit</button>
+    let body = `<div style="display:flex;gap:8px;padding:12px 16px 16px;">
+      <button class="view-btn" style="text-decoration:none;cursor:pointer;" onclick="openEditManualCap(${cap.id})">✏️ Edit cap details</button>
     </div>`;
     document.getElementById('m-body').innerHTML = body;
   }catch(e){
     document.getElementById('m-body').innerHTML=`<div class="state"><div class="state-title">Failed to load cap</div></div>`;
   }
+}
+
+async function setManualStatus(id, status){
+  const soldWrap = document.getElementById('manual-sold-wrap');
+  if(soldWrap) soldWrap.style.display = status==='sold' ? '' : 'none';
+  if(soldWrap) soldWrap.classList.toggle('show', status==='sold');
+  const payload = {status};
+  if(status==='sold'){
+    payload.sold_price = document.getElementById('manual-sold-price')?.value || null;
+    payload.sold_date  = document.getElementById('manual-sold-date')?.value  || null;
+  }
+  await fetch(`/api/manual_cap/${id}`, {
+    method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)
+  });
+  fetchManualCaps(true); loadStats();
+}
+
+async function saveManualSold(id){
+  const price = document.getElementById('manual-sold-price')?.value || null;
+  const date  = document.getElementById('manual-sold-date')?.value  || null;
+  await fetch(`/api/manual_cap/${id}`, {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({status:'sold', sold_price:price, sold_date:date})
+  });
+  fetchManualCaps(true);
+}
+
+async function saveManualNotes(id){
+  const notes = document.getElementById('notes-area')?.value || '';
+  await fetch(`/api/manual_cap/${id}/notes`, {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({notes})
+  });
 }
 
 async function openEditManualCap(id){

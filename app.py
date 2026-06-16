@@ -699,6 +699,18 @@ def api_manual_cap_edit(mid):
     return jsonify({"ok": True})
 
 
+@app.route("/api/manual_cap/<int:mid>/notes", methods=["POST"])
+@login_required
+def api_manual_cap_notes(mid):
+    cap = ManualCap.query.filter_by(id=mid, user_id=current_user.id).first()
+    if not cap:
+        return jsonify({"error": "not found"}), 404
+    data = request.get_json()
+    cap.notes = (data.get("notes") or "").strip() or None
+    db.session.commit()
+    return jsonify({"ok": True})
+
+
 @app.route("/api/manual_cap/<int:mid>", methods=["DELETE"])
 @login_required
 def api_manual_cap_delete(mid):
