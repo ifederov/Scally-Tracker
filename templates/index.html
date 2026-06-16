@@ -1244,7 +1244,7 @@ body.dark .view-btn { color:var(--navy); }
     <div class="mf-btns">
       <button class="mf-cancel" onclick="closeManualForm()">Cancel</button>
       <button class="mf-cancel" id="mf-delete-btn" onclick="deleteFromEditForm()" style="display:none;background:#c0392b;border-color:#c0392b;color:#fff">🗑 Delete</button>
-      <button class="mf-save"   onclick="saveManualCap()">Save Cap</button>
+      <button class="mf-save" id="mf-save-btn" onclick="saveManualCap()">Save Cap</button>
     </div>
   </div>
 </div>
@@ -2704,7 +2704,7 @@ async function saveManualCap(){
   const name = document.getElementById('mf-name').value.trim();
   if(!name){ alert('Cap name is required.'); return; }
   const editId = document.getElementById('mf-edit-id').value;
-  const btn = document.querySelector('.mf-save');
+  const btn = document.getElementById('mf-save-btn');
   if(btn.disabled) return;           // guard against double-click
   btn.disabled = true;
   btn.textContent = 'Saving…';
