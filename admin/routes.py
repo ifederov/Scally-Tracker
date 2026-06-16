@@ -1,10 +1,10 @@
 from functools import wraps
 
-from flask import render_template, redirect, url_for, flash, abort
+from flask import render_template, redirect, url_for, flash, abort, jsonify, request
 from flask_login import login_required, current_user
 
 from . import admin_bp
-from models import db, User, Product, ManualCap, UserItem, Alert
+from models import db, User, Product, ManualCap, UserItem, Alert, Feedback
 
 
 def admin_required(f):
@@ -33,6 +33,13 @@ def dashboard():
         + ManualCap.query.filter_by(wishlisted=1, sold=0).count()
     )
 
+    feedback = (
+        Feedback.query
+        .order_by(Feedback.status.asc(), Feedback.created_at.desc())
+        .all()
+    )
+    users_by_id = {u.id: u.username for u in User.query.all()}
+
     return render_template(
         "admin.html",
         total_users=total_users,
@@ -41,6 +48,8 @@ def dashboard():
         total_wishlisted=total_wishlisted,
         activity=_recent_activity(limit=15),
         users=User.query.order_by(User.created_at.desc()).all(),
+        feedback=feedback,
+        users_by_id=users_by_id,
     )
 
 
@@ -64,6 +73,19 @@ def delete_user(uid):
     db.session.commit()
     flash(f"Deleted user “{user.username}” and all their data.", "success")
     return redirect(url_for("admin.dashboard"))
+
+
+@admin_bp.route("/feedback/<int:fid>/status", methods=["POST"])
+@admin_required
+def update_feedback_status(fid):
+    fb = Feedback.query.get_or_404(fid)
+    data = request.get_json()
+    new_status = data.get("status")
+    if new_status not in ("open", "in_progress", "closed"):
+        return jsonify({"error": "invalid status"}), 400
+    fb.status = new_status
+    db.session.commit()
+    return jsonify({"ok": True, "status": new_status})
 
 
 def _recent_activity(limit=100):

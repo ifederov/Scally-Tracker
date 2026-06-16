@@ -11,7 +11,7 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 CT = ZoneInfo("America/Chicago")
 
 from config import Config
-from models import db, Product, Variant, Snapshot, Alert, UserItem, ManualCap, Release, User
+from models import db, Product, Variant, Snapshot, Alert, UserItem, ManualCap, Release, User, Feedback
 
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
@@ -769,6 +769,12 @@ def api_stats():
         .scalar()
     )
 
+    open_feedback = (
+        db.session.query(func.count(Feedback.id))
+        .filter(Feedback.status.in_(["open", "in_progress"]))
+        .scalar()
+    ) if current_user.is_admin else 0
+
     resp = jsonify({
         "total":               total,
         "caps":                caps,
@@ -782,9 +788,34 @@ def api_stats():
         "last_poll":           last_poll,
         "wishlisted_restocks": wishlisted_restocks,
         "new_caps":            new_caps,
+        "open_feedback":       open_feedback,
     })
     resp.headers["Cache-Control"] = "private, max-age=55"
     return resp
+
+
+@app.route("/api/feedback", methods=["POST"])
+@login_required
+def api_feedback_submit():
+    data = request.get_json()
+    fb_type  = (data.get("type") or "").strip()
+    title    = (data.get("title") or "").strip()
+    body     = (data.get("body") or "").strip()
+    if fb_type not in ("bug", "feature"):
+        return jsonify({"error": "type must be bug or feature"}), 400
+    if not title:
+        return jsonify({"error": "title is required"}), 400
+    fb = Feedback(
+        user_id=current_user.id,
+        type=fb_type,
+        title=title[:200],
+        body=body[:2000] if body else None,
+        status="open",
+        created_at=datetime.now(CT).isoformat(),
+    )
+    db.session.add(fb)
+    db.session.commit()
+    return jsonify({"ok": True})
 
 
 @app.route("/api/alerts")

@@ -71,6 +71,15 @@ tr:last-child td { border-bottom:none; }
 .del-btn { font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--red); background:var(--red-bg); border:1px solid rgba(192,57,43,.25); border-radius:var(--r); padding:5px 10px; cursor:pointer; }
 .del-btn:hover { opacity:.8; }
 
+.fb-status { font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:3px 9px; border-radius:10px; border:none; cursor:pointer; }
+.fb-status.open       { background:#fef3cd; color:#856404; }
+.fb-status.in_progress { background:#cfe2ff; color:#084298; }
+.fb-status.closed     { background:#d1e7dd; color:#0a3622; }
+.fb-type  { font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:2px 7px; border-radius:8px; }
+.fb-type.bug     { background:#f8d7da; color:#842029; }
+.fb-type.feature { background:#d1e7dd; color:#0a3622; }
+.fb-body  { font-size:12px; color:var(--text2); margin-top:3px; white-space:pre-wrap; }
+
 .activity-list { list-style:none; font-size:13px; }
 .activity-list li { padding:8px 0; border-bottom:1px solid var(--border); display:flex; gap:10px; }
 .activity-list li:last-child { border-bottom:none; }
@@ -139,6 +148,40 @@ body.dark .confirm-modal h2 { color:#fff; }
   </div>
 
   <div class="panel">
+    <div class="section-hdr">Feedback &amp; Issues
+      {% set open_count = feedback | selectattr('status', 'ne', 'closed') | list | length %}
+      {% if open_count %}<span style="font-family:'Source Sans 3',sans-serif;font-size:12px;font-weight:700;letter-spacing:normal;text-transform:none;background:var(--gold);color:#fff;padding:2px 9px;border-radius:10px;">{{ open_count }} open</span>{% endif %}
+    </div>
+    {% if feedback %}
+    <table>
+      <thead><tr><th>Type</th><th>From</th><th>Title &amp; Notes</th><th>Date</th><th>Status</th></tr></thead>
+      <tbody>
+      {% for fb in feedback %}
+      <tr id="fb-row-{{ fb.id }}">
+        <td><span class="fb-type {{ fb.type }}">{{ 'Bug' if fb.type == 'bug' else 'Feature' }}</span></td>
+        <td>{{ users_by_id.get(fb.user_id, 'unknown') }}</td>
+        <td>
+          <strong style="font-size:13px">{{ fb.title }}</strong>
+          {% if fb.body %}<div class="fb-body">{{ fb.body }}</div>{% endif %}
+        </td>
+        <td style="white-space:nowrap;color:var(--text3);font-size:12px;">{{ fb.created_at[:10] if fb.created_at else '' }}</td>
+        <td>
+          <select class="fb-status {{ fb.status }}" onchange="updateFbStatus({{ fb.id }}, this)">
+            <option value="open"        {% if fb.status == 'open' %}selected{% endif %}>Open</option>
+            <option value="in_progress" {% if fb.status == 'in_progress' %}selected{% endif %}>In Progress</option>
+            <option value="closed"      {% if fb.status == 'closed' %}selected{% endif %}>Closed</option>
+          </select>
+        </td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p style="color:var(--text3);font-size:13px;margin:0;">No feedback submitted yet.</p>
+    {% endif %}
+  </div>
+
+  <div class="panel">
     <div class="section-hdr">Recent Activity <a href="{{ url_for('admin.activity') }}">View all &rarr;</a></div>
     <ul class="activity-list">
       {% for e in activity %}
@@ -188,6 +231,18 @@ function delBgClick(e){
 document.getElementById('del-confirm-input').addEventListener('input', function(){
   document.getElementById('del-submit').disabled = (this.value !== pendingUsername);
 });
+
+async function updateFbStatus(id, sel){
+  const status = sel.value;
+  sel.className = 'fb-status ' + status;
+  try {
+    await fetch(`/admin/feedback/${id}/status`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({status}),
+    });
+  } catch(e) { console.error('Status update failed', e); }
+}
 </script>
 </body>
 </html>

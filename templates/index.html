@@ -238,8 +238,9 @@ input[type="search"]::-webkit-search-cancel-button {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' fill='rgba(255,255,255,0.35)'/%3E%3Cline x1='5' y1='5' x2='11' y2='11' stroke='white' stroke-width='1.8' stroke-linecap='round'/%3E%3Cline x1='11' y1='5' x2='5' y2='11' stroke='white' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat; background-size: 16px 16px;
 }
-.dark-toggle { background:none; border:1px solid rgba(255,255,255,.25); border-radius:20px; padding:5px 10px; font-size:14px; cursor:pointer; color:rgba(255,255,255,.8); transition:all .2s; line-height:1; }
+.dark-toggle { background:none; border:1px solid rgba(255,255,255,.25); border-radius:20px; padding:5px 10px; font-size:14px; cursor:pointer; color:rgba(255,255,255,.8); transition:all .2s; line-height:1; position:relative; }
 .dark-toggle:hover { border-color:var(--gold-lt); color:#fff; }
+.settings-dot { position:absolute; top:2px; right:2px; width:8px; height:8px; border-radius:50%; background:#d4a017; display:none; pointer-events:none; box-shadow:0 0 0 1.5px rgba(0,0,0,.3); }
 #poll-btn.spinning { animation:spin .7s linear infinite; pointer-events:none; opacity:.6; }
 .alerts-btn {
   background:transparent; border:1px solid rgba(255,255,255,.2); border-radius:var(--r);
@@ -815,7 +816,7 @@ body.dark .view-btn { color:var(--navy); }
         <button class="alerts-btn" id="alerts-btn" onclick="toggleAlerts()">
           🔔 Alerts <span class="abadge" id="abadge"></span>
         </button>
-        <button class="dark-toggle" id="settings-btn" onclick="openSettings()" title="Settings">⚙️</button>
+        <button class="dark-toggle" id="settings-btn" onclick="openSettings()" title="Settings">⚙️<span class="settings-dot" id="settings-dot"></span></button>
       </div>
     </div>
   </header>
@@ -1116,6 +1117,31 @@ body.dark .view-btn { color:var(--navy); }
     <div class="settings-section-hdr">Data</div>
     <div class="mf-row">
       <a href="/api/export/csv" class="mf-cancel" style="display:inline-block; text-decoration:none; text-align:center;">Export collection as CSV</a>
+    </div>
+
+    <div class="settings-section-hdr">Feedback &amp; Issues</div>
+    <div class="mf-row">
+      <label>Type</label>
+      <div style="display:flex; gap:10px; margin-top:4px;">
+        <label style="display:flex; align-items:center; gap:5px; font-weight:400; cursor:pointer;">
+          <input type="radio" name="fb-type" id="fb-type-bug" value="bug"> Bug / Issue
+        </label>
+        <label style="display:flex; align-items:center; gap:5px; font-weight:400; cursor:pointer;">
+          <input type="radio" name="fb-type" id="fb-type-feature" value="feature" checked> Feature Request
+        </label>
+      </div>
+    </div>
+    <div class="mf-row">
+      <label>Title *</label>
+      <input type="text" id="fb-title" placeholder="Brief summary (required)" maxlength="200">
+    </div>
+    <div class="mf-row">
+      <label>Details (optional)</label>
+      <textarea id="fb-body" placeholder="Describe the issue or feature in more detail…" rows="4" style="resize:vertical; padding:8px 10px; border:1px solid var(--border); border-radius:6px; font-family:'Source Sans 3',sans-serif; font-size:13px; background:var(--white); color:var(--text); width:100%;"></textarea>
+    </div>
+    <div class="mf-row">
+      <button class="mf-save" id="fb-submit-btn" onclick="submitFeedback()">Submit Feedback</button>
+      <div class="settings-inline-msg" id="fb-msg" style="margin-top:6px;"></div>
     </div>
 
     <div class="settings-section-hdr">Account</div>
@@ -1739,6 +1765,8 @@ async function loadStats(){
       wlBadge.classList.remove('show');
     const newPill = document.getElementById('avail-new-pill');
     if(newPill) newPill.classList.toggle('pill-dimmed', !(s.new_caps > 0));
+    const dot = document.getElementById('settings-dot');
+    if(dot) dot.style.display = (s.open_feedback||0) > 0 ? 'block' : 'none';
     if(s.last_poll){
       const fmt = new Date(s.last_poll).toLocaleString('en-US',{
         timeZone:'America/Chicago',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',hour12:true
@@ -2561,6 +2589,39 @@ document.addEventListener('change', (e) => {
     _updateNotifyRowsVisibility();
   }
 });
+
+async function submitFeedback(){
+  const btn = document.getElementById('fb-submit-btn');
+  const msg = document.getElementById('fb-msg');
+  if(btn.disabled) return;
+  const typeEl = document.querySelector('input[name="fb-type"]:checked');
+  const title  = (document.getElementById('fb-title').value || '').trim();
+  const body   = (document.getElementById('fb-body').value  || '').trim();
+  if(!title){ msg.style.color='var(--red)'; msg.textContent='Title is required.'; return; }
+  btn.disabled = true; btn.textContent = 'Submitting…'; msg.textContent = '';
+  try{
+    const r = await fetch('/api/feedback', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ type: typeEl ? typeEl.value : 'feature', title, body }),
+    });
+    const d = await r.json();
+    if(d.ok){
+      msg.style.color = 'var(--green,#2e8b57)';
+      msg.textContent = 'Thanks! Your feedback was submitted.';
+      document.getElementById('fb-title').value = '';
+      document.getElementById('fb-body').value  = '';
+    } else {
+      msg.style.color = 'var(--red)';
+      msg.textContent = d.error || 'Submission failed.';
+    }
+  }catch(e){
+    msg.style.color = 'var(--red)';
+    msg.textContent = 'Network error. Try again.';
+  }finally{
+    btn.disabled = false; btn.textContent = 'Submit Feedback';
+  }
+}
 
 async function saveSettings(){
   const payload = {
