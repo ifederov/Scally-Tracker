@@ -1193,7 +1193,6 @@ body.dark .view-btn { color:var(--navy); }
       <div>
         <label>Type</label>
         <select id="mf-cap-type" style="margin-top:4px; padding:6px 10px; border:1px solid var(--border); border-radius:6px; font-family:'Source Sans 3',sans-serif; font-size:13px; background:var(--white); color:var(--text); width:100%">
-          <option value="other">Other</option>
           <option value="one_off">One-Off Drop</option>
           <option value="limited_edition">Limited Edition</option>
           <option value="retired">Retired</option>
@@ -2732,17 +2731,19 @@ async function saveManualCap(){
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify(payload),
     });
-    const data = await resp.json();
+    let data;
+    try { data = await resp.json(); } catch(_){ data = {}; }
     if(data.ok){ closeManualForm(); fetchManualCaps(true); load(); loadStats(); }
     else{
       btn.disabled = false;
       btn.textContent = 'Save Cap';
-      alert(data.error || 'Save failed.');
+      alert(data.error || `Save failed (HTTP ${resp.status}). Check console for details.`);
     }
   }catch(e){
     console.error('Save failed', e);
     btn.disabled = false;
     btn.textContent = 'Save Cap';
+    alert('Save failed: ' + (e.message || 'unknown error'));
   }
 }
 
