@@ -397,10 +397,10 @@ main { max-width:1320px; margin:0 auto; padding:24px 20px; }
 .ribbon-tag.wishlist { background:#8e44ad; color:#fff; }
 .ribbon-tag.sold     { background:#c0392b; color:#fff; }
 .ribbon-tag.new-item    { background:#e67e22; color:#fff; }
-.ribbon-tag.cap-retired   { background:#7f8c8d; color:#fff; }
-.ribbon-tag.cap-one-off   { background:#2980b9; color:#fff; }
-.ribbon-tag.cap-seasonal  { background:#27ae60; color:#fff; }
-.ribbon-tag.cap-other     { background:#6c757d; color:#fff; }
+.ribbon-tag.cap-retired        { background:#7f8c8d; color:#fff; }
+.ribbon-tag.cap-one-off        { background:#2980b9; color:#fff; }
+.ribbon-tag.cap-limited        { background:#8e44ad; color:#fff; }
+.ribbon-tag.cap-other          { background:#6c757d; color:#fff; }
 .ribbon-tag.restocked { background:#1a6b3a; color:#fff; }
 .oos-days { font-size:10px; font-weight:700; color:#c0392b; letter-spacing:.03em; margin-top:2px; }
 /* First-seen label */
@@ -1195,8 +1195,8 @@ body.dark .view-btn { color:var(--navy); }
         <select id="mf-cap-type" style="margin-top:4px; padding:6px 10px; border:1px solid var(--border); border-radius:6px; font-family:'Source Sans 3',sans-serif; font-size:13px; background:var(--white); color:var(--text); width:100%">
           <option value="other">Other</option>
           <option value="one_off">One-Off Drop</option>
+          <option value="limited_edition">Limited Edition</option>
           <option value="retired">Retired</option>
-          <option value="seasonal">Seasonal</option>
         </select>
       </div>
       <div>
@@ -1872,8 +1872,8 @@ function render(products, manualCaps=[]){
       const img = p.image_url
         ? `<img class="card-img" src="${p.image_url}" loading="lazy" alt="${x(p.title)}">`
         : `<div class="card-ph">🧢</div>`;
-      const CAP_TYPE_LABELS = { one_off:'One-Off Drop', retired:'Retired', seasonal:'Seasonal', other:'Other' };
-      const CAP_TYPE_CSS    = { one_off:'cap-one-off', retired:'cap-retired', seasonal:'cap-seasonal', other:'cap-other' };
+      const CAP_TYPE_LABELS = { one_off:'One-Off Drop', limited_edition:'Limited Edition', retired:'Retired' };
+      const CAP_TYPE_CSS    = { one_off:'cap-one-off', limited_edition:'cap-limited', retired:'cap-retired' };
       const showType  = p._cap_type && p._cap_type !== 'none';
       const typeLabel = showType ? (CAP_TYPE_LABELS[p._cap_type] || p._cap_type) : '';
       const typeCss   = CAP_TYPE_CSS[p._cap_type] || 'cap-other';
@@ -2768,7 +2768,7 @@ async function openManualCap(id){
     initCarousel(images);
     if(!images.length) document.getElementById('m-img').style.display='none';
 
-    const CAP_TYPE_LABELS = { one_off:'One-Off Drop', retired:'Retired', seasonal:'Seasonal', other:'Other' };
+    const CAP_TYPE_LABELS = { one_off:'One-Off Drop', limited_edition:'Limited Edition', retired:'Retired' };
     const showType = cap.cap_type && cap.cap_type !== 'none';
     const panelLabel = cap.panels ? (PANEL_LABELS[cap.panels]||cap.panels)+'-Panel' : '';
 
