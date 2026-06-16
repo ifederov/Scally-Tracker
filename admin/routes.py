@@ -88,6 +88,16 @@ def update_feedback_status(fid):
     return jsonify({"ok": True, "status": new_status})
 
 
+@admin_bp.route("/feedback/<int:fid>/notes", methods=["POST"])
+@admin_required
+def update_feedback_notes(fid):
+    fb = Feedback.query.get_or_404(fid)
+    data = request.get_json()
+    fb.admin_notes = (data.get("notes") or "").strip() or None
+    db.session.commit()
+    return jsonify({"ok": True})
+
+
 def _recent_activity(limit=100):
     """Best-effort feed derived from existing timestamps (no dedicated audit log)."""
     events = []

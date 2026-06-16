@@ -771,7 +771,7 @@ def api_stats():
 
     open_feedback = (
         db.session.query(func.count(Feedback.id))
-        .filter(Feedback.status.in_(["open", "in_progress"]))
+        .filter(Feedback.status == "open")
         .scalar()
     ) if current_user.is_admin else 0
 

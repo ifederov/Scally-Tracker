@@ -79,6 +79,9 @@ tr:last-child td { border-bottom:none; }
 .fb-type.bug     { background:#f8d7da; color:#842029; }
 .fb-type.feature { background:#d1e7dd; color:#0a3622; }
 .fb-body  { font-size:12px; color:var(--text2); margin-top:3px; white-space:pre-wrap; }
+.fb-admin-notes { width:100%; margin-top:6px; padding:5px 8px; font-size:12px; font-family:'Source Sans 3',sans-serif; color:var(--text); background:var(--cream2); border:1px solid var(--border); border-radius:5px; resize:vertical; min-height:40px; }
+.fb-admin-notes:focus { outline:none; border-color:var(--gold); }
+.fb-notes-saved { font-size:10px; color:var(--green,#2e8b57); font-weight:700; display:none; margin-left:4px; }
 
 .activity-list { list-style:none; font-size:13px; }
 .activity-list li { padding:8px 0; border-bottom:1px solid var(--border); display:flex; gap:10px; }
@@ -154,7 +157,7 @@ body.dark .confirm-modal h2 { color:#fff; }
     </div>
     {% if feedback %}
     <table>
-      <thead><tr><th>Type</th><th>From</th><th>Title &amp; Notes</th><th>Date</th><th>Status</th></tr></thead>
+      <thead><tr><th>Type</th><th>From</th><th>Title &amp; Details</th><th>Date</th><th>Status</th></tr></thead>
       <tbody>
       {% for fb in feedback %}
       <tr id="fb-row-{{ fb.id }}">
@@ -163,6 +166,11 @@ body.dark .confirm-modal h2 { color:#fff; }
         <td>
           <strong style="font-size:13px">{{ fb.title }}</strong>
           {% if fb.body %}<div class="fb-body">{{ fb.body }}</div>{% endif %}
+          <textarea class="fb-admin-notes" id="fb-notes-{{ fb.id }}"
+            placeholder="Admin notes…"
+            onblur="saveNotes({{ fb.id }}, this)"
+            rows="2">{{ fb.admin_notes or '' }}</textarea>
+          <span class="fb-notes-saved" id="fb-notes-saved-{{ fb.id }}">Saved ✓</span>
         </td>
         <td style="white-space:nowrap;color:var(--text3);font-size:12px;">{{ fb.created_at[:10] if fb.created_at else '' }}</td>
         <td>
@@ -242,6 +250,19 @@ async function updateFbStatus(id, sel){
       body: JSON.stringify({status}),
     });
   } catch(e) { console.error('Status update failed', e); }
+}
+
+async function saveNotes(id, ta){
+  const notes = ta.value;
+  try {
+    await fetch(`/admin/feedback/${id}/notes`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({notes}),
+    });
+    const saved = document.getElementById('fb-notes-saved-' + id);
+    if(saved){ saved.style.display = 'inline'; setTimeout(() => saved.style.display = 'none', 2000); }
+  } catch(e) { console.error('Notes save failed', e); }
 }
 </script>
 </body>

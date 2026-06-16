@@ -120,13 +120,14 @@ class User(UserMixin, db.Model):
 class Feedback(db.Model):
     __tablename__ = "feedback"
 
-    id         = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    user_id    = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    type       = db.Column(db.Text, nullable=False)   # "bug" | "feature"
-    title      = db.Column(db.Text, nullable=False)
-    body       = db.Column(db.Text)
-    status     = db.Column(db.Text, nullable=False, default="open")  # open | in_progress | closed
-    created_at = db.Column(db.Text, nullable=False)
+    id          = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id     = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    type        = db.Column(db.Text, nullable=False)   # "bug" | "feature"
+    title       = db.Column(db.Text, nullable=False)
+    body        = db.Column(db.Text)
+    status      = db.Column(db.Text, nullable=False, default="open")  # open | in_progress | closed
+    created_at  = db.Column(db.Text, nullable=False)
+    admin_notes = db.Column(db.Text)
 
 
 class Release(db.Model):
