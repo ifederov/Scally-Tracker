@@ -261,6 +261,12 @@ def process(product, known_ids, latest_snaps, panels_overrides, wishlist, user_w
         tags = [t.strip() for t in tags.split(",") if t.strip()]
     tags_str = ", ".join(tags)
 
+    # BSC sometimes tags a product "unavailable" (pulling it off active sale)
+    # without zeroing its Shopify inventory count, so the feed's own
+    # `available` flag stays true even though the storefront shows Sold Out.
+    # Treat the tag as an override so we don't report false in-stock.
+    force_unavailable = any(t.strip().lower() == "unavailable" for t in tags)
+
     body_text   = html_to_text(product.get("body_html", "") or "")
     description = body_text[:600].strip()
     style       = extract_field(body_text, "Style")
@@ -349,7 +355,7 @@ def process(product, known_ids, latest_snaps, panels_overrides, wishlist, user_w
     for v in product.get("variants", []):
         vid   = v["id"]
         price = float(v.get("price", 0))
-        avail = 1 if v.get("available") else 0
+        avail = 1 if (v.get("available") and not force_unavailable) else 0
         vtit  = v.get("title", "Default")
 
         var_stmt = pg_insert(Variant.__table__).values(
